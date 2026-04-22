@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Apex Holux Global Store</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <h1>🌍 Apex Holux Global Store</h1>
+</header>
+
+<!-- SEARCH -->
+<div style="text-align:center; margin:15px;">
+  <input type="text" id="search" placeholder="Search products..." onkeyup="searchProducts()" />
+</div>
+
+<!-- PRODUCTS -->
+<div class="container" id="products"></div>
+
+<!-- CART -->
+<div class="cart">
+  <h2>🛒 Cart</h2>
+  <div id="cart"></div>
+
+  <h3>Total: $<span id="total">0</span></h3>
+
+  <button onclick="checkoutCart()">🔥 WhatsApp Checkout</button>
+  <button onclick="clearCart()">🗑 Clear Cart</button>
+</div>
+
+<script src="app.js"></script>
+
+</body>
+</html>
