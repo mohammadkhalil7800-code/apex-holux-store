@@ -1,38 +1,3 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Apex Holux Global Store</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-
-<header>
-  <h1>🌍 Apex Holux Global Store</h1>
-</header>
-
-<!-- SEARCH -->
-<div style="text-align:center; margin:15px;">
-  <input type="text" id="search" placeholder="Search products..." onkeyup="searchProducts()" />
-</div>
-
-<!-- PRODUCTS -->
-<div class="container" id="products"></div>
-
-<!-- CART -->
-<div class="cart">
-  <h2>🛒 Cart</h2>
-  <div id="cart"></div>
-
-  <h3>Total: $<span id="total">0</span></h3>
-
-  <button onclick="checkoutCart()">🔥 WhatsApp Checkout</button>
-  <button onclick="clearCart()">🗑 Clear Cart</button>
-</div>
-
-<script src="app.js"></script>
-
-</body>
-</html>
 
 <script type="module">
 
@@ -40,7 +5,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/fireba
 import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAosKE91uRDcGettjknNTu7wNjVmdtpPvA",
+  apiKey: "YOUR_KEY",
   authDomain: "apex-holux-global-store.firebaseapp.com",
   projectId: "apex-holux-global-store",
   storageBucket: "apex-holux-global-store.firebasestorage.app",
@@ -51,21 +16,245 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// 🔥 GET PRODUCTS FROM FIREBASE
-async function loadProducts() {
+const container = document.getElementById("products");
+
+let allProducts = [];
+
+// 🧠 USER SYSTEM (AUTO GUEST)
+let user = JSON.parse(localStorage.getItem("user")) || {
+  id: "user_" + Math.random().toString(36).substr(2,9),
+  name: "Guest"
+};
+
+localStorage.setItem("user", JSON.stringify(user));
+
+// 🛒 CART + ❤️ WISHLIST + 📦 ORDERS
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+let orders = JSON.parse(localStorage.getItem("orders")) || {};
+
+function saveCart(){
+  localStorage.setItem("cart", JSON.stringify(cart));
+}
+
+function saveWishlist(){
+  localStorage.setItem("wishlist", JSON.stringify(wishlist));
+}
+
+function saveOrders(){
+  localStorage.setItem("orders", JSON.stringify(orders));
+}
+
+// ⏳ LOADING
+container.innerHTML = "⏳ Loading products...";
+
+// 🔥 LOAD PRODUCTS
+async function loadProducts(){
+
   const querySnapshot = await getDocs(collection(db, "products"));
-  const container = document.getElementById("products");
-  container.innerHTML = "";
+
+  allProducts = [];
 
   querySnapshot.forEach((doc) => {
-    const data = doc.data();
+    allProducts.push({ id: doc.id, ...doc.data() });
+  });
+
+  displayProducts(allProducts);
+  renderCart();
+  renderOrders();
+}
+
+// 🧼 SAFE TEXT
+function safe(text){
+  return String(text).replaceAll("<","").replaceAll(">","");
+}
+
+// 🔥 DISPLAY PRODUCTS
+function displayProducts(products){
+
+  container.innerHTML = "";
+
+  if(products.length === 0){
+    container.innerHTML = "<p>No products found.</p>";
+    return;
+  }
+
+  products.forEach((p) => {
+
+    const isFav = wishlist.includes(p.id);
 
     container.innerHTML += `
       <div class="card">
-        <img src="${data.image}" />
-        <h3>${data.name}</h3>
-        <p>$${data.price}</p>
-        <button>Add to Cart</button>
+        <img src="${p.image}" onerror="this.src='https://via.placeholder.com/150'"/>
+        
+        <h3>${safe(p.name)}</h3>
+        <p>$${p.price}</p>
+
+        <button onclick="addToCart('${p.id}','${safe(p.name)}',${p.price})">
+          Add to Cart
+        </button>
+
+        <button onclick="toggleWishlist('${p.id}')">
+          ${isFav ? "❤️ Saved" : "🤍 Wishlist"}
+        </button>
+      </div>
+    `;
+  });
+}
+
+// 🔍 SEARCH
+let timeout;
+document.getElementById("search").addEventListener("keyup",(e)=>{
+
+  clearTimeout(timeout);
+
+  timeout = setTimeout(()=>{
+
+    const value = e.target.value.toLowerCase();
+
+    const filtered = allProducts.filter(p =>
+      p.name.toLowerCase().includes(value)
+    );
+
+    displayProducts(filtered);
+
+  },200);
+});
+
+// 🛒 ADD TO CART
+window.addToCart = function(id,name,price){
+
+  const item = cart.find(i => i.id === id);
+
+  if(item){
+    item.qty++;
+  } else {
+    cart.push({ id, name, price, qty: 1 });
+  }
+
+  saveCart();
+  renderCart();
+}
+
+// ❤️ WISHLIST
+window.toggleWishlist = function(id){
+
+  if(wishlist.includes(id)){
+    wishlist = wishlist.filter(i => i !== id);
+  } else {
+    wishlist.push(id);
+  }
+
+  saveWishlist();
+  displayProducts(allProducts);
+}
+
+// 🧾 CART RENDER
+function renderCart(){
+
+  const cartDiv = document.getElementById("cart");
+  const totalSpan = document.getElementById("total");
+
+  cartDiv.innerHTML = "";
+
+  let total = 0;
+
+  if(cart.length === 0){
+    cartDiv.innerHTML = "<p>🛒 Cart is empty</p>";
+    totalSpan.innerText = "0";
+    return;
+  }
+
+  cart.forEach((item,index)=>{
+
+    total += item.price * item.qty;
+
+    cartDiv.innerHTML += `
+      <p>
+        ${item.name} × ${item.qty} = $${item.price * item.qty}
+        <button onclick="removeItem(${index})">❌</button>
+      </p>
+    `;
+  });
+
+  totalSpan.innerText = total;
+}
+
+// ❌ REMOVE ITEM
+window.removeItem = function(index){
+  cart.splice(index,1);
+  saveCart();
+  renderCart();
+}
+
+// 🧹 CLEAR CART
+window.clearCart = function(){
+  cart = [];
+  saveCart();
+  renderCart();
+}
+
+// 📲 WHATSAPP CHECKOUT + 📦 SAVE ORDER
+window.checkoutCart = function(){
+
+  if(cart.length === 0){
+    alert("Cart is empty!");
+    return;
+  }
+
+  let orderId = "ORD-" + Date.now();
+  let total = 0;
+  let message = `🛒 ORDER\nOrder ID: ${orderId}\nUser: ${user.name}\n\n`;
+
+  cart.forEach(item=>{
+    total += item.price * item.qty;
+    message += `• ${item.name} x${item.qty} = $${item.price * item.qty}\n`;
+  });
+
+  message += `\nTOTAL: $${total}`;
+
+  // 📦 SAVE ORDER
+  orders[orderId] = {
+    id: orderId,
+    user: user,
+    items: [...cart],
+    total: total,
+    date: new Date().toISOString()
+  };
+
+  saveOrders();
+
+  // 🧹 CLEAR CART
+  cart = [];
+  saveCart();
+  renderCart();
+  renderOrders();
+
+  const url = "https://wa.me/93764594322?text=" + encodeURIComponent(message);
+  window.open(url, "_blank");
+}
+
+// 📦 RENDER ORDERS
+function renderOrders(){
+
+  const ordersDiv = document.getElementById("orders");
+  if(!ordersDiv) return;
+
+  ordersDiv.innerHTML = "";
+
+  const list = Object.values(orders);
+
+  if(list.length === 0){
+    ordersDiv.innerHTML = "<p>No orders yet</p>";
+    return;
+  }
+
+  list.reverse().forEach(o=>{
+    ordersDiv.innerHTML += `
+      <div style="border-bottom:1px solid #ddd; padding:10px;">
+        <b>${o.user.name}</b><br/>
+        💰 $${o.total}<br/>
+        📅 ${new Date(o.date).toLocaleString()}
       </div>
     `;
   });
