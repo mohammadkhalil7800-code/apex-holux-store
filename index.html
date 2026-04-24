@@ -33,3 +33,44 @@
 
 </body>
 </html>
+
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAosKE91uRDcGettjknNTu7wNjVmdtpPvA",
+  authDomain: "apex-holux-global-store.firebaseapp.com",
+  projectId: "apex-holux-global-store",
+  storageBucket: "apex-holux-global-store.firebasestorage.app",
+  messagingSenderId: "14825121288",
+  appId: "1:14825121288:web:a46ba39d55894efa0453bd"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+// 🔥 GET PRODUCTS FROM FIREBASE
+async function loadProducts() {
+  const querySnapshot = await getDocs(collection(db, "products"));
+  const container = document.getElementById("products");
+  container.innerHTML = "";
+
+  querySnapshot.forEach((doc) => {
+    const data = doc.data();
+
+    container.innerHTML += `
+      <div class="card">
+        <img src="${data.image}" />
+        <h3>${data.name}</h3>
+        <p>$${data.price}</p>
+        <button>Add to Cart</button>
+      </div>
+    `;
+  });
+}
+
+loadProducts();
+
+</script>
