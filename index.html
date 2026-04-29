@@ -1,81 +1,4 @@
 
-    if(allProducts.length === 0){
-      allProducts = fallbackProducts;
-    }
-
-  }catch(err){
-    allProducts = fallbackProducts;
-  }
-
-  displayProducts(allProducts);
-  renderCart();
-  renderOrders();
-}
-
-// DISPLAY PRODUCTS
-function displayProducts(products){
-  container.innerHTML = "";
-
-  products.forEach(p=>{
-    container.innerHTML += `
-    <div class="card">
-      <img src="${p.image}" onerror="this.src='https://via.placeholder.com/150'"/>
-      <h3>${p.name}</h3>
-      <p>$${p.price}</p>
-
-      <button onclick="addToCart('${p.id}','${p.name}',${p.price})">🛒</button>
-    </div>
-    `;
-  });
-}
-
-// SEARCH
-document.getElementById("search").addEventListener("keyup",(e)=>{
-  const v = e.target.value.toLowerCase();
-  displayProducts(allProducts.filter(p=>p.name.toLowerCase().includes(v)));
-});
-
-// ADD TO CART
-window.addToCart = function(id,name,price){
-  const item = cart.find(i=>i.id===id);
-  if(item) item.qty++;
-  else cart.push({id,name,price,qty:1});
-
-  saveCart();
-  renderCart();
-}
-
-// CART
-function renderCart(){
-  const cartDiv = document.getElementById("cart");
-  const totalSpan = document.getElementById("total");
-
-  cartDiv.innerHTML = "";
-  let total = 0;
-
-  cart.forEach((item,index)=>{
-    total += item.price * item.qty;
-
-    cartDiv.innerHTML += `
-    <p>
-      ${item.name} x${item.qty}
-      <button onclick="removeItem(${index})">❌</button>
-    </p>`;
-  });
-
-  totalSpan.innerText = total;
-}
-
-// REMOVE
-window.removeItem = function(i){
-  cart.splice(i,1);
-  saveCart();
-  renderCart();
-}
-
-// CHECKOUT
-window.checkoutCart = function(){
-
   if(cart.length===0){
     alert("Cart empty!");
     return;
@@ -118,5 +41,3 @@ loadProducts();
 
 </script>
 
-</body>
-</html>
