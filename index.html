@@ -1,164 +1,277 @@
-  allProducts = [];
-  snapshot.forEach(doc => {
-    allProducts.push({ id: doc.id, ...doc.data() });
-  });
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Apex Holux Global Store</title>
 
-  renderProducts(allProducts);
+  <style>
+    body{
+      font-family: Arial;
+      margin:0;
+      background:#f5f5f5;
+    }
+
+    header{
+      background:black;
+      color:white;
+      padding:15px;
+      text-align:center;
+      font-size:22px;
+      font-weight:bold;
+    }
+
+    .container{
+      display:flex;
+      gap:20px;
+      padding:10px;
+      flex-wrap:wrap;
+    }
+
+    #products{
+      flex:3;
+      display:grid;
+      grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
+      gap:10px;
+    }
+
+    .card{
+      background:white;
+      padding:10px;
+      border-radius:10px;
+      text-align:center;
+    }
+
+    .card img{
+      width:100%;
+      border-radius:10px;
+    }
+
+    #cartBox{
+      flex:1;
+      background:white;
+      padding:10px;
+      border-radius:10px;
+      min-width:250px;
+    }
+
+    input{
+      width:90%;
+      padding:8px;
+      margin:10px;
+    }
+
+    button{
+      margin:5px;
+      padding:5px 10px;
+      cursor:pointer;
+    }
+
+    .dark{
+      background:#111;
+      color:white;
+    }
+
+  </style>
+</head>
+
+<body>
+
+<header>
+🌍 Apex Holux Global Store
+</header>
+
+<input id="search" placeholder="Search products..." />
+
+<div class="container">
+
+  <div id="products"></div>
+
+  <div id="cartBox">
+    <h3>🛒 Cart</h3>
+    <div id="cart"></div>
+    <h4>Total: $<span id="total">0</span></h4>
+
+    <button onclick="checkoutCart()">Checkout</button>
+
+    <hr>
+
+    <h3>📦 Orders</h3>
+    <div id="orders"></div>
+  </div>
+
+</div>
+
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "YOUR_KEY",
+  authDomain: "apex-holux-global-store.firebaseapp.com",
+  projectId: "apex-holux-global-store",
+  storageBucket: "apex-holux-global-store.firebasestorage.app",
+  messagingSenderId: "14825121288",
+  appId: "1:14825121288:web:a46ba39d55894efa0453bd"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+const container = document.getElementById("products");
+
+// fallback products
+const fallbackProducts = [
+  {id:"1",name:"Nike Shoes",price:90,image:"https://via.placeholder.com/150",category:"shoes"},
+  {id:"2",name:"Adidas Shoes",price:120,image:"https://via.placeholder.com/150",category:"shoes"}
+];
+
+let allProducts = [];
+
+// USER
+let user = JSON.parse(localStorage.getItem("user")) || {
+  id: "user_" + Math.random().toString(36).substr(2,9),
+  name: "Guest"
+};
+localStorage.setItem("user", JSON.stringify(user));
+
+// STORAGE
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+let orders = JSON.parse(localStorage.getItem("orders")) || {};
+
+function saveCart(){ localStorage.setItem("cart", JSON.stringify(cart)); }
+function saveOrders(){ localStorage.setItem("orders", JSON.stringify(orders)); }
+
+// LOAD PRODUCTS
+async function loadProducts(){
+  container.innerHTML = "⏳ Loading...";
+
+  try{
+    const querySnapshot = await getDocs(collection(db, "products"));
+
+    allProducts = [];
+    querySnapshot.forEach((doc)=>{
+      allProducts.push({ id: doc.id, ...doc.data() });
+    });
+
+    if(allProducts.length === 0){
+      allProducts = fallbackProducts;
+    }
+
+  }catch(err){
+    allProducts = fallbackProducts;
+  }
+
+  displayProducts(allProducts);
   renderCart();
-  updateBadges();
+  renderOrders();
 }
 
-// 🧼 SAFE
-function safe(t){
-  return String(t || "")
-    .replaceAll("<","")
-    .replaceAll(">","");
-}
-
-// ⭐ BUY NOW (Amazon style)
-window.buyNow = function(id,name,price){
-  cart = [{ id, name, price, qty: 1 }];
-  saveCart();
-  checkoutCart();
-}
-
-// 🛒 ADD CART
-window.addToCart = function(id,name,price){
-
-  let item = cart.find(i => i.id === id);
-
-  if(item) item.qty++;
-  else cart.push({ id, name, price, qty: 1 });
-
-  saveCart();
-  renderCart();
-}
-
-// ❤️ WISHLIST
-window.toggleWishlist = function(id){
-  wishlist.includes(id)
-    ? wishlist = wishlist.filter(i => i !== id)
-    : wishlist.push(id);
-
-  saveWishlist();
-  renderProducts(allProducts);
-}
-
-// 🔎 SEARCH + FILTER
-document.getElementById("search").addEventListener("input",(e)=>{
-
-  const val = e.target.value.toLowerCase();
-
-  const filtered = allProducts.filter(p =>
-    (p.name || "").toLowerCase().includes(val) ||
-    (p.category || "").toLowerCase().includes(val)
-  );
-
-  renderProducts(filtered);
-});
-
-// 🔥 RENDER PRODUCTS (Amazon UI style)
-function renderProducts(products){
-
+// DISPLAY PRODUCTS
+function displayProducts(products){
   container.innerHTML = "";
 
-  products.forEach(p => {
-
-    let rating = p.rating || (Math.random()*2 + 3).toFixed(1);
-    let stars = "⭐".repeat(Math.round(rating));
-
-    const isFav = wishlist.includes(p.id);
-
+  products.forEach(p=>{
     container.innerHTML += `
-      <div class="card">
-        <img src="${p.image}" onerror="this.src='https://via.placeholder.com/150'">
+    <div class="card">
+      <img src="${p.image}" onerror="this.src='https://via.placeholder.com/150'"/>
+      <h3>${p.name}</h3>
+      <p>$${p.price}</p>
 
-        <h3>${safe(p.name)}</h3>
-
-        <p>${stars} (${rating})</p>
-        <p><b>$${p.price}</b></p>
-
-        <button onclick="buyNow('${p.id}','${safe(p.name)}',${p.price})">
-          ⚡ Buy Now
-        </button>
-
-        <button onclick="addToCart('${p.id}','${safe(p.name)}',${p.price})">
-          🛒 Add
-        </button>
-
-        <button onclick="toggleWishlist('${p.id}')">
-          ${isFav ? "❤️ Saved" : "🤍 Wishlist"}
-        </button>
-      </div>
+      <button onclick="addToCart('${p.id}','${p.name}',${p.price})">🛒</button>
+    </div>
     `;
   });
 }
 
-// 🧾 CART RENDER
-function renderCart(){
+// SEARCH
+document.getElementById("search").addEventListener("keyup",(e)=>{
+  const v = e.target.value.toLowerCase();
+  displayProducts(allProducts.filter(p=>p.name.toLowerCase().includes(v)));
+});
 
+// ADD TO CART
+window.addToCart = function(id,name,price){
+  const item = cart.find(i=>i.id===id);
+  if(item) item.qty++;
+  else cart.push({id,name,price,qty:1});
+
+  saveCart();
+  renderCart();
+}
+
+// CART
+function renderCart(){
   const cartDiv = document.getElementById("cart");
   const totalSpan = document.getElementById("total");
 
+  cartDiv.innerHTML = "";
   let total = 0;
 
-  cartDiv.innerHTML = cart.length ? "" : "<p>Cart empty</p>";
-
-  cart.forEach((item,i)=>{
-
+  cart.forEach((item,index)=>{
     total += item.price * item.qty;
 
     cartDiv.innerHTML += `
-      <p>
-        ${item.name} x${item.qty}
-        = $${item.price * item.qty}
-        <button onclick="removeItem(${i})">❌</button>
-      </p>
-    `;
+    <p>
+      ${item.name} x${item.qty}
+      <button onclick="removeItem(${index})">❌</button>
+    </p>`;
   });
 
   totalSpan.innerText = total;
 }
 
-// ❌ REMOVE
+// REMOVE
 window.removeItem = function(i){
   cart.splice(i,1);
   saveCart();
   renderCart();
 }
 
-// 🧹 CLEAR
-window.clearCart = function(){
-  cart = [];
-  saveCart();
-  renderCart();
-}
-
-// 📦 CHECKOUT (WhatsApp + Orders)
+// CHECKOUT
 window.checkoutCart = function(){
 
-  if(cart.length === 0) return alert("Cart empty!");
+  if(cart.length===0){
+    alert("Cart empty!");
+    return;
+  }
 
-  let id = "ORD-" + Date.now();
-  let total = 0;
+  let total = cart.reduce((a,b)=>a+b.price*b.qty,0);
 
-  let msg = `🛒 ORDER\nID:${id}\nUser:${user.name}\n\n`;
-
-  cart.forEach(i=>{
-    total += i.price * i.qty;
-    msg += `${i.name} x${i.qty} = $${i.price*i.qty}\n`;
-  });
-
-  msg += `\nTOTAL: $${total}`;
-
-  orders[id] = {
-    id,
-    user,
-    items:[...cart],
+  let order = {
+    id:"ORD-"+Date.now(),
     total,
     date:new Date().toISOString()
   };
 
-  (){
-  document.getElementById("cartCount")?.innerText = cart.length;
-  document.getElementById("wishCount")?.innerText = wishlisore"
+  orders[order.id] = order;
+  saveOrders();
+
+  alert("Order placed ✅");
+
+  cart = [];
+  saveCart();
+  renderCart();
+  renderOrders();
+}
+
+// ORDERS
+function renderOrders(){
+  const div = document.getElementById("orders");
+
+  const list = Object.values(orders);
+
+  div.innerHTML = list.map(o=>`
+    <div>
+      $${o.total} <br/>
+      ${new Date(o.date).toLocaleString()}
+    </div>
+  `).join("");
+}
+
+loadProducts();
+
+</script>
+
+</body>
+</html>
