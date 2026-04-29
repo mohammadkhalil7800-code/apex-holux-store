@@ -1,66 +1,76 @@
-import { useEffect, useMemo, useState } from "react";
+const products = [
+  { id: 1, name: "Nike Air Force 1" },
+  { id: 2, name: "Adidas Ultraboost" },
+  { id: 3, name: "Nike Running Shoes" },
+  { id: 4, name: "Puma Sports Shoes" },
 
-const PRODUCTS = [
-  { id: 1, name: "Nike Air Force 1", price: 90, category: "Sneakers" },
-  { id: 2, name: "Adidas Ultraboost", price: 120, category: "Running" },
-  { id: 3, name: "Nike Running Shoes", price: 85, category: "Running" },
+  { id: 5, name: "Skechers Memory Foam" },
+  { id: 6, name: "Skechers Walking Shoes" },
+
+  { id: 7, name: "Air Jordan 1 Low" },
+  { id: 8, name: "Jordan Retro Sneakers" },
+
+  { id: 9, name: "Nike Slides Comfort" },
+  { id: 10, name: "Adidas Slides" },
+
+  { id: 11, name: "Luxury Slides (Gucci Style)" },
+  { id: 12, name: "Soft Slippers" },
+
+  { id: 13, name: "Converse Classic" },
+  { id: 14, name: "Vans Old Skool" },
+
+  { id: 15, name: "New Balance Running" },
+  { id: 16, name: "Hiking Shoes" }
 ];
 
-export default function Store() {
-  const [cart, setCart] = useState([]);
-  const [search, setSearch] = useState("");
-  const [category, setCategory] = useState("All");
+let cart = [];
 
-  useEffect(() => {
-    const saved = localStorage.getItem("cart");
-    if (saved) setCart(JSON.parse(saved));
-  }, []);
+// LOAD PRODUCTS
+function loadProducts() {
+  const div = document.getElementById("products");
 
-  useEffect(() => {
-    localStorage.setItem("cart", JSON.stringify(cart));
-  }, [cart]);
-
-  const addToCart = (p) => setCart([...cart, p]);
-
-  const filteredProducts = useMemo(() => {
-    return PRODUCTS.filter((p) => {
-      const matchSearch = p.name.toLowerCase().includes(search.toLowerCase());
-      const matchCategory = category === "All" || p.category === category;
-      return matchSearch && matchCategory;
-    });
-  }, [search, category]);
-
-  return (
-    <div style={{ padding: 20 }}>
-      <h1>⚡ Apex Holux Store</h1>
-
-      {/* Search */}
-      <input
-        placeholder="Search..."
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-      />
-
-      {/* Products */}
-      <h2>Products</h2>
-      <div>
-        {filteredProducts.map((p) => (
-          <div key={p.id} style={{ border: "1px solid #ccc", margin: 10, padding: 10 }}>
-            <h3>{p.name}</h3>
-            <p>${p.price}</p>
-            <p>{p.category}</p>
-            <button onClick={() => addToCart(p)}>Add to Cart</button>
-          </div>
-        ))}
+  products.forEach(p => {
+    div.innerHTML += `
+      <div class="card">
+        <h3>${p.name}</h3>
+        <button onclick="add(${p.id})">Add</button>
       </div>
-
-      {/* Cart */}
-      <h2>🛒 Cart</h2>
-      {cart.map((c, i) => (
-        <div key={i}>
-          {c.name} - ${c.price}
-        </div>
-      ))}
-    </div>
-  );
+    `;
+  });
 }
+
+// ADD TO CART
+function add(id) {
+  const item = products.find(p => p.id === id);
+  cart.push(item);
+  renderCart();
+}
+
+// SHOW CART
+function renderCart() {
+  const div = document.getElementById("cart");
+  div.innerHTML = "";
+
+  cart.forEach(c => {
+    div.innerHTML += `<p>${c.name}</p>`;
+  });
+}
+
+// CHECKOUT (WHATSAPP)
+function checkout() {
+  if (cart.length === 0) {
+    alert("Cart is empty");
+    return;
+  }
+
+  let msg = "🛒 ORDER:%0A";
+
+  cart.forEach(c => {
+    msg += "• " + c.name + "%0A";
+  });
+
+  // 👇 ستا نمبر اضافه شو
+  window.open("https://wa.me/93764594322?text=" + msg);
+}
+
+loadProducts();
