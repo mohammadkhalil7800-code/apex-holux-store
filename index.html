@@ -2,16 +2,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Apex Holux Global Store</title>
+<title>Apex Holux Pro Store</title>
 
 <style>
-body{
-  margin:0;
-  font-family:Arial;
-  background:#f4f4f4;
-}
+body{margin:0;font-family:Arial;background:#f5f5f5;}
 
-/* HEADER */
 header{
   background:#131921;
   color:white;
@@ -21,39 +16,33 @@ header{
   font-weight:bold;
 }
 
-/* TOP BAR */
 .topbar{
   display:flex;
   gap:10px;
   padding:10px;
-  flex-wrap:wrap;
-  justify-content:center;
+  background:#232f3e;
 }
 
 input,select{
   padding:10px;
-  width:200px;
+  width:100%;
+  border-radius:6px;
+  border:none;
 }
 
-/* PRODUCTS */
 .container{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:20px;
-  padding:20px;
+  grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+  gap:15px;
+  padding:15px;
 }
 
 .card{
   background:white;
-  border-radius:12px;
+  border-radius:10px;
   padding:10px;
+  box-shadow:0 2px 10px rgba(0,0,0,0.2);
   text-align:center;
-  box-shadow:0 2px 8px rgba(0,0,0,0.2);
-  transition:0.3s;
-}
-
-.card:hover{
-  transform:scale(1.05);
 }
 
 .card img{
@@ -64,203 +53,163 @@ input,select{
 }
 
 button{
-  width:100%;
-  padding:8px;
-  margin-top:5px;
-  border:none;
-  cursor:pointer;
   background:#ff9900;
-  font-weight:bold;
+  border:none;
+  padding:8px;
+  width:100%;
+  margin-top:5px;
+  cursor:pointer;
+  border-radius:6px;
 }
 
-/* CART */
-.cart{
+.panel{
   background:white;
-  margin:20px;
-  padding:20px;
+  padding:15px;
+  margin:10px;
   border-radius:10px;
 }
 
-.cart-item{
-  display:flex;
-  justify-content:space-between;
-  margin:5px 0;
-}
-
-.small{
-  width:auto;
-  padding:5px 8px;
-  margin:0 3px;
-}
-
+.dark{background:#111;color:white;}
 </style>
 </head>
 
 <body>
 
-<header>
-🌍 Apex Holux Global Store
-</header>
+<header>🌍 Apex Holux GLOBAL PRO STORE</header>
 
-<!-- SEARCH + FILTER -->
 <div class="topbar">
-<input id="search" placeholder="Search shoes...">
-
-<select id="category" onchange="filterCategory()">
-  <option value="all">All Categories</option>
-  <option value="classic">Men Classic Shoes</option>
-  <option value="sports">Sports Shoes</option>
-  <option value="skechers">Skechers Shoes</option>
-  <option value="sneakers">Fashion Sneakers</option>
-  <option value="slides">Slides & Sandals</option>
-</select>
+  <input id="search" placeholder="Search shoes..." />
+  <select onchange="filterCat(this.value)">
+    <option value="all">All</option>
+    <option value="sports">Sports Shoes</option>
+    <option value="sneakers">Sneakers</option>
+    <option value="sketchers">Sketchers</option>
+    <option value="classic">Classic Shoes</option>
+  </select>
 </div>
 
-<!-- PRODUCTS -->
+<div class="panel">
+  👤 <input id="userName" placeholder="Enter name">
+  <button onclick="saveUser()">Save User</button>
+  <button onclick="toggleLogin()">Login/Logout</button>
+  <div id="authBox"></div>
+</div>
+
 <div class="container" id="products"></div>
 
-<!-- CART -->
-<div class="cart">
+<div class="panel">
 <h2>🛒 Cart</h2>
 <div id="cart"></div>
 <h3>Total: $<span id="total">0</span></h3>
-
-<button onclick="checkout()">Checkout on WhatsApp</button>
+<button onclick="checkout()">Checkout WhatsApp</button>
 </div>
 
-<script>
+<script type="module">
 
-// 🌍 GLOBAL BEST SELLING PRODUCTS
-const products = [
-{ id:1,name:"Men Classic Leather Shoes",price:85,cat:"classic",img:"https://images.unsplash.com/photo-1528701800489-20be3c5c9c8c" },
-{ id:2,name:"Men Formal Classic Shoes",price:95,cat:"classic",img:"https://images.unsplash.com/photo-1521335629791-ce4aec67dd49" },
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } 
+from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
-{ id:3,name:"Nike Air Zoom Sports Shoes",price:120,cat:"sports",img:"https://images.unsplash.com/photo-1542291026-7eec264c27ff" },
-{ id:4,name:"Adidas Running Sports Shoes",price:110,cat:"sports",img:"https://images.unsplash.com/photo-1528702748617-c64d49f918af" },
+const firebaseConfig = {
+  apiKey: "YOUR_KEY",
+  authDomain: "apex-holux-global-store.firebaseapp.com",
+  projectId: "apex-holux-global-store"
+};
 
-{ id:5,name:"Skechers Memory Foam",price:75,cat:"skechers",img:"https://images.unsplash.com/photo-1582588678413-dbf45f4823e9" },
-{ id:6,name:"Skechers Go Walk Comfort",price:80,cat:"skechers",img:"https://images.unsplash.com/photo-1600185365926-3a2ce3cdb9eb" },
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
 
-{ id:7,name:"Fashion Street Sneakers",price:65,cat:"sneakers",img:"https://images.unsplash.com/photo-1549298916-b41d501d3772" },
-{ id:8,name:"Premium White Sneakers",price:90,cat:"sneakers",img:"https://images.unsplash.com/photo-1528702748617-c64d49f918af" },
-
-{ id:9,name:"Nike Slides Comfort",price:45,cat:"slides",img:"https://images.unsplash.com/photo-1597047084897-51e81819a499" },
-{ id:10,name:"Adidas Slides Soft",price:40,cat:"slides",img:"https://images.unsplash.com/photo-1606813902913-1f3e92d1c3d5" }
+let products = [
+{n:"Nike Air Force 1",p:90,c:"classic",img:"https://images.unsplash.com/photo-1542291026-7eec264c27ff"},
+{n:"Adidas Ultraboost",p:120,c:"sports",img:"https://images.unsplash.com/photo-1528701800489-20be3c5c9c8c"},
+{n:"Nike Air Max",p:130,c:"sports",img:"https://images.unsplash.com/photo-1519744346364-3b46e0d4d5e7"},
+{n:"Puma RS-X",p:95,c:"sneakers",img:"https://images.unsplash.com/photo-1606813907291-d86efa9b94db"},
+{n:"Sketchers Walk",p:75,c:"sketchers",img:"https://images.unsplash.com/photo-1582588678413-dbf45f4823e9"},
+{n:"Jordan Retro 4",p:180,c:"sneakers",img:"https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a"},
+{n:"Vans Old Skool",p:70,c:"classic",img:"https://images.unsplash.com/photo-1549298916-b41d501d3772"},
+{n:"New Balance 574",p:95,c:"sports",img:"https://images.unsplash.com/photo-1519741497674-611481863552"}
 ];
 
-let cart=[];
-let total=0;
-let wishlist=[];
+let cart = [];
+let total = 0;
+let currentUser = null;
 
-// DISPLAY PRODUCTS
 function render(list){
-  const box=document.getElementById("products");
+  let box=document.getElementById("products");
   box.innerHTML="";
 
   list.forEach(p=>{
     box.innerHTML+=`
     <div class="card">
-      <img src="${p.img}" onerror="this.src='https://via.placeholder.com/150'">
-      <h3>${p.name}</h3>
-      <p>$${p.price}</p>
-
-      <button onclick="add(${p.id})">Add to Cart</button>
-      <button onclick="wish(${p.id})">❤️</button>
-    </div>
-    `;
+      <img src="${p.img}">
+      <h3>${p.n}</h3>
+      <p>$${p.p}</p>
+      <button onclick="add('${p.n}',${p.p})">Add</button>
+    </div>`;
   });
 }
 
-// ADD TO CART
-function add(id){
-  const p=products.find(x=>x.id===id);
-  const item=cart.find(i=>i.id===id);
-
-  if(item) item.qty++;
-  else cart.push({...p,qty:1});
-
+window.add=function(n,p){
+  cart.push({n,p});
+  total+=p;
   updateCart();
 }
 
-// REMOVE / CHANGE QTY
-function change(id,val){
-  const item=cart.find(i=>i.id===id);
-  item.qty+=val;
-
-  if(item.qty<=0){
-    cart=cart.filter(i=>i.id!==id);
-  }
-
-  updateCart();
-}
-
-// CART UPDATE
 function updateCart(){
-  const box=document.getElementById("cart");
-  box.innerHTML="";
-  total=0;
-
-  cart.forEach(i=>{
-    total+=i.price*i.qty;
-
-    box.innerHTML+=`
-    <div class="cart-item">
-      ${i.name}
-      <div>
-        <button class="small" onclick="change(${i.id},-1)">-</button>
-        ${i.qty}
-        <button class="small" onclick="change(${i.id},1)">+</button>
-      </div>
-    </div>
-    `;
-  });
-
+  let c=document.getElementById("cart");
+  c.innerHTML="";
+  cart.forEach(i=> c.innerHTML+=`<p>${i.n} - $${i.p}</p>`);
   document.getElementById("total").innerText=total;
 }
 
-// WISHLIST
-function wish(id){
-  if(wishlist.includes(id)){
-    wishlist=wishlist.filter(i=>i!==id);
-  }else{
-    wishlist.push(id);
-  }
+window.filterCat=function(cat){
+  if(cat=="all") return render(products);
+  render(products.filter(p=>p.c==cat));
 }
 
-// FILTER
-function filterCategory(){
-  const cat=document.getElementById("category").value;
-
-  if(cat==="all") return render(products);
-
-  render(products.filter(p=>p.cat===cat));
-}
-
-// SEARCH
 document.getElementById("search").addEventListener("input",(e)=>{
-  const v=e.target.value.toLowerCase();
-  render(products.filter(p=>p.name.toLowerCase().includes(v)));
+  let v=e.target.value.toLowerCase();
+  render(products.filter(p=>p.n.toLowerCase().includes(v)));
 });
 
+// USER
+window.saveUser=function(){
+  let n=document.getElementById("userName").value;
+  if(n) alert("User saved: "+n);
+}
+
 // CHECKOUT WHATSAPP
-function checkout(){
-  if(cart.length===0){
-    alert("Cart empty!");
-    return;
-  }
-
-  let msg="🛒 ORDER\n\n";
-
-  cart.forEach(i=>{
-    msg+=`${i.name} x${i.qty} = $${i.price*i.qty}\n`;
-  });
-
-  msg+=`\nTOTAL: $${total}`;
+window.checkout=function(){
+  let msg="🛒 Order:\n";
+  cart.forEach(i=> msg+=i.n+"\n");
+  msg+="Total: $"+total;
 
   window.open("https://wa.me/93764594322?text="+encodeURIComponent(msg));
 }
 
-// INIT
+// AUTH SIMPLE
+window.toggleLogin=async function(){
+  let email=prompt("Email:");
+  let pass=prompt("Password:");
+
+  try{
+    if(!currentUser){
+      currentUser = await signInWithEmailAndPassword(auth,email,pass);
+      alert("Logged in");
+    } else {
+      currentUser = null;
+      alert("Logged out");
+    }
+  }catch{
+    try{
+      currentUser = await createUserWithEmailAndPassword(auth,email,pass);
+      alert("Account created");
+    }catch(e){
+      alert("Error login");
+    }
+  }
+}
+
 render(products);
 
 </script>
