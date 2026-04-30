@@ -1,178 +1,222 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Apex Holux Global Store</title>
+  <title>Apex Holux Global Store</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
-body {
-  font-family: Arial;
-  margin: 0;
-  background: #f3f3f3;
-}
+  <style>
+    body{margin:0;font-family:Arial;background:#f1f1f1}
 
-/* HEADER */
-header {
-  background: #131921;
-  color: white;
-  padding: 15px;
-  display: flex;
-  justify-content: space-between;
-}
+    header{
+      background:black;color:white;padding:15px;
+      display:flex;justify-content:space-between;align-items:center
+    }
 
-input {
-  padding: 8px;
-  width: 200px;
-}
+    .logo{font-size:20px}
 
-/* PRODUCTS */
-#products {
-  display: grid;
-  grid-template-columns: repeat(auto-fill,minmax(200px,1fr));
-  gap: 15px;
-  padding: 20px;
-}
+    #search{
+      width:90%;margin:10px auto;display:block;
+      padding:10px;border-radius:5px;border:1px solid #ccc
+    }
 
-.card {
-  background: white;
-  padding: 10px;
-  border-radius: 10px;
-  text-align: center;
-}
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fill,minmax(170px,1fr));
+      gap:10px;padding:10px
+    }
 
-.card img {
-  width: 100%;
-  height: 150px;
-  object-fit: cover;
-}
+    .card{
+      background:white;padding:10px;border-radius:10px;
+      text-align:center;box-shadow:0 2px 6px rgba(0,0,0,0.2)
+    }
 
-/* BUTTON */
-button {
-  padding: 8px;
-  margin: 5px;
-  border: none;
-  cursor: pointer;
-}
+    img{width:100%;height:140px;object-fit:cover;border-radius:5px}
 
-.buy { background: orange; }
-.cart { background: #ffd814; }
+    button{
+      padding:6px;margin:3px;border:none;border-radius:5px;
+      cursor:pointer;font-size:12px
+    }
 
-/* CART */
-#cartBox {
-  background: white;
-  padding: 15px;
-  margin: 20px;
-}
-</style>
+    .buy{background:orange}
+    .cart{background:green;color:white}
+    .wish{background:pink}
+
+    #panel{
+      background:white;margin:10px;padding:10px;border-radius:10px
+    }
+
+    input{padding:5px;margin:3px}
+  </style>
 </head>
 
 <body>
 
 <header>
-  <h2>🌍 Apex Holux Store</h2>
-  <input id="search" placeholder="Search shoes...">
+  <div class="logo">🌍 Apex Holux</div>
+  <div>
+    🛒 <span id="count">0</span> |
+    ❤️ <span id="wishCount">0</span>
+  </div>
 </header>
 
-<div id="products"></div>
+<input id="search" placeholder="🔎 Search Nike, Adidas...">
 
-<div id="cartBox">
+<div class="grid" id="products"></div>
+
+<div id="panel">
   <h3>🛒 Cart</h3>
   <div id="cart"></div>
   <h3>Total: $<span id="total">0</span></h3>
   <button onclick="checkout()">Checkout</button>
 </div>
 
+<div id="panel">
+  <h3>👨‍💼 Admin Panel</h3>
+  <input id="name" placeholder="Product name">
+  <input id="price" placeholder="Price">
+  <input id="image" placeholder="Image URL">
+  <button onclick="addProduct()">Add Product</button>
+</div>
+
 <script>
 
-/* 🌍 GLOBAL TOP PRODUCTS */
-const products = [
-  {id:1,name:"Nike Air Force 1",price:90,img:"https://i.imgur.com/1.jpg"},
-  {id:2,name:"Adidas Ultraboost",price:120,img:"https://i.imgur.com/2.jpg"},
-  {id:3,name:"Nike Slides",price:45,img:"https://i.imgur.com/3.jpg"},
-  {id:4,name:"Adidas Slides",price:40,img:"https://i.imgur.com/4.jpg"},
-  {id:5,name:"Skechers Memory Foam",price:70,img:"https://i.imgur.com/5.jpg"},
-  {id:6,name:"Skechers Sandals",price:55,img:"https://i.imgur.com/6.jpg"},
-  {id:7,name:"Jordan 1 Low",price:140,img:"https://i.imgur.com/7.jpg"},
-  {id:8,name:"Puma RS-X",price:85,img:"https://i.imgur.com/8.jpg"},
-  {id:9,name:"New Balance 574",price:95,img:"https://i.imgur.com/9.jpg"},
-  {id:10,name:"Luxury Slides",price:50,img:"https://i.imgur.com/10.jpg"}
+// 🌍 PRODUCTS (GLOBAL + AFG)
+let products = JSON.parse(localStorage.getItem("products")) || [
+{id:1,name:"Nike Air Force 1",price:90,image:"https://images.unsplash.com/photo-1542291026-7eec264c27ff"},
+{id:2,name:"Adidas Ultraboost",price:120,image:"https://images.unsplash.com/photo-1519741497674-611481863552"},
+{id:3,name:"Air Jordan 1 Low",price:140,image:"https://images.unsplash.com/photo-1600185365926-3a2ce3cdb9eb"},
+{id:4,name:"Skechers Walking Shoes",price:70,image:"https://images.unsplash.com/photo-1528701800489-20be3c6a4c6a"},
+{id:5,name:"Nike Slides",price:45,image:"https://images.unsplash.com/photo-1608231387042-66d1773070a5"},
+{id:6,name:"Soft Slippers",price:20,image:"https://images.unsplash.com/photo-1593032465171-8a1d0f3a7b5d"}
 ];
 
 let cart = [];
+let wishlist = [];
+let orders = [];
 
-/* 🔥 RENDER PRODUCTS */
+const container = document.getElementById("products");
+
+// 🔥 RENDER
 function render(list){
-  const box = document.getElementById("products");
-  box.innerHTML = "";
-
+  container.innerHTML="";
   list.forEach(p=>{
-    box.innerHTML += `
-      <div class="card">
-        <img src="${p.img}">
-        <h4>${p.name}</h4>
-        <p>$${p.price}</p>
+    let fav = wishlist.includes(p.id);
 
-        <button class="buy" onclick="buyNow(${p.id})">Buy Now</button>
-        <button class="cart" onclick="addCart(${p.id})">Add Cart</button>
-      </div>
+    container.innerHTML+=`
+    <div class="card">
+      <img src="${p.image}">
+      <h4>${p.name}</h4>
+      <p>$${p.price}</p>
+
+      <button class="buy" onclick="buyNow('${p.name}',${p.price})">⚡ Buy</button>
+      <button class="cart" onclick="add(${p.id})">🛒</button>
+      <button class="wish" onclick="wish(${p.id})">${fav?"❤️":"🤍"}</button>
+    </div>
     `;
   });
 }
 
-/* 🛒 ADD CART */
-function addCart(id){
-  let item = cart.find(x=>x.id===id);
+// 🛒 CART
+function add(id){
   let p = products.find(x=>x.id===id);
-
-  if(item) item.qty++;
-  else cart.push({...p,qty:1});
-
-  renderCart();
+  cart.push(p);
+  updateCart();
 }
 
-/* ⚡ BUY NOW */
-function buyNow(id){
-  cart = [];
-  addCart(id);
-  checkout();
+// ❤️ WISHLIST
+function wish(id){
+  if(wishlist.includes(id)){
+    wishlist = wishlist.filter(x=>x!==id);
+  }else{
+    wishlist.push(id);
+  }
+  updateBadges();
+  render(products);
 }
 
-/* 🧾 CART */
-function renderCart(){
-  let total = 0;
-  let html = "";
-
-  cart.forEach(i=>{
-    total += i.price*i.qty;
-    html += `<p>${i.name} x${i.qty} = $${i.price*i.qty}</p>`;
-  });
-
-  document.getElementById("cart").innerHTML = html;
-  document.getElementById("total").innerText = total;
-}
-
-/* 📲 CHECKOUT (WhatsApp) */
+// 📦 CHECKOUT (REAL LOGIC)
 function checkout(){
-  if(cart.length===0) return alert("Cart empty");
+  if(cart.length==0)return alert("Cart empty");
 
-  let msg="ORDER:\n";
+  let total=cart.reduce((s,i)=>s+i.price,0);
 
+  let order={
+    id:Date.now(),
+    items:cart,
+    total:total
+  };
+
+  orders.push(order);
+
+  let msg="ORDER:%0A";
   cart.forEach(i=>{
-    msg+=`${i.name} x${i.qty}\n`;
+    msg+=`${i.name} $${i.price}%0A`;
   });
 
-  window.open("https://wa.me/93764594322?text="+encodeURIComponent(msg));
+  msg+=`TOTAL: $${total}`;
+
+  window.open("https://wa.me/93764594322?text="+msg);
+
+  cart=[];
+  updateCart();
 }
 
-/* 🔍 SEARCH */
-document.getElementById("search").oninput = (e)=>{
-  let val = e.target.value.toLowerCase();
-  let filtered = products.filter(p=>p.name.toLowerCase().includes(val));
+// ⚡ BUY NOW
+function buyNow(name,price){
+  window.open("https://wa.me/93764594322?text=Buy:"+name+" $"+price);
+}
+
+// 🧾 CART UPDATE
+function updateCart(){
+  let div=document.getElementById("cart");
+  let total=0;
+  div.innerHTML="";
+
+  cart.forEach(p=>{
+    total+=p.price;
+    div.innerHTML+=`<p>${p.name} - $${p.price}</p>`;
+  });
+
+  document.getElementById("total").innerText=total;
+  document.getElementById("count").innerText=cart.length;
+  updateBadges();
+}
+
+// 📊 BADGES
+function updateBadges(){
+  document.getElementById("wishCount").innerText=wishlist.length;
+}
+
+// 🔎 SEARCH
+document.getElementById("search").addEventListener("input",(e)=>{
+  let val=e.target.value.toLowerCase();
+  let filtered=products.filter(p=>p.name.toLowerCase().includes(val));
   render(filtered);
-};
+});
+
+// 👨‍💼 ADMIN ADD PRODUCT
+function addProduct(){
+  let name=document.getElementById("name").value;
+  let price=document.getElementById("price").value;
+  let image=document.getElementById("image").value;
+
+  if(!name || !price)return alert("Fill fields");
+
+  let newP={
+    id:Date.now(),
+    name,
+    price:Number(price),
+    image:image || "https://via.placeholder.com/200"
+  };
+
+  products.push(newP);
+  localStorage.setItem("products",JSON.stringify(products));
+
+  render(products);
+}
 
 render(products);
+updateCart();
 
 </script>
 
