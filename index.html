@@ -41,6 +41,7 @@ header {
   width:100%;
   height:160px;
   object-fit:cover;
+  border-radius:10px;
 }
 
 button {
@@ -50,6 +51,7 @@ button {
   margin-top:5px;
   cursor:pointer;
   width:100%;
+  font-weight:bold;
 }
 
 .cart {
@@ -58,6 +60,18 @@ button {
   padding:20px;
 }
 
+.cart-item{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin:5px 0;
+}
+
+.small-btn{
+  width:auto;
+  padding:5px 10px;
+  margin:0 5px;
+}
 </style>
 </head>
 
@@ -79,48 +93,120 @@ button {
 
 <script>
 
+// PRODUCTS
 const products = [
-{ name:"Nike Air Force 1", price:90, img:"https://images.unsplash.com/photo-1542291026-7eec264c27ff"},
-{ name:"Adidas Ultraboost", price:120, img:"https://images.unsplash.com/photo-1528701800489-20be3c5c9c8c"},
-{ name:"Nike Air Max 270", price:130, img:"https://images.unsplash.com/photo-1519744346364-3b46e0d4d5e7"},
-{ name:"Puma RS-X", price:95, img:"https://images.unsplash.com/photo-1606813907291-d86efa9b94db"},
-{ name:"Jordan Retro 4", price:180, img:"https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a"},
-{ name:"Air Jordan 1 Low", price:140, img:"https://images.unsplash.com/photo-1600180758890-6b94519a8ba6"},
-{ name:"Converse Classic", price:65, img:"https://images.unsplash.com/photo-1528702748617-c64d49f918af"},
-{ name:"Vans Old Skool", price:70, img:"https://images.unsplash.com/photo-1549298916-b41d501d3772"},
-{ name:"New Balance 574", price:95, img:"https://images.unsplash.com/photo-1519741497674-611481863552"},
-{ name:"Skechers Go Walk", price:75, img:"https://images.unsplash.com/photo-1582588678413-dbf45f4823e9"},
-{ name:"Nike Slides", price:45, img:"https://images.unsplash.com/photo-1597047084897-51e81819a499"},
-{ name:"Adidas Slides", price:40, img:"https://images.unsplash.com/photo-1606813902913-1f3e92d1c3d5"}
+{ id:1,name:"Nike Air Force 1", price:90, img:"https://images.unsplash.com/photo-1542291026-7eec264c27ff" },
+{ id:2,name:"Adidas Ultraboost", price:120, img:"https://images.unsplash.com/photo-1528701800489-20be3c5c9c8c" },
+{ id:3,name:"Nike Air Max 270", price:130, img:"https://images.unsplash.com/photo-1519744346364-3b46e0d4d5e7" },
+{ id:4,name:"Puma RS-X", price:95, img:"https://images.unsplash.com/photo-1606813907291-d86efa9b94db" },
+{ id:5,name:"Jordan Retro 4", price:180, img:"https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a" },
+{ id:6,name:"Air Jordan 1 Low", price:140, img:"https://images.unsplash.com/photo-1600180758890-6b94519a8ba6" },
+{ id:7,name:"Converse Classic", price:65, img:"https://images.unsplash.com/photo-1528702748617-c64d49f918af" },
+{ id:8,name:"Vans Old Skool", price:70, img:"https://images.unsplash.com/photo-1549298916-b41d501d3772" },
+{ id:9,name:"New Balance 574", price:95, img:"https://images.unsplash.com/photo-1519741497674-611481863552" },
+{ id:10,name:"Skechers Go Walk", price:75, img:"https://images.unsplash.com/photo-1582588678413-dbf45f4823e9" },
+{ id:11,name:"Nike Slides", price:45, img:"https://images.unsplash.com/photo-1597047084897-51e81819a499" },
+{ id:12,name:"Adidas Slides", price:40, img:"https://images.unsplash.com/photo-1606813902913-1f3e92d1c3d5" }
 ];
 
+// CART + WISHLIST
 let cart = [];
-let total = 0;
+let wishlist = [];
 
+// RENDER PRODUCTS
 function renderProducts(list){
   const container = document.getElementById("products");
   container.innerHTML = "";
 
   list.forEach(p=>{
+    const liked = wishlist.includes(p.id);
+
     container.innerHTML += `
       <div class="card">
-        <img src="${p.img}">
+        <img src="${p.img}" onerror="this.src='https://via.placeholder.com/150'">
         <h3>${p.name}</h3>
         <p>$${p.price}</p>
-        <button onclick="addToCart('${p.name}',${p.price})">Add to Cart</button>
+
+        <button onclick="addToCart(${p.id})">Add to Cart 🛒</button>
+        <button onclick="toggleWishlist(${p.id})">
+          ${liked ? "❤️ Saved" : "🤍 Wishlist"}
+        </button>
       </div>
     `;
   });
 }
 
-function addToCart(name,price){
-  cart.push({name,price});
-  total += price;
+// ADD TO CART
+function addToCart(id){
+  const item = cart.find(i=>i.id===id);
 
-  document.getElementById("cart").innerHTML += `<p>${name}</p>`;
+  if(item){
+    item.qty++;
+  }else{
+    const p = products.find(x=>x.id===id);
+    cart.push({...p, qty:1});
+  }
+
+  renderCart();
+}
+
+// REMOVE
+function removeItem(id){
+  cart = cart.filter(i=>i.id!==id);
+  renderCart();
+}
+
+// QTY
+function changeQty(id,val){
+  const item = cart.find(i=>i.id===id);
+  if(!item) return;
+
+  item.qty += val;
+  if(item.qty <= 0){
+    removeItem(id);
+  }
+
+  renderCart();
+}
+
+// WISHLIST
+function toggleWishlist(id){
+  if(wishlist.includes(id)){
+    wishlist = wishlist.filter(i=>i!==id);
+  }else{
+    wishlist.push(id);
+  }
+  renderProducts(products);
+}
+
+// CART RENDER
+function renderCart(){
+  const div = document.getElementById("cart");
+  let total = 0;
+
+  div.innerHTML = "";
+
+  cart.forEach(i=>{
+    total += i.price * i.qty;
+
+    div.innerHTML += `
+      <div class="cart-item">
+        <span>${i.name} ($${i.price})</span>
+
+        <div>
+          <button class="small-btn" onclick="changeQty(${i.id},-1)">-</button>
+          ${i.qty}
+          <button class="small-btn" onclick="changeQty(${i.id},1)">+</button>
+          <button class="small-btn" onclick="removeItem(${i.id})">❌</button>
+        </div>
+      </div>
+    `;
+  });
+
   document.getElementById("total").innerText = total;
 }
 
+// SEARCH
 function searchProducts(val){
   const filtered = products.filter(p =>
     p.name.toLowerCase().includes(val.toLowerCase())
@@ -128,19 +214,30 @@ function searchProducts(val){
   renderProducts(filtered);
 }
 
+// CHECKOUT
 function checkout(){
   if(cart.length === 0){
     alert("Cart empty!");
     return;
   }
 
-  let msg = "🛒 Order:\n";
-  cart.forEach(i => msg += i.name + "\n");
-  msg += "Total: $" + total;
+  let msg = "🛒 ORDER:\n\n";
+  let total = 0;
+
+  cart.forEach(i=>{
+    msg += `${i.name} x${i.qty} = $${i.price*i.qty}\n`;
+    total += i.price*i.qty;
+  });
+
+  msg += "\nTOTAL: $" + total;
 
   window.open("https://wa.me/93764594322?text="+encodeURIComponent(msg));
+
+  cart = [];
+  renderCart();
 }
 
+// INIT
 renderProducts(products);
 
 </script>
