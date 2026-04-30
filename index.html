@@ -6,77 +6,74 @@
 
   <style>
     body {
-      margin:0;
-      font-family:Arial;
-      background:#f1f1f1;
+      font-family: Arial;
+      margin: 0;
+      background: #f3f3f3;
     }
 
     header {
-      background:black;
-      color:white;
-      padding:15px;
-      text-align:center;
-      font-size:22px;
+      background: black;
+      color: white;
+      padding: 15px;
+      text-align: center;
+      font-size: 22px;
     }
 
     #search {
-      width:90%;
-      margin:10px auto;
-      display:block;
-      padding:10px;
-      border-radius:5px;
-      border:1px solid #ccc;
+      width: 90%;
+      padding: 10px;
+      margin: 10px auto;
+      display: block;
+      border-radius: 5px;
+      border: 1px solid #ccc;
     }
 
     .grid {
-      display:grid;
-      grid-template-columns:repeat(auto-fill,minmax(170px,1fr));
-      gap:10px;
-      padding:10px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 10px;
+      padding: 10px;
     }
 
     .card {
-      background:white;
-      padding:10px;
-      border-radius:10px;
-      text-align:center;
-      box-shadow:0 2px 6px rgba(0,0,0,0.2);
+      background: white;
+      padding: 10px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
 
     img {
-      width:100%;
-      height:140px;
-      object-fit:cover;
-      border-radius:5px;
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
     }
 
     button {
-      padding:6px;
-      margin:3px;
-      border:none;
-      border-radius:5px;
-      cursor:pointer;
-      font-size:12px;
+      padding: 6px;
+      margin: 3px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
     }
 
-    .buy {background:orange;}
-    .cart {background:green;color:white;}
-    .wish {background:pink;}
+    .buy { background: orange; }
+    .cart { background: green; color: white; }
+    .wish { background: pink; }
 
     #cartBox {
-      background:white;
-      margin:10px;
-      padding:10px;
-      border-radius:10px;
+      background: white;
+      padding: 10px;
+      margin: 10px;
     }
   </style>
 </head>
 
 <body>
 
-<header>🌍 Apex Holux Global Store (LEVEL 10)</header>
+<header>🌍 Apex Holux Global Store</header>
 
-<input id="search" placeholder="🔎 Search Nike, Adidas, Slides...">
+<input id="search" placeholder="🔎 Search products...">
 
 <div class="grid" id="products"></div>
 
@@ -86,50 +83,60 @@
   <h3>Total: $<span id="total">0</span></h3>
 </div>
 
-<script>
+<script type="module">
 
-// 🌍 BEST SELLING GLOBAL + AFG MARKET
-const products = [
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-{ id:1, name:"Nike Air Force 1", price:90, category:"Sneakers", image:"https://images.unsplash.com/photo-1542291026-7eec264c27ff" },
+// 🔥 FIREBASE CONFIG
+const firebaseConfig = {
+  apiKey: "YOUR_KEY",
+  authDomain: "apex-holux-global-store.firebaseapp.com",
+  projectId: "apex-holux-global-store"
+};
 
-{ id:2, name:"Adidas Ultraboost", price:120, category:"Running", image:"https://images.unsplash.com/photo-1519741497674-611481863552" },
-
-{ id:3, name:"Air Jordan 1 Low", price:140, category:"Sneakers", image:"https://images.unsplash.com/photo-1600185365926-3a2ce3cdb9eb" },
-
-{ id:4, name:"Skechers Walking Shoes", price:70, category:"Comfort", image:"https://images.unsplash.com/photo-1528701800489-20be3c6a4c6a" },
-
-{ id:5, name:"Nike Slides", price:45, category:"Slides", image:"https://images.unsplash.com/photo-1608231387042-66d1773070a5" },
-
-{ id:6, name:"Adidas Slides", price:40, category:"Slides", image:"https://images.unsplash.com/photo-1600180758890-6b94519a8ba3" },
-
-{ id:7, name:"Puma Sports Shoes", price:75, category:"Sports", image:"https://images.unsplash.com/photo-1600180758890-6b94519a8ba3" },
-
-{ id:8, name:"New Balance Running", price:95, category:"Running", image:"https://images.unsplash.com/photo-1526178613658-3f1622045557" },
-
-// 🇦🇫 افغانستان کې ډیر خرڅیږي
-{ id:9, name:"Soft Beach Slippers", price:20, category:"Slippers", image:"https://images.unsplash.com/photo-1593032465171-8a1d0f3a7b5d" },
-
-{ id:10, name:"Luxury Slides", price:55, category:"Slides", image:"https://images.unsplash.com/photo-1608231387042-66d1773070a5" },
-
-{ id:11, name:"Casual Street Shoes", price:35, category:"Casual", image:"https://images.unsplash.com/photo-1528701800489-20be3c6a4c6a" },
-
-{ id:12, name:"Budget Walking Shoes", price:25, category:"Budget", image:"https://images.unsplash.com/photo-1528701800489-20be3c6a4c6a" }
-
-];
-
-let cart = [];
-let wishlist = [];
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
 const container = document.getElementById("products");
 
-// 🔥 RENDER
-function render(list){
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+let allProducts = [];
+
+// 🌍 FALLBACK BEST SELLING PRODUCTS
+const fallback = [
+  {name:"Nike Air Force 1",price:90,image:"https://images.unsplash.com/photo-1542291026-7eec264c27ff"},
+  {name:"Adidas Ultraboost",price:120,image:"https://images.unsplash.com/photo-1519741497674-611481863552"},
+  {name:"Air Jordan 1 Low",price:140,image:"https://images.unsplash.com/photo-1600185365926-3a2ce3cdb9eb"},
+  {name:"Skechers Walking Shoes",price:70,image:"https://images.unsplash.com/photo-1528701800489-20be3c6a4c6a"},
+  {name:"Nike Slides",price:45,image:"https://images.unsplash.com/photo-1608231387042-66d1773070a5"},
+  {name:"Adidas Slides",price:40,image:"https://images.unsplash.com/photo-1600180758890-6b94519a8ba3"},
+  {name:"New Balance Running",price:95,image:"https://images.unsplash.com/photo-1526178613658-3f1622045557"},
+  {name:"Puma Sports Shoes",price:75,image:"https://images.unsplash.com/photo-1608231387042-66d1773070a5"}
+];
+
+// 🔥 LOAD PRODUCTS FROM FIREBASE
+async function loadProducts(){
+  try{
+    const snap = await getDocs(collection(db,"products"));
+    snap.forEach(doc=>{
+      allProducts.push(doc.data());
+    });
+  }catch(e){
+    console.log("Firebase error, using fallback");
+  }
+
+  if(allProducts.length === 0){
+    allProducts = fallback;
+  }
+
+  render(allProducts);
+}
+
+function render(products){
   container.innerHTML = "";
 
-  list.forEach(p=>{
-    const fav = wishlist.includes(p.id);
-
+  products.forEach(p=>{
     container.innerHTML += `
       <div class="card">
         <img src="${p.image}">
@@ -137,48 +144,37 @@ function render(list){
         <p>$${p.price}</p>
 
         <button class="buy" onclick="buyNow('${p.name}',${p.price})">⚡ Buy</button>
-        <button class="cart" onclick="add(${p.id})">🛒</button>
-        <button class="wish" onclick="toggleWish(${p.id})">
-          ${fav ? "❤️" : "🤍"}
-        </button>
+        <button class="cart" onclick="add('${p.name}',${p.price})">🛒</button>
       </div>
     `;
   });
 }
 
 // 🛒 CART
-function add(id){
-  let p = products.find(x=>x.id===id);
-  cart.push(p);
-  updateCart();
+window.add = (name,price)=>{
+  cart.push({name,price});
+  save();
 }
 
-// ❤️ WISHLIST
-function toggleWish(id){
-  if(wishlist.includes(id)){
-    wishlist = wishlist.filter(x=>x!==id);
-  } else {
-    wishlist.push(id);
-  }
-  render(products);
-}
-
-// 📦 CHECKOUT
-function buyNow(name,price){
+window.buyNow = (name,price)=>{
   let msg = `ORDER:%0A${name} - $${price}`;
   window.open("https://wa.me/93764594322?text="+msg);
 }
 
-// 🔄 CART UPDATE
-function updateCart(){
+function save(){
+  localStorage.setItem("cart",JSON.stringify(cart));
+  renderCart();
+}
+
+function renderCart(){
   let div = document.getElementById("cart");
   let total = 0;
 
   div.innerHTML = "";
 
-  cart.forEach(p=>{
-    total += p.price;
-    div.innerHTML += `<p>${p.name} - $${p.price}</p>`;
+  cart.forEach(i=>{
+    total += i.price;
+    div.innerHTML += `<p>${i.name} - $${i.price}</p>`;
   });
 
   document.getElementById("total").innerText = total;
@@ -189,15 +185,15 @@ function updateCart(){
 document.getElementById("search").addEventListener("input",(e)=>{
   let val = e.target.value.toLowerCase();
 
-  let filtered = products.filter(p =>
-    p.name.toLowerCase().includes(val) ||
-    p.category.toLowerCase().includes(val)
+  let filtered = allProducts.filter(p =>
+    p.name.toLowerCase().includes(val)
   );
 
   render(filtered);
 });
 
-render(products);
+loadProducts();
+renderCart();
 
 </script>
 
