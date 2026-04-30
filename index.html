@@ -2,62 +2,90 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>🌍 GLOBAL AMAZON 2.0</title>
+<title>🌍 AMAZON ULTIMATE GLOBAL STORE</title>
 
 <style>
 body{margin:0;font-family:Arial;background:#f4f4f4;}
+
 header{
-  background:#0f1111;color:white;padding:15px;
-  text-align:center;font-size:22px;font-weight:bold;
+  background:#131921;
+  color:white;
+  padding:15px;
+  text-align:center;
+  font-size:22px;
+  font-weight:bold;
 }
 
 .topbar{
-  display:flex;gap:10px;padding:10px;background:white;
+  display:flex;
+  gap:10px;
+  padding:10px;
+  background:white;
 }
 
 input,button{
-  padding:10px;border-radius:6px;border:1px solid #ccc;
+  padding:10px;
+  border-radius:6px;
+  border:1px solid #ccc;
 }
 
-button{cursor:pointer;background:#ff9900;border:none;}
+button{
+  background:#ff9900;
+  border:none;
+  cursor:pointer;
+}
 
 .container{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-  gap:15px;padding:15px;
+  gap:15px;
+  padding:15px;
 }
 
 .card{
-  background:white;padding:10px;border-radius:10px;
-  box-shadow:0 3px 10px rgba(0,0,0,0.1);
+  background:white;
+  padding:10px;
+  border-radius:10px;
   text-align:center;
+  box-shadow:0 3px 10px rgba(0,0,0,0.1);
 }
 
 .card img{
-  width:100%;height:150px;object-fit:cover;border-radius:10px;
+  width:100%;
+  height:150px;
+  object-fit:cover;
+  border-radius:10px;
 }
 
 .panel{
-  background:white;margin:10px;padding:10px;border-radius:10px;
+  background:white;
+  margin:10px;
+  padding:10px;
+  border-radius:10px;
 }
 
-.dark{background:#111;color:white;}
+.dark{
+  background:#111;
+  color:white;
+}
 </style>
 </head>
 
 <body>
 
-<header>🌍 GLOBAL AMAZON 2.0 PRO SYSTEM</header>
+<header>🌍 AMAZON ULTIMATE GLOBAL STORE</header>
 
 <div class="topbar">
-<input id="search" placeholder="Search global products...">
+<input id="search" placeholder="Search products...">
 <button onclick="toggleDark()">🌙</button>
 </div>
 
 <!-- LOGIN -->
 <div class="panel">
-<h3>👤 Login / Signup</h3>
-<input id="user" placeholder="Enter name">
+<h3>👤 Login / Signup (Firebase Ready)</h3>
+<input id="email" placeholder="Email">
+<input id="pass" type="password" placeholder="Password">
+<button onclick="signup()">Signup</button>
 <button onclick="login()">Login</button>
 </div>
 
@@ -87,56 +115,75 @@ button{cursor:pointer;background:#ff9900;border:none;}
 <p id="dash"></p>
 </div>
 
-<script>
+<script type="module">
 
-// 🌍 WORLD PRODUCTS (TOP GLOBAL SELLERS)
+/* ================= FIREBASE ================= */
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { 
+  getAuth, 
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword 
+} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+
+const firebaseConfig = {
+  apiKey: "YOUR_KEY",
+  authDomain: "apex-holux-global-store.firebaseapp.com",
+  projectId: "apex-holux-global-store"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+/* ================= PRODUCTS ================= */
 let products = [
 { name:"Nike Air Force 1", price:90, img:"https://images.unsplash.com/photo-1542291026-7eec264c27ff" },
 { name:"Adidas Ultraboost", price:120, img:"https://images.unsplash.com/photo-1528701800489-20be3c5c9c8c" },
 { name:"Nike Air Max 270", price:130, img:"https://images.unsplash.com/photo-1519744346364-3b46e0d4d5e7" },
 { name:"Jordan Retro 4", price:180, img:"https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a" },
 { name:"Vans Old Skool", price:70, img:"https://images.unsplash.com/photo-1549298916-b41d501d3772" },
-{ name:"New Balance 574", price:95, img:"https://images.unsplash.com/photo-1519741497674-611481863552" },
-{ name:"Sketchers Walk", price:75, img:"https://images.unsplash.com/photo-1582588678413-dbf45f4823e9" },
-{ name:"Nike Slides", price:45, img:"https://images.unsplash.com/photo-1597047084897-51e81819a499" }
+{ name:"Sketchers Walk Pro", price:75, img:"https://images.unsplash.com/photo-1582588678413-dbf45f4823e9" }
 ];
 
 let cart=[];
 let total=0;
-let user=null;
 let orders=0;
 
-/* LOGIN */
-function login(){
-  let name=document.getElementById("user").value;
-  if(!name) return;
-  user=name;
-  alert("Welcome "+name);
+/* ================= AUTH ================= */
+window.signup = async ()=>{
+  let email=document.getElementById("email").value;
+  let pass=document.getElementById("pass").value;
+  await createUserWithEmailAndPassword(auth,email,pass);
+  alert("Account Created ✅");
 }
 
-/* DISPLAY */
+window.login = async ()=>{
+  let email=document.getElementById("email").value;
+  let pass=document.getElementById("pass").value;
+  await signInWithEmailAndPassword(auth,email,pass);
+  alert("Logged In ✅");
+}
+
+/* ================= UI ================= */
 function render(){
   let box=document.getElementById("products");
   box.innerHTML="";
+
   products.forEach((p,i)=>{
     box.innerHTML+=`
     <div class="card">
       <img src="${p.img}">
       <h3>${p.name}</h3>
       <p>$${p.price}</p>
-      <button onclick="add(${i})">Add</button>
+      <button onclick="add(${i})">Add to Cart</button>
     </div>`;
   });
 }
 
-/* ADD CART */
-function add(i){
+window.add = (i)=>{
   cart.push(products[i]);
   total+=products[i].price;
 
-  document.getElementById("cart").innerHTML+=
-  `<p>${products[i].name}</p>`;
-
+  document.getElementById("cart").innerHTML+=`<p>${products[i].name}</p>`;
   document.getElementById("total").innerText=total;
 }
 
@@ -144,7 +191,7 @@ function add(i){
 document.getElementById("search").addEventListener("input",(e)=>{
   let v=e.target.value.toLowerCase();
   let f=products.filter(p=>p.name.toLowerCase().includes(v));
-  
+
   let box=document.getElementById("products");
   box.innerHTML="";
   f.forEach((p,i)=>{
@@ -159,36 +206,23 @@ document.getElementById("search").addEventListener("input",(e)=>{
 });
 
 /* CHECKOUT */
-function checkout(){
-  if(cart.length==0){
-    alert("Cart empty!");
-    return;
-  }
+window.checkout=()=>{
+  if(cart.length==0) return alert("Cart empty!");
 
   let msg="🛒 ORDER\n\n";
   cart.forEach(i=>msg+=i.name+"\n");
   msg+="\nTOTAL: $"+total;
 
+  // 👇 YOUR NUMBER INCLUDED
   window.open("https://wa.me/93764594322?text="+encodeURIComponent(msg));
 
   orders++;
-  updateDash();
+  document.getElementById("dash").innerText="Orders: "+orders;
 
   cart=[];
   total=0;
   document.getElementById("cart").innerHTML="";
   document.getElementById("total").innerText=0;
-}
-
-/* DASHBOARD */
-function updateDash(){
-  document.getElementById("dash").innerText=
-  "Orders: "+orders+" | Revenue: $"+(orders*total);
-}
-
-/* DARK */
-function toggleDark(){
-  document.body.classList.toggle("dark");
 }
 
 /* INIT */
