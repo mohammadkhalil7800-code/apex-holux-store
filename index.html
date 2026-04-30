@@ -5,240 +5,263 @@
 <title>Apex Holux Global Store</title>
 
 <style>
-body {margin:0; font-family:Arial; background:#f3f3f3;}
+body{
+  margin:0;
+  font-family:Arial;
+  background:#f4f4f4;
+}
 
-header {
+/* HEADER */
+header{
   background:#131921;
   color:white;
   padding:15px;
   text-align:center;
+  font-size:22px;
+  font-weight:bold;
 }
 
-.search {
-  width:80%;
+/* TOP BAR */
+.topbar{
+  display:flex;
+  gap:10px;
   padding:10px;
-  margin-top:10px;
+  flex-wrap:wrap;
+  justify-content:center;
 }
 
-.container {
+input,select{
+  padding:10px;
+  width:200px;
+}
+
+/* PRODUCTS */
+.container{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
   gap:20px;
   padding:20px;
 }
 
-.card {
+.card{
   background:white;
-  border-radius:10px;
-  padding:15px;
+  border-radius:12px;
+  padding:10px;
   text-align:center;
   box-shadow:0 2px 8px rgba(0,0,0,0.2);
   transition:0.3s;
 }
-.card:hover {transform:scale(1.05);}
 
-.card img {
+.card:hover{
+  transform:scale(1.05);
+}
+
+.card img{
   width:100%;
   height:160px;
   object-fit:cover;
   border-radius:10px;
 }
 
-button {
-  background:#ff9900;
-  border:none;
-  padding:10px;
-  margin-top:5px;
-  cursor:pointer;
+button{
   width:100%;
+  padding:8px;
+  margin-top:5px;
+  border:none;
+  cursor:pointer;
+  background:#ff9900;
   font-weight:bold;
 }
 
-.cart {
+/* CART */
+.cart{
   background:white;
   margin:20px;
   padding:20px;
+  border-radius:10px;
 }
 
 .cart-item{
   display:flex;
   justify-content:space-between;
-  align-items:center;
   margin:5px 0;
 }
 
-.small-btn{
+.small{
   width:auto;
-  padding:5px 10px;
-  margin:0 5px;
+  padding:5px 8px;
+  margin:0 3px;
 }
+
 </style>
 </head>
 
 <body>
 
 <header>
-  <h1>🌍 Apex Holux Global Store</h1>
-  <input class="search" placeholder="Search shoes..." oninput="searchProducts(this.value)">
+🌍 Apex Holux Global Store
 </header>
 
+<!-- SEARCH + FILTER -->
+<div class="topbar">
+<input id="search" placeholder="Search shoes...">
+
+<select id="category" onchange="filterCategory()">
+  <option value="all">All Categories</option>
+  <option value="classic">Men Classic Shoes</option>
+  <option value="sports">Sports Shoes</option>
+  <option value="skechers">Skechers Shoes</option>
+  <option value="sneakers">Fashion Sneakers</option>
+  <option value="slides">Slides & Sandals</option>
+</select>
+</div>
+
+<!-- PRODUCTS -->
 <div class="container" id="products"></div>
 
+<!-- CART -->
 <div class="cart">
-  <h2>🛒 Cart</h2>
-  <div id="cart"></div>
-  <h3>Total: $<span id="total">0</span></h3>
-  <button onclick="checkout()">Order on WhatsApp</button>
+<h2>🛒 Cart</h2>
+<div id="cart"></div>
+<h3>Total: $<span id="total">0</span></h3>
+
+<button onclick="checkout()">Checkout on WhatsApp</button>
 </div>
 
 <script>
 
-// PRODUCTS
+// 🌍 GLOBAL BEST SELLING PRODUCTS
 const products = [
-{ id:1,name:"Nike Air Force 1", price:90, img:"https://images.unsplash.com/photo-1542291026-7eec264c27ff" },
-{ id:2,name:"Adidas Ultraboost", price:120, img:"https://images.unsplash.com/photo-1528701800489-20be3c5c9c8c" },
-{ id:3,name:"Nike Air Max 270", price:130, img:"https://images.unsplash.com/photo-1519744346364-3b46e0d4d5e7" },
-{ id:4,name:"Puma RS-X", price:95, img:"https://images.unsplash.com/photo-1606813907291-d86efa9b94db" },
-{ id:5,name:"Jordan Retro 4", price:180, img:"https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a" },
-{ id:6,name:"Air Jordan 1 Low", price:140, img:"https://images.unsplash.com/photo-1600180758890-6b94519a8ba6" },
-{ id:7,name:"Converse Classic", price:65, img:"https://images.unsplash.com/photo-1528702748617-c64d49f918af" },
-{ id:8,name:"Vans Old Skool", price:70, img:"https://images.unsplash.com/photo-1549298916-b41d501d3772" },
-{ id:9,name:"New Balance 574", price:95, img:"https://images.unsplash.com/photo-1519741497674-611481863552" },
-{ id:10,name:"Skechers Go Walk", price:75, img:"https://images.unsplash.com/photo-1582588678413-dbf45f4823e9" },
-{ id:11,name:"Nike Slides", price:45, img:"https://images.unsplash.com/photo-1597047084897-51e81819a499" },
-{ id:12,name:"Adidas Slides", price:40, img:"https://images.unsplash.com/photo-1606813902913-1f3e92d1c3d5" }
+{ id:1,name:"Men Classic Leather Shoes",price:85,cat:"classic",img:"https://images.unsplash.com/photo-1528701800489-20be3c5c9c8c" },
+{ id:2,name:"Men Formal Classic Shoes",price:95,cat:"classic",img:"https://images.unsplash.com/photo-1521335629791-ce4aec67dd49" },
+
+{ id:3,name:"Nike Air Zoom Sports Shoes",price:120,cat:"sports",img:"https://images.unsplash.com/photo-1542291026-7eec264c27ff" },
+{ id:4,name:"Adidas Running Sports Shoes",price:110,cat:"sports",img:"https://images.unsplash.com/photo-1528702748617-c64d49f918af" },
+
+{ id:5,name:"Skechers Memory Foam",price:75,cat:"skechers",img:"https://images.unsplash.com/photo-1582588678413-dbf45f4823e9" },
+{ id:6,name:"Skechers Go Walk Comfort",price:80,cat:"skechers",img:"https://images.unsplash.com/photo-1600185365926-3a2ce3cdb9eb" },
+
+{ id:7,name:"Fashion Street Sneakers",price:65,cat:"sneakers",img:"https://images.unsplash.com/photo-1549298916-b41d501d3772" },
+{ id:8,name:"Premium White Sneakers",price:90,cat:"sneakers",img:"https://images.unsplash.com/photo-1528702748617-c64d49f918af" },
+
+{ id:9,name:"Nike Slides Comfort",price:45,cat:"slides",img:"https://images.unsplash.com/photo-1597047084897-51e81819a499" },
+{ id:10,name:"Adidas Slides Soft",price:40,cat:"slides",img:"https://images.unsplash.com/photo-1606813902913-1f3e92d1c3d5" }
 ];
 
-// CART + WISHLIST
-let cart = [];
-let wishlist = [];
+let cart=[];
+let total=0;
+let wishlist=[];
 
-// RENDER PRODUCTS
-function renderProducts(list){
-  const container = document.getElementById("products");
-  container.innerHTML = "";
+// DISPLAY PRODUCTS
+function render(list){
+  const box=document.getElementById("products");
+  box.innerHTML="";
 
   list.forEach(p=>{
-    const liked = wishlist.includes(p.id);
+    box.innerHTML+=`
+    <div class="card">
+      <img src="${p.img}" onerror="this.src='https://via.placeholder.com/150'">
+      <h3>${p.name}</h3>
+      <p>$${p.price}</p>
 
-    container.innerHTML += `
-      <div class="card">
-        <img src="${p.img}" onerror="this.src='https://via.placeholder.com/150'">
-        <h3>${p.name}</h3>
-        <p>$${p.price}</p>
-
-        <button onclick="addToCart(${p.id})">Add to Cart 🛒</button>
-        <button onclick="toggleWishlist(${p.id})">
-          ${liked ? "❤️ Saved" : "🤍 Wishlist"}
-        </button>
-      </div>
+      <button onclick="add(${p.id})">Add to Cart</button>
+      <button onclick="wish(${p.id})">❤️</button>
+    </div>
     `;
   });
 }
 
 // ADD TO CART
-function addToCart(id){
-  const item = cart.find(i=>i.id===id);
+function add(id){
+  const p=products.find(x=>x.id===id);
+  const item=cart.find(i=>i.id===id);
 
-  if(item){
-    item.qty++;
-  }else{
-    const p = products.find(x=>x.id===id);
-    cart.push({...p, qty:1});
+  if(item) item.qty++;
+  else cart.push({...p,qty:1});
+
+  updateCart();
+}
+
+// REMOVE / CHANGE QTY
+function change(id,val){
+  const item=cart.find(i=>i.id===id);
+  item.qty+=val;
+
+  if(item.qty<=0){
+    cart=cart.filter(i=>i.id!==id);
   }
 
-  renderCart();
+  updateCart();
 }
 
-// REMOVE
-function removeItem(id){
-  cart = cart.filter(i=>i.id!==id);
-  renderCart();
-}
-
-// QTY
-function changeQty(id,val){
-  const item = cart.find(i=>i.id===id);
-  if(!item) return;
-
-  item.qty += val;
-  if(item.qty <= 0){
-    removeItem(id);
-  }
-
-  renderCart();
-}
-
-// WISHLIST
-function toggleWishlist(id){
-  if(wishlist.includes(id)){
-    wishlist = wishlist.filter(i=>i!==id);
-  }else{
-    wishlist.push(id);
-  }
-  renderProducts(products);
-}
-
-// CART RENDER
-function renderCart(){
-  const div = document.getElementById("cart");
-  let total = 0;
-
-  div.innerHTML = "";
+// CART UPDATE
+function updateCart(){
+  const box=document.getElementById("cart");
+  box.innerHTML="";
+  total=0;
 
   cart.forEach(i=>{
-    total += i.price * i.qty;
+    total+=i.price*i.qty;
 
-    div.innerHTML += `
-      <div class="cart-item">
-        <span>${i.name} ($${i.price})</span>
-
-        <div>
-          <button class="small-btn" onclick="changeQty(${i.id},-1)">-</button>
-          ${i.qty}
-          <button class="small-btn" onclick="changeQty(${i.id},1)">+</button>
-          <button class="small-btn" onclick="removeItem(${i.id})">❌</button>
-        </div>
+    box.innerHTML+=`
+    <div class="cart-item">
+      ${i.name}
+      <div>
+        <button class="small" onclick="change(${i.id},-1)">-</button>
+        ${i.qty}
+        <button class="small" onclick="change(${i.id},1)">+</button>
       </div>
+    </div>
     `;
   });
 
-  document.getElementById("total").innerText = total;
+  document.getElementById("total").innerText=total;
+}
+
+// WISHLIST
+function wish(id){
+  if(wishlist.includes(id)){
+    wishlist=wishlist.filter(i=>i!==id);
+  }else{
+    wishlist.push(id);
+  }
+}
+
+// FILTER
+function filterCategory(){
+  const cat=document.getElementById("category").value;
+
+  if(cat==="all") return render(products);
+
+  render(products.filter(p=>p.cat===cat));
 }
 
 // SEARCH
-function searchProducts(val){
-  const filtered = products.filter(p =>
-    p.name.toLowerCase().includes(val.toLowerCase())
-  );
-  renderProducts(filtered);
-}
+document.getElementById("search").addEventListener("input",(e)=>{
+  const v=e.target.value.toLowerCase();
+  render(products.filter(p=>p.name.toLowerCase().includes(v)));
+});
 
-// CHECKOUT
+// CHECKOUT WHATSAPP
 function checkout(){
-  if(cart.length === 0){
+  if(cart.length===0){
     alert("Cart empty!");
     return;
   }
 
-  let msg = "🛒 ORDER:\n\n";
-  let total = 0;
+  let msg="🛒 ORDER\n\n";
 
   cart.forEach(i=>{
-    msg += `${i.name} x${i.qty} = $${i.price*i.qty}\n`;
-    total += i.price*i.qty;
+    msg+=`${i.name} x${i.qty} = $${i.price*i.qty}\n`;
   });
 
-  msg += "\nTOTAL: $" + total;
+  msg+=`\nTOTAL: $${total}`;
 
   window.open("https://wa.me/93764594322?text="+encodeURIComponent(msg));
-
-  cart = [];
-  renderCart();
 }
 
 // INIT
-renderProducts(products);
+render(products);
 
 </script>
 
