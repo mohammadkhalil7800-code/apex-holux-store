@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Apex Holux GLOBAL PRO STORE</title>
+<title>Apex Holux GLOBAL AMAZON PRO</title>
 
 <style>
 body{
@@ -22,10 +22,10 @@ header{
 
 .topbar{
   display:flex;
-  gap:10px;
-  padding:10px;
   justify-content:space-between;
+  padding:10px;
   flex-wrap:wrap;
+  gap:10px;
 }
 
 input{
@@ -62,8 +62,8 @@ button{
 
 .cart{
   background:white;
-  padding:15px;
   margin:15px;
+  padding:15px;
   border-radius:10px;
 }
 
@@ -76,18 +76,18 @@ button{
 
 <body>
 
-<header>🌍 Apex Holux GLOBAL PRO STORE</header>
+<header>🌍 Apex Holux GLOBAL AMAZON PRO STORE</header>
 
 <div class="topbar">
-  <input id="search" placeholder="Search shoes..." oninput="searchProducts(this.value)">
+  <input id="search" placeholder="Search products..." oninput="searchProducts(this.value)">
   <button onclick="toggleDark()">🌙</button>
   <button onclick="toggleAdmin()">👑 Admin</button>
 </div>
 
-<!-- ADMIN PANEL -->
-<div id="adminPanel" style="display:none;padding:10px;background:#fff;margin:10px;">
+<!-- ADMIN -->
+<div id="adminPanel" style="display:none;background:#fff;padding:10px;margin:10px;">
   <h3>ADMIN PANEL</h3>
-  <input id="pName" placeholder="Product name">
+  <input id="pName" placeholder="Name">
   <input id="pPrice" placeholder="Price">
   <input id="pImg" placeholder="Image URL">
   <button onclick="addProduct()">Add Product</button>
@@ -102,24 +102,19 @@ button{
   <div id="cart"></div>
   <h3>Total: $<span id="total">0</span></h3>
   <button onclick="checkout()">Checkout WhatsApp</button>
-
-  <hr>
-
-  <h3>📊 Dashboard</h3>
-  <div id="dashboard"></div>
 </div>
 
 <script>
 
 const PHONE = "93764594322";
 
-// ⭐ TOP GLOBAL SHOES PRODUCTS
+// 🔥 GLOBAL BEST SELLING SHOES (10/10 LEVEL)
 let products = [
   {name:"Nike Air Force 1",price:90,img:"https://images.unsplash.com/photo-1542291026-7eec264c27ff"},
   {name:"Adidas Ultraboost",price:120,img:"https://images.unsplash.com/photo-1528701800489-20be3c5c9c8c"},
   {name:"Nike Air Max 270",price:130,img:"https://images.unsplash.com/photo-1519744346364-3b46e0d4d5e7"},
   {name:"Puma RS-X",price:95,img:"https://images.unsplash.com/photo-1606813907291-d86efa9b94db"},
-  {name:"Sketchers Walk",price:75,img:"https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a"},
+  {name:"Sketchers Walking Shoes",price:75,img:"https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a"},
   {name:"Jordan Retro 4",price:180,img:"https://images.unsplash.com/photo-1600180758890-6b94519a8ba6"},
   {name:"Vans Old Skool",price:70,img:"https://images.unsplash.com/photo-1549298916-b41d501d3772"},
   {name:"New Balance 574",price:95,img:"https://images.unsplash.com/photo-1519741497674-611481863552"},
@@ -131,7 +126,7 @@ let cart = [];
 let total = 0;
 let isAdmin = false;
 
-// DISPLAY
+// DISPLAY PRODUCTS
 function render(list){
   const box = document.getElementById("products");
   box.innerHTML="";
@@ -146,36 +141,32 @@ function render(list){
       </div>
     `;
   });
-
-  updateDashboard();
 }
 
+// ADD TO CART
 function addToCart(i){
   cart.push(products[i]);
-  total += products[i].price;
+  total += Number(products[i].price);
 
   document.getElementById("cart").innerHTML += `<p>${products[i].name}</p>`;
   document.getElementById("total").innerText = total;
-
-  updateDashboard();
 }
 
 // SEARCH
-function searchProducts(val){
-  const filtered = products.filter(p =>
-    p.name.toLowerCase().includes(val.toLowerCase())
-  );
-  render(filtered);
+function searchProducts(v){
+  render(products.filter(p =>
+    p.name.toLowerCase().includes(v.toLowerCase())
+  ));
 }
 
-// CHECKOUT WHATSAPP
+// CHECKOUT (WHATSAPP)
 function checkout(){
   if(cart.length===0){
     alert("Cart empty!");
     return;
   }
 
-  let msg = "🛒 ORDER LIST:\n\n";
+  let msg = "🛒 ORDER\n\n";
   cart.forEach(i=>{
     msg += i.name + " - $" + i.price + "\n";
   });
@@ -196,7 +187,7 @@ function toggleAdmin(){
   document.getElementById("adminPanel").style.display = isAdmin ? "block":"none";
 }
 
-// ADD PRODUCT
+// ADD PRODUCT (ADMIN)
 function addProduct(){
   const name = document.getElementById("pName").value;
   const price = document.getElementById("pPrice").value;
@@ -206,15 +197,7 @@ function addProduct(){
   render(products);
 }
 
-// DASHBOARD
-function updateDashboard(){
-  document.getElementById("dashboard").innerHTML = `
-    <p>Products: ${products.length}</p>
-    <p>Cart Items: ${cart.length}</p>
-    <p>Total Revenue (session): $${total}</p>
-  `;
-}
-
+// START
 render(products);
 
 </script>
