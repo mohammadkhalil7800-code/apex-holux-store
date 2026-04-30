@@ -1,76 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Apex Holux Global Store</title>
+
+<style>
+body {font-family: Arial; margin:0; background:#f5f5f5;}
+header {background:#131921; color:white; padding:15px; text-align:center;}
+
+.container {
+  display:grid;
+  grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
+  gap:20px;
+  padding:20px;
+}
+
+.card {
+  background:white;
+  padding:15px;
+  border-radius:10px;
+  box-shadow:0 2px 8px rgba(0,0,0,0.2);
+  text-align:center;
+}
+
+.card img {width:100%; height:150px; object-fit:cover;}
+
+button {
+  background:orange;
+  border:none;
+  padding:8px;
+  margin-top:5px;
+  cursor:pointer;
+}
+
+.cart {
+  background:white;
+  padding:20px;
+  margin:20px;
+}
+
+.search {
+  padding:10px;
+  width:80%;
+  margin:10px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>🌍 Apex Holux Global Store</h1>
+  <input class="search" placeholder="Search products..." oninput="searchProducts(this.value)">
+</header>
+
+<div class="container" id="products"></div>
+
+<div class="cart">
+  <h2>🛒 Cart</h2>
+  <div id="cart"></div>
+  <h3>Total: $<span id="total">0</span></h3>
+  <button onclick="checkout()">Order on WhatsApp</button>
+</div>
+
+<script>
+
 const products = [
-  { id: 1, name: "Nike Air Force 1" },
-  { id: 2, name: "Adidas Ultraboost" },
-  { id: 3, name: "Nike Running Shoes" },
-  { id: 4, name: "Puma Sports Shoes" },
-
-  { id: 5, name: "Skechers Memory Foam" },
-  { id: 6, name: "Skechers Walking Shoes" },
-
-  { id: 7, name: "Air Jordan 1 Low" },
-  { id: 8, name: "Jordan Retro Sneakers" },
-
-  { id: 9, name: "Nike Slides Comfort" },
-  { id: 10, name: "Adidas Slides" },
-
-  { id: 11, name: "Luxury Slides (Gucci Style)" },
-  { id: 12, name: "Soft Slippers" },
-
-  { id: 13, name: "Converse Classic" },
-  { id: 14, name: "Vans Old Skool" },
-
-  { id: 15, name: "New Balance Running" },
-  { id: 16, name: "Hiking Shoes" }
+{ name:"Nike Air Force 1", price:90, img:"https://images.unsplash.com/photo-1542291026-7eec264c27ff"},
+{ name:"Adidas Ultraboost", price:120, img:"https://images.unsplash.com/photo-1528701800489-20be3c5c9c8c"},
+{ name:"Nike Air Max 270", price:130, img:"https://images.unsplash.com/photo-1519744346364-3b46e0d4d5e7"},
+{ name:"Puma RS-X", price:95, img:"https://images.unsplash.com/photo-1606813907291-d86efa9b94db"},
+{ name:"Jordan Retro 4", price:180, img:"https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a"},
+{ name:"Air Jordan 1 Low", price:140, img:"https://images.unsplash.com/photo-1600180758890-6b94519a8ba6"},
+{ name:"Converse Classic", price:65, img:"https://images.unsplash.com/photo-1528702748617-c64d49f918af"},
+{ name:"Vans Old Skool", price:70, img:"https://images.unsplash.com/photo-1549298916-b41d501d3772"},
+{ name:"New Balance 574", price:95, img:"https://images.unsplash.com/photo-1519741497674-611481863552"},
+{ name:"Skechers Go Walk", price:75, img:"https://images.unsplash.com/photo-1582588678413-dbf45f4823e9"},
+{ name:"Nike Slides", price:45, img:"https://images.unsplash.com/photo-1597047084897-51e81819a499"},
+{ name:"Adidas Slides", price:40, img:"https://images.unsplash.com/photo-1606813902913-1f3e92d1c3d5"}
 ];
 
 let cart = [];
+let total = 0;
 
-// LOAD PRODUCTS
-function loadProducts() {
-  const div = document.getElementById("products");
+function renderProducts(list){
+  const container = document.getElementById("products");
+  container.innerHTML = "";
 
-  products.forEach(p => {
-    div.innerHTML += `
+  list.forEach(p=>{
+    container.innerHTML += `
       <div class="card">
+        <img src="${p.img}">
         <h3>${p.name}</h3>
-        <button onclick="add(${p.id})">Add</button>
+        <p>$${p.price}</p>
+        <button onclick="addToCart('${p.name}',${p.price})">Add to Cart</button>
       </div>
     `;
   });
 }
 
-// ADD TO CART
-function add(id) {
-  const item = products.find(p => p.id === id);
-  cart.push(item);
-  renderCart();
+function addToCart(name,price){
+  cart.push({name,price});
+  total += price;
+
+  document.getElementById("cart").innerHTML += `<p>${name}</p>`;
+  document.getElementById("total").innerText = total;
 }
 
-// SHOW CART
-function renderCart() {
-  const div = document.getElementById("cart");
-  div.innerHTML = "";
-
-  cart.forEach(c => {
-    div.innerHTML += `<p>${c.name}</p>`;
-  });
+function searchProducts(val){
+  const filtered = products.filter(p =>
+    p.name.toLowerCase().includes(val.toLowerCase())
+  );
+  renderProducts(filtered);
 }
 
-// CHECKOUT (WHATSAPP)
-function checkout() {
-  if (cart.length === 0) {
-    alert("Cart is empty");
-    return;
-  }
+function checkout(){
+  if(cart.length === 0) return alert("Cart empty");
 
-  let msg = "🛒 ORDER:%0A";
+  let msg = "🛒 Order:\n";
+  cart.forEach(i => msg += i.name + "\n");
+  msg += "Total: $" + total;
 
-  cart.forEach(c => {
-    msg += "• " + c.name + "%0A";
-  });
-
-  // 👇 ستا نمبر اضافه شو
-  window.open("https://wa.me/93764594322?text=" + msg);
+  window.open("https://wa.me/93764594322?text="+encodeURIComponent(msg));
 }
 
-loadProducts();
+renderProducts(products);
+
+</script>
+
+</body>
+</html>
