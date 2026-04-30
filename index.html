@@ -1,16 +1,24 @@
-
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>WORLD AMAZON FINAL BOSS</title>
+<title>BEYOND FINAL BOSS STORE</title>
 
 <style>
-body{margin:0;font-family:Arial;background:#f4f4f4}
-header{background:#0d0d0d;color:#fff;padding:15px;text-align:center;font-size:22px;font-weight:bold}
+body{margin:0;font-family:Arial;background:#f5f5f5}
+header{background:#0a0a0a;color:white;padding:16px;text-align:center;font-size:22px;font-weight:bold}
 
-.topbar{display:flex;gap:10px;flex-wrap:wrap;justify-content:space-between;padding:10px}
-input,button{padding:10px;border-radius:6px;border:1px solid #ccc}
+.topbar{
+  display:flex;gap:10px;flex-wrap:wrap;
+  justify-content:space-between;
+  padding:10px;
+}
+
+input,button{
+  padding:10px;
+  border-radius:6px;
+  border:1px solid #ccc;
+}
 
 .container{
   display:grid;
@@ -25,7 +33,9 @@ input,button{padding:10px;border-radius:6px;border:1px solid #ccc}
   padding:10px;
   text-align:center;
   box-shadow:0 3px 12px rgba(0,0,0,0.2);
+  transition:0.3s;
 }
+.card:hover{transform:scale(1.03)}
 
 .card img{
   width:100%;
@@ -42,12 +52,13 @@ input,button{padding:10px;border-radius:6px;border:1px solid #ccc}
 }
 
 .dark{background:#111;color:white}
+.dark .card{background:#222;color:white}
 </style>
 </head>
 
 <body>
 
-<header>🌍 WORLD AMAZON FINAL BOSS STORE</header>
+<header>🌍 BEYOND FINAL BOSS AMAZON STORE</header>
 
 <div class="topbar">
   <input id="search" placeholder="Search products..." oninput="searchProducts(this.value)">
@@ -67,7 +78,7 @@ input,button{padding:10px;border-radius:6px;border:1px solid #ccc}
 
 <!-- ADMIN -->
 <div id="adminPanel" class="panel" style="display:none">
-  <h3>ADMIN PANEL (LIVE CONTROL)</h3>
+  <h3>ADMIN PANEL</h3>
   <input id="pName" placeholder="Product name">
   <input id="pPrice" placeholder="Price">
   <input id="pImg" placeholder="Image URL">
@@ -106,25 +117,30 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-// 🔥 FINAL BOSS PRODUCTS (GLOBAL TOP SELLERS)
+// 🔥 BEYOND FINAL BOSS GLOBAL PRODUCTS (TOP WORLD SELLERS)
 let products = [
- {name:"Nike Air Force 1",price:90,img:"https://images.unsplash.com/photo-1542291026-7eec264c27ff"},
- {name:"Adidas Ultraboost",price:120,img:"https://images.unsplash.com/photo-1528701800489-20be3c5c9c8c"},
- {name:"Nike Air Max 270",price:130,img:"https://images.unsplash.com/photo-1519744346364-3b46e0d4d5e7"},
- {name:"Puma RS-X",price:95,img:"https://images.unsplash.com/photo-1606813907291-d86efa9b94db"},
- {name:"Sketchers Walk Pro",price:75,img:"https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a"},
- {name:"Jordan Retro 4",price:180,img:"https://images.unsplash.com/photo-1600180758890-6b94519a8ba6"},
- {name:"Vans Old Skool",price:70,img:"https://images.unsplash.com/photo-1549298916-b41d501d3772"},
- {name:"New Balance 574",price:95,img:"https://images.unsplash.com/photo-1519741497674-611481863552"},
- {name:"Nike Slides",price:45,img:"https://images.unsplash.com/photo-1597047084897-51e81819a499"},
- {name:"Adidas Slides",price:40,img:"https://images.unsplash.com/photo-1606813902913-1f3e92d1c3d5"}
+{name:"Nike Air Force 1",price:90,img:"https://images.unsplash.com/photo-1542291026-7eec264c27ff"},
+{name:"Adidas Ultraboost",price:120,img:"https://images.unsplash.com/photo-1528701800489-20be3c5c9c8c"},
+{name:"Nike Air Max 270",price:130,img:"https://images.unsplash.com/photo-1519744346364-3b46e0d4d5e7"},
+{name:"Puma RS-X",price:95,img:"https://images.unsplash.com/photo-1606813907291-d86efa9b94db"},
+{name:"Sketchers Walking Pro",price:75,img:"https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a"},
+{name:"Jordan Retro 4",price:180,img:"https://images.unsplash.com/photo-1600180758890-6b94519a8ba6"},
+{name:"Vans Old Skool",price:70,img:"https://images.unsplash.com/photo-1549298916-b41d501d3772"},
+{name:"New Balance 574",price:95,img:"https://images.unsplash.com/photo-1519741497674-611481863552"},
+{name:"Nike Slides",price:45,img:"https://images.unsplash.com/photo-1597047084897-51e81819a499"},
+{name:"Adidas Slides",price:40,img:"https://images.unsplash.com/photo-1606813902913-1f3e92d1c3d5"},
+{name:"Luxury Leather Shoes",price:200,img:"https://images.unsplash.com/photo-1528702748617-c64d49f918af"},
+{name:"Running Pro Shoes",price:110,img:"https://images.unsplash.com/photo-1551107696-a4b0c5a0d9a2"},
+{name:"Fashion Sneakers X",price:85,img:"https://images.unsplash.com/photo-1528701800489-20be3c5c9c8c"},
+{name:"Urban Street Shoes",price:99,img:"https://images.unsplash.com/photo-1528701800489-20be3c5c9c8c"},
+{name:"Classic Men Shoes",price:150,img:"https://images.unsplash.com/photo-1528701800489-20be3c5c9c8c"}
 ];
 
 let cart=[];
 let total=0;
 let isAdmin=false;
 
-// DISPLAY PRODUCTS
+// DISPLAY
 function render(list){
   const box=document.getElementById("products");
   box.innerHTML="";
@@ -160,12 +176,8 @@ window.searchProducts=(v)=>{
 
 // CHECKOUT
 window.checkout=()=>{
-  let msg="🛒 FINAL ORDER\n\n";
-
-  cart.forEach(i=>{
-    msg+=i.name+" - $"+i.price+"\n";
-  });
-
+  let msg="🛒 BEYOND FINAL ORDER\n\n";
+  cart.forEach(i=>msg+=i.name+" - $"+i.price+"\n");
   msg+="\nTOTAL: $"+total;
 
   window.open("https://wa.me/93764594322?text="+encodeURIComponent(msg));
@@ -176,56 +188,47 @@ window.toggleDark=()=>{
   document.body.classList.toggle("dark");
 }
 
+// LOGIN
+window.showLogin=()=>{
+  document.getElementById("loginBox").style.display="block";
+}
+
+window.signup=()=>{
+  createUserWithEmailAndPassword(auth,email.value,password.value);
+  alert("Signup success");
+}
+
+window.login=()=>{
+  signInWithEmailAndPassword(auth,email.value,password.value);
+  alert("Login success");
+}
+
 // ADMIN
 window.toggleAdmin=()=>{
   isAdmin=!isAdmin;
   document.getElementById("adminPanel").style.display=isAdmin?"block":"none";
 }
 
-// ADD PRODUCT (LIVE)
+// ADD PRODUCT
 window.addProduct=()=>{
   products.push({
-    name:document.getElementById("pName").value,
-    price:document.getElementById("pPrice").value,
-    img:document.getElementById("pImg").value
+    name:pName.value,
+    price:pPrice.value,
+    img:pImg.value
   });
 
   render(products);
 }
 
-// LOGIN SYSTEM
-window.showLogin=()=>{
-  document.getElementById("loginBox").style.display="block";
-}
-
-window.signup=()=>{
-  createUserWithEmailAndPassword(
-    auth,
-    email.value,
-    password.value
-  );
-  alert("Signup success");
-}
-
-window.login=()=>{
-  signInWithEmailAndPassword(
-    auth,
-    email.value,
-    password.value
-  );
-  alert("Login success");
-}
-
-// DASHBOARD (REAL TIME STATS)
+// DASHBOARD
 function updateDashboard(){
   document.getElementById("dashboard").innerHTML=`
     <p>🔥 Products: ${products.length}</p>
     <p>🛒 Cart Items: ${cart.length}</p>
-    <p>💰 Session Revenue: $${total}</p>
+    <p>💰 Revenue: $${total}</p>
   `;
 }
 
-// INIT
 render(products);
 
 </script>
