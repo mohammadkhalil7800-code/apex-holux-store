@@ -5,113 +5,143 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
-    body{margin:0;font-family:Arial;background:#f1f1f1}
-
-    header{
-      background:black;color:white;padding:15px;
-      display:flex;justify-content:space-between;align-items:center
+    body {
+      margin:0;
+      font-family:Arial;
+      background:#f1f1f1;
     }
 
-    .logo{font-size:20px}
-
-    #search{
-      width:90%;margin:10px auto;display:block;
-      padding:10px;border-radius:5px;border:1px solid #ccc
+    header {
+      background:black;
+      color:white;
+      padding:15px;
+      text-align:center;
+      font-size:22px;
     }
 
-    .grid{
+    #search {
+      width:90%;
+      margin:10px auto;
+      display:block;
+      padding:10px;
+      border-radius:5px;
+      border:1px solid #ccc;
+    }
+
+    .grid {
       display:grid;
       grid-template-columns:repeat(auto-fill,minmax(170px,1fr));
-      gap:10px;padding:10px
+      gap:10px;
+      padding:10px;
     }
 
-    .card{
-      background:white;padding:10px;border-radius:10px;
-      text-align:center;box-shadow:0 2px 6px rgba(0,0,0,0.2)
+    .card {
+      background:white;
+      padding:10px;
+      border-radius:10px;
+      text-align:center;
+      box-shadow:0 2px 6px rgba(0,0,0,0.2);
     }
 
-    img{width:100%;height:140px;object-fit:cover;border-radius:5px}
-
-    button{
-      padding:6px;margin:3px;border:none;border-radius:5px;
-      cursor:pointer;font-size:12px
+    img {
+      width:100%;
+      height:140px;
+      object-fit:cover;
+      border-radius:5px;
     }
 
-    .buy{background:orange}
-    .cart{background:green;color:white}
-    .wish{background:pink}
-
-    #panel{
-      background:white;margin:10px;padding:10px;border-radius:10px
+    button {
+      padding:6px;
+      margin:3px;
+      border:none;
+      border-radius:5px;
+      cursor:pointer;
+      font-size:12px;
     }
 
-    input{padding:5px;margin:3px}
+    .buy {background:orange;}
+    .cart {background:green;color:white;}
+    .wish {background:pink;}
+
+    #cartBox {
+      background:white;
+      margin:10px;
+      padding:10px;
+      border-radius:10px;
+    }
   </style>
 </head>
 
 <body>
 
-<header>
-  <div class="logo">🌍 Apex Holux</div>
-  <div>
-    🛒 <span id="count">0</span> |
-    ❤️ <span id="wishCount">0</span>
-  </div>
-</header>
+<header>🌍 Apex Holux Global Store (LEVEL 10)</header>
 
-<input id="search" placeholder="🔎 Search Nike, Adidas...">
+<input id="search" placeholder="🔎 Search Nike, Adidas, Slides...">
 
 <div class="grid" id="products"></div>
 
-<div id="panel">
-  <h3>🛒 Cart</h3>
+<div id="cartBox">
+  <h3>🛒 Cart (<span id="count">0</span>)</h3>
   <div id="cart"></div>
   <h3>Total: $<span id="total">0</span></h3>
-  <button onclick="checkout()">Checkout</button>
-</div>
-
-<div id="panel">
-  <h3>👨‍💼 Admin Panel</h3>
-  <input id="name" placeholder="Product name">
-  <input id="price" placeholder="Price">
-  <input id="image" placeholder="Image URL">
-  <button onclick="addProduct()">Add Product</button>
 </div>
 
 <script>
 
-// 🌍 PRODUCTS (GLOBAL + AFG)
-let products = JSON.parse(localStorage.getItem("products")) || [
-{id:1,name:"Nike Air Force 1",price:90,image:"https://images.unsplash.com/photo-1542291026-7eec264c27ff"},
-{id:2,name:"Adidas Ultraboost",price:120,image:"https://images.unsplash.com/photo-1519741497674-611481863552"},
-{id:3,name:"Air Jordan 1 Low",price:140,image:"https://images.unsplash.com/photo-1600185365926-3a2ce3cdb9eb"},
-{id:4,name:"Skechers Walking Shoes",price:70,image:"https://images.unsplash.com/photo-1528701800489-20be3c6a4c6a"},
-{id:5,name:"Nike Slides",price:45,image:"https://images.unsplash.com/photo-1608231387042-66d1773070a5"},
-{id:6,name:"Soft Slippers",price:20,image:"https://images.unsplash.com/photo-1593032465171-8a1d0f3a7b5d"}
+// 🌍 BEST SELLING GLOBAL + AFG MARKET
+const products = [
+
+{ id:1, name:"Nike Air Force 1", price:90, category:"Sneakers", image:"https://images.unsplash.com/photo-1542291026-7eec264c27ff" },
+
+{ id:2, name:"Adidas Ultraboost", price:120, category:"Running", image:"https://images.unsplash.com/photo-1519741497674-611481863552" },
+
+{ id:3, name:"Air Jordan 1 Low", price:140, category:"Sneakers", image:"https://images.unsplash.com/photo-1600185365926-3a2ce3cdb9eb" },
+
+{ id:4, name:"Skechers Walking Shoes", price:70, category:"Comfort", image:"https://images.unsplash.com/photo-1528701800489-20be3c6a4c6a" },
+
+{ id:5, name:"Nike Slides", price:45, category:"Slides", image:"https://images.unsplash.com/photo-1608231387042-66d1773070a5" },
+
+{ id:6, name:"Adidas Slides", price:40, category:"Slides", image:"https://images.unsplash.com/photo-1600180758890-6b94519a8ba3" },
+
+{ id:7, name:"Puma Sports Shoes", price:75, category:"Sports", image:"https://images.unsplash.com/photo-1600180758890-6b94519a8ba3" },
+
+{ id:8, name:"New Balance Running", price:95, category:"Running", image:"https://images.unsplash.com/photo-1526178613658-3f1622045557" },
+
+// 🇦🇫 افغانستان کې ډیر خرڅیږي
+{ id:9, name:"Soft Beach Slippers", price:20, category:"Slippers", image:"https://images.unsplash.com/photo-1593032465171-8a1d0f3a7b5d" },
+
+{ id:10, name:"Luxury Slides", price:55, category:"Slides", image:"https://images.unsplash.com/photo-1608231387042-66d1773070a5" },
+
+{ id:11, name:"Casual Street Shoes", price:35, category:"Casual", image:"https://images.unsplash.com/photo-1528701800489-20be3c6a4c6a" },
+
+{ id:12, name:"Budget Walking Shoes", price:25, category:"Budget", image:"https://images.unsplash.com/photo-1528701800489-20be3c6a4c6a" }
+
 ];
 
 let cart = [];
 let wishlist = [];
-let orders = [];
 
 const container = document.getElementById("products");
 
 // 🔥 RENDER
 function render(list){
-  container.innerHTML="";
+  container.innerHTML = "";
+
   list.forEach(p=>{
-    let fav = wishlist.includes(p.id);
+    const fav = wishlist.includes(p.id);
 
-    container.innerHTML+=`
-    <div class="card">
-      <img src="${p.image}">
-      <h4>${p.name}</h4>
-      <p>$${p.price}</p>
+    container.innerHTML += `
+      <div class="card">
+        <img src="${p.image}">
+        <h4>${p.name}</h4>
+        <p>$${p.price}</p>
 
-      <button class="buy" onclick="buyNow('${p.name}',${p.price})">⚡ Buy</button>
-      <button class="cart" onclick="add(${p.id})">🛒</button>
-      <button class="wish" onclick="wish(${p.id})">${fav?"❤️":"🤍"}</button>
-    </div>
+        <button class="buy" onclick="buyNow('${p.name}',${p.price})">⚡ Buy</button>
+        <button class="cart" onclick="add(${p.id})">🛒</button>
+        <button class="wish" onclick="toggleWish(${p.id})">
+          ${fav ? "❤️" : "🤍"}
+        </button>
+      </div>
     `;
   });
 }
@@ -124,99 +154,50 @@ function add(id){
 }
 
 // ❤️ WISHLIST
-function wish(id){
+function toggleWish(id){
   if(wishlist.includes(id)){
     wishlist = wishlist.filter(x=>x!==id);
-  }else{
+  } else {
     wishlist.push(id);
   }
-  updateBadges();
   render(products);
 }
 
-// 📦 CHECKOUT (REAL LOGIC)
-function checkout(){
-  if(cart.length==0)return alert("Cart empty");
-
-  let total=cart.reduce((s,i)=>s+i.price,0);
-
-  let order={
-    id:Date.now(),
-    items:cart,
-    total:total
-  };
-
-  orders.push(order);
-
-  let msg="ORDER:%0A";
-  cart.forEach(i=>{
-    msg+=`${i.name} $${i.price}%0A`;
-  });
-
-  msg+=`TOTAL: $${total}`;
-
-  window.open("https://wa.me/93764594322?text="+msg);
-
-  cart=[];
-  updateCart();
-}
-
-// ⚡ BUY NOW
+// 📦 CHECKOUT
 function buyNow(name,price){
-  window.open("https://wa.me/93764594322?text=Buy:"+name+" $"+price);
+  let msg = `ORDER:%0A${name} - $${price}`;
+  window.open("https://wa.me/93764594322?text="+msg);
 }
 
-// 🧾 CART UPDATE
+// 🔄 CART UPDATE
 function updateCart(){
-  let div=document.getElementById("cart");
-  let total=0;
-  div.innerHTML="";
+  let div = document.getElementById("cart");
+  let total = 0;
+
+  div.innerHTML = "";
 
   cart.forEach(p=>{
-    total+=p.price;
-    div.innerHTML+=`<p>${p.name} - $${p.price}</p>`;
+    total += p.price;
+    div.innerHTML += `<p>${p.name} - $${p.price}</p>`;
   });
 
-  document.getElementById("total").innerText=total;
-  document.getElementById("count").innerText=cart.length;
-  updateBadges();
-}
-
-// 📊 BADGES
-function updateBadges(){
-  document.getElementById("wishCount").innerText=wishlist.length;
+  document.getElementById("total").innerText = total;
+  document.getElementById("count").innerText = cart.length;
 }
 
 // 🔎 SEARCH
 document.getElementById("search").addEventListener("input",(e)=>{
-  let val=e.target.value.toLowerCase();
-  let filtered=products.filter(p=>p.name.toLowerCase().includes(val));
+  let val = e.target.value.toLowerCase();
+
+  let filtered = products.filter(p =>
+    p.name.toLowerCase().includes(val) ||
+    p.category.toLowerCase().includes(val)
+  );
+
   render(filtered);
 });
 
-// 👨‍💼 ADMIN ADD PRODUCT
-function addProduct(){
-  let name=document.getElementById("name").value;
-  let price=document.getElementById("price").value;
-  let image=document.getElementById("image").value;
-
-  if(!name || !price)return alert("Fill fields");
-
-  let newP={
-    id:Date.now(),
-    name,
-    price:Number(price),
-    image:image || "https://via.placeholder.com/200"
-  };
-
-  products.push(newP);
-  localStorage.setItem("products",JSON.stringify(products));
-
-  render(products);
-}
-
 render(products);
-updateCart();
 
 </script>
 
