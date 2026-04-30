@@ -2,10 +2,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>🌍 AMAZON ULTIMATE GLOBAL STORE</title>
+<title>🌍 AMAZON GOD MODE STORE</title>
 
 <style>
-body{margin:0;font-family:Arial;background:#f4f4f4;}
+body{margin:0;font-family:Arial;background:#f5f5f5;}
 
 header{
   background:#131921;
@@ -13,10 +13,9 @@ header{
   padding:15px;
   text-align:center;
   font-size:22px;
-  font-weight:bold;
 }
 
-.topbar{
+.top{
   display:flex;
   gap:10px;
   padding:10px;
@@ -35,7 +34,7 @@ button{
   cursor:pointer;
 }
 
-.container{
+.grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
   gap:15px;
@@ -64,25 +63,22 @@ button{
   border-radius:10px;
 }
 
-.dark{
-  background:#111;
-  color:white;
-}
+.dark{background:#111;color:white;}
 </style>
 </head>
 
 <body>
 
-<header>🌍 AMAZON ULTIMATE GLOBAL STORE</header>
+<header>🌍 AMAZON GOD MODE STORE</header>
 
-<div class="topbar">
-<input id="search" placeholder="Search products...">
+<div class="top">
+<input id="search" placeholder="Search premium shoes...">
 <button onclick="toggleDark()">🌙</button>
 </div>
 
-<!-- LOGIN -->
+<!-- AUTH -->
 <div class="panel">
-<h3>👤 Login / Signup (Firebase Ready)</h3>
+<h3>👤 Login / Signup</h3>
 <input id="email" placeholder="Email">
 <input id="pass" type="password" placeholder="Password">
 <button onclick="signup()">Signup</button>
@@ -99,31 +95,28 @@ button{
 </div>
 
 <!-- PRODUCTS -->
-<div class="container" id="products"></div>
+<div class="grid" id="products"></div>
 
 <!-- CART -->
 <div class="panel">
 <h3>🛒 Cart</h3>
 <div id="cart"></div>
 <h3>Total: $<span id="total">0</span></h3>
-<button onclick="checkout()">Checkout WhatsApp</button>
+<button onclick="checkout()">WhatsApp Order</button>
 </div>
 
 <!-- DASHBOARD -->
 <div class="panel">
 <h3>📊 Dashboard</h3>
-<p id="dash"></p>
+<p id="dash">Orders: 0</p>
 </div>
 
 <script type="module">
 
-/* ================= FIREBASE ================= */
+/* ===== FIREBASE ===== */
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { 
-  getAuth, 
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword 
-} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } 
+from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
 const firebaseConfig = {
   apiKey: "YOUR_KEY",
@@ -134,52 +127,46 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-/* ================= PRODUCTS ================= */
-let products = [
-{ name:"Nike Air Force 1", price:90, img:"https://images.unsplash.com/photo-1542291026-7eec264c27ff" },
-{ name:"Adidas Ultraboost", price:120, img:"https://images.unsplash.com/photo-1528701800489-20be3c5c9c8c" },
-{ name:"Nike Air Max 270", price:130, img:"https://images.unsplash.com/photo-1519744346364-3b46e0d4d5e7" },
-{ name:"Jordan Retro 4", price:180, img:"https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a" },
-{ name:"Vans Old Skool", price:70, img:"https://images.unsplash.com/photo-1549298916-b41d501d3772" },
-{ name:"Sketchers Walk Pro", price:75, img:"https://images.unsplash.com/photo-1582588678413-dbf45f4823e9" }
+/* ===== DATA ===== */
+let products=[
+{name:"Nike Air Force 1",price:90,img:"https://images.unsplash.com/photo-1542291026-7eec264c27ff"},
+{name:"Adidas Ultraboost",price:120,img:"https://images.unsplash.com/photo-1528701800489-20be3c5c9c8c"},
+{name:"Jordan Retro 4",price:180,img:"https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a"},
+{name:"Vans Old Skool",price:70,img:"https://images.unsplash.com/photo-1549298916-b41d501d3772"},
+{name:"Sketchers Walk Pro",price:75,img:"https://images.unsplash.com/photo-1582588678413-dbf45f4823e9"}
 ];
 
 let cart=[];
 let total=0;
 let orders=0;
 
-/* ================= AUTH ================= */
-window.signup = async ()=>{
-  let email=document.getElementById("email").value;
-  let pass=document.getElementById("pass").value;
-  await createUserWithEmailAndPassword(auth,email,pass);
-  alert("Account Created ✅");
+/* ===== AUTH ===== */
+window.signup=async()=>{
+  await createUserWithEmailAndPassword(auth,email.value,pass.value);
+  alert("Account Created");
 }
 
-window.login = async ()=>{
-  let email=document.getElementById("email").value;
-  let pass=document.getElementById("pass").value;
-  await signInWithEmailAndPassword(auth,email,pass);
-  alert("Logged In ✅");
+window.login=async()=>{
+  await signInWithEmailAndPassword(auth,email.value,pass.value);
+  alert("Logged In");
 }
 
-/* ================= UI ================= */
+/* ===== UI ===== */
 function render(){
   let box=document.getElementById("products");
   box.innerHTML="";
-
   products.forEach((p,i)=>{
     box.innerHTML+=`
     <div class="card">
       <img src="${p.img}">
       <h3>${p.name}</h3>
       <p>$${p.price}</p>
-      <button onclick="add(${i})">Add to Cart</button>
+      <button onclick="add(${i})">Add</button>
     </div>`;
   });
 }
 
-window.add = (i)=>{
+window.add=(i)=>{
   cart.push(products[i]);
   total+=products[i].price;
 
@@ -188,10 +175,9 @@ window.add = (i)=>{
 }
 
 /* SEARCH */
-document.getElementById("search").addEventListener("input",(e)=>{
+search.oninput=(e)=>{
   let v=e.target.value.toLowerCase();
   let f=products.filter(p=>p.name.toLowerCase().includes(v));
-
   let box=document.getElementById("products");
   box.innerHTML="";
   f.forEach((p,i)=>{
@@ -203,29 +189,29 @@ document.getElementById("search").addEventListener("input",(e)=>{
       <button onclick="add(${i})">Add</button>
     </div>`;
   });
-});
+}
 
 /* CHECKOUT */
 window.checkout=()=>{
-  if(cart.length==0) return alert("Cart empty!");
-
   let msg="🛒 ORDER\n\n";
   cart.forEach(i=>msg+=i.name+"\n");
   msg+="\nTOTAL: $"+total;
 
-  // 👇 YOUR NUMBER INCLUDED
   window.open("https://wa.me/93764594322?text="+encodeURIComponent(msg));
 
   orders++;
-  document.getElementById("dash").innerText="Orders: "+orders;
+  dash.innerText="Orders: "+orders;
 
-  cart=[];
-  total=0;
+  cart=[]; total=0;
   document.getElementById("cart").innerHTML="";
   document.getElementById("total").innerText=0;
 }
 
-/* INIT */
+/* DARK */
+window.toggleDark=()=>{
+  document.body.classList.toggle("dark");
+}
+
 render();
 
 </script>
