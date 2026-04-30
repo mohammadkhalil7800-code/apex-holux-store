@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>🌍 Apex Holux GLOBAL PRO STORE</title>
+<title>🌍 GLOBAL AMAZON 3.0</title>
 
 <style>
 body{margin:0;font-family:Arial;background:#f4f4f4}
@@ -37,6 +37,7 @@ margin-top:5px;
 cursor:pointer;
 background:#ff9900;
 border:none;
+font-weight:bold;
 }
 
 #cartBox{
@@ -64,7 +65,7 @@ width:90%;
 
 <body>
 
-<header>🌍 Apex Holux GLOBAL PRO STORE (FINAL AMAZON LEVEL)</header>
+<header>🌍 GLOBAL AMAZON 3.0 (SPORT + CLASSIC + SNEAKERS)</header>
 
 <!-- AUTH -->
 <div class="authBox">
@@ -84,7 +85,6 @@ width:90%;
 <h3>🛒 Cart</h3>
 <div id="cart"></div>
 <h3>Total: $<span id="total">0</span></h3>
-
 <button onclick="checkout()">Checkout WhatsApp</button>
 </div>
 
@@ -98,7 +98,6 @@ signInWithEmailAndPassword,
 onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
-/* 🔥 FIREBASE */
 const firebaseConfig = {
 apiKey: "YOUR_KEY",
 authDomain: "YOUR_PROJECT.firebaseapp.com",
@@ -108,26 +107,33 @@ projectId: "YOUR_PROJECT"
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-/* USER */
-let currentUser = null;
-
-/* 💎 TOP GLOBAL PRODUCTS (HIGH DEMAND) */
+/* 👟 GLOBAL BEST SELLERS (UPDATED PRO LEVEL) */
 const products = [
-{name:"Nike Air Force 1",price:90,img:"https://images.unsplash.com/photo-1542291026-7eec264c27ff"},
-{name:"Adidas Ultraboost",price:120,img:"https://images.unsplash.com/photo-1528701800489-20be3c5c9c8c"},
-{name:"Nike Air Max 270",price:130,img:"https://images.unsplash.com/photo-1519744346364-7eec264c27ff"},
-{name:"Puma RS-X",price:95,img:"https://images.unsplash.com/photo-1606813907291-d86efa9b94db"},
-{name:"Skechers Walk",price:75,img:"https://images.unsplash.com/photo-1582588678413-dbf45f4823e9"},
-{name:"Jordan Retro 4",price:180,img:"https://images.unsplash.com/photo-1600180758890"},
-{name:"Vans Old Skool",price:70,img:"https://images.unsplash.com/photo-1549298916-b41d501d3772"},
-{name:"New Balance 574",price:95,img:"https://images.unsplash.com/photo-1519741497674"},
-{name:"Converse Classic",price:65,img:"https://images.unsplash.com/photo-1528702748617"},
-{name:"Nike Slides",price:45,img:"https://images.unsplash.com/photo-1597047084897"}
+
+/* 🔥 SPORT SHOES */
+{name:"Nike Air Zoom Running",price:110,img:"https://images.unsplash.com/photo-1528701800489-20be3c5c9c8c"},
+{name:"Adidas Running Boost",price:125,img:"https://images.unsplash.com/photo-1519744346364-7eec264c27ff"},
+{name:"Puma Velocity Sport",price:95,img:"https://images.unsplash.com/photo-1606813907291-d86efa9b94db"},
+
+/* 👟 SNEAKERS */
+{name:"Nike Air Force 1 White",price:90,img:"https://images.unsplash.com/photo-1542291026-7eec264c27ff"},
+{name:"Jordan Retro 4 Black",price:180,img:"https://images.unsplash.com/photo-1600180758890"},
+{name:"Vans Old Skool Classic",price:70,img:"https://images.unsplash.com/photo-1549298916-b41d501d3772"},
+
+/* 👞 CLASSIC SHOES */
+{name:"Leather Classic Formal",price:85,img:"https://images.unsplash.com/photo-1528702748617"},
+{name:"Oxford Business Shoes",price:95,img:"https://images.unsplash.com/photo-1521334884684"},
+{name:"Brown Luxury Classic",price:120,img:"https://images.unsplash.com/photo-1582588678413-dbf45f4823e9"},
+
+/* 🩴 SLIDES */
+{name:"Nike Slides Comfort",price:45,img:"https://images.unsplash.com/photo-1597047084897"},
+{name:"Adidas Slides Sport",price:40,img:"https://images.unsplash.com/photo-1606813902913"}
+
 ];
 
 let cart=[];
 
-/* SHOW PRODUCTS */
+/* RENDER */
 function render(){
 let box=document.getElementById("products");
 box.innerHTML="";
@@ -144,13 +150,13 @@ box.innerHTML+=`
 }
 render();
 
-/* ADD CART */
+/* CART */
 window.add=function(i){
 cart.push(products[i]);
 renderCart();
 }
 
-/* CART */
+/* CART UI */
 function renderCart(){
 let c=document.getElementById("cart");
 let total=0;
@@ -164,7 +170,7 @@ c.innerHTML+=`<p>${p.name} - $${p.price}</p>`;
 document.getElementById("total").innerText=total;
 }
 
-/* CHECKOUT (YOUR NUMBER ADDED) */
+/* CHECKOUT */
 window.checkout=function(){
 
 if(cart.length===0){
@@ -172,7 +178,7 @@ alert("Cart empty!");
 return;
 }
 
-let msg="🛒 ORDER FROM APEX HOLUX\n\n";
+let msg="🛒 GLOBAL AMAZON 3.0 ORDER\n\n";
 let total=0;
 
 cart.forEach(p=>{
@@ -182,7 +188,7 @@ total+=p.price;
 
 msg+="\nTOTAL: $"+total;
 
-/* 🔥 YOUR NUMBER ADDED */
+/* WhatsApp */
 let phone="+93764594322";
 
 window.open(
@@ -205,7 +211,6 @@ signInWithEmailAndPassword(auth,email.value,pass.value)
 }
 
 onAuthStateChanged(auth,(user)=>{
-currentUser=user;
 document.getElementById("userStatus").innerText=
 user ? "Logged in: "+user.email : "Not logged in";
 });
