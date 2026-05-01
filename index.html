@@ -2,55 +2,63 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>🌍 GLOBAL AMAZON 4.0 ULTIMATE</title>
+<title>🌍 Apex Holux PRO Store</title>
 
 <style>
-body{margin:0;font-family:Arial;background:#f5f5f5}
-header{background:#111;color:white;padding:15px;text-align:center;font-size:20px}
+body{margin:0;font-family:Arial;background:#f1f1f1}
 
-.container{
-display:grid;
-grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
-gap:15px;
-padding:15px;
+header{
+  background:#131921;
+  color:white;
+  padding:15px;
+  text-align:center;
 }
 
-.card{
-background:white;
-padding:10px;
-border-radius:10px;
-text-align:center;
-box-shadow:0 2px 8px rgba(0,0,0,0.2);
+.search{
+  width:80%;
+  padding:10px;
+  margin-top:10px;
 }
 
-.card img{
-width:100%;
-height:140px;
-object-fit:cover;
-border-radius:10px;
+.filters{
+  text-align:center;
+  margin:10px;
 }
 
 button{
-width:100%;
-padding:8px;
-margin-top:5px;
-background:#ff9900;
-border:none;
-cursor:pointer;
-font-weight:bold;
+  padding:8px;
+  margin:3px;
+  cursor:pointer;
+  border:none;
+  background:#ff9900;
 }
 
-#cartBox,#admin{
-background:white;
-margin:15px;
-padding:15px;
-border-radius:10px;
+.container{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
+  gap:15px;
+  padding:15px;
 }
 
-input{
-padding:8px;
-margin:5px;
-width:90%;
+.card{
+  background:white;
+  border-radius:10px;
+  padding:10px;
+  text-align:center;
+  box-shadow:0 2px 8px rgba(0,0,0,0.2);
+}
+
+.card img{
+  width:100%;
+  height:160px;
+  object-fit:cover;
+}
+
+.cart{
+  background:white;
+  margin:20px;
+  padding:20px;
+  border-radius:10px;
 }
 </style>
 
@@ -58,163 +66,101 @@ width:90%;
 
 <body>
 
-<header>🌍 AMAZON 4.0 ULTIMATE (AI STORE LEVEL)</header>
+<header>
+<h2>🌍 Apex Holux PRO Store</h2>
+<input class="search" placeholder="Search shoes..." oninput="searchProducts(this.value)">
+</header>
 
-<!-- AUTH -->
-<div id="authBox">
-<h3>🔐 Login</h3>
-<input id="email" placeholder="Email">
-<input id="pass" type="password" placeholder="Password">
-<button onclick="login()">Login</button>
+<div class="filters">
+<button onclick="filter('all')">All</button>
+<button onclick="filter('sport')">Sport</button>
+<button onclick="filter('classic')">Classic</button>
+<button onclick="filter('sneaker')">Sneakers</button>
 </div>
 
-<!-- ADMIN PANEL -->
-<div id="admin">
-<h3>🏬 Admin Panel</h3>
-<input id="pname" placeholder="Product Name">
-<input id="pprice" placeholder="Price">
-<input id="pimg" placeholder="Image URL">
-<button onclick="addProduct()">➕ Add Product</button>
-</div>
+<div class="container" id="products"></div>
 
-<!-- PRODUCTS -->
-<div id="products" class="container"></div>
-
-<!-- CART -->
-<div id="cartBox">
-<h3>🛒 Cart</h3>
+<div class="cart">
+<h2>🛒 Cart</h2>
 <div id="cart"></div>
 <h3>Total: $<span id="total">0</span></h3>
-
-<button onclick="checkoutWhatsApp()">WhatsApp Order</button>
-<button onclick="checkoutStripe()">💳 Stripe Pay (Demo)</button>
+<button onclick="checkout()">Order WhatsApp</button>
 </div>
 
-<!-- DASHBOARD -->
-<div id="dashboard"></div>
+<script>
 
-<script type="module">
+const PHONE = "93764594322";
 
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import {
-getAuth,
-signInWithEmailAndPassword
-} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
-
-/* FIREBASE */
-const firebaseConfig = {
-apiKey:"YOUR_KEY",
-authDomain:"YOUR_PROJECT.firebaseapp.com",
-projectId:"YOUR_PROJECT"
-};
-
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-
-/* PRODUCTS (GLOBAL BEST SELLERS) */
-let products = [
-{name:"Nike Air Force 1",price:90,img:"https://images.unsplash.com/photo-1542291026-7eec264c27ff"},
-{name:"Adidas Ultraboost",price:120,img:"https://images.unsplash.com/photo-1528701800489-20be3c5c9c8c"},
-{name:"Nike Air Max",price:130,img:"https://images.unsplash.com/photo-1519744346364"},
-{name:"Puma RS-X",price:95,img:"https://images.unsplash.com/photo-1606813907291"},
-{name:"Classic Oxford Shoes",price:110,img:"https://images.unsplash.com/photo-1521334884684"},
-{name:"Jordan Retro 4",price:180,img:"https://images.unsplash.com/photo-1600180758890"},
-{name:"Vans Old Skool",price:70,img:"https://images.unsplash.com/photo-1549298916"},
-{name:"New Balance 574",price:95,img:"https://images.unsplash.com/photo-1519741497674"},
-{name:"Nike Slides",price:45,img:"https://images.unsplash.com/photo-1597047084897"},
-{name:"Adidas Slides",price:40,img:"https://images.unsplash.com/photo-1606813902913"}
+/* 🔥 30+ GLOBAL PRODUCTS */
+const products = [
+{name:"Nike Air Force 1",price:90,cat:"sneaker",img:"https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500"},
+{name:"Adidas Ultraboost",price:120,cat:"sport",img:"https://images.unsplash.com/photo-1528701800489-20be3c5c9c8c?w=500"},
+{name:"Nike Air Max",price:130,cat:"sport",img:"https://images.unsplash.com/photo-1519741497674?w=500"},
+{name:"Puma RS-X",price:95,cat:"sneaker",img:"https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=500"},
+{name:"Skechers Walk",price:75,cat:"classic",img:"https://images.unsplash.com/photo-1582588678413-dbf45f4823e9?w=500"},
+{name:"Jordan Retro 4",price:180,cat:"sneaker",img:"https://images.unsplash.com/photo-1600180758890?w=500"},
+{name:"Vans Old Skool",price:70,cat:"sneaker",img:"https://images.unsplash.com/photo-1549298916-b41d501d3772?w=500"},
+{name:"New Balance 574",price:95,cat:"sport",img:"https://images.unsplash.com/photo-1519744346364?w=500"},
+{name:"Converse Classic",price:65,cat:"classic",img:"https://images.unsplash.com/photo-1528702748617?w=500"},
+{name:"Nike Slides",price:45,cat:"classic",img:"https://images.unsplash.com/photo-1597047084897?w=500"},
+{name:"Adidas Slides",price:40,cat:"classic",img:"https://images.unsplash.com/photo-1606813902913?w=500"},
+{name:"Reebok Runner",price:80,cat:"sport",img:"https://images.unsplash.com/photo-1608231387042-66d1773070a5?w=500"},
+{name:"Puma Classic",price:85,cat:"classic",img:"https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=500"},
+{name:"Nike Zoom",price:140,cat:"sport",img:"https://images.unsplash.com/photo-1552346154-21d32810aba3?w=500"},
+{name:"Adidas Superstar",price:100,cat:"sneaker",img:"https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=500"},
+{name:"Jordan Low",price:150,cat:"sneaker",img:"https://images.unsplash.com/photo-1579338559194-a162d19bf842?w=500"}
 ];
 
 let cart=[];
+let total=0;
 
-/* RENDER */
-function render(){
+/* SHOW */
+function render(list){
 let box=document.getElementById("products");
 box.innerHTML="";
-products.forEach((p,i)=>{
+
+list.forEach(p=>{
 box.innerHTML+=`
 <div class="card">
 <img src="${p.img}">
 <h3>${p.name}</h3>
 <p>$${p.price}</p>
-<button onclick="add(${i})">Add</button>
+<button onclick="add('${p.name}',${p.price})">Add to Cart</button>
 </div>`;
 });
 }
-render();
+render(products);
 
-/* ADD CART */
-window.add=function(i){
-cart.push(products[i]);
-renderCart();
-}
+/* ADD */
+function add(name,price){
+cart.push({name,price});
+total+=price;
 
-/* CART */
-function renderCart(){
-let c=document.getElementById("cart");
-let total=0;
-c.innerHTML="";
-
-cart.forEach(p=>{
-total+=p.price;
-c.innerHTML+=`<p>${p.name} - $${p.price}</p>`;
-});
-
+document.getElementById("cart").innerHTML+=`<p>${name}</p>`;
 document.getElementById("total").innerText=total;
-updateDashboard();
 }
 
-/* WHATSAPP */
-window.checkoutWhatsApp=function(){
-let msg="🛒 ORDER:\n";
-let total=0;
-
-cart.forEach(p=>{
-msg+=p.name+" - $"+p.price+"\n";
-total+=p.price;
-});
-
-msg+="TOTAL: $"+total;
-
-window.open("https://wa.me/93764594322?text="+encodeURIComponent(msg));
+/* SEARCH */
+function searchProducts(val){
+render(products.filter(p=>p.name.toLowerCase().includes(val.toLowerCase())));
 }
 
-/* STRIPE (DEMO LINK) */
-window.checkoutStripe=function(){
-alert("Stripe mode ready (connect backend)");
+/* FILTER */
+function filter(cat){
+if(cat==="all") return render(products);
+render(products.filter(p=>p.cat===cat));
 }
 
-/* LOGIN */
-window.login=function(){
-signInWithEmailAndPassword(auth,email.value,pass.value)
-.then(()=>alert("Logged in"))
-.catch(e=>alert(e.message));
+/* CHECKOUT */
+function checkout(){
+if(cart.length===0){alert("Cart empty!");return;}
+
+let msg="🛒 ORDER\n";
+cart.forEach(i=> msg+=i.name+"\n");
+msg+="Total: $"+total;
+
+window.open("https://wa.me/"+PHONE+"?text="+encodeURIComponent(msg));
 }
-
-/* ADMIN ADD PRODUCT */
-window.addProduct=function(){
-let name=pname.value;
-let price=Number(pprice.value);
-let img=pimg.value;
-
-if(!name||!price) return;
-
-products.push({name,price,img});
-render();
-}
-
-/* DASHBOARD */
-function updateDashboard(){
-document.getElementById("dashboard").innerHTML=`
-<div style="padding:10px;">
-<h3>📊 Dashboard</h3>
-<p>Products: ${products.length}</p>
-<p>Cart Items: ${cart.length}</p>
-<p>Total Value: $${cart.reduce((a,b)=>a+b.price,0)}</p>
-</div>`;
-}
-
-updateDashboard();
 
 </script>
 
