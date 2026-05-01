@@ -2,64 +2,18 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>🌍 Apex Holux PRO Store</title>
+<title>Apex Holux Global Store</title>
 
 <style>
-body{margin:0;font-family:Arial;background:#f1f1f1}
-
-header{
-  background:#131921;
-  color:white;
-  padding:15px;
-  text-align:center;
-}
-
-.search{
-  width:80%;
-  padding:10px;
-  margin-top:10px;
-}
-
-.filters{
-  text-align:center;
-  margin:10px;
-}
-
-button{
-  padding:8px;
-  margin:3px;
-  cursor:pointer;
-  border:none;
-  background:#ff9900;
-}
-
-.container{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
-  gap:15px;
-  padding:15px;
-}
-
-.card{
-  background:white;
-  border-radius:10px;
-  padding:10px;
-  text-align:center;
-  box-shadow:0 2px 8px rgba(0,0,0,0.2);
-}
-
-.card img{
-  width:100%;
-  height:160px;
-  object-fit:cover;
-}
-
-.cart{
-  background:white;
-  margin:20px;
-  padding:20px;
-  border-radius:10px;
-}
+body { font-family: Arial; background:#f3f3f3; margin:0; }
+header { background:#131921; color:white; padding:15px; display:flex; justify-content:space-between; }
+#products { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:15px; padding:20px; }
+.card { background:white; padding:10px; border-radius:10px; text-align:center; }
+.card img { width:100%; height:150px; object-fit:cover; }
+button { padding:8px; margin:5px; border:none; cursor:pointer; }
+.buy { background:orange; }
+.cart { background:#ffd814; }
+#cartBox { background:white; margin:20px; padding:15px; }
 </style>
 
 </head>
@@ -67,100 +21,123 @@ button{
 <body>
 
 <header>
-<h2>🌍 Apex Holux PRO Store</h2>
-<input class="search" placeholder="Search shoes..." oninput="searchProducts(this.value)">
+  <h2>🌍 Apex Holux Global Store</h2>
+  <input id="search" placeholder="Search products...">
 </header>
 
-<div class="filters">
-<button onclick="filter('all')">All</button>
-<button onclick="filter('sport')">Sport</button>
-<button onclick="filter('classic')">Classic</button>
-<button onclick="filter('sneaker')">Sneakers</button>
+<div id="products">Loading...</div>
+
+<div id="cartBox">
+  <h3>🛒 Cart</h3>
+  <div id="cart"></div>
+  <h3>Total: $<span id="total">0</span></h3>
+  <button onclick="checkout()">Checkout</button>
 </div>
 
-<div class="container" id="products"></div>
+<script type="module">
 
-<div class="cart">
-<h2>🛒 Cart</h2>
-<div id="cart"></div>
-<h3>Total: $<span id="total">0</span></h3>
-<button onclick="checkout()">Order WhatsApp</button>
-</div>
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-<script>
+/* 🔥 PUT YOUR FIREBASE CONFIG HERE */
+const firebaseConfig = {
+  apiKey: "PUT_YOUR_KEY",
+  authDomain: "apex-holux-global-store.firebaseapp.com",
+  projectId: "apex-holux-global-store"
+};
 
-const PHONE = "93764594322";
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
-/* 🔥 30+ GLOBAL PRODUCTS */
-const products = [
-{name:"Nike Air Force 1",price:90,cat:"sneaker",img:"https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500"},
-{name:"Adidas Ultraboost",price:120,cat:"sport",img:"https://images.unsplash.com/photo-1528701800489-20be3c5c9c8c?w=500"},
-{name:"Nike Air Max",price:130,cat:"sport",img:"https://images.unsplash.com/photo-1519741497674?w=500"},
-{name:"Puma RS-X",price:95,cat:"sneaker",img:"https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=500"},
-{name:"Skechers Walk",price:75,cat:"classic",img:"https://images.unsplash.com/photo-1582588678413-dbf45f4823e9?w=500"},
-{name:"Jordan Retro 4",price:180,cat:"sneaker",img:"https://images.unsplash.com/photo-1600180758890?w=500"},
-{name:"Vans Old Skool",price:70,cat:"sneaker",img:"https://images.unsplash.com/photo-1549298916-b41d501d3772?w=500"},
-{name:"New Balance 574",price:95,cat:"sport",img:"https://images.unsplash.com/photo-1519744346364?w=500"},
-{name:"Converse Classic",price:65,cat:"classic",img:"https://images.unsplash.com/photo-1528702748617?w=500"},
-{name:"Nike Slides",price:45,cat:"classic",img:"https://images.unsplash.com/photo-1597047084897?w=500"},
-{name:"Adidas Slides",price:40,cat:"classic",img:"https://images.unsplash.com/photo-1606813902913?w=500"},
-{name:"Reebok Runner",price:80,cat:"sport",img:"https://images.unsplash.com/photo-1608231387042-66d1773070a5?w=500"},
-{name:"Puma Classic",price:85,cat:"classic",img:"https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=500"},
-{name:"Nike Zoom",price:140,cat:"sport",img:"https://images.unsplash.com/photo-1552346154-21d32810aba3?w=500"},
-{name:"Adidas Superstar",price:100,cat:"sneaker",img:"https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=500"},
-{name:"Jordan Low",price:150,cat:"sneaker",img:"https://images.unsplash.com/photo-1579338559194-a162d19bf842?w=500"}
-];
+let products = [];
+let cart = [];
 
-let cart=[];
-let total=0;
+/* 🔥 LOAD PRODUCTS FROM FIREBASE */
+async function loadProducts(){
+  const snap = await getDocs(collection(db,"products"));
 
-/* SHOW */
+  products = [];
+
+  snap.forEach(doc=>{
+    products.push({ id:doc.id, ...doc.data() });
+  });
+
+  render(products);
+}
+
+/* 🎯 SHOW PRODUCTS */
 function render(list){
-let box=document.getElementById("products");
-box.innerHTML="";
+  const box = document.getElementById("products");
+  box.innerHTML = "";
 
-list.forEach(p=>{
-box.innerHTML+=`
-<div class="card">
-<img src="${p.img}">
-<h3>${p.name}</h3>
-<p>$${p.price}</p>
-<button onclick="add('${p.name}',${p.price})">Add to Cart</button>
-</div>`;
-});
-}
-render(products);
+  list.forEach(p=>{
+    box.innerHTML += `
+      <div class="card">
+        <img src="${p.image || 'https://via.placeholder.com/150'}">
+        <h4>${p.name}</h4>
+        <p>$${p.price}</p>
 
-/* ADD */
-function add(name,price){
-cart.push({name,price});
-total+=price;
-
-document.getElementById("cart").innerHTML+=`<p>${name}</p>`;
-document.getElementById("total").innerText=total;
+        <button class="buy" onclick="buyNow('${p.id}')">Buy Now</button>
+        <button class="cart" onclick="addCart('${p.id}')">Add Cart</button>
+      </div>
+    `;
+  });
 }
 
-/* SEARCH */
-function searchProducts(val){
-render(products.filter(p=>p.name.toLowerCase().includes(val.toLowerCase())));
+/* 🛒 ADD CART */
+window.addCart = function(id){
+  let item = cart.find(x=>x.id===id);
+  let p = products.find(x=>x.id===id);
+
+  if(item) item.qty++;
+  else cart.push({...p,qty:1});
+
+  renderCart();
 }
 
-/* FILTER */
-function filter(cat){
-if(cat==="all") return render(products);
-render(products.filter(p=>p.cat===cat));
+/* ⚡ BUY NOW */
+window.buyNow = function(id){
+  cart = [];
+  addCart(id);
+  checkout();
 }
 
-/* CHECKOUT */
-function checkout(){
-if(cart.length===0){alert("Cart empty!");return;}
+/* 🧾 CART */
+function renderCart(){
+  let total = 0;
+  let html = "";
 
-let msg="🛒 ORDER\n";
-cart.forEach(i=> msg+=i.name+"\n");
-msg+="Total: $"+total;
+  cart.forEach(i=>{
+    total += i.price*i.qty;
+    html += `<p>${i.name} x${i.qty} = $${i.price*i.qty}</p>`;
+  });
 
-window.open("https://wa.me/"+PHONE+"?text="+encodeURIComponent(msg));
+  document.getElementById("cart").innerHTML = html;
+  document.getElementById("total").innerText = total;
 }
+
+/* 📲 ORDER SYSTEM */
+window.checkout = function(){
+
+  if(cart.length===0) return alert("Cart empty");
+
+  let msg="🛒 ORDER\n";
+
+  cart.forEach(i=>{
+    msg+=`${i.name} x${i.qty}\n`;
+  });
+
+  window.open("https://wa.me/93764594322?text="+encodeURIComponent(msg));
+}
+
+/* 🔍 SEARCH */
+document.getElementById("search").oninput = (e)=>{
+  let val = e.target.value.toLowerCase();
+  let filtered = products.filter(p=>p.name.toLowerCase().includes(val));
+  render(filtered);
+}
+
+loadProducts();
 
 </script>
 
