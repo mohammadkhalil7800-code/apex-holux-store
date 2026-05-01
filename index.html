@@ -1,219 +1,251 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>🌍 AMAZON PRO STORE</title>
-
-<style>
-body{margin:0;font-family:Arial;background:#f3f3f3}
-
-header{
-background:#111;
-color:white;
-padding:15px;
-text-align:center;
-font-size:20px;
-}
-
-.topbar{
-display:flex;
-gap:10px;
-padding:10px;
-flex-wrap:wrap;
-}
-
-input,select{
-padding:10px;
-flex:1;
-min-width:120px;
-}
-
-.layout{
-display:flex;
-gap:10px;
-padding:10px;
-}
-
-.products{
-flex:3;
-display:grid;
-grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
-gap:10px;
-}
-
-.card{
-background:white;
-padding:10px;
-border-radius:10px;
-box-shadow:0 2px 6px rgba(0,0,0,0.2);
-text-align:center;
-}
-
-.card img{
-width:100%;
-height:140px;
-object-fit:cover;
-border-radius:10px;
-}
-
-.sidebar{
-flex:1;
-background:white;
-padding:10px;
-border-radius:10px;
-height:fit-content;
-}
-
-button{
-width:100%;
-padding:8px;
-margin-top:5px;
-background:#ff9900;
-border:none;
-font-weight:bold;
-cursor:pointer;
-}
-
-.small{font-size:12px;color:gray}
-</style>
-</head>
-
-<body>
-
-<header>🌍 AMAZON PRO STORE (UPGRADED)</header>
-
-<!-- SEARCH + FILTER -->
-<div class="topbar">
-<input id="search" placeholder="Search products..." oninput="render()">
-
-<select id="filter" onchange="render()">
-<option>All</option>
-<option>Sneakers</option>
-<option>Running</option>
-<option>Slides</option>
-<option>Comfort</option>
-</select>
-</div>
-
-<div class="layout">
-
-<!-- PRODUCTS -->
-<div class="products" id="products"></div>
-
-<!-- SIDEBAR -->
-<div class="sidebar">
-
-<h3>🛒 Cart</h3>
-<div id="cart"></div>
-<h4>Total: $<span id="total">0</span></h4>
-
-<button onclick="checkout()">WhatsApp Checkout</button>
-
-<hr>
-
-<p class="small">🔥 AI Mini Dashboard</p>
-<div id="dash"></div>
-
-</div>
-
-</div>
-
-<script>
-
-/* ================= PRODUCTS ================= */
-let products = [
-{name:"Nike Air Force 1",price:90,cat:"Sneakers",img:"https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=400"},
-{name:"Adidas Ultraboost",price:120,cat:"Running",img:"https://images.unsplash.com/photo-1528701800489?auto=format&fit=crop&w=400"},
-{name:"Nike Slides",price:45,cat:"Slides",img:"https://images.unsplash.com/photo-1597047084897?auto=format&fit=crop&w=400"},
-{name:"Sketchers Comfort",price:70,cat:"Comfort",img:"https://images.unsplash.com/photo-1528701800489?auto=format&fit=crop&w=400"}
-];
-
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-/* ================= RENDER ================= */
-function render(){
-
-let box = document.getElementById("products");
-let search = document.getElementById("search").value.toLowerCase();
-let filter = document.getElementById("filter").value;
-
-box.innerHTML="";
-
-products
-.filter(p=>{
-return (
-p.name.toLowerCase().includes(search) &&
-(filter==="All" || p.cat===filter)
-);
-})
-.forEach((p,i)=>{
-box.innerHTML += `
-<div class="card">
-<img src="${p.img}" onerror="this.src='https://via.placeholder.com/300'">
-<h4>${p.name}</h4>
-<p>$${p.price}</p>
-<p class="small">${p.cat}</p>
-<button onclick="add(${i})">Add to Cart</button>
-</div>
-`;
-});
-}
-
-/* ================= CART ================= */
-function add(i){
-cart.push(products[i]);
-localStorage.setItem("cart",JSON.stringify(cart));
-renderCart();
-}
-
-/* ================= CART UI ================= */
-function renderCart(){
-let c=document.getElementById("cart");
-c.innerHTML="";
-let total=0;
-
-cart.forEach((p,i)=>{
-total+=p.price;
-c.innerHTML+=`
-<p>${p.name} - $${p.price}</p>
-`;
-});
-
-document.getElementById("total").innerText=total;
-updateDash();
-}
-
-/* ================= CHECKOUT ================= */
-function checkout(){
-if(cart.length===0) return alert("Cart empty");
-
-let msg="🛒 ORDER:\n\n";
-let total=0;
-
-cart.forEach(p=>{
-msg+=p.name+" - $"+p.price+"\n";
-total+=p.price;
-});
-
-msg+="\nTOTAL: $"+total;
-
-window.open("https://wa.me/93764594322?text="+encodeURIComponent(msg));
-}
-
-/* ================= DASHBOARD ================= */
-function updateDash(){
-document.getElementById("dash").innerHTML=`
-<p>📦 Products: ${products.length}</p>
-<p>🛒 Cart Items: ${cart.length}</p>
-<p>💰 Value: $${cart.reduce((a,b)=>a+b.price,0)}</p>
-`;
-}
-
-/* INIT */
-render();
-renderCart();
-
-</script>
-
-</body>
-</html>
+{p.price}  
+`; }); } // 🧾 CART RENDER function renderCart(){ const cartDiv = document.getElementById("cart"); const totalSpan = document.getElementById("total"); let total = 0; cartDiv.innerHTML = cart.length ? "" : "  
+  
+Cart empty  
+"; cart.forEach((item,i)=>{ total += item.price * item.qty; cartDiv.innerHTML += `  
+  
+${item.name} x${item.qty} = $${item.price * item.qty}  
+`; }); totalSpan.innerText = total; } // ❌ REMOVE window.removeItem = function(i){ cart.splice(i,1); saveCart(); renderCart(); } // 🧹 CLEAR window.clearCart = function(){ cart = []; saveCart(); renderCart(); } // 📦 CHECKOUT (WhatsApp + Orders) window.checkoutCart = function(){ if(cart.length === 0) return alert("Cart empty!"); let id = "ORD-" + Date.now(); let total = 0; let msg = `🛒 ORDER\nID:${id}\nUser:${user.name}\n\n`; cart.forEach(i=>{ total += i.price * i.qty; msg += `${i.name} x${i.qty} = $${i.price*i.qty}\n`; }); msg += `\nTOTAL: $${total}`; orders[id] = { id, user, items:[...cart], total, date:new Date().toISOString() }; (){ document.getElementById("cartCount")?.innerText = cart.length; document.getElementById("wishCount")?.innerText = wishlisore" ore", storageBucket: "apex-holux-global-store.firebasestorage.app", messagingSenderId: "14825121288", appId: "1:14825121288:web:a46ba39d55894efa0453bd" }; const app = initializeApp(firebaseConfig); const db = getFirestore(app); const container = document.getElementById("products"); let allProducts = []; // 🧠 USER SYSTEM let user = JSON.parse(localStorage.getItem("user")) || { id: "user_" + Math.random().toString(36).substr(2,9), name: "Guest" }; localStorage.setItem("user", JSON.stringify(user)); // 🛒 DATA let cart = JSON.parse(localStorage.getItem("cart")) || []; let wishlist = JSON.parse(localStorage.getItem("wishlist")) || []; let orders = JSON.parse(localStorage.getItem("orders")) || {}; function saveCart(){ localStorage.setItem("cart", JSON.stringify(cart)); updateBadges(); } function saveWishlist(){ localStorage.setItem("wishlist", JSON.stringify(wishlist)); updateBadges(); } function saveOrders(){ localStorage.setItem("orders", JSON.stringify(orders)); } // ⏳ LOADING container.innerHTML = "⏳ Loading products..."; // 🔥 LOAD PRODUCTS async function loadProducts(){ const snapshot = await getDocs(collection(db, "products")); allProducts = []; snapshot.forEach(doc => { allProducts.push({ id: doc.id, ...doc.data() }); }); renderProducts(allProducts); renderCart(); updateBadges(); } // 🧼 SAFE function safe(t){ return String(t || "") .replaceAll("<","") .replaceAll(">",""); } // ⭐ BUY NOW (Amazon style) window.buyNow = function(id,name,price){ cart = [{ id, name, price, qty: 1 }]; saveCart(); checkoutCart(); } // 🛒 ADD CART window.addToCart = function(id,name,price){ let item = cart.find(i => i.id === id); if(item) item.qty++; else cart.push({ id, name, price, qty: 1 }); saveCart(); renderCart(); } // ❤️ WISHLIST window.toggleWishlist = function(id){ wishlist.includes(id) ? wishlist = wishlist.filter(i => i !== id) : wishlist.push(id); saveWishlist(); renderProducts(allProducts); } // 🔎 SEARCH + FILTER document.getElementById("search").addEventListener("input",(e)=>{ const val = e.target.value.toLowerCase(); const filtered = allProducts.filter(p => (p.name || "").toLowerCase().includes(val) || (p.category || "").toLowerCase().includes(val) ); renderProducts(filtered); }); // 🔥 RENDER PRODUCTS (Amazon UI style) function renderProducts(products){ container.innerHTML = ""; products.forEach(p => { let rating = p.rating || (Math.random()*2 + 3).toFixed(1); let stars = "⭐".repeat(Math.round(rating)); const isFav = wishlist.includes(p.id); container.innerHTML += `  
+${safe(p.name)}  
+  
+${stars} (${rating})  
+  
+$${p.price}  
+`; }); } // 🧾 CART RENDER function renderCart(){ const cartDiv = document.getElementById("cart"); const totalSpan = document.getElementById("total"); let total = 0; cartDiv.innerHTML = cart.length ? "" : "  
+  
+Cart empty  
+"; cart.forEach((item,i)=>{ total += item.price * item.qty; cartDiv.innerHTML += `  
+  
+${item.name} x${item.qty} = $${item.price * item.qty}  
+`; }); totalSpan.innerText = total; } // ❌ REMOVE window.removeItem = function(i){ cart.splice(i,1); saveCart(); renderCart(); } // 🧹 CLEAR window.clearCart = function(){ cart = []; saveCart(); renderCart(); } // 📦 CHECKOUT (WhatsApp + Orders) window.checkoutCart = function(){ if(cart.length === 0) return alert("Cart empty!"); let id = "ORD-" + Date.now(); let total = 0; let msg = `🛒 ORDER\nID:${id}\nUser:${user.name}\n\n`; cart.forEach(i=>{ total += i.price * i.qty; msg += `${i.name} x${i.qty} = $${i.price*i.qty}\n`; }); msg += `\nTOTAL: $${total}`; orders[id] = { id, user, items:[...cart], total, date:new Date().toISOString() }; (){ document.getElementById("cartCount")?.innerText = cart.length; document.getElementById("wishCount")?.innerText = wishlisore" ore", storageBucket: "apex-holux-global-store.firebasestorage.app", messagingSenderId: "14825121288", appId: "1:14825121288:web:a46ba39d55894efa0453bd" }; const app = initializeApp(firebaseConfig); const db = getFirestore(app); const container = document.getElementById("products"); let allProducts = []; // 🧠 USER SYSTEM let user = JSON.parse(localStorage.getItem("user")) || { id: "user_" + Math.random().toString(36).substr(2,9), name: "Guest" }; localStorage.setItem("user", JSON.stringify(user)); // 🛒 DATA let cart = JSON.parse(localStorage.getItem("cart")) || []; let wishlist = JSON.parse(localStorage.getItem("wishlist")) || []; let orders = JSON.parse(localStorage.getItem("orders")) || {}; function saveCart(){ localStorage.setItem("cart", JSON.stringify(cart)); updateBadges(); } function saveWishlist(){ localStorage.setItem("wishlist", JSON.stringify(wishlist)); updateBadges(); } function saveOrders(){ localStorage.setItem("orders", JSON.stringify(orders)); } // ⏳ LOADING container.innerHTML = "⏳ Loading products..."; // 🔥 LOAD PRODUCTS async function loadProducts(){ const snapshot = await getDocs(collection(db, "products")); allProducts = []; snapshot.forEach(doc => { allProducts.push({ id: doc.id, ...doc.data() }); }); renderProducts(allProducts); renderCart(); updateBadges(); } // 🧼 SAFE function safe(t){ return String(t || "") .replaceAll("<","") .replaceAll(">",""); } // ⭐ BUY NOW (Amazon style) window.buyNow = function(id,name,price){ cart = [{ id, name, price, qty: 1 }]; saveCart(); checkoutCart(); } // 🛒 ADD CART window.addToCart = function(id,name,price){ let item = cart.find(i => i.id === id); if(item) item.qty++; else cart.push({ id, name, price, qty: 1 }); saveCart(); renderCart(); } // ❤️ WISHLIST window.toggleWishlist = function(id){ wishlist.includes(id) ? wishlist = wishlist.filter(i => i !== id) : wishlist.push(id); saveWishlist(); renderProducts(allProducts); } // 🔎 SEARCH + FILTER document.getElementById("search").addEventListener("input",(e)=>{ const val = e.target.value.toLowerCase(); const filtered = allProducts.filter(p => (p.name || "").toLowerCase().includes(val) || (p.category || "").toLowerCase().includes(val) ); renderProducts(filtered); }); // 🔥 RENDER PRODUCTS (Amazon UI style) function renderProducts(products){ container.innerHTML = ""; products.forEach(p => { let rating = p.rating || (Math.random()*2 + 3).toFixed(1); let stars = "⭐".repeat(Math.round(rating)); const isFav = wishlist.includes(p.id); container.innerHTML += `  
+${safe(p.name)}  
+  
+${stars} (${rating})  
+  
+$${p.price}  
+`; }); } // 🧾 CART RENDER function renderCart(){ const cartDiv = document.getElementById("cart"); const totalSpan = document.getElementById("total"); let total = 0; cartDiv.innerHTML = cart.length ? "" : "  
+  
+Cart empty  
+"; cart.forEach((item,i)=>{ total += item.price * item.qty; cartDiv.innerHTML += `  
+  
+${item.name} x${item.qty} = $${item.price * item.qty}  
+`; }); totalSpan.innerText = total; } // ❌ REMOVE window.removeItem = function(i){ cart.splice(i,1); saveCart(); renderCart(); } // 🧹 CLEAR window.clearCart = function(){ cart = []; saveCart(); renderCart(); } // 📦 CHECKOUT (WhatsApp + Orders) window.checkoutCart = function(){ if(cart.length === 0) return alert("Cart empty!"); let id = "ORD-" + Date.now(); let total = 0; let msg = `🛒 ORDER\nID:${id}\nUser:${user.name}\n\n`; cart.forEach(i=>{ total += i.price * i.qty; msg += `${i.name} x${i.qty} = $${i.price*i.qty}\n`; }); msg += `\nTOTAL: $${total}`; orders[id] = { id, user, items:[...cart], total, date:new Date().toISOString() }; (){ document.getElementById("cartCount")?.innerText = cart.length; document.getElementById("wishCount")?.innerText = wishlisore"   
+ore", storageBucket: "apex-holux-global-store.firebasestorage.app", messagingSenderId: "14825121288", appId: "1:14825121288:web:a46ba39d55894efa0453bd" }; const app = initializeApp(firebaseConfig); const db = getFirestore(app); const container = document.getElementById("products"); let allProducts = []; // 🧠 USER SYSTEM let user = JSON.parse(localStorage.getItem("user")) || { id: "user_" + Math.random().toString(36).substr(2,9), name: "Guest" }; localStorage.setItem("user", JSON.stringify(user)); // 🛒 DATA let cart = JSON.parse(localStorage.getItem("cart")) || []; let wishlist = JSON.parse(localStorage.getItem("wishlist")) || []; let orders = JSON.parse(localStorage.getItem("orders")) || {}; function saveCart(){ localStorage.setItem("cart", JSON.stringify(cart)); updateBadges(); } function saveWishlist(){ localStorage.setItem("wishlist", JSON.stringify(wishlist)); updateBadges(); } function saveOrders(){ localStorage.setItem("orders", JSON.stringify(orders)); } // ⏳ LOADING container.innerHTML = "⏳ Loading products..."; // 🔥 LOAD PRODUCTS async function loadProducts(){ const snapshot = await getDocs(collection(db, "products")); allProducts = []; snapshot.forEach(doc => { allProducts.push({ id: doc.id, ...doc.data() }); }); renderProducts(allProducts); renderCart(); updateBadges(); } // 🧼 SAFE function safe(t){ return String(t || "") .replaceAll("<","") .replaceAll(">",""); } // ⭐ BUY NOW (Amazon style) window.buyNow = function(id,name,price){ cart = [{ id, name, price, qty: 1 }]; saveCart(); checkoutCart(); } // 🛒 ADD CART window.addToCart = function(id,name,price){ let item = cart.find(i => i.id === id); if(item) item.qty++; else cart.push({ id, name, price, qty: 1 }); saveCart(); renderCart(); } // ❤️ WISHLIST window.toggleWishlist = function(id){ wishlist.includes(id) ? wishlist = wishlist.filter(i => i !== id) : wishlist.push(id); saveWishlist(); renderProducts(allProducts); } // 🔎 SEARCH + FILTER document.getElementById("search").addEventListener("input",(e)=>{ const val = e.target.value.toLowerCase(); const filtered = allProducts.filter(p => (p.name || "").toLowerCase().includes(val) || (p.category || "").toLowerCase().includes(val) ); renderProducts(filtered); }); // 🔥 RENDER PRODUCTS (Amazon UI style) function renderProducts(products){ container.innerHTML = ""; products.forEach(p => { let rating = p.rating || (Math.random()*2 + 3).toFixed(1); let stars = "⭐".repeat(Math.round(rating)); const isFav = wishlist.includes(p.id); container.innerHTML += `  
+${safe(p.name)}  
+  
+${stars} (${rating})  
+  
+$${p.price}  
+`; }); } // 🧾 CART RENDER function renderCart(){ const cartDiv = document.getElementById("cart"); const totalSpan = document.getElementById("total"); let total = 0; cartDiv.innerHTML = cart.length ? "" : "  
+  
+Cart empty  
+"; cart.forEach((item,i)=>{ total += item.price * item.qty; cartDiv.innerHTML += `  
+  
+${item.name} x${item.qty} = $${item.price * item.qty}  
+`; }); totalSpan.innerText = total; } // ❌ REMOVE window.removeItem = function(i){ cart.splice(i,1); saveCart(); renderCart(); } // 🧹 CLEAR window.clearCart = function(){ cart = []; saveCart(); renderCart(); } // 📦 CHECKOUT (WhatsApp + Orders) window.checkoutCart = function(){ if(cart.length === 0) return alert("Cart empty!"); let id = "ORD-" + Date.now(); let total = 0; let msg = `🛒 ORDER\nID:${id}\nUser:${user.name}\n\n`; cart.forEach(i=>{ total += i.price * i.qty; msg += `${i.name} x${i.qty} = $${i.price*i.qty}\n`; }); msg += `\nTOTAL: $${total}`; orders[id] = { id, user, items:[...cart], total, date:new Date().toISOString() }; (){ document.getElementById("cartCount")?.innerText = cart.length; document.getElementById("wishCount")?.innerText = wishlisore"   
+  
+ووکوره زما د سفحه دغه لته خو👆👆👆👆 products نشته   
+  
+  
+  
+دغه HTML می ور اد کو 👇  
+ore",  
+  storageBucket: "apex-holux-global-store.firebasestorage.app",  
+  messagingSenderId: "14825121288",  
+  appId: "1:14825121288:web:a46ba39d55894efa0453bd"  
+};  
+  
+const app = initializeApp(firebaseConfig);  
+const db = getFirestore(app);  
+  
+const container = document.getElementById("products");  
+  
+let allProducts = [];  
+  
+// 🧠 USER SYSTEM  
+let user = JSON.parse(localStorage.getItem("user")) || {  
+  id: "user_" + Math.random().toString(36).substr(2,9),  
+  name: "Guest"  
+};  
+localStorage.setItem("user", JSON.stringify(user));  
+  
+// 🛒 DATA  
+let cart = JSON.parse(localStorage.getItem("cart")) || [];  
+let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];  
+let orders = JSON.parse(localStorage.getItem("orders")) || {};  
+  
+function saveCart(){ localStorage.setItem("cart", JSON.stringify(cart)); updateBadges(); }  
+function saveWishlist(){ localStorage.setItem("wishlist", JSON.stringify(wishlist)); updateBadges(); }  
+function saveOrders(){ localStorage.setItem("orders", JSON.stringify(orders)); }  
+  
+// ⏳ LOADING  
+container.innerHTML = "⏳ Loading products...";  
+  
+// 🔥 LOAD PRODUCTS  
+async function loadProducts(){  
+  const snapshot = await getDocs(collection(db, "products"));  
+  
+  allProducts = [];  
+  snapshot.forEach(doc => {  
+    allProducts.push({ id: doc.id, ...doc.data() });  
+  });  
+  
+  renderProducts(allProducts);  
+  renderCart();  
+  updateBadges();  
+}  
+  
+// 🧼 SAFE  
+function safe(t){  
+  return String(t || "")  
+    .replaceAll("<","")  
+    .replaceAll(">","");  
+}  
+  
+// ⭐ BUY NOW (Amazon style)  
+window.buyNow = function(id,name,price){  
+  cart = [{ id, name, price, qty: 1 }];  
+  saveCart();  
+  checkoutCart();  
+}  
+  
+// 🛒 ADD CART  
+window.addToCart = function(id,name,price){  
+  
+  let item = cart.find(i => i.id === id);  
+  
+  if(item) item.qty++;  
+  else cart.push({ id, name, price, qty: 1 });  
+  
+  saveCart();  
+  renderCart();  
+}  
+  
+// ❤️ WISHLIST  
+window.toggleWishlist = function(id){  
+  wishlist.includes(id)  
+    ? wishlist = wishlist.filter(i => i !== id)  
+    : wishlist.push(id);  
+  
+  saveWishlist();  
+  renderProducts(allProducts);  
+}  
+  
+// 🔎 SEARCH + FILTER  
+document.getElementById("search").addEventListener("input",(e)=>{  
+  
+  const val = e.target.value.toLowerCase();  
+  
+  const filtered = allProducts.filter(p =>  
+    (p.name || "").toLowerCase().includes(val) ||  
+    (p.category || "").toLowerCase().includes(val)  
+  );  
+  
+  renderProducts(filtered);  
+});  
+  
+// 🔥 RENDER PRODUCTS (Amazon UI style)  
+function renderProducts(products){  
+  
+  container.innerHTML = "";  
+  
+  products.forEach(p => {  
+  
+    let rating = p.rating || (Math.random()*2 + 3).toFixed(1);  
+    let stars = "⭐".repeat(Math.round(rating));  
+  
+    const isFav = wishlist.includes(p.id);  
+  
+    container.innerHTML += `  
+      <div class="card">  
+        <img src="${p.image}" onerror="this.src='https://via.placeholder.com/150'">  
+  
+        <h3>${safe(p.name)}</h3>  
+  
+        <p>${stars} (${rating})</p>  
+        <p><b>$${p.price}</b></p>  
+  
+        <button onclick="buyNow('${p.id}','${safe(p.name)}',${p.price})">  
+          ⚡ Buy Now  
+        </button>  
+  
+        <button onclick="addToCart('${p.id}','${safe(p.name)}',${p.price})">  
+          🛒 Add  
+        </button>  
+  
+        <button onclick="toggleWishlist('${p.id}')">  
+          ${isFav ? "❤️ Saved" : "🤍 Wishlist"}  
+        </button>  
+      </div>  
+    `;  
+  });  
+}  
+  
+// 🧾 CART RENDER  
+function renderCart(){  
+  
+  const cartDiv = document.getElementById("cart");  
+  const totalSpan = document.getElementById("total");  
+  
+  let total = 0;  
+  
+  cartDiv.innerHTML = cart.length ? "" : "<p>Cart empty</p>";  
+  
+  cart.forEach((item,i)=>{  
+  
+    total += item.price * item.qty;  
+  
+    cartDiv.innerHTML += `  
+      <p>  
+        ${item.name} x${item.qty}  
+        = $${item.price * item.qty}  
+        <button onclick="removeItem(${i})">❌</button>  
+      </p>  
+    `;  
+  });  
+  
+  totalSpan.innerText = total;  
+}  
+  
+// ❌ REMOVE  
+window.removeItem = function(i){  
+  cart.splice(i,1);  
+  saveCart();  
+  renderCart();  
+}  
+  
+// 🧹 CLEAR  
+window.clearCart = function(){  
+  cart = [];  
+  saveCart();  
+  renderCart();  
+}  
+  
+// 📦 CHECKOUT (WhatsApp + Orders)  
+window.checkoutCart = function(){  
+  
+  if(cart.length === 0) return alert("Cart empty!");  
+  
+  let id = "ORD-" + Date.now();  
+  let total = 0;  
+  
+  let msg = `🛒 ORDER\nID:${id}\nUser:${user.name}\n\n`;  
+  
+  cart.forEach(i=>{  
+    total += i.price * i.qty;  
+    msg += `${i.name} x${i.qty} = $${i.price*i.qty}\n`;  
+  });  
+  
+  msg += `\nTOTAL: $${total}`;  
+  
+  orders[id] = {  
+    id,  
+    user,  
+    items:[...cart],  
+    total,  
+    date:new Date().toISOString()  
+  };  
+  
+  (){  
+  document.getElementById("cartCount")?.innerText = cart.length;  
+  document.getElementById("wishCount")?.innerText = wishlisore"  
