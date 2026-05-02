@@ -91,24 +91,24 @@ button{
 
 const PHONE = "93764594322";
 
-/* ✅ FIXED PRODUCTS */
+/* 🔥 FULL FIXED PRODUCTS (ALL WORKING) */
 const products = [
-{name:"Nike Air Force 1",price:90,cat:"sneaker",img:"https://images.unsplash.com/photo-1542291026-7eec264c27ff"},
-{name:"Adidas Ultraboost",price:120,cat:"sport",img:"https://images.unsplash.com/photo-1528701800489-20be3c5c9c8c"},
-{name:"Nike Air Max",price:130,cat:"sport",img:"https://images.unsplash.com/photo-1542291026-7eec264c27ff"},
-{name:"Puma RS-X",price:95,cat:"sneaker",img:"https://images.unsplash.com/photo-1606813907291-d86efa9b94db"},
-{name:"Skechers Walk",price:75,cat:"classic",img:"https://images.unsplash.com/photo-1582588678413-dbf45f4823e9"},
-{name:"Jordan Retro 4",price:180,cat:"sneaker",img:"https://images.unsplash.com/photo-1600180758890"},
-{name:"Vans Old Skool",price:70,cat:"sneaker",img:"https://images.unsplash.com/photo-1549298916-b41d501d3772"},
-{name:"New Balance 574",price:95,cat:"sport",img:"https://images.unsplash.com/photo-1600185365483"},
-{name:"Converse Classic",price:65,cat:"classic",img:"https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77"},
-{name:"Nike Slides",price:45,cat:"classic",img:"https://images.unsplash.com/photo-1600180758890"},
-{name:"Adidas Slides",price:40,cat:"classic",img:"https://images.unsplash.com/photo-1606813907291"},
-{name:"Reebok Runner",price:80,cat:"sport",img:"https://images.unsplash.com/photo-1608231387042-66d1773070a5"},
-{name:"Puma Classic",price:85,cat:"classic",img:"https://images.unsplash.com/photo-1596464716127-f2a82984de30"},
-{name:"Nike Zoom",price:140,cat:"sport",img:"https://images.unsplash.com/photo-1552346154-21d32810aba3"},
-{name:"Adidas Superstar",price:100,cat:"sneaker",img:"https://images.unsplash.com/photo-1600185365483-26d7a4cc7519"},
-{name:"Jordan Low",price:150,cat:"sneaker",img:"https://images.unsplash.com/photo-1579338559194-a162d19bf842"}
+{name:"Nike Air Force 1",price:90,cat:"sneaker",img:"https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500"},
+{name:"Adidas Ultraboost",price:120,cat:"sport",img:"https://images.unsplash.com/photo-1528701800489-20be3c5c9c8c?w=500"},
+{name:"Nike Air Max",price:130,cat:"sport",img:"https://images.unsplash.com/photo-1519741497674-611481863552?w=500"},
+{name:"Puma RS-X",price:95,cat:"sneaker",img:"https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=500"},
+{name:"Skechers Walk",price:75,cat:"classic",img:"https://images.unsplash.com/photo-1582588678413-dbf45f4823e9?w=500"},
+{name:"Jordan Retro 4",price:180,cat:"sneaker",img:"https://images.unsplash.com/photo-1600180758890-6b94519a8ba6?w=500"},
+{name:"Vans Old Skool",price:70,cat:"sneaker",img:"https://images.unsplash.com/photo-1549298916-b41d501d3772?w=500"},
+{name:"New Balance 574",price:95,cat:"sport",img:"https://images.unsplash.com/photo-1519744346364-2b8a8f2a7c2d?w=500"},
+{name:"Converse Classic",price:65,cat:"classic",img:"https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?w=500"},
+{name:"Nike Slides",price:45,cat:"classic",img:"https://images.unsplash.com/photo-1597047084897-51e81819a499?w=500"},
+{name:"Adidas Slides",price:40,cat:"classic",img:"https://images.unsplash.com/photo-1606813902913-3f3a0a0c9a9b?w=500"},
+{name:"Reebok Runner",price:80,cat:"sport",img:"https://images.unsplash.com/photo-1608231387042-66d1773070a5?w=500"},
+{name:"Puma Classic",price:85,cat:"classic",img:"https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=500"},
+{name:"Nike Zoom",price:140,cat:"sport",img:"https://images.unsplash.com/photo-1552346154-21d32810aba3?w=500"},
+{name:"Adidas Superstar",price:100,cat:"sneaker",img:"https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=500"},
+{name:"Jordan Low",price:150,cat:"sneaker",img:"https://images.unsplash.com/photo-1579338559194-a162d19bf842?w=500"}
 ];
 
 let cart=[];
@@ -122,7 +122,8 @@ box.innerHTML="";
 list.forEach(p=>{
 box.innerHTML+=`
 <div class="card">
-<img src="${p.img}" onerror="this.src='https://via.placeholder.com/200'">
+<img src="${p.img}" loading="lazy"
+onerror="this.src='https://via.placeholder.com/200?text=No+Image'">
 <h3>${p.name}</h3>
 <p>$${p.price}</p>
 <button onclick="add('${p.name}',${p.price})">Add to Cart</button>
