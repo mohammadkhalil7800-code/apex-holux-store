@@ -2,13 +2,20 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>🌍 Apex Holux PRO Store</title>
+<title>🌍 Apex Holux Global Store</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-body{margin:0;font-family:Arial;background:#f1f1f1}
+body{
+  margin:0;
+  font-family:Arial;
+  background:#f5f5f5;
+}
 
+/* HEADER */
 header{
-  background:#131921;
+  background:#0f1111;
   color:white;
   padding:15px;
   text-align:center;
@@ -18,21 +25,26 @@ header{
   width:80%;
   padding:10px;
   margin-top:10px;
+  border-radius:5px;
+  border:none;
 }
 
+/* FILTER */
 .filters{
   text-align:center;
-  margin:10px;
+  padding:10px;
 }
 
-button{
-  padding:8px;
-  margin:3px;
-  cursor:pointer;
-  border:none;
+.filters button{
+  padding:8px 12px;
+  margin:5px;
   background:#ff9900;
+  border:none;
+  cursor:pointer;
+  border-radius:5px;
 }
 
+/* PRODUCTS GRID */
 .container{
   display:grid;
   grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
@@ -40,25 +52,52 @@ button{
   padding:15px;
 }
 
+/* CARD */
 .card{
   background:white;
-  border-radius:10px;
+  border-radius:12px;
   padding:10px;
   text-align:center;
-  box-shadow:0 2px 8px rgba(0,0,0,0.2);
+  box-shadow:0 4px 10px rgba(0,0,0,0.15);
+  transition:0.3s;
+}
+
+.card:hover{
+  transform:scale(1.05);
 }
 
 .card img{
   width:100%;
   height:160px;
   object-fit:cover;
+  border-radius:10px;
 }
 
+/* BUTTON */
+.btn{
+  background:#ff9900;
+  border:none;
+  padding:8px;
+  margin-top:5px;
+  cursor:pointer;
+  border-radius:5px;
+}
+
+/* CART */
 .cart{
   background:white;
   margin:20px;
   padding:20px;
   border-radius:10px;
+}
+
+/* BADGE */
+.badge{
+  background:red;
+  color:white;
+  padding:3px 6px;
+  font-size:12px;
+  border-radius:5px;
 }
 </style>
 
@@ -67,15 +106,16 @@ button{
 <body>
 
 <header>
-<h2>🌍 Apex Holux PRO Store</h2>
-<input class="search" placeholder="Search shoes..." oninput="searchProducts(this.value)">
+<h2>🌍 Apex Holux Global Store</h2>
+<input class="search" placeholder="Search products..." oninput="searchProducts(this.value)">
 </header>
 
 <div class="filters">
 <button onclick="filter('all')">All</button>
-<button onclick="filter('sport')">Sport</button>
-<button onclick="filter('classic')">Classic</button>
-<button onclick="filter('sneaker')">Sneakers</button>
+<button onclick="filter('nike')">Nike</button>
+<button onclick="filter('adidas')">Adidas</button>
+<button onclick="filter('puma')">Puma</button>
+<button onclick="filter('slides')">Slides</button>
 </div>
 
 <div class="container" id="products"></div>
@@ -84,37 +124,30 @@ button{
 <h2>🛒 Cart</h2>
 <div id="cart"></div>
 <h3>Total: $<span id="total">0</span></h3>
-<button onclick="checkout()">Order WhatsApp</button>
+<button class="btn" onclick="checkout()">Order WhatsApp</button>
 </div>
 
 <script>
 
-const PHONE = "93764594322";
+const PHONE="93764594322";
 
-/* 🔥 FULL FIXED PRODUCTS (ALL WORKING) */
-const products = [
-{name:"Nike Air Force 1",price:90,cat:"sneaker",img:"https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500"},
-{name:"Adidas Ultraboost",price:120,cat:"sport",img:"https://images.unsplash.com/photo-1528701800489-20be3c5c9c8c?w=500"},
-{name:"Nike Air Max",price:130,cat:"sport",img:"https://images.unsplash.com/photo-1519741497674-611481863552?w=500"},
-{name:"Puma RS-X",price:95,cat:"sneaker",img:"https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=500"},
-{name:"Skechers Walk",price:75,cat:"classic",img:"https://images.unsplash.com/photo-1582588678413-dbf45f4823e9?w=500"},
-{name:"Jordan Retro 4",price:180,cat:"sneaker",img:"https://images.unsplash.com/photo-1600180758890-6b94519a8ba6?w=500"},
-{name:"Vans Old Skool",price:70,cat:"sneaker",img:"https://images.unsplash.com/photo-1549298916-b41d501d3772?w=500"},
-{name:"New Balance 574",price:95,cat:"sport",img:"https://images.unsplash.com/photo-1519744346364-2b8a8f2a7c2d?w=500"},
-{name:"Converse Classic",price:65,cat:"classic",img:"https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?w=500"},
-{name:"Nike Slides",price:45,cat:"classic",img:"https://images.unsplash.com/photo-1597047084897-51e81819a499?w=500"},
-{name:"Adidas Slides",price:40,cat:"classic",img:"https://images.unsplash.com/photo-1606813902913-3f3a0a0c9a9b?w=500"},
-{name:"Reebok Runner",price:80,cat:"sport",img:"https://images.unsplash.com/photo-1608231387042-66d1773070a5?w=500"},
-{name:"Puma Classic",price:85,cat:"classic",img:"https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=500"},
-{name:"Nike Zoom",price:140,cat:"sport",img:"https://images.unsplash.com/photo-1552346154-21d32810aba3?w=500"},
-{name:"Adidas Superstar",price:100,cat:"sneaker",img:"https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=500"},
-{name:"Jordan Low",price:150,cat:"sneaker",img:"https://images.unsplash.com/photo-1579338559194-a162d19bf842?w=500"}
+/* 🔥 GLOBAL PRODUCTS (HIGH QUALITY IMAGES) */
+const products=[
+{name:"Nike Air Force 1",price:90,cat:"nike",img:"https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500"},
+{name:"Nike Air Max",price:130,cat:"nike",img:"https://images.unsplash.com/photo-1519741497674-611481863552?w=500"},
+{name:"Adidas Ultraboost",price:120,cat:"adidas",img:"https://images.unsplash.com/photo-1528701800489-20be3c5c9c8c?w=500"},
+{name:"Adidas Superstar",price:100,cat:"adidas",img:"https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=500"},
+{name:"Puma RS-X",price:95,cat:"puma",img:"https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=500"},
+{name:"Puma Classic",price:85,cat:"puma",img:"https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=500"},
+{name:"Nike Slides",price:45,cat:"slides",img:"https://images.unsplash.com/photo-1597047084897-51e81819a499?w=500"},
+{name:"Adidas Slides",price:40,cat:"slides",img:"https://images.unsplash.com/photo-1606813902913-3f3a0a0c9a9b?w=500"},
+{name:"Sport Sandal",price:55,cat:"slides",img:"https://images.unsplash.com/photo-1600185365483?w=500"}
 ];
 
 let cart=[];
 let total=0;
 
-/* SHOW */
+/* SHOW PRODUCTS */
 function render(list){
 let box=document.getElementById("products");
 box.innerHTML="";
@@ -123,10 +156,13 @@ list.forEach(p=>{
 box.innerHTML+=`
 <div class="card">
 <img src="${p.img}" loading="lazy"
-onerror="this.src='https://via.placeholder.com/200?text=No+Image'">
+onerror="this.src='https://via.placeholder.com/200?text=Product'">
+
 <h3>${p.name}</h3>
 <p>$${p.price}</p>
-<button onclick="add('${p.name}',${p.price})">Add to Cart</button>
+<span class="badge">HOT</span><br>
+
+<button class="btn" onclick="add('${p.name}',${p.price})">Add to Cart</button>
 </div>`;
 });
 }
