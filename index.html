@@ -1,92 +1,183 @@
-<section class="catalog">
 
-<h2 class="title">🔥 2025 Premium Shoes Collection</h2>
-
-<div class="grid">
-
-<!-- PRODUCT -->
-<div class="item">
-<img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500">
-<p>AF-01</p>
-</div>
-
-<div class="item">
-<img src="https://images.unsplash.com/photo-1528701800489-20be3c5c9c8c?w=500">
-<p>AD-02</p>
-</div>
-
-<div class="item">
-<img src="https://images.unsplash.com/photo-1600185365483?w=500">
-<p>FS-03</p>
-</div>
-
-<div class="item">
-<img src="https://images.unsplash.com/photo-1606813907291?w=500">
-<p>PM-04</p>
-</div>
-
-<div class="item">
-<img src="https://images.unsplash.com/photo-1582588678413?w=500">
-<p>SK-05</p>
-</div>
-
-<div class="item">
-<img src="https://images.unsplash.com/photo-1552346154?w=500">
-<p>NZ-06</p>
-</div>
-
-</div>
-
-</section>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>🌍 Apex Holux Global Store</title>
 
 <style>
-
-/* SECTION */
-.catalog{
-padding:20px;
-background:#fff;
+body{
+  margin:0;
+  font-family:Arial;
+  background:#0f172a;
+  color:white;
 }
 
-/* TITLE */
-.title{
-text-align:center;
-font-size:26px;
-margin-bottom:20px;
-color:#111;
+/* HEADER */
+header{
+  background:linear-gradient(90deg,#000,#1e293b);
+  padding:20px;
+  text-align:center;
 }
 
-/* GRID */
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fill,minmax(120px,1fr));
-gap:15px;
+header h1{
+  color:#fbbf24;
+  margin:0;
 }
 
-/* ITEM */
-.item{
-background:#f8f8f8;
-border-radius:10px;
-padding:10px;
-text-align:center;
-transition:0.3s;
+/* HERO */
+.hero{
+  text-align:center;
+  padding:30px;
 }
 
-.item:hover{
-transform:scale(1.05);
+.hero h2{
+  font-size:28px;
 }
 
-/* IMAGE */
-.item img{
-width:100%;
-height:90px;
-object-fit:contain;
+.hero p{
+  color:#cbd5e1;
 }
 
-/* CODE */
-.item p{
-margin-top:5px;
-font-weight:bold;
-font-size:14px;
+/* PRODUCTS */
+.container{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+  gap:15px;
+  padding:20px;
 }
 
+.card{
+  background:#1e293b;
+  border-radius:12px;
+  padding:10px;
+  text-align:center;
+  transition:0.3s;
+}
+
+.card:hover{
+  transform:scale(1.05);
+}
+
+.card img{
+  width:100%;
+  height:170px;
+  object-fit:cover;
+  border-radius:10px;
+}
+
+.price{
+  color:#fbbf24;
+}
+
+button{
+  background:#f59e0b;
+  border:none;
+  padding:8px;
+  cursor:pointer;
+  margin-top:5px;
+}
+
+/* CART */
+.cart{
+  background:#020617;
+  padding:20px;
+  margin:20px;
+  border-radius:10px;
+}
+
+/* FOOTER */
+footer{
+  text-align:center;
+  padding:20px;
+  background:#000;
+  color:#94a3b8;
+}
 </style>
+
+</head>
+
+<body>
+
+<header>
+<h1>🌍 Apex Holux Global Store</h1>
+<p>Premium Shoes | Afghanistan Market</p>
+</header>
+
+<div class="hero">
+<h2>🔥 Trending Shoes 2025</h2>
+<p>High Quality • Direct Supply • Fast Delivery</p>
+</div>
+
+<div class="container" id="products"></div>
+
+<div class="cart">
+<h2>🛒 Cart</h2>
+<div id="cart"></div>
+<h3>Total: $<span id="total">0</span></h3>
+<button onclick="checkout()">Order via WhatsApp</button>
+</div>
+
+<footer>
+📞 WhatsApp: 0764594322 <br>
+🌐 Apex Holux Trading
+</footer>
+
+<script>
+
+const PHONE="93764594322";
+
+const products=[
+{name:"Nike Air Force 1",price:90,img:"https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500"},
+{name:"Adidas Ultraboost",price:120,img:"https://images.unsplash.com/photo-1528701800489-20be3c5c9c8c?w=500"},
+{name:"Nike Air Max",price:130,img:"https://images.unsplash.com/photo-1519741497674-611481863552?w=500"},
+{name:"Puma RS-X",price:95,img:"https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=500"},
+{name:"Skechers Walk",price:75,img:"https://images.unsplash.com/photo-1582588678413-dbf45f4823e9?w=500"},
+{name:"Jordan Retro 4",price:180,img:"https://images.unsplash.com/photo-1600180758890-6b94519a8ba6?w=500"},
+{name:"Slides Premium",price:40,img:"https://images.unsplash.com/photo-1597047084897-51e81819a499?w=500"},
+{name:"Men Boots",price:110,img:"https://images.unsplash.com/photo-1600185365483?w=500"}
+];
+
+let cart=[];
+let total=0;
+
+function render(){
+let box=document.getElementById("products");
+box.innerHTML="";
+
+products.forEach(p=>{
+box.innerHTML+=`
+<div class="card">
+<img src="${p.img}" loading="lazy"
+onerror="this.src='https://via.placeholder.com/200?text=Product'">
+<h3>${p.name}</h3>
+<p class="price">$${p.price}</p>
+<button onclick="add('${p.name}',${p.price})">Add</button>
+</div>`;
+});
+}
+
+render();
+
+function add(name,price){
+cart.push({name,price});
+total+=price;
+
+document.getElementById("cart").innerHTML+=`<p>${name}</p>`;
+document.getElementById("total").innerText=total;
+}
+
+function checkout(){
+if(cart.length===0){alert("Cart empty");return;}
+
+let msg="🛒 ORDER\n";
+cart.forEach(i=> msg+=i.name+"\n");
+msg+="Total: $"+total;
+
+window.open("https://wa.me/"+PHONE+"?text="+encodeURIComponent(msg));
+}
+
+</script>
+
+</body>
+</html>
