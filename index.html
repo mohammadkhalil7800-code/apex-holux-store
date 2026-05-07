@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>🌍 Apex Holux Global Pro Store</title>
+<title>🌍 Apex Holux Global Enterprise</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800;900&display=swap" rel="stylesheet">
 
@@ -16,8 +16,8 @@ header{
 position:fixed;top:0;width:100%;
 display:flex;justify-content:space-between;align-items:center;
 padding:15px 6%;
-background:rgba(0,0,0,0.75);
-backdrop-filter:blur(12px);
+background:rgba(0,0,0,0.7);
+backdrop-filter:blur(15px);
 border-bottom:1px solid #222;
 z-index:999;
 }
@@ -32,11 +32,10 @@ height:90vh;
 display:flex;align-items:center;justify-content:center;
 text-align:center;
 background:linear-gradient(rgba(0,0,0,0.7),#000),
-url('https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=1600') center/cover;
+url('https://images.unsplash.com/photo-1528701800489-20be3c5c9c8c') center/cover;
 }
 .hero h1{font-size:60px;font-weight:900}
 .hero span{color:#ff9800}
-.hero p{opacity:0.8;margin-top:10px}
 
 /* SEARCH */
 .search{
@@ -55,7 +54,7 @@ outline:none;
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
 gap:20px;
-padding:50px 6%;
+padding:60px 6%;
 }
 
 .card{
@@ -63,9 +62,9 @@ background:#111;
 border-radius:18px;
 overflow:hidden;
 transition:0.3s;
-box-shadow:0 10px 25px rgba(0,0,0,0.4);
+box-shadow:0 10px 30px rgba(0,0,0,0.4);
 }
-.card:hover{transform:translateY(-8px)}
+.card:hover{transform:translateY(-10px)}
 .card img{width:100%;height:220px;object-fit:cover}
 
 .info{padding:15px}
@@ -86,6 +85,28 @@ padding:40px 6%;
 background:#0c0c0c;
 }
 .total{font-size:28px;color:#ff9800;margin-top:10px}
+
+/* ADMIN */
+.admin{
+padding:40px 6%;
+background:#0a0a0a;
+border-top:1px solid #222;
+}
+.admin input{
+width:100%;
+padding:12px;
+margin:8px 0;
+border:none;
+border-radius:8px;
+}
+.admin button{
+width:100%;
+padding:12px;
+background:#ff9800;
+border:none;
+font-weight:900;
+cursor:pointer;
+}
 
 /* LOGIN */
 .loginBox{
@@ -116,17 +137,16 @@ cursor:pointer;
 
 /* PAYMENT */
 .pay{
-margin-top:20px;
+margin-top:15px;
 padding:15px;
 background:#111;
-border-radius:12px;
+border-radius:10px;
 }
 .pay button{
-margin-top:10px;
 width:100%;
 padding:10px;
-border:none;
 background:#25D366;
+border:none;
 font-weight:800;
 cursor:pointer;
 }
@@ -154,13 +174,14 @@ font-size:28px;
 <a href="#shop">Shop</a>
 <a href="#cart">Cart</a>
 <a onclick="openLogin()">Account</a>
+<a href="#admin">Admin</a>
 </nav>
 </header>
 
 <section class="hero">
 <div>
-<h1>GLOBAL <span>PRO MARKET</span></h1>
-<p>Premium Sneakers • Slides • Sketchers • QD Sandals</p>
+<h1>GLOBAL <span>ENTERPRISE STORE</span></h1>
+<p>Premium Sneakers • Slides • QD Sandals • Luxury Fashion</p>
 </div>
 </section>
 
@@ -174,34 +195,43 @@ font-size:28px;
 <div class="total">Total: $<span id="total">0</span></div>
 
 <div class="pay">
-<h3>💳 Payment Method</h3>
-<button onclick="pay()">Pay via WhatsApp Order</button>
+<h3>💳 Payment</h3>
+<button onclick="checkout()">Order via WhatsApp</button>
 </div>
+</section>
+
+<!-- ADMIN PANEL -->
+<section class="admin" id="admin">
+<h2>🧑‍💼 Admin Panel</h2>
+
+<input id="name" placeholder="Product Name">
+<input id="price" placeholder="Price">
+<input id="img" placeholder="Image URL">
+<button onclick="addProduct()">Add Product</button>
 </section>
 
 <!-- LOGIN -->
 <div class="loginBox" id="loginBox">
-<h3>👤 Account</h3>
+<h3>👤 Login</h3>
 <input id="user" placeholder="Username">
 <input id="pass" placeholder="Password">
-<button onclick="login()">Login / Register</button>
+<button onclick="login()">Login</button>
 </div>
 
 <a class="whatsapp" href="https://wa.me/93764594322">💬</a>
 
 <script>
 
-let products=[
+let products = JSON.parse(localStorage.getItem("products")) || [
 {name:"Nike Air Force 1",price:90,img:"https://images.unsplash.com/photo-1542291026-7eec264c27ff"},
 {name:"Jordan Retro 4",price:180,img:"https://images.unsplash.com/photo-1600180758890-6b94519a8ba6"},
-{name:"Adidas Ultraboost",price:120,img:"https://images.unsplash.com/photo-1528701800489-20be3c5c9c8c"},
-{name:"Sketchers Foam",price:95,img:"https://images.unsplash.com/photo-1519741497674-611481863552"}
+{name:"Adidas Ultraboost",price:120,img:"https://images.unsplash.com/photo-1528701800489-20be3c5c9c8c"}
 ];
 
-let cart=[];
-let total=0;
-let user=null;
+let cart = [];
+let total = 0;
 
+/* RENDER */
 function render(list=products){
 let box=document.getElementById("shop");
 box.innerHTML="";
@@ -219,19 +249,46 @@ box.innerHTML+=`
 }
 render();
 
+/* ADD CART */
 function add(i){
 cart.push(products[i]);
 total+=products[i].price;
 update();
 }
 
+/* UPDATE CART */
 function update(){
-document.getElementById("cartItems").innerHTML=cart.map(c=>`✔ ${c.name} - $${c.price}`).join("<br>");
-document.getElementById("total").innerText=total;
+document.getElementById("cartItems").innerHTML =
+cart.map(c=>`✔ ${c.name} - $${c.price}`).join("<br>");
+document.getElementById("total").innerText = total;
 }
 
+/* SEARCH */
 function search(v){
 render(products.filter(p=>p.name.toLowerCase().includes(v.toLowerCase())));
+}
+
+/* CHECKOUT */
+function checkout(){
+let msg="ORDER:\n";
+cart.forEach(c=>{
+msg+=c.name+" - $"+c.price+"\n";
+});
+msg+="Total: $"+total;
+
+window.open("https://wa.me/93764594322?text="+encodeURIComponent(msg));
+}
+
+/* ADMIN */
+function addProduct(){
+let n=document.getElementById("name").value;
+let p=Number(document.getElementById("price").value);
+let i=document.getElementById("img").value;
+
+products.push({name:n,price:p,img:i});
+localStorage.setItem("products",JSON.stringify(products));
+render();
+alert("Product Added");
 }
 
 /* LOGIN */
@@ -243,26 +300,9 @@ function login(){
 let u=document.getElementById("user").value;
 let p=document.getElementById("pass").value;
 
-if(!u||!p){alert("Fill");return;}
-
 localStorage.setItem("user",u);
-user=u;
-
 alert("Welcome "+u);
 document.getElementById("loginBox").style.display="none";
-}
-
-/* PAYMENT */
-function pay(){
-if(cart.length==0){alert("Cart empty");return;}
-
-let msg="ORDER:\n";
-cart.forEach(i=>{
-msg+=i.name+" - $"+i.price+"\n";
-});
-msg+="Total: $"+total;
-
-window.open("https://wa.me/93764594322?text="+encodeURIComponent(msg));
 }
 
 </script>
