@@ -1,14 +1,8 @@
-
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>🌍 Apex Holux Global Market</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-
-<style>
+<title>🌍 Apex Holux Global Market (Fixed)</title><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700;900&display=swap" rel="stylesheet"><style>
 *{
 margin:0;
 padding:0;
@@ -40,135 +34,11 @@ font-size:32px;
 font-weight:900;
 }
 
-.logo span{
-color:#ff9900;
-}
+.logo span{color:#ff9900;}
 
-nav{
-display:flex;
-gap:20px;
-}
-
-nav a{
-color:white;
-text-decoration:none;
-font-size:14px;
-transition:0.3s;
-}
-
-nav a:hover{
-color:#ff9900;
-}
-
-.hero{
-height:100vh;
-background:
-linear-gradient(rgba(0,0,0,0.65),rgba(0,0,0,0.85)),
-url('https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=1600') center/cover;
-display:flex;
-align-items:center;
-justify-content:center;
-text-align:center;
-padding:20px;
-}
-
-.hero h1{
-font-size:78px;
-font-weight:900;
-line-height:1.1;
-margin-bottom:20px;
-}
-
-.hero span{
-color:#ff9900;
-}
-
-.hero p{
-max-width:900px;
-margin:auto;
-font-size:20px;
-line-height:1.8;
-opacity:0.9;
-}
-
-.hero-btn{
-display:inline-block;
-margin-top:30px;
-padding:18px 45px;
-background:#ff9900;
-color:black;
-font-weight:900;
-text-decoration:none;
-border-radius:50px;
-transition:0.3s;
-}
-
-.hero-btn:hover{
-transform:scale(1.05);
-background:white;
-}
-
-.stats{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:20px;
-padding:70px 6%;
-background:#0c0c0c;
-}
-
-.stat{
-background:#111;
-padding:35px;
-border-radius:22px;
-text-align:center;
-}
-
-.stat h2{
-font-size:42px;
-color:#ff9900;
-margin-bottom:10px;
-}
-
-.search-area{
-padding:40px 6%;
-background:#090909;
-text-align:center;
-}
-
-.search{
-width:100%;
-max-width:700px;
-padding:18px;
-border:none;
-border-radius:50px;
-font-size:18px;
-outline:none;
-}
-
-.filters{
-display:flex;
-justify-content:center;
-gap:15px;
-flex-wrap:wrap;
-padding:25px;
-background:#090909;
-}
-
-.filters button{
-padding:12px 25px;
-border:none;
-border-radius:40px;
-background:#151515;
-color:white;
-font-weight:bold;
-cursor:pointer;
-transition:0.3s;
-}
-
-.filters button:hover{
-background:#ff9900;
-color:black;
-}
+nav{display:flex;gap:20px;}
+nav a{color:white;text-decoration:none;font-size:14px;}
+nav a:hover{color:#ff9900;}
 
 .products{
 padding:70px 6%;
@@ -181,758 +51,91 @@ gap:30px;
 background:#111;
 border-radius:25px;
 overflow:hidden;
-box-shadow:0 10px 25px rgba(0,0,0,0.4);
-transition:0.4s;
-position:relative;
 }
 
-.card:hover{
-transform:translateY(-10px);
-}
+.card img{width:100%;height:280px;object-fit:cover;}
 
-.card img{
-width:100%;
-height:280px;
-object-fit:cover;
-}
+.info{padding:24px;}
 
-.badge{
-position:absolute;
-top:18px;
-left:18px;
-background:red;
-padding:8px 14px;
-border-radius:30px;
-font-size:12px;
-font-weight:bold;
-}
-
-.info{
-padding:24px;
-}
-
-.info h2{
-font-size:25px;
-margin-bottom:10px;
-}
-
-.price{
-font-size:28px;
-font-weight:900;
-color:#ff9900;
-margin-bottom:12px;
-}
-
-.desc{
-font-size:14px;
-line-height:1.7;
-opacity:0.8;
-margin-bottom:20px;
-}
+.price{color:#ff9900;font-size:26px;font-weight:900;}
 
 .btn{
-width:100%;
-padding:15px;
-border:none;
-border-radius:14px;
-background:#ff9900;
-font-size:16px;
-font-weight:900;
-cursor:pointer;
-transition:0.3s;
-}
-
-.btn:hover{
-background:white;
+width:100%;padding:15px;border:none;border-radius:12px;
+background:#ff9900;font-weight:900;cursor:pointer;
 }
 
 .cart{
-margin:50px 6%;
-background:#111;
-padding:35px;
-border-radius:25px;
+margin:50px 6%;background:#111;padding:35px;border-radius:25px;
 }
 
-.cart h1{
-margin-bottom:20px;
-font-size:38px;
-}
-
-#cartItems p{
-margin:10px 0;
-}
-
-.total{
-margin-top:20px;
-font-size:34px;
-font-weight:900;
-color:#ff9900;
-}
+.total{font-size:28px;color:#ff9900;font-weight:900;}
 
 .checkout{
-margin-top:25px;
-width:100%;
-padding:18px;
-border:none;
-background:#25D366;
-color:white;
-font-size:20px;
-font-weight:bold;
-border-radius:14px;
-cursor:pointer;
+width:100%;padding:18px;background:#25D366;color:white;border:none;
+font-size:18px;font-weight:bold;border-radius:12px;
 }
-
-.dashboard{
-margin:50px 6%;
-padding:35px;
-background:#111;
-border-radius:25px;
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:20px;
-}
-
-.dash-box{
-background:#181818;
-padding:25px;
-border-radius:20px;
-text-align:center;
-}
-
-.dash-box h2{
-font-size:35px;
-color:#ff9900;
-margin-bottom:10px;
-}
-
-.admin{
-margin:50px 6%;
-padding:35px;
-background:#111;
-border-radius:25px;
-}
-
-.admin input{
-width:100%;
-padding:15px;
-margin:10px 0;
-border:none;
-border-radius:12px;
-}
-
-.admin button{
-width:100%;
-padding:16px;
-border:none;
-border-radius:12px;
-background:#ff9900;
-font-weight:900;
-cursor:pointer;
-}
-
-footer{
-background:#050505;
-padding:70px 20px;
-text-align:center;
-margin-top:50px;
-}
-
-footer h1{
-font-size:48px;
-}
-
-footer span{
-color:#ff9900;
-}
-
-.whatsapp{
-position:fixed;
-bottom:20px;
-right:20px;
-width:70px;
-height:70px;
-background:#25D366;
-border-radius:50%;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:34px;
-text-decoration:none;
-color:white;
-}
-
-@media(max-width:768px){
-.hero h1{
-font-size:44px;
-}
-
-nav{
-display:none;
-}
-}
-</style>
-</head>
-<body>
-
-<header>
+</style></head>
+<body><header>
 <div class="logo">🔥 Apex <span>Holux</span></div>
-<nav>
-<a href="#">Home</a>
-<a href="#shop">Shop</a>
-<a href="#cart">Cart</a>
-<a href="#admin">Admin</a>
-</nav>
-</header>
-
-<section class="hero">
-<div>
-<h1>GLOBAL <span>FASHION</span><br>MARKET</h1>
-<p>Premium Sneakers • Sketchers • Slides • QD Sandals • Luxury Global Fashion</p>
-<a href="#shop" class="hero-btn">Explore Collection</a>
-</div>
-</section>
-
-<section class="stats">
-<div class="stat">
-<h2>120K+</h2>
-<p>Global Customers</p>
-</div>
-
-<div class="stat">
-<h2>50+</h2>
-<p>Trending Brands</p>
-</div>
-
-<div class="stat">
-<h2>24/7</h2>
-<p>Worldwide Orders</p>
-</div>
-
-<div class="stat">
-<h2>100%</h2>
-<p>Premium Fashion</p>
-</div>
-</section>
-
-<div class="search-area">
-<input class="search" placeholder="Search products..." oninput="searchProducts(this.value)">
-</div>
-
-<div class="filters">
-<button onclick="filterProducts('all')">All</button>
-<button onclick="filterProducts('sneaker')">Sneakers</button>
-<button onclick="filterProducts('sport')">Sketchers</button>
-<button onclick="filterProducts('slides')">Slides</button>
-<button onclick="filterProducts('sandal')">Sandals</button>
-</div>
-
-<section class="products" id="shop"></section>
-
-<section class="cart" id="cart">
-<h1>🛒 Shopping Cart</h1>
+</header><section class="products" id="shop"></section><section class="cart" id="cart">
+<h1>🛒 Cart</h1>
 <div id="cartItems"></div>
 <div class="total">Total: $<span id="total">0</span></div>
-<button class="checkout" onclick="checkout()">Order on WhatsApp</button>
-</section>
+<button class="checkout" onclick="checkout()">WhatsApp Order</button>
+</section><script>
+const PHONE='93764594322';
 
-<section style="padding:70px 6%;background:#090909;">
-<h1 style="font-size:48px;text-align:center;margin-bottom:50px;">🔥 Global Trending Collections</h1>
-
-<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:25px;">
-<div style="background:linear-gradient(135deg,#111,#1a1a1a);padding:35px;border-radius:25px;text-align:center;">
-<h2 style="font-size:32px;color:#ff9900;margin-bottom:15px;">Luxury Sneakers</h2>
-<p style="opacity:0.8;line-height:1.8;">Nike • Jordan • Adidas • Puma • Global Street Fashion</p>
-</div>
-
-<div style="background:linear-gradient(135deg,#111,#1a1a1a);padding:35px;border-radius:25px;text-align:center;">
-<h2 style="font-size:32px;color:#ff9900;margin-bottom:15px;">Global Trending</h2>
-<p style="opacity:0.8;line-height:1.8;">Classic Shoes • Sketchers • Slides • QD Sandals</p>
-</div>
-
-<div style="background:linear-gradient(135deg,#111,#1a1a1a);padding:35px;border-radius:25px;text-align:center;">
-<h2 style="font-size:32px;color:#ff9900;margin-bottom:15px;">Worldwide Fashion</h2>
-<p style="opacity:0.8;line-height:1.8;">Premium Global Products with Luxury Quality Design</p>
-</div>
-</div>
-</section>
-
-<section style="padding:70px 6%;background:#060606;">
-<h1 style="font-size:48px;text-align:center;margin-bottom:50px;">⭐ Customer Reviews</h1>
-
-<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:25px;">
-<div style="background:#111;padding:30px;border-radius:22px;">
-<h3 style="color:#ff9900;margin-bottom:10px;">⭐⭐⭐⭐⭐</h3>
-<p style="line-height:1.8;opacity:0.85;">Best quality sneakers in Global market. Very premium design and fast delivery.</p>
-<h4 style="margin-top:18px;">— Ahmad</h4>
-</div>
-
-<div style="background:#111;padding:30px;border-radius:22px;">
-<h3 style="color:#ff9900;margin-bottom:10px;">⭐⭐⭐⭐⭐</h3>
-<p style="line-height:1.8;opacity:0.85;">Sketchers shoes are super comfortable and globally trending.</p>
-<h4 style="margin-top:18px;">— Khalid</h4>
-</div>
-
-<div style="background:#111;padding:30px;border-radius:22px;">
-<h3 style="color:#ff9900;margin-bottom:10px;">⭐⭐⭐⭐⭐</h3>
-<p style="line-height:1.8;opacity:0.85;">Luxury slides and classic shoes look very professional and modern.</p>
-<h4 style="margin-top:18px;">— Zubair</h4>
-</div>
-</div>
-</section>
-
-<section class="dashboard">
-<div class="dash-box">
-<h2 id="productCount">0</h2>
-<p>Total Products</p>
-</div>
-
-<div class="dash-box">
-<h2 id="cartCount">0</h2>
-<p>Cart Items</p>
-</div>
-
-<div class="dash-box">
-<h2 id="cartValue">0</h2>
-<p>Cart Value</p>
-</div>
-</section>
-
-<section class="admin" id="admin">
-<h1 style="margin-bottom:20px;">🧑‍💼 Admin Panel</h1>
-<input id="pname" placeholder="Product Name">
-<input id="pprice" placeholder="Product Price">
-<input id="pimg" placeholder="Image URL">
-<input id="pcat" placeholder="Category">
-<button onclick="addProduct()">Add Product</button>
-</section>
-
-<section style="padding:80px 6%;background:#0b0b0b;">
-<h1 style="font-size:55px;text-align:center;margin-bottom:60px;">🚀 Apex Holux Elite Features</h1>
-
-<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:30px;">
-
-<div style="background:#111;padding:40px;border-radius:28px;box-shadow:0 15px 35px rgba(0,0,0,0.4);">
-<h2 style="font-size:34px;color:#ff9900;margin-bottom:20px;">⚡ AI Fashion</h2>
-<p style="line-height:1.9;opacity:0.85;">Smart trending fashion collections inspired by global marketplaces and Global market demand.</p>
-</div>
-
-<div style="background:#111;padding:40px;border-radius:28px;box-shadow:0 15px 35px rgba(0,0,0,0.4);">
-<h2 style="font-size:34px;color:#ff9900;margin-bottom:20px;">🌍 Global Brands</h2>
-<p style="line-height:1.9;opacity:0.85;">Nike • Adidas • Puma • Sketchers • Luxury Slides • International Fashion Collections.</p>
-</div>
-
-<div style="background:#111;padding:40px;border-radius:28px;box-shadow:0 15px 35px rgba(0,0,0,0.4);">
-<h2 style="font-size:34px;color:#ff9900;margin-bottom:20px;">💎 Premium Quality</h2>
-<p style="line-height:1.9;opacity:0.85;">High quality luxury shoes and fashion products with modern world-class styling.</p>
-</div>
-
-<div style="background:#111;padding:40px;border-radius:28px;box-shadow:0 15px 35px rgba(0,0,0,0.4);">
-<h2 style="font-size:34px;color:#ff9900;margin-bottom:20px;">📈 Live Marketplace</h2>
-<p style="line-height:1.9;opacity:0.85;">Professional ecommerce system with shopping cart, dashboard, search and category filtering.</p>
-</div>
-
-</div>
-</section>
-
-<section style="padding:90px 6%;background:linear-gradient(135deg,#050505,#111);text-align:center;">
-<h1 style="font-size:70px;font-weight:900;margin-bottom:25px;">👑 WORLD CLASS <span style="color:#ff9900;">SHOPPING</span></h1>
-<p style="max-width:1000px;margin:auto;font-size:22px;line-height:2;opacity:0.9;">
-Apex Holux combines Global trending products with international luxury fashion collections. Designed like a modern Amazon-style ecommerce marketplace with premium UI and global fashion energy.
-</p>
-
-<div style="margin-top:45px;display:flex;justify-content:center;gap:20px;flex-wrap:wrap;">
-<div style="background:#111;padding:30px 40px;border-radius:22px;min-width:220px;">
-<h2 style="font-size:48px;color:#ff9900;">500K+</h2>
-<p>Monthly Visitors</p>
-</div>
-
-<div style="background:#111;padding:30px 40px;border-radius:22px;min-width:220px;">
-<h2 style="font-size:48px;color:#ff9900;">150+</h2>
-<p>Luxury Products</p>
-</div>
-
-<div style="background:#111;padding:30px 40px;border-radius:22px;min-width:220px;">
-<h2 style="font-size:48px;color:#ff9900;">24/7</h2>
-<p>Global Orders</p>
-</div>
-</div>
-</section>
-
-<section style="padding:100px 6%;background:linear-gradient(135deg,#020202,#111);">
-<h1 style="font-size:72px;text-align:center;font-weight:900;margin-bottom:70px;">🌍 ULTRA GLOBAL MARKETPLACE</h1>
-
-<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:35px;">
-
-<div style="background:#111;padding:45px;border-radius:30px;box-shadow:0 20px 40px rgba(0,0,0,0.5);border:1px solid rgba(255,255,255,0.08);">
-<h2 style="font-size:38px;color:#ff9900;margin-bottom:20px;">🤖 AI Smart Marketplace</h2>
-<p style="line-height:2;opacity:0.85;font-size:16px;">Advanced luxury marketplace featuring world bestselling products, premium sneakers, sport shoes, classic footwear, slides and global fashion trends.</p>
-</div>
-
-<div style="background:#111;padding:45px;border-radius:30px;box-shadow:0 20px 40px rgba(0,0,0,0.5);border:1px solid rgba(255,255,255,0.08);">
-<h2 style="font-size:38px;color:#ff9900;margin-bottom:20px;">💳 Premium Commerce</h2>
-<p style="line-height:2;opacity:0.85;font-size:16px;">Luxury ecommerce experience with premium cart system, WhatsApp checkout and marketplace structure.</p>
-</div>
-
-<div style="background:#111;padding:45px;border-radius:30px;box-shadow:0 20px 40px rgba(0,0,0,0.5);border:1px solid rgba(255,255,255,0.08);">
-<h2 style="font-size:38px;color:#ff9900;margin-bottom:20px;">📦 Global Trending</h2>
-<p style="line-height:2;opacity:0.85;font-size:16px;">Nike Air Force 1 • Jordan Retro • Adidas Ultraboost • Sketchers Max Cushion • Luxury Classic Shoes • Premium Slides • Puma RS-X • New Balance • Running Pro Shoes • Global Fashion Collections.</p>
-</div>
-
-<div style="background:#111;padding:45px;border-radius:30px;box-shadow:0 20px 40px rgba(0,0,0,0.5);border:1px solid rgba(255,255,255,0.08);">
-<h2 style="font-size:38px;color:#ff9900;margin-bottom:20px;">🚀 Enterprise Design</h2>
-<p style="line-height:2;opacity:0.85;font-size:16px;">Ultra premium UI inspired by world-class ecommerce platforms with luxury dark marketplace styling.</p>
-</div>
-
-</div>
-</section>
-
-<section style="padding:120px 6%;background:#050505;text-align:center;">
-<h1 style="font-size:85px;font-weight:900;line-height:1.1;margin-bottom:30px;">👑 THE NEXT GENERATION <span style="color:#ff9900;">GLOBAL STORE</span></h1>
-
-<p style="max-width:1200px;margin:auto;font-size:24px;line-height:2.1;opacity:0.9;">
-Apex Holux is designed as an ultra luxury ecommerce marketplace inspired by the world’s biggest ecommerce platforms and premium global fashion ecosystems. Built with futuristic marketplace styling, luxury design and bestselling worldwide products.
-</p>
-
-<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:30px;margin-top:70px;">
-
-<div style="background:#111;padding:40px;border-radius:30px;">
-<h2 style="font-size:58px;color:#ff9900;">1M+</h2>
-<p style="margin-top:10px;font-size:18px;">Global Visitors</p>
-</div>
-
-<div style="background:#111;padding:40px;border-radius:30px;">
-<h2 style="font-size:58px;color:#ff9900;">500+</h2>
-<p style="margin-top:10px;font-size:18px;">Luxury Products</p>
-</div>
-
-<div style="background:#111;padding:40px;border-radius:30px;">
-<h2 style="font-size:58px;color:#ff9900;">100+</h2>
-<p style="margin-top:10px;font-size:18px;">Global Brands</p>
-</div>
-
-<div style="background:#111;padding:40px;border-radius:30px;">
-<h2 style="font-size:58px;color:#ff9900;">24/7</h2>
-<p style="margin-top:10px;font-size:18px;">Worldwide Orders</p>
-</div>
-
-</div>
-</section>
-
-<footer>
-<h1>🔥 Apex <span>Holux</span></h1>
-<p>Global Premium Fashion Market</p>
-<p>📞 WhatsApp: 0764 594 322</p>
-<section style="padding:120px 6%;background:linear-gradient(135deg,#000,#101010);">
-<h1 style="font-size:90px;text-align:center;font-weight:900;margin-bottom:40px;">🌌 FUTURE COMMERCE ECOSYSTEM</h1>
-
-<p style="max-width:1300px;margin:auto;text-align:center;font-size:24px;line-height:2.2;opacity:0.9;margin-bottom:80px;">
-Ultra futuristic luxury marketplace experience inspired by the world’s most advanced ecommerce ecosystems, premium fashion brands and next-generation digital commerce.
-</p>
-
-<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:35px;">
-
-<div style="background:rgba(255,255,255,0.04);backdrop-filter:blur(16px);padding:45px;border-radius:35px;border:1px solid rgba(255,255,255,0.08);">
-<h2 style="font-size:42px;color:#ff9900;margin-bottom:25px;">🤖 AI Commerce Engine</h2>
-<p style="line-height:2;font-size:16px;opacity:0.85;">Intelligent product discovery system with futuristic luxury marketplace design and premium ecommerce experience.</p>
-</div>
-
-<div style="background:rgba(255,255,255,0.04);backdrop-filter:blur(16px);padding:45px;border-radius:35px;border:1px solid rgba(255,255,255,0.08);">
-<h2 style="font-size:42px;color:#ff9900;margin-bottom:25px;">⚡ Hyper Marketplace</h2>
-<p style="line-height:2;font-size:16px;opacity:0.85;">Global trending fashion products, sneakers, luxury footwear, smart accessories and premium collections.</p>
-</div>
-
-<div style="background:rgba(255,255,255,0.04);backdrop-filter:blur(16px);padding:45px;border-radius:35px;border:1px solid rgba(255,255,255,0.08);">
-<h2 style="font-size:42px;color:#ff9900;margin-bottom:25px;">💎 Luxury Experience</h2>
-<p style="line-height:2;font-size:16px;opacity:0.85;">Dark futuristic UI with elite animations, premium layout system and enterprise ecommerce presentation.</p>
-</div>
-
-</div>
-</section>
-
-<section style="padding:130px 6%;background:#050505;text-align:center;">
-<h1 style="font-size:95px;font-weight:900;line-height:1.1;margin-bottom:35px;">👑 APEX <span style="color:#ff9900;">HOLUX</span></h1>
-
-<p style="max-width:1400px;margin:auto;font-size:26px;line-height:2.3;opacity:0.92;">
-Next-generation luxury global marketplace built with futuristic ecommerce styling, premium fashion collections, worldwide bestselling products and enterprise-level digital commerce aesthetics.
-</p>
-
-<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:35px;margin-top:90px;">
-
-<div style="background:#111;padding:50px;border-radius:35px;box-shadow:0 20px 45px rgba(0,0,0,0.5);">
-<h2 style="font-size:64px;color:#ff9900;">10M+</h2>
-<p style="margin-top:15px;font-size:20px;">Marketplace Visitors</p>
-</div>
-
-<div style="background:#111;padding:50px;border-radius:35px;box-shadow:0 20px 45px rgba(0,0,0,0.5);">
-<h2 style="font-size:64px;color:#ff9900;">1000+</h2>
-<p style="margin-top:15px;font-size:20px;">Premium Products</p>
-</div>
-
-<div style="background:#111;padding:50px;border-radius:35px;box-shadow:0 20px 45px rgba(0,0,0,0.5);">
-<h2 style="font-size:64px;color:#ff9900;">500+</h2>
-<p style="margin-top:15px;font-size:20px;">Luxury Brands</p>
-</div>
-
-<div style="background:#111;padding:50px;border-radius:35px;box-shadow:0 20px 45px rgba(0,0,0,0.5);">
-<h2 style="font-size:64px;color:#ff9900;">24/7</h2>
-<p style="margin-top:15px;font-size:20px;">Global Commerce</p>
-</div>
-
-</div>
-</section>
-
-<footer>
-
-<a class="whatsapp" href="https://wa.me/93764594322">💬</a>
-
-<script>
-const PHONE = '93764594322';
-
-let products = JSON.parse(localStorage.getItem('products')) || [
-{
-name:'Nike Air Force 1',
-price:90,
-cat:'sneaker',
-img:'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=700'
-},
-{
-name:'Jordan Retro 4',
-price:180,
-cat:'sneaker',
-img:'https://images.unsplash.com/photo-1600180758890-6b94519a8ba6?w=700'
-},
-{
-name:'Adidas Ultraboost',
-price:120,
-cat:'sport',
-img:'https://images.unsplash.com/photo-1528701800489-20be3c5c9c8c?w=700'
-},
-{
-name:'Sketchers Max Cushion',
-price:105,
-cat:'sport',
-img:'https://images.unsplash.com/photo-1549298916-b41d501d3772?w=700'
-},
-{
-name:'Sketchers Memory Foam',
-price:98,
-cat:'sport',
-img:'https://images.unsplash.com/photo-1519741497674-611481863552?w=700'
-},
-{
-name:'Classic Black Shoes',
-price:85,
-cat:'classic',
-img:'https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?w=700'
-},
-{
-name:'Luxury Brown Classic',
-price:95,
-cat:'classic',
-img:'https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=700'
-},
-{
-name:'Formal Office Shoes',
-price:88,
-cat:'classic',
-img:'https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=700'
-},
-{
-name:'Nike Slides',
-price:45,
-cat:'slides',
-img:'https://images.unsplash.com/photo-1597047084897-51e81819a499?w=700'
-},
-{
-name:'Adidas Cloud Slides',
-price:42,
-cat:'slides',
-img:'https://images.unsplash.com/photo-1606813902913-3f3a0a0c9a9b?w=700'
-},
-{
-name:'Sketchers Comfort Slides',
-price:50,
-cat:'slides',
-img:'https://images.unsplash.com/photo-1603487742131-4160ec999306?w=700'
-},
-{
-name:'QD Premium Sandal',
-price:60,
-cat:'sandal',
-img:'https://images.unsplash.com/photo-1608256246200-53e8b47b2f80?w=700'
-},
-{
-name:'Puma RS-X',
-price:100,
-cat:'sneaker',
-img:'https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=700'
-},
-{
-name:'New Balance 574',
-price:120,
-cat:'sport',
-img:'https://images.unsplash.com/photo-1519744346364-2b8a8f2a7c2d?w=700'
-},
-{
-name:'Luxury White Sneaker',
-price:110,
-cat:'sneaker',
-img:'https://images.unsplash.com/photo-1552346154-21d32810aba3?w=700'
-},
-{
-name:'Street Fashion Sneaker',
-price:115,
-cat:'sneaker',
-img:'https://images.unsplash.com/photo-1579338559194-a162d19bf842?w=700'
-},
-{
-name:'Crocs Comfort Slides',
-price:55,
-cat:'slides',
-img:'https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=700'
-},
-{
-name:'Luxury Italian Shoes',
-price:150,
-cat:'classic',
-img:'https://images.unsplash.com/photo-1614252235316-8c857d38b5f4?w=700'
-},
-{
-name:'Running Sport Pro',
-price:130,
-cat:'sport',
-img:'https://images.unsplash.com/photo-1460353581641-37baddab0fa2?w=700'
-},
-{
-name:'Sketchers Walking Shoes',
-price:92,
-cat:'sport',
-img:'https://images.unsplash.com/photo-1543508282-6319a3e2621f?w=700'
-}
+let products=[
+{name:"Nike Air Force 1",price:90,img:"https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=700"},
+{name:"Jordan Retro 4",price:180,img:"https://images.unsplash.com/photo-1600180758890-6b94519a8ba6?w=700"},
+{name:"Adidas Ultraboost",price:120,img:"https://images.unsplash.com/photo-1528701800489-20be3c5c9c8c?w=700"}
 ];
 
-let cart = JSON.parse(localStorage.getItem('cart')) || [];
-let total = 0;
+let cart=[];
+let total=0;
 
-function renderProducts(list){
-const box = document.getElementById('shop');
-box.innerHTML = '';
+function renderProducts(){
+const box=document.getElementById("shop");
+box.innerHTML="";
 
-list.forEach(p=>{
-box.innerHTML += `
+products.forEach((p,i)=>{
+box.innerHTML+=`
 <div class="card">
-<div class="badge">🔥 BEST SELLER</div>
-<img src="${p.img}" loading="lazy" onerror="this.src='https://via.placeholder.com/400?text=Fashion'">
+<img src="${p.img}">
 <div class="info">
-<h2>${p.name}</h2>
+<h3>${p.name}</h3>
 <div class="price">$${p.price}</div>
-<div class="desc">
-Premium global fashion product with luxury design and high quality material.
+<button class="btn" onclick="addToCart(${i})">Add To Cart</button>
 </div>
-<button class="btn" onclick="addToCart('${p.name}',${p.price})">Add To Cart</button>
-</div>
-</div>
-`;
+</div>`;
+});
+}
+
+function addToCart(i){
+cart.push(products[i]);
+updateCart();
+}
+
+function updateCart(){
+let box=document.getElementById("cartItems");
+box.innerHTML="";
+total=0;
+
+cart.forEach(p=>{
+total+=p.price;
+box.innerHTML+=`<p>✔ ${p.name} - $${p.price}</p>`;
 });
 
-updateDashboard();
-}
-
-renderProducts(products);
-
-function addToCart(name,price){
-cart.push({name,price});
-localStorage.setItem('cart',JSON.stringify(cart));
-renderCart();
-}
-
-function renderCart(){
-const box = document.getElementById('cartItems');
-box.innerHTML = '';
-
-total = 0;
-
-cart.forEach(i=>{
-total += i.price;
-box.innerHTML += `<p>✔ ${i.name} - $${i.price}</p>`;
-});
-
-document.getElementById('total').innerText = total;
-updateDashboard();
-}
-
-renderCart();
-
-function filterProducts(cat){
-if(cat==='all'){
-renderProducts(products);
-return;
-}
-
-renderProducts(products.filter(p=>p.cat===cat));
-}
-
-function searchProducts(val){
-renderProducts(
-products.filter(p=>
-p.name.toLowerCase().includes(val.toLowerCase())
-)
-);
+document.getElementById("total").innerText=total;
 }
 
 function checkout(){
-if(cart.length===0){
-alert('Cart Empty!');
-return;
+let msg="ORDER:\n";
+cart.forEach(p=>msg+=`${p.name} - $${p.price}\n`);
+msg+="Total: $"+total;
+window.open("https://wa.me/"+PHONE+"?text="+encodeURIComponent(msg));
 }
 
-let msg = '🔥 APEX HOLUX GLOBAL ORDER 🔥\n\n';
-
-cart.forEach(i=>{
-msg += '✔ ' + i.name + ' - $' + i.price + '\n';
-});
-
-msg += '\n💰 Total: $' + total;
-
-window.open(
-'https://wa.me/' + PHONE + '?text=' + encodeURIComponent(msg)
-);
-}
-
-function addProduct(){
-const name = document.getElementById('pname').value;
-const price = Number(document.getElementById('pprice').value);
-const img = document.getElementById('pimg').value;
-const cat = document.getElementById('pcat').value;
-
-if(!name || !price || !img || !cat){
-alert('Fill all fields');
-return;
-}
-
-products.push({name,price,img,cat});
-
-localStorage.setItem('products',JSON.stringify(products));
-
-renderProducts(products);
-
-alert('Product Added Successfully');
-
-pname.value='';
-pprice.value='';
-pimg.value='';
-pcat.value='';
-}
-
-function updateDashboard(){
-localStorage.setItem('products',JSON.stringify(products));
-localStorage.setItem('cart',JSON.stringify(cart));
-document.getElementById('productCount').innerText = products.length;
-document.getElementById('cartCount').innerText = cart.length;
-document.getElementById('cartValue').innerText = '$' + total;
-}
-</script>
-
-</body>
+renderProducts();
+</script></body>
 </html>
-```
