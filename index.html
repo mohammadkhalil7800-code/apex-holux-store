@@ -1,14 +1,20 @@
+<!-- 🔥 APEX HOLUX ULTRA PRO MAX SYSTEM -->
+<!-- WORLD CLASS GLOBAL MARKETPLACE -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-<title>🔥 Apex Holux Global Marketplace</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>🔥 Apex Holux Ultra Global Market</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
 
 <style>
+
+/* GLOBAL */
 
 *{
 margin:0;
@@ -46,14 +52,14 @@ padding:18px 6%;
 display:flex;
 justify-content:space-between;
 align-items:center;
-background:rgba(0,0,0,0.82);
-backdrop-filter:blur(15px);
+background:rgba(0,0,0,0.7);
+backdrop-filter:blur(16px);
 z-index:999;
-border-bottom:1px solid rgba(255,255,255,0.08);
+border-bottom:1px solid rgba(255,255,255,0.07);
 }
 
 .logo{
-font-size:34px;
+font-size:36px;
 font-weight:900;
 letter-spacing:2px;
 }
@@ -65,13 +71,12 @@ color:#ff9900;
 nav{
 display:flex;
 gap:24px;
-align-items:center;
 }
 
 nav a{
-text-decoration:none;
 color:white;
-font-size:14px;
+text-decoration:none;
+font-size:15px;
 transition:0.3s;
 }
 
@@ -79,38 +84,59 @@ nav a:hover{
 color:#ff9900;
 }
 
-.login-btn{
-padding:12px 22px;
-border:none;
-border-radius:50px;
-background:#ff9900;
-font-weight:800;
-cursor:pointer;
-}
-
 /* HERO */
 
 .hero{
 height:100vh;
-background:
-linear-gradient(rgba(0,0,0,0.72),rgba(0,0,0,0.82)),
-url('https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=1600') center/cover;
 display:flex;
 justify-content:center;
 align-items:center;
 text-align:center;
 padding:20px;
+position:relative;
+overflow:hidden;
+
+background:
+linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.85)),
+url('https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=1600')
+center/cover;
+}
+
+.hero::before{
+content:'';
+position:absolute;
+width:200%;
+height:200%;
+background:
+linear-gradient(
+120deg,
+transparent,
+rgba(255,153,0,0.12),
+transparent
+);
+animation:shine 8s linear infinite;
+}
+
+@keyframes shine{
+0%{
+transform:translateX(-100%);
+}
+100%{
+transform:translateX(100%);
+}
 }
 
 .hero-content{
-max-width:1200px;
+position:relative;
+z-index:2;
 }
 
 .hero-content h1{
 font-size:95px;
 font-weight:900;
-line-height:1.05;
+line-height:1.1;
 margin-bottom:25px;
+text-shadow:0 0 25px rgba(255,153,0,0.3);
 }
 
 .hero-content span{
@@ -119,189 +145,170 @@ color:#ff9900;
 
 .hero-content p{
 font-size:22px;
+max-width:950px;
+margin:auto;
 line-height:2;
 opacity:0.92;
-max-width:1000px;
-margin:auto;
-}
-
-.hero-buttons{
-margin-top:40px;
-display:flex;
-justify-content:center;
-gap:20px;
-flex-wrap:wrap;
 }
 
 .hero-btn{
-padding:18px 40px;
-border-radius:60px;
+display:inline-block;
+margin-top:40px;
+padding:18px 50px;
+background:linear-gradient(135deg,#ff9900,#ff5e00);
+border-radius:50px;
+color:black;
 font-weight:900;
 text-decoration:none;
-transition:0.35s;
-}
-
-.primary{
-background:#ff9900;
-color:black;
-}
-
-.secondary{
-border:1px solid rgba(255,255,255,0.2);
-color:white;
-background:rgba(255,255,255,0.05);
+font-size:18px;
+box-shadow:0 15px 35px rgba(255,153,0,0.35);
+transition:0.4s;
 }
 
 .hero-btn:hover{
-transform:translateY(-5px) scale(1.04);
+transform:scale(1.08);
+background:white;
 }
 
-/* TRUST */
+/* LIVE */
 
-.trust{
-padding:25px 6%;
-display:flex;
-justify-content:center;
-gap:35px;
-flex-wrap:wrap;
-background:#0b0b0b;
-border-top:1px solid rgba(255,255,255,0.05);
-border-bottom:1px solid rgba(255,255,255,0.05);
+.live{
+position:fixed;
+top:100px;
+right:20px;
+background:red;
+padding:12px 18px;
+border-radius:40px;
+font-weight:900;
+z-index:999;
+animation:pulse 1s infinite;
 }
 
-.trust div{
-font-weight:700;
-opacity:0.85;
+@keyframes pulse{
+0%{transform:scale(1)}
+50%{transform:scale(1.08)}
+100%{transform:scale(1)}
 }
 
 /* STATS */
 
 .stats{
-padding:80px 6%;
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
 gap:25px;
-background:#080808;
+padding:80px 6%;
+background:#0b0b0b;
 }
 
 .stat{
-background:linear-gradient(145deg,#111,#0c0c0c);
+background:#111;
 padding:40px;
 border-radius:28px;
 text-align:center;
-border:1px solid rgba(255,255,255,0.05);
-box-shadow:0 20px 40px rgba(0,0,0,0.4);
+box-shadow:0 20px 40px rgba(0,0,0,0.45);
+transition:0.4s;
+}
+
+.stat:hover{
+transform:translateY(-10px);
 }
 
 .stat h2{
-font-size:52px;
+font-size:50px;
 color:#ff9900;
-margin-bottom:10px;
+margin-bottom:12px;
 }
 
 /* SEARCH */
 
-.search-section{
-padding:50px 6%;
-background:#050505;
+.search-area{
+padding:45px 6%;
+background:#080808;
 text-align:center;
 }
 
-.search-box{
-max-width:900px;
-margin:auto;
-display:flex;
-gap:15px;
-flex-wrap:wrap;
-}
-
 .search{
-flex:1;
+width:100%;
+max-width:850px;
 padding:20px;
-border:none;
-border-radius:60px;
-font-size:17px;
-outline:none;
 background:#111;
-color:white;
-}
-
-.search-btn{
-padding:20px 35px;
 border:none;
-border-radius:60px;
-background:#ff9900;
-font-weight:900;
-cursor:pointer;
+border-radius:50px;
+font-size:18px;
+color:white;
+outline:none;
 }
 
 /* FILTERS */
 
 .filters{
-padding:10px 6% 40px;
 display:flex;
 justify-content:center;
-gap:15px;
 flex-wrap:wrap;
-background:#050505;
+gap:15px;
+padding:20px;
+background:#080808;
 }
 
 .filters button{
-padding:14px 28px;
+padding:13px 24px;
 border:none;
-background:#111;
+background:#141414;
 color:white;
-border-radius:50px;
-font-weight:800;
+border-radius:40px;
 cursor:pointer;
+font-weight:800;
 transition:0.3s;
 }
 
 .filters button:hover{
 background:#ff9900;
 color:black;
+transform:translateY(-3px);
 }
 
 /* PRODUCTS */
 
 .products{
-padding:40px 6% 90px;
+padding:80px 6%;
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
 gap:35px;
 }
 
 .card{
-background:linear-gradient(145deg,#111,#0b0b0b);
+background:
+linear-gradient(145deg,#111,#0c0c0c);
 border-radius:30px;
 overflow:hidden;
 position:relative;
-transition:0.4s;
+transition:0.5s;
 border:1px solid rgba(255,255,255,0.05);
-box-shadow:0 25px 50px rgba(0,0,0,0.45);
+box-shadow:0 20px 45px rgba(0,0,0,0.5);
 }
 
 .card:hover{
-transform:translateY(-12px);
+transform:translateY(-15px) scale(1.02);
 }
 
 .card img{
 width:100%;
-height:320px;
+height:330px;
 object-fit:cover;
-transition:0.4s;
+transition:0.6s;
 }
 
 .card:hover img{
-transform:scale(1.05);
+transform:scale(1.1);
 }
 
 .badge{
 position:absolute;
-top:20px;
-left:20px;
-padding:9px 18px;
-background:linear-gradient(135deg,#ff0000,#ff9900);
+top:18px;
+left:18px;
+background:
+linear-gradient(135deg,red,#ff9900);
+padding:8px 16px;
 border-radius:40px;
 font-size:12px;
 font-weight:900;
@@ -313,151 +320,146 @@ padding:28px;
 
 .info h2{
 font-size:28px;
-margin-bottom:10px;
-}
-
-.rating{
 margin-bottom:12px;
-color:#ffcc00;
 }
 
 .price{
-font-size:34px;
+font-size:36px;
 font-weight:900;
 color:#ff9900;
-margin-bottom:14px;
+margin-bottom:12px;
 }
 
 .desc{
-line-height:1.9;
 opacity:0.82;
-font-size:14px;
+line-height:1.8;
 margin-bottom:22px;
 }
 
-.card-buttons{
-display:flex;
-gap:12px;
-}
-
 .btn{
-flex:1;
+width:100%;
 padding:16px;
 border:none;
-border-radius:16px;
+border-radius:14px;
+background:
+linear-gradient(135deg,#ff9900,#ff5e00);
+font-size:17px;
 font-weight:900;
 cursor:pointer;
 transition:0.3s;
 }
 
-.cart-btn{
-background:#ff9900;
-color:black;
+.btn:hover{
+background:white;
+transform:scale(1.03);
 }
 
-.buy-btn{
-background:#25D366;
+.remove-btn{
+margin-top:12px;
+background:red;
 color:white;
 }
 
-.btn:hover{
-transform:scale(1.04);
-}
-
-/* ADMIN PANEL */
+/* ADMIN */
 
 .admin{
-margin:0 6% 80px;
-background:linear-gradient(145deg,#111,#0b0b0b);
+margin:70px 6%;
 padding:40px;
+background:#111;
 border-radius:30px;
-border:1px solid rgba(255,255,255,0.05);
 }
 
 .admin h1{
+font-size:44px;
 margin-bottom:25px;
-font-size:42px;
 }
 
-.admin-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:18px;
-}
-
-.admin input,
-.admin select{
-padding:18px;
+.admin input{
+width:100%;
+padding:16px;
+margin:12px 0;
+background:#181818;
 border:none;
 border-radius:14px;
-background:#1a1a1a;
+font-size:16px;
 color:white;
-font-size:15px;
-}
-
-.admin button{
-padding:18px;
-border:none;
-border-radius:14px;
-background:#ff9900;
-font-weight:900;
-cursor:pointer;
 }
 
 /* CART */
 
 .cart{
-margin:0 6% 80px;
+margin:70px 6%;
 padding:40px;
-background:linear-gradient(145deg,#111,#0b0b0b);
+background:#111;
 border-radius:30px;
-border:1px solid rgba(255,255,255,0.05);
 }
 
 .cart h1{
-font-size:42px;
+font-size:44px;
 margin-bottom:20px;
 }
 
 .cart-item{
-padding:15px 0;
-border-bottom:1px solid rgba(255,255,255,0.08);
-display:flex;
-justify-content:space-between;
+padding:12px 0;
+border-bottom:1px solid rgba(255,255,255,0.06);
 }
 
 .total{
-margin-top:25px;
-font-size:38px;
+margin-top:20px;
+font-size:40px;
 font-weight:900;
 color:#ff9900;
 }
 
 .checkout{
-margin-top:30px;
+margin-top:25px;
 width:100%;
-padding:20px;
+padding:18px;
 border:none;
 background:#25D366;
 color:white;
 font-size:20px;
 font-weight:900;
-border-radius:18px;
+border-radius:16px;
 cursor:pointer;
+}
+
+/* DASHBOARD */
+
+.dashboard{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+padding:80px 6%;
+}
+
+.dash-box{
+background:#111;
+padding:40px;
+border-radius:28px;
+text-align:center;
+box-shadow:0 20px 45px rgba(0,0,0,0.45);
+}
+
+.dash-box h2{
+font-size:55px;
+color:#ff9900;
+margin-bottom:10px;
 }
 
 /* FOOTER */
 
 footer{
-padding:90px 6%;
-background:#020202;
+background:#030303;
+padding:90px 20px;
 text-align:center;
+margin-top:50px;
 border-top:1px solid rgba(255,255,255,0.06);
 }
 
 footer h1{
 font-size:60px;
-margin-bottom:20px;
+margin-bottom:15px;
 }
 
 footer span{
@@ -465,28 +467,27 @@ color:#ff9900;
 }
 
 footer p{
-opacity:0.8;
+opacity:0.85;
 line-height:2;
-font-size:16px;
 }
 
-/* FLOATING */
+/* WHATSAPP */
 
 .whatsapp{
 position:fixed;
-bottom:22px;
-right:22px;
-width:75px;
-height:75px;
+bottom:20px;
+right:20px;
+width:78px;
+height:78px;
 background:#25D366;
 border-radius:50%;
 display:flex;
 justify-content:center;
 align-items:center;
-font-size:35px;
+font-size:36px;
 text-decoration:none;
 color:white;
-box-shadow:0 15px 30px rgba(0,0,0,0.5);
+box-shadow:0 15px 35px rgba(0,0,0,0.5);
 z-index:999;
 }
 
@@ -495,7 +496,7 @@ z-index:999;
 @media(max-width:768px){
 
 .hero-content h1{
-font-size:48px;
+font-size:52px;
 }
 
 .hero-content p{
@@ -506,16 +507,21 @@ nav{
 display:none;
 }
 
-.card-buttons{
-flex-direction:column;
+.products{
+grid-template-columns:1fr;
 }
 
 }
 
 </style>
+
 </head>
 
 <body>
+
+<div class="live">
+🔴 LIVE MARKET
+</div>
 
 <header>
 
@@ -526,9 +532,8 @@ flex-direction:column;
 <nav>
 <a href="#">Home</a>
 <a href="#shop">Shop</a>
-<a href="#cart">Cart</a>
 <a href="#admin">Admin</a>
-<button class="login-btn">Account</button>
+<a href="#cart">Cart</a>
 </nav>
 
 </header>
@@ -538,37 +543,19 @@ flex-direction:column;
 <div class="hero-content">
 
 <h1>
-NEXT LEVEL <br>
-<span>GLOBAL MARKETPLACE</span>
+WORLD CLASS <br>
+<span>GLOBAL MARKET</span>
 </h1>
 
 <p>
-Apex Holux is a premium world-class fashion ecommerce marketplace with luxury sneakers, trending slides, QD sandals, Sketchers and global bestselling fashion products.
+Premium Sneakers • Luxury Fashion • Trending Afghanistan Products • World Class Ecommerce Experience
 </p>
 
-<div class="hero-buttons">
-
-<a href="#shop" class="hero-btn primary">
-Explore Products
-</a>
-
-<a href="#admin" class="hero-btn secondary">
-Admin Dashboard
+<a href="#shop" class="hero-btn">
+Explore Collection
 </a>
 
 </div>
-
-</div>
-
-</section>
-
-<section class="trust">
-
-<div>✔ Secure Orders</div>
-<div>✔ Premium Products</div>
-<div>✔ Global Fashion</div>
-<div>✔ WhatsApp Checkout</div>
-<div>✔ Luxury Marketplace</div>
 
 </section>
 
@@ -576,17 +563,12 @@ Admin Dashboard
 
 <div class="stat">
 <h2>1M+</h2>
-<p>Marketplace Visitors</p>
+<p>Monthly Visitors</p>
 </div>
 
 <div class="stat">
-<h2>500+</h2>
-<p>Premium Products</p>
-</div>
-
-<div class="stat">
-<h2>120+</h2>
-<p>Global Brands</p>
+<h2>250+</h2>
+<p>Premium Brands</p>
 </div>
 
 <div class="stat">
@@ -594,60 +576,71 @@ Admin Dashboard
 <p>Worldwide Orders</p>
 </div>
 
-</section>
-
-<section class="search-section">
-
-<div class="search-box">
-
-<input class="search"
-placeholder="Search premium products..."
-oninput="searchProducts(this.value)">
-
-<button class="search-btn">
-Search
-</button>
-
+<div class="stat">
+<h2>100%</h2>
+<p>Luxury Quality</p>
 </div>
 
 </section>
 
-<section class="filters">
+<div class="search-area">
+
+<input
+class="search"
+placeholder="Search Premium Products..."
+oninput="searchProducts(this.value)"
+>
+
+</div>
+
+<div class="filters">
 
 <button onclick="filterProducts('all')">All</button>
 <button onclick="filterProducts('sneaker')">Sneakers</button>
-<button onclick="filterProducts('slides')">Slides</button>
 <button onclick="filterProducts('sport')">Sport</button>
+<button onclick="filterProducts('slides')">Slides</button>
 <button onclick="filterProducts('sandal')">Sandals</button>
 
-</section>
+</div>
 
 <section class="products" id="shop"></section>
 
+<section class="dashboard">
+
+<div class="dash-box">
+<h2 id="productCount">0</h2>
+<p>Total Products</p>
+</div>
+
+<div class="dash-box">
+<h2 id="cartCount">0</h2>
+<p>Cart Items</p>
+</div>
+
+<div class="dash-box">
+<h2>50K+</h2>
+<p>Orders</p>
+</div>
+
+<div class="dash-box">
+<h2>4.9★</h2>
+<p>Customer Rating</p>
+</div>
+
+</section>
+
 <section class="admin" id="admin">
 
-<h1>🧑‍💼 Apex Holux Admin Panel</h1>
+<h1>🧑‍💼 Live Admin Panel</h1>
 
-<div class="admin-grid">
+<input id="pname" placeholder="Product Name">
+<input id="pprice" placeholder="Price">
+<input id="pimg" placeholder="Image URL">
+<input id="pcat" placeholder="Category">
 
-<input id="name" placeholder="Product Name">
-
-<input id="price" type="number" placeholder="Price">
-
-<input id="image" placeholder="Image URL">
-
-<select id="category">
-<option value="sneaker">Sneaker</option>
-<option value="slides">Slides</option>
-<option value="sport">Sport</option>
-<option value="sandal">Sandal</option>
-</select>
-
-<button onclick="addProduct()">
-Add Product
+<button class="btn" onclick="addProduct()">
+Add Product Live
 </button>
-
-</div>
 
 </section>
 
@@ -662,7 +655,7 @@ Total: $<span id="total">0</span>
 </div>
 
 <button class="checkout" onclick="checkout()">
-Order on WhatsApp
+Order On WhatsApp
 </button>
 
 </section>
@@ -674,7 +667,7 @@ Order on WhatsApp
 </h1>
 
 <p>
-World Class Global Fashion Marketplace
+World Class Premium Fashion Marketplace
 </p>
 
 <p>
@@ -682,7 +675,7 @@ World Class Global Fashion Marketplace
 </p>
 
 <p>
-Luxury Sneakers • Sketchers • Slides • QD Sandals • Premium Global Fashion
+Luxury Sneakers • Trending Products • Global Ecommerce • Afghanistan Fashion Market
 </p>
 
 </footer>
@@ -721,7 +714,7 @@ img:"https://images.unsplash.com/photo-1528701800489-20be3c5c9c8c?w=700"
 
 {
 name:"Sketchers Max Cushion",
-price:98,
+price:105,
 cat:"sport",
 img:"https://images.unsplash.com/photo-1549298916-b41d501d3772?w=700"
 },
@@ -734,7 +727,7 @@ img:"https://images.unsplash.com/photo-1597047084897-51e81819a499?w=700"
 },
 
 {
-name:"QD Luxury Sandal",
+name:"QD Premium Sandal",
 price:55,
 cat:"sandal",
 img:"https://images.unsplash.com/photo-1608256246200-53e8b47b2f80?w=700"
@@ -743,6 +736,10 @@ img:"https://images.unsplash.com/photo-1608256246200-53e8b47b2f80?w=700"
 ];
 
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+let total = 0;
+
+/* RENDER */
 
 function renderProducts(list){
 
@@ -760,39 +757,29 @@ box.innerHTML += `
 🔥 BEST SELLER
 </div>
 
-<img src="${p.img}"
-loading="lazy"
-onerror="this.src='https://via.placeholder.com/500?text=Apex+Holux'">
+<img src="${p.img}">
 
 <div class="info">
 
 <h2>${p.name}</h2>
-
-<div class="rating">
-⭐⭐⭐⭐⭐ (4.9)
-</div>
 
 <div class="price">
 $${p.price}
 </div>
 
 <div class="desc">
-Premium global trending fashion product with luxury world-class quality and modern marketplace design.
+Premium global fashion product with luxury world-class design and quality.
 </div>
 
-<div class="card-buttons">
-
-<button class="btn cart-btn"
-onclick="addToCart(${index})">
+<button class="btn"
+onclick="addToCart('${p.name}',${p.price})">
 Add To Cart
 </button>
 
-<button class="btn buy-btn"
-onclick="buyNow(${index})">
-Buy Now
+<button class="btn remove-btn"
+onclick="removeProduct(${index})">
+Remove Product
 </button>
-
-</div>
 
 </div>
 
@@ -802,15 +789,20 @@ Buy Now
 
 });
 
+updateDashboard();
+
 }
 
-renderProducts(products);
+/* CART */
 
-function addToCart(index){
+function addToCart(name,price){
 
-cart.push(products[index]);
+cart.push({name,price});
 
-saveCart();
+localStorage.setItem(
+"cart",
+JSON.stringify(cart)
+);
 
 renderCart();
 
@@ -822,47 +814,55 @@ const box = document.getElementById("cartItems");
 
 box.innerHTML = "";
 
-let total = 0;
+total = 0;
 
-cart.forEach((item,i)=>{
+cart.forEach(item=>{
 
 total += item.price;
 
 box.innerHTML += `
-
 <div class="cart-item">
-
-<span>
-${item.name}
-</span>
-
-<span>
-$${item.price}
-</span>
-
+✔ ${item.name} - $${item.price}
 </div>
-
 `;
 
 });
 
 document.getElementById("total").innerText = total;
 
+updateDashboard();
+
 }
 
 renderCart();
 
-function saveCart(){
+/* SEARCH */
 
-localStorage.setItem("cart",JSON.stringify(cart));
+function searchProducts(value){
+
+renderProducts(
+
+products.filter(p=>
+
+p.name.toLowerCase().includes(
+value.toLowerCase()
+)
+
+)
+
+);
 
 }
 
+/* FILTER */
+
 function filterProducts(cat){
 
-if(cat === "all"){
+if(cat==="all"){
+
 renderProducts(products);
 return;
+
 }
 
 renderProducts(
@@ -871,89 +871,59 @@ products.filter(p=>p.cat===cat)
 
 }
 
-function searchProducts(value){
-
-renderProducts(
-
-products.filter(p=>
-
-p.name.toLowerCase()
-.includes(value.toLowerCase())
-
-)
-
-);
-
-}
-
-function buyNow(index){
-
-const item = products[index];
-
-const text =
-"🔥 APEX HOLUX ORDER 🔥%0A%0A" +
-"✔ Product: " + item.name + "%0A" +
-"💰 Price: $" + item.price;
-
-window.open(
-"https://wa.me/" + PHONE + "?text=" + text
-);
-
-}
+/* CHECKOUT */
 
 function checkout(){
 
-if(cart.length === 0){
+if(cart.length===0){
 
 alert("Cart Empty!");
 return;
 
 }
 
-let message =
+let msg =
 "🔥 APEX HOLUX GLOBAL ORDER 🔥\n\n";
-
-let total = 0;
 
 cart.forEach(item=>{
 
-message +=
-"✔ " + item.name +
-" - $" + item.price + "\n";
-
-total += item.price;
+msg +=
+"✔ " +
+item.name +
+" - $" +
+item.price +
+"\n";
 
 });
 
-message +=
-"\n💰 Total: $" + total;
+msg += "\n💰 Total: $" + total;
 
 window.open(
-
 "https://wa.me/" +
 PHONE +
 "?text=" +
-encodeURIComponent(message)
-
+encodeURIComponent(msg)
 );
 
 }
 
+/* ADMIN */
+
 function addProduct(){
 
 const name =
-document.getElementById("name").value;
+document.getElementById("pname").value;
 
 const price =
-document.getElementById("price").value;
+Number(document.getElementById("pprice").value);
 
-const image =
-document.getElementById("image").value;
+const img =
+document.getElementById("pimg").value;
 
-const category =
-document.getElementById("category").value;
+const cat =
+document.getElementById("pcat").value;
 
-if(!name || !price || !image){
+if(!name || !price || !img || !cat){
 
 alert("Fill all fields");
 return;
@@ -961,12 +931,10 @@ return;
 }
 
 products.push({
-
-name:name,
-price:Number(price),
-img:image,
-cat:category
-
+name,
+price,
+img,
+cat
 });
 
 localStorage.setItem(
@@ -976,13 +944,47 @@ JSON.stringify(products)
 
 renderProducts(products);
 
-document.getElementById("name").value = "";
-document.getElementById("price").value = "";
-document.getElementById("image").value = "";
+alert("✅ Product Added");
 
-alert("Product Added Successfully");
+pname.value="";
+pprice.value="";
+pimg.value="";
+pcat.value="";
 
 }
+
+/* REMOVE */
+
+function removeProduct(index){
+
+products.splice(index,1);
+
+localStorage.setItem(
+"products",
+JSON.stringify(products)
+);
+
+renderProducts(products);
+
+}
+
+/* DASHBOARD */
+
+function updateDashboard(){
+
+document.getElementById(
+"productCount"
+).innerText = products.length;
+
+document.getElementById(
+"cartCount"
+).innerText = cart.length;
+
+}
+
+/* START */
+
+renderProducts(products);
 
 </script>
 
