@@ -3,19 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>🌍 Apex Holux World Market</title>
+<title>🌍 Apex Holux Global Market</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 
 <style>
-
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
 font-family:'Montserrat',sans-serif;
-scroll-behavior:smooth;
 }
 
 body{
@@ -24,27 +21,22 @@ color:white;
 overflow-x:hidden;
 }
 
-/* NAVBAR */
-
 header{
-position:fixed;
+position:sticky;
 top:0;
-left:0;
 width:100%;
 padding:18px 6%;
 display:flex;
 justify-content:space-between;
 align-items:center;
-background:rgba(0,0,0,0.75);
-backdrop-filter:blur(14px);
+background:rgba(0,0,0,0.9);
 z-index:999;
-border-bottom:1px solid rgba(255,255,255,0.08);
+border-bottom:1px solid rgba(255,255,255,0.1);
 }
 
 .logo{
-font-size:34px;
+font-size:32px;
 font-weight:900;
-letter-spacing:2px;
 }
 
 .logo span{
@@ -53,13 +45,13 @@ color:#ff9900;
 
 nav{
 display:flex;
-gap:22px;
+gap:20px;
 }
 
 nav a{
 color:white;
 text-decoration:none;
-font-size:15px;
+font-size:14px;
 transition:0.3s;
 }
 
@@ -67,66 +59,60 @@ nav a:hover{
 color:#ff9900;
 }
 
-/* HERO */
-
 .hero{
 height:100vh;
 background:
-linear-gradient(rgba(0,0,0,0.65),rgba(0,0,0,0.8)),
-url('https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=1600')
-center/cover;
+linear-gradient(rgba(0,0,0,0.65),rgba(0,0,0,0.85)),
+url('https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=1600') center/cover;
 display:flex;
-justify-content:center;
 align-items:center;
+justify-content:center;
 text-align:center;
 padding:20px;
 }
 
-.hero-content h1{
-font-size:80px;
+.hero h1{
+font-size:78px;
 font-weight:900;
 line-height:1.1;
 margin-bottom:20px;
 }
 
-.hero-content span{
+.hero span{
 color:#ff9900;
 }
 
-.hero-content p{
-font-size:20px;
+.hero p{
 max-width:900px;
 margin:auto;
-opacity:0.9;
+font-size:20px;
 line-height:1.8;
+opacity:0.9;
 }
 
 .hero-btn{
 display:inline-block;
-margin-top:35px;
+margin-top:30px;
 padding:18px 45px;
 background:#ff9900;
 color:black;
-font-weight:800;
+font-weight:900;
 text-decoration:none;
 border-radius:50px;
-font-size:18px;
 transition:0.3s;
 }
 
 .hero-btn:hover{
-transform:scale(1.08);
+transform:scale(1.05);
 background:white;
 }
-
-/* MARKET STATS */
 
 .stats{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
 gap:20px;
 padding:70px 6%;
-background:#0b0b0b;
+background:#0c0c0c;
 }
 
 .stat{
@@ -134,30 +120,23 @@ background:#111;
 padding:35px;
 border-radius:22px;
 text-align:center;
-box-shadow:0 10px 25px rgba(0,0,0,0.3);
 }
 
 .stat h2{
-font-size:40px;
+font-size:42px;
 color:#ff9900;
 margin-bottom:10px;
 }
 
-.stat p{
-opacity:0.8;
-}
-
-/* SEARCH */
-
 .search-area{
 padding:40px 6%;
-background:#080808;
+background:#090909;
 text-align:center;
 }
 
 .search{
 width:100%;
-max-width:750px;
+max-width:700px;
 padding:18px;
 border:none;
 border-radius:50px;
@@ -165,23 +144,21 @@ font-size:18px;
 outline:none;
 }
 
-/* FILTER */
-
 .filters{
 display:flex;
 justify-content:center;
 gap:15px;
 flex-wrap:wrap;
-padding:20px;
-background:#080808;
+padding:25px;
+background:#090909;
 }
 
 .filters button{
-padding:12px 24px;
+padding:12px 25px;
 border:none;
+border-radius:40px;
 background:#151515;
 color:white;
-border-radius:40px;
 font-weight:bold;
 cursor:pointer;
 transition:0.3s;
@@ -192,31 +169,29 @@ background:#ff9900;
 color:black;
 }
 
-/* PRODUCTS */
-
 .products{
 padding:70px 6%;
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-gap:35px;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:30px;
 }
 
 .card{
 background:#111;
 border-radius:25px;
 overflow:hidden;
+box-shadow:0 10px 25px rgba(0,0,0,0.4);
 transition:0.4s;
-box-shadow:0 10px 30px rgba(0,0,0,0.35);
 position:relative;
 }
 
 .card:hover{
-transform:translateY(-12px);
+transform:translateY(-10px);
 }
 
 .card img{
 width:100%;
-height:300px;
+height:280px;
 object-fit:cover;
 }
 
@@ -227,21 +202,21 @@ left:18px;
 background:red;
 padding:8px 14px;
 border-radius:30px;
-font-size:13px;
+font-size:12px;
 font-weight:bold;
 }
 
 .info{
-padding:25px;
+padding:24px;
 }
 
 .info h2{
-font-size:26px;
+font-size:25px;
 margin-bottom:10px;
 }
 
 .price{
-font-size:30px;
+font-size:28px;
 font-weight:900;
 color:#ff9900;
 margin-bottom:12px;
@@ -249,20 +224,19 @@ margin-bottom:12px;
 
 .desc{
 font-size:14px;
-opacity:0.8;
 line-height:1.7;
+opacity:0.8;
 margin-bottom:20px;
 }
 
 .btn{
 width:100%;
-padding:16px;
+padding:15px;
 border:none;
-background:#ff9900;
-color:black;
-font-weight:900;
 border-radius:14px;
-font-size:17px;
+background:#ff9900;
+font-size:16px;
+font-weight:900;
 cursor:pointer;
 transition:0.3s;
 }
@@ -271,24 +245,20 @@ transition:0.3s;
 background:white;
 }
 
-/* CART */
-
 .cart{
 margin:50px 6%;
 background:#111;
 padding:35px;
 border-radius:25px;
-box-shadow:0 10px 25px rgba(0,0,0,0.35);
 }
 
 .cart h1{
 margin-bottom:20px;
-font-size:40px;
+font-size:38px;
 }
 
 #cartItems p{
 margin:10px 0;
-font-size:16px;
 }
 
 .total{
@@ -311,105 +281,117 @@ border-radius:14px;
 cursor:pointer;
 }
 
-/* FOOTER */
+.dashboard{
+margin:50px 6%;
+padding:35px;
+background:#111;
+border-radius:25px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
+}
+
+.dash-box{
+background:#181818;
+padding:25px;
+border-radius:20px;
+text-align:center;
+}
+
+.dash-box h2{
+font-size:35px;
+color:#ff9900;
+margin-bottom:10px;
+}
+
+.admin{
+margin:50px 6%;
+padding:35px;
+background:#111;
+border-radius:25px;
+}
+
+.admin input{
+width:100%;
+padding:15px;
+margin:10px 0;
+border:none;
+border-radius:12px;
+}
+
+.admin button{
+width:100%;
+padding:16px;
+border:none;
+border-radius:12px;
+background:#ff9900;
+font-weight:900;
+cursor:pointer;
+}
 
 footer{
 background:#050505;
 padding:70px 20px;
 text-align:center;
-border-top:1px solid rgba(255,255,255,0.08);
+margin-top:50px;
 }
 
 footer h1{
 font-size:48px;
-margin-bottom:15px;
 }
 
 footer span{
 color:#ff9900;
 }
 
-footer p{
-opacity:0.8;
-margin-top:12px;
-line-height:1.8;
-}
-
 .whatsapp{
 position:fixed;
 bottom:20px;
 right:20px;
-width:75px;
-height:75px;
+width:70px;
+height:70px;
 background:#25D366;
 border-radius:50%;
 display:flex;
-justify-content:center;
 align-items:center;
-font-size:36px;
+justify-content:center;
+font-size:34px;
 text-decoration:none;
 color:white;
-box-shadow:0 10px 25px rgba(0,0,0,0.5);
 }
 
-/* MOBILE */
-
 @media(max-width:768px){
-
-.hero-content h1{
-font-size:45px;
+.hero h1{
+font-size:44px;
 }
 
 nav{
 display:none;
 }
-
 }
-
 </style>
 </head>
-
 <body>
 
 <header>
-
-<div class="logo">
-🔥 Apex <span>Holux</span>
-</div>
-
+<div class="logo">🔥 Apex <span>Holux</span></div>
 <nav>
 <a href="#">Home</a>
-<a href="#">Global</a>
-<a href="#">Luxury</a>
-<a href="#">Trending</a>
-<a href="#">Contact</a>
+<a href="#shop">Shop</a>
+<a href="#cart">Cart</a>
+<a href="#admin">Admin</a>
 </nav>
-
 </header>
 
 <section class="hero">
-
-<div class="hero-content">
-
-<h1>
-WORLD CLASS <br>
-<span>FASHION MARKET</span>
-</h1>
-
-<p>
-Premium Sneakers • QD Sandals • Sketchers • Slides • Luxury Fashion • Global Trending Products
-</p>
-
-<a href="#shop" class="hero-btn">
-Explore Collection
-</a>
-
+<div>
+<h1>GLOBAL <span>FASHION</span><br>MARKET</h1>
+<p>Premium Sneakers • Sketchers • Slides • QD Sandals • Luxury Global Fashion</p>
+<a href="#shop" class="hero-btn">Explore Collection</a>
 </div>
-
 </section>
 
 <section class="stats">
-
 <div class="stat">
 <h2>120K+</h2>
 <p>Global Customers</p>
@@ -429,283 +411,217 @@ Explore Collection
 <h2>100%</h2>
 <p>Premium Fashion</p>
 </div>
-
 </section>
 
 <div class="search-area">
-
-<input class="search"
-placeholder="Search Global Fashion Products..."
-oninput="searchProducts(this.value)">
-
+<input class="search" placeholder="Search products..." oninput="searchProducts(this.value)">
 </div>
 
 <div class="filters">
-
 <button onclick="filterProducts('all')">All</button>
 <button onclick="filterProducts('sneaker')">Sneakers</button>
-<button onclick="filterProducts('slides')">Slides</button>
 <button onclick="filterProducts('sport')">Sketchers</button>
-<button onclick="filterProducts('sandal')">QD Sandals</button>
-
+<button onclick="filterProducts('slides')">Slides</button>
+<button onclick="filterProducts('sandal')">Sandals</button>
 </div>
 
 <section class="products" id="shop"></section>
 
-<section class="cart">
-
+<section class="cart" id="cart">
 <h1>🛒 Shopping Cart</h1>
-
 <div id="cartItems"></div>
+<div class="total">Total: $<span id="total">0</span></div>
+<button class="checkout" onclick="checkout()">Order on WhatsApp</button>
+</section>
 
-<div class="total">
-Total: $<span id="total">0</span>
+<section class="dashboard">
+<div class="dash-box">
+<h2 id="productCount">0</h2>
+<p>Total Products</p>
 </div>
 
-<button class="checkout" onclick="checkout()">
-Order on WhatsApp
-</button>
+<div class="dash-box">
+<h2 id="cartCount">0</h2>
+<p>Cart Items</p>
+</div>
 
+<div class="dash-box">
+<h2 id="cartValue">0</h2>
+<p>Cart Value</p>
+</div>
+</section>
+
+<section class="admin" id="admin">
+<h1 style="margin-bottom:20px;">🧑‍💼 Admin Panel</h1>
+<input id="pname" placeholder="Product Name">
+<input id="pprice" placeholder="Product Price">
+<input id="pimg" placeholder="Image URL">
+<input id="pcat" placeholder="Category">
+<button onclick="addProduct()">Add Product</button>
 </section>
 
 <footer>
-
 <h1>🔥 Apex <span>Holux</span></h1>
-
 <p>Global Premium Fashion Market</p>
-
 <p>📞 WhatsApp: 0764 594 322</p>
-
-<p>
-Worldwide Luxury Products • Afghanistan Trending Market • Premium Global Fashion
-</p>
-
 </footer>
 
-<a class="whatsapp"
-href="https://wa.me/93764594322">
-💬
-</a>
+<a class="whatsapp" href="https://wa.me/93764594322">💬</a>
 
 <script>
+const PHONE = '93764594322';
 
-const PHONE = "93764594322";
-
-const products = [
-
+let products = JSON.parse(localStorage.getItem('products')) || [
 {
-name:"Nike Air Force 1",
+name:'Nike Air Force 1',
 price:90,
-cat:"sneaker",
-img:"https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=700"
+cat:'sneaker',
+img:'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=700'
 },
-
 {
-name:"Jordan Retro 4",
+name:'Jordan Retro 4',
 price:180,
-cat:"sneaker",
-img:"https://images.unsplash.com/photo-1600180758890-6b94519a8ba6?w=700"
+cat:'sneaker',
+img:'https://images.unsplash.com/photo-1600180758890-6b94519a8ba6?w=700'
 },
-
 {
-name:"Adidas Ultraboost",
-price:125,
-cat:"sport",
-img:"https://images.unsplash.com/photo-1528701800489-20be3c5c9c8c?w=700"
-},
-
-{
-name:"Sketchers Premium Foam",
-price:95,
-cat:"sport",
-img:"https://images.unsplash.com/photo-1519741497674-611481863552?w=700"
-},
-
-{
-name:"Sketchers Max Cushion",
-price:105,
-cat:"sport",
-img:"https://images.unsplash.com/photo-1549298916-b41d501d3772?w=700"
-},
-
-{
-name:"QD 555 Luxury Sandal",
-price:55,
-cat:"sandal",
-img:"https://images.unsplash.com/photo-1603487742131-4160ec999306?w=700"
-},
-
-{
-name:"QD Premium Beige",
-price:60,
-cat:"sandal",
-img:"https://images.unsplash.com/photo-1608256246200-53e8b47b2f80?w=700"
-},
-
-{
-name:"Nike Comfort Slides",
-price:45,
-cat:"slides",
-img:"https://images.unsplash.com/photo-1597047084897-51e81819a499?w=700"
-},
-
-{
-name:"Adidas Cloud Slides",
-price:42,
-cat:"slides",
-img:"https://images.unsplash.com/photo-1606813902913-3f3a0a0c9a9b?w=700"
-},
-
-{
-name:"Premium Black Slides",
-price:38,
-cat:"slides",
-img:"https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=700"
-},
-
-{
-name:"Luxury White Sneaker",
-price:110,
-cat:"sneaker",
-img:"https://images.unsplash.com/photo-1552346154-21d32810aba3?w=700"
-},
-
-{
-name:"Puma RS-X",
-price:100,
-cat:"sneaker",
-img:"https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=700"
-},
-
-{
-name:"Street Fashion Sneaker",
-price:105,
-cat:"sneaker",
-img:"https://images.unsplash.com/photo-1579338559194-a162d19bf842?w=700"
-},
-
-{
-name:"New Balance 574",
+name:'Adidas Ultraboost',
 price:120,
-cat:"sport",
-img:"https://images.unsplash.com/photo-1519744346364-2b8a8f2a7c2d?w=700"
+cat:'sport',
+img:'https://images.unsplash.com/photo-1528701800489-20be3c5c9c8c?w=700'
+},
+{
+name:'Nike Slides',
+price:45,
+cat:'slides',
+img:'https://images.unsplash.com/photo-1597047084897-51e81819a499?w=700'
+},
+{
+name:'QD Premium Sandal',
+price:60,
+cat:'sandal',
+img:'https://images.unsplash.com/photo-1608256246200-53e8b47b2f80?w=700'
 }
-
 ];
 
-let cart = [];
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
 let total = 0;
 
 function renderProducts(list){
-
-const box = document.getElementById("shop");
-
-box.innerHTML = "";
+const box = document.getElementById('shop');
+box.innerHTML = '';
 
 list.forEach(p=>{
-
 box.innerHTML += `
-
 <div class="card">
-
-<div class="badge">
-🔥 BEST SELLER
-</div>
-
-<img src="${p.img}"
-loading="lazy"
-onerror="this.src='https://via.placeholder.com/400?text=Fashion'">
-
+<div class="badge">🔥 BEST SELLER</div>
+<img src="${p.img}" loading="lazy" onerror="this.src='https://via.placeholder.com/400?text=Fashion'">
 <div class="info">
-
 <h2>${p.name}</h2>
-
-<div class="price">
-$${p.price}
-</div>
-
+<div class="price">$${p.price}</div>
 <div class="desc">
-Premium global trending fashion product with luxury design and high quality material.
+Premium global fashion product with luxury design and high quality material.
 </div>
-
-<button class="btn"
-onclick="addToCart('${p.name}',${p.price})">
-Add To Cart
-</button>
-
+<button class="btn" onclick="addToCart('${p.name}',${p.price})">Add To Cart</button>
 </div>
-
 </div>
-
 `;
-
 });
 
+updateDashboard();
 }
 
 renderProducts(products);
 
 function addToCart(name,price){
-
 cart.push({name,price});
-
-total += price;
-
-document.getElementById("cartItems").innerHTML += `
-<p>✔ ${name} - $${price}</p>
-`;
-
-document.getElementById("total").innerText = total;
-
+localStorage.setItem('cart',JSON.stringify(cart));
+renderCart();
 }
 
-function filterProducts(cat){
+function renderCart(){
+const box = document.getElementById('cartItems');
+box.innerHTML = '';
 
-if(cat==="all"){
+total = 0;
+
+cart.forEach(i=>{
+total += i.price;
+box.innerHTML += `<p>✔ ${i.name} - $${i.price}</p>`;
+});
+
+document.getElementById('total').innerText = total;
+updateDashboard();
+}
+
+renderCart();
+
+function filterProducts(cat){
+if(cat==='all'){
 renderProducts(products);
 return;
 }
 
 renderProducts(products.filter(p=>p.cat===cat));
-
 }
 
 function searchProducts(val){
-
 renderProducts(
 products.filter(p=>
 p.name.toLowerCase().includes(val.toLowerCase())
 )
 );
-
 }
 
 function checkout(){
-
 if(cart.length===0){
-
-alert("Cart Empty!");
+alert('Cart Empty!');
 return;
-
 }
 
-let msg = "🔥 APEX HOLUX GLOBAL ORDER 🔥\n\n";
+let msg = '🔥 APEX HOLUX GLOBAL ORDER 🔥\n\n';
 
 cart.forEach(i=>{
-
-msg += "✔ " + i.name + " - $" + i.price + "\n";
-
+msg += '✔ ' + i.name + ' - $' + i.price + '\n';
 });
 
-msg += "\n💰 Total: $" + total;
+msg += '\n💰 Total: $' + total;
 
 window.open(
-"https://wa.me/" + PHONE +
-"?text=" + encodeURIComponent(msg)
+'https://wa.me/' + PHONE + '?text=' + encodeURIComponent(msg)
 );
-
 }
 
+function addProduct(){
+const name = document.getElementById('pname').value;
+const price = Number(document.getElementById('pprice').value);
+const img = document.getElementById('pimg').value;
+const cat = document.getElementById('pcat').value;
+
+if(!name || !price || !img || !cat){
+alert('Fill all fields');
+return;
+}
+
+products.push({name,price,img,cat});
+
+localStorage.setItem('products',JSON.stringify(products));
+
+renderProducts(products);
+
+alert('Product Added Successfully');
+
+pname.value='';
+pprice.value='';
+pimg.value='';
+pcat.value='';
+}
+
+function updateDashboard(){
+document.getElementById('productCount').innerText = products.length;
+document.getElementById('cartCount').innerText = cart.length;
+document.getElementById('cartValue').innerText = '$' + total;
+}
 </script>
 
 </body>
