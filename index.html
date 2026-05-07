@@ -1,153 +1,486 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>🔥 Apex Holux BOSS Store</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<title>🌍 Apex Holux GOD MODE STORE</title>
 
 <style>
-body{
+
+*{
 margin:0;
+padding:0;
+box-sizing:border-box;
 font-family:Arial;
+}
+
+body{
 background:#0f172a;
 color:white;
 }
 
 /* HEADER */
+
 header{
 background:#020617;
-padding:15px;
+padding:20px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+flex-wrap:wrap;
+}
+
+.logo{
+font-size:28px;
+font-weight:bold;
+color:#f59e0b;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+margin:10px;
+}
+
+/* HERO */
+
+.hero{
+padding:50px 20px;
 text-align:center;
+background:linear-gradient(90deg,#020617,#1e293b);
 }
 
-/* GRID */
-.container{
-display:grid;
-grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
-gap:15px;
-padding:15px;
+.hero h1{
+font-size:40px;
+margin-bottom:10px;
 }
 
-/* CARD */
-.card{
-background:#1e293b;
-padding:10px;
-border-radius:10px;
-text-align:center;
+.hero p{
+color:#cbd5e1;
 }
 
-.card img{
-width:100%;
-height:150px;
-object-fit:cover;
-border-radius:8px;
+.hero button{
+margin-top:20px;
 }
 
-/* ADMIN PANEL */
-.admin{
-background:#020617;
-padding:15px;
-margin:15px;
-border-radius:10px;
-}
-
-input{
-padding:8px;
-margin:5px;
-border:none;
-border-radius:5px;
-}
+/* BUTTON */
 
 button{
 background:#f59e0b;
 border:none;
-padding:8px;
+padding:10px 15px;
 cursor:pointer;
-margin:5px;
+border-radius:5px;
+font-weight:bold;
 }
-</style>
 
+/* SEARCH */
+
+.search-box{
+text-align:center;
+padding:20px;
+}
+
+.search-box input{
+width:80%;
+max-width:500px;
+padding:12px;
+border:none;
+border-radius:8px;
+}
+
+/* PRODUCTS */
+
+.container{
+display:grid;
+grid-template-columns:repeat(auto-fill,minmax(230px,1fr));
+gap:15px;
+padding:20px;
+}
+
+.card{
+background:#1e293b;
+padding:10px;
+border-radius:12px;
+transition:0.3s;
+}
+
+.card:hover{
+transform:translateY(-5px);
+}
+
+.card img{
+width:100%;
+height:180px;
+object-fit:cover;
+border-radius:10px;
+}
+
+.price{
+color:#fbbf24;
+font-size:20px;
+margin:5px 0;
+}
+
+/* CART */
+
+.cart{
+background:#020617;
+margin:20px;
+padding:20px;
+border-radius:10px;
+}
+
+.cart-item{
+display:flex;
+justify-content:space-between;
+margin:10px 0;
+}
+
+/* ADMIN */
+
+.admin{
+background:#111827;
+margin:20px;
+padding:20px;
+border-radius:10px;
+}
+
+.admin input{
+padding:10px;
+margin:5px;
+width:100%;
+border:none;
+border-radius:6px;
+}
+
+/* FOOTER */
+
+footer{
+background:#000;
+text-align:center;
+padding:20px;
+margin-top:30px;
+color:#94a3b8;
+}
+
+</style>
 </head>
 
 <body>
 
 <header>
-<h2>🔥 Apex Holux BOSS STORE</h2>
+
+<div class="logo">🔥 Apex Holux</div>
+
+<nav>
+<a href="#">Home</a>
+<a href="#">Shop</a>
+<a href="#">Brands</a>
+<a href="#">Contact</a>
+</nav>
+
 </header>
 
-<!-- ADMIN PANEL -->
-<div class="admin">
-<h3>⚙️ Add Product (Admin)</h3>
+<!-- HERO -->
 
-<input id="name" placeholder="Product Name">
-<input id="price" placeholder="Price">
-<input id="img" placeholder="Image URL">
+<section class="hero">
 
-<button onclick="addProduct()">Add Product</button>
+<h1>🌍 Global Premium Store</h1>
+
+<p>
+Top Trending Sneakers • Slides • Boots • Fashion
+</p>
+
+<button onclick="scrollToProducts()">
+Shop Now
+</button>
+
+</section>
+
+<!-- SEARCH -->
+
+<div class="search-box">
+<input placeholder="Search products..."
+oninput="search(this.value)">
 </div>
 
 <!-- PRODUCTS -->
+
 <div class="container" id="products"></div>
 
-<script type="module">
+<!-- CART -->
 
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getFirestore, collection, addDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+<div class="cart">
 
-/* 🔥 PUT YOUR FIREBASE CONFIG HERE */
-const firebaseConfig = {
-apiKey: "YOUR_KEY",
-authDomain: "YOUR_DOMAIN",
-projectId: "YOUR_PROJECT_ID"
-};
+<h2>🛒 Shopping Cart</h2>
 
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+<div id="cart"></div>
 
-const box = document.getElementById("products");
+<h3>Total: $<span id="total">0</span></h3>
 
-/* 🔥 REALTIME PRODUCTS */
-onSnapshot(collection(db,"products"), (snapshot)=>{
+<button onclick="checkout()">
+Order WhatsApp
+</button>
+
+</div>
+
+<!-- ADMIN PANEL -->
+
+<div class="admin">
+
+<h2>⚙️ Admin Panel</h2>
+
+<input id="name" placeholder="Product name">
+
+<input id="price" placeholder="Price">
+
+<input id="img" placeholder="Image URL">
+
+<button onclick="addProduct()">
+Add Product
+</button>
+
+</div>
+
+<footer>
+
+📞 WhatsApp: 0764594322 <br>
+🌐 Apex Holux Global Trading
+
+</footer>
+
+<script>
+
+/* PHONE */
+
+const PHONE="93764594322";
+
+/* PRODUCTS */
+
+let products=[
+
+{
+name:"Nike Air Force 1",
+price:90,
+img:"https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500"
+},
+
+{
+name:"Adidas Ultraboost",
+price:120,
+img:"https://images.unsplash.com/photo-1528701800489-20be3c5c9c8c?w=500"
+},
+
+{
+name:"Jordan Retro 4",
+price:180,
+img:"https://images.unsplash.com/photo-1600180758890-6b94519a8ba6?w=500"
+},
+
+{
+name:"Puma RS-X",
+price:95,
+img:"https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=500"
+},
+
+{
+name:"Premium Slides",
+price:40,
+img:"https://images.unsplash.com/photo-1597047084897-51e81819a499?w=500"
+},
+
+{
+name:"Leather Boots",
+price:110,
+img:"https://images.unsplash.com/photo-1600185365483?w=500"
+}
+
+];
+
+/* CART */
+
+let cart=[];
+
+/* RENDER */
+
+function render(list=products){
+
+const box=document.getElementById("products");
+
 box.innerHTML="";
 
-snapshot.forEach(doc=>{
-const p = doc.data();
+list.forEach((p,i)=>{
 
 box.innerHTML+=`
+
 <div class="card">
-<img src="${p.img}" onerror="this.src='https://via.placeholder.com/200'">
+
+<img 
+src="${p.img}" 
+loading="lazy"
+onerror="this.src='https://via.placeholder.com/250?text=Product'">
+
 <h3>${p.name}</h3>
-<p>$${p.price}</p>
-<button onclick="order('${p.name}')">Order</button>
+
+<p class="price">$${p.price}</p>
+
+<button onclick="add(${i})">
+Add To Cart
+</button>
+
 </div>
+
 `;
-});
+
 });
 
-/* ➕ ADD PRODUCT */
-window.addProduct = async function(){
+}
 
-const name=document.getElementById("name").value;
-const price=document.getElementById("price").value;
-const img=document.getElementById("img").value;
+render();
+
+/* ADD CART */
+
+function add(i){
+
+cart.push(products[i]);
+
+showCart();
+
+}
+
+/* SHOW CART */
+
+function showCart(){
+
+const cartBox=document.getElementById("cart");
+
+cartBox.innerHTML="";
+
+let total=0;
+
+cart.forEach((item,index)=>{
+
+total+=item.price;
+
+cartBox.innerHTML+=`
+
+<div class="cart-item">
+
+<span>${item.name}</span>
+
+<button onclick="removeItem(${index})">
+❌
+</button>
+
+</div>
+
+`;
+
+});
+
+document.getElementById("total").innerText=total;
+
+}
+
+/* REMOVE */
+
+function removeItem(i){
+
+cart.splice(i,1);
+
+showCart();
+
+}
+
+/* SEARCH */
+
+function search(val){
+
+const filtered=products.filter(p=>
+
+p.name.toLowerCase()
+.includes(val.toLowerCase())
+
+);
+
+render(filtered);
+
+}
+
+/* CHECKOUT */
+
+function checkout(){
+
+if(cart.length===0){
+
+alert("Cart Empty!");
+
+return;
+
+}
+
+let msg="🛒 APEX HOLUX ORDER %0A";
+
+cart.forEach(i=>{
+
+msg+=i.name+"%0A";
+
+});
+
+window.open(
+"https://wa.me/"+PHONE+"?text="+msg
+);
+
+}
+
+/* ADD PRODUCT */
+
+function addProduct(){
+
+const name=
+document.getElementById("name").value;
+
+const price=
+document.getElementById("price").value;
+
+const img=
+document.getElementById("img").value;
 
 if(!name || !price || !img){
-alert("Fill all fields!");
+
+alert("Fill all fields");
+
 return;
+
 }
 
-await addDoc(collection(db,"products"),{
-name:name,
+products.push({
+
+name,
 price:Number(price),
-img:img
+img
+
 });
 
-alert("Product Added 🔥");
+render();
+
+alert("🔥 Product Added");
+
 }
 
-/* 📲 ORDER */
-window.order = function(name){
-let msg="🛒 Order: "+name;
-window.open("https://wa.me/93764594322?text="+encodeURIComponent(msg));
+/* SCROLL */
+
+function scrollToProducts(){
+
+window.scrollTo({
+
+top:500,
+behavior:"smooth"
+
+});
+
 }
 
 </script>
