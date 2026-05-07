@@ -2,41 +2,38 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>🌍 Apex Holux Elite Store</title>
+<title>🔥 Apex Holux BOSS Store</title>
 
 <style>
-body{margin:0;font-family:Arial;background:#0f172a;color:white}
+body{
+margin:0;
+font-family:Arial;
+background:#0f172a;
+color:white;
+}
 
+/* HEADER */
 header{
 background:#020617;
 padding:15px;
 text-align:center;
 }
 
-input{
-width:80%;
-padding:10px;
-margin-top:10px;
-border-radius:8px;
-border:none;
-}
-
+/* GRID */
 .container{
 display:grid;
-grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
+grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
 gap:15px;
 padding:15px;
 }
 
+/* CARD */
 .card{
 background:#1e293b;
 padding:10px;
 border-radius:10px;
 text-align:center;
-transition:.3s;
 }
-
-.card:hover{transform:scale(1.05)}
 
 .card img{
 width:100%;
@@ -45,122 +42,112 @@ object-fit:cover;
 border-radius:8px;
 }
 
-button{
-background:#f59e0b;
-border:none;
-padding:6px;
-margin:3px;
-cursor:pointer;
-}
-
-.cart{
+/* ADMIN PANEL */
+.admin{
 background:#020617;
 padding:15px;
 margin:15px;
 border-radius:10px;
 }
 
+input{
+padding:8px;
+margin:5px;
+border:none;
+border-radius:5px;
+}
+
+button{
+background:#f59e0b;
+border:none;
+padding:8px;
+cursor:pointer;
+margin:5px;
+}
 </style>
+
 </head>
 
 <body>
 
 <header>
-<h2>🔥 Apex Holux Elite</h2>
-<input placeholder="Search..." oninput="search(this.value)">
+<h2>🔥 Apex Holux BOSS STORE</h2>
 </header>
 
-<div class="container" id="products"></div>
+<!-- ADMIN PANEL -->
+<div class="admin">
+<h3>⚙️ Add Product (Admin)</h3>
 
-<div class="cart">
-<h3>🛒 Cart</h3>
-<div id="cart"></div>
-<h4>Total: $<span id="total">0</span></h4>
-<button onclick="checkout()">Order WhatsApp</button>
+<input id="name" placeholder="Product Name">
+<input id="price" placeholder="Price">
+<input id="img" placeholder="Image URL">
+
+<button onclick="addProduct()">Add Product</button>
 </div>
 
-<script>
+<!-- PRODUCTS -->
+<div class="container" id="products"></div>
 
-const PHONE="93764594322";
+<script type="module">
 
-const products=[
-{name:"Nike Air Force",price:90,img:"https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500"},
-{name:"Adidas Boost",price:120,img:"https://images.unsplash.com/photo-1528701800489-20be3c5c9c8c?w=500"},
-{name:"Slides Premium",price:40,img:"https://images.unsplash.com/photo-1597047084897-51e81819a499?w=500"},
-{name:"Boots Leather",price:110,img:"https://images.unsplash.com/photo-1600185365483?w=500"}
-];
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getFirestore, collection, addDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-let cart=JSON.parse(localStorage.getItem("cart"))||[];
+/* 🔥 PUT YOUR FIREBASE CONFIG HERE */
+const firebaseConfig = {
+apiKey: "YOUR_KEY",
+authDomain: "YOUR_DOMAIN",
+projectId: "YOUR_PROJECT_ID"
+};
 
-function save(){
-localStorage.setItem("cart",JSON.stringify(cart));
-}
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
-function render(list=products){
-let box=document.getElementById("products");
+const box = document.getElementById("products");
+
+/* 🔥 REALTIME PRODUCTS */
+onSnapshot(collection(db,"products"), (snapshot)=>{
 box.innerHTML="";
 
-list.forEach((p,i)=>{
+snapshot.forEach(doc=>{
+const p = doc.data();
+
 box.innerHTML+=`
 <div class="card">
 <img src="${p.img}" onerror="this.src='https://via.placeholder.com/200'">
 <h3>${p.name}</h3>
 <p>$${p.price}</p>
-
-<button onclick="add(${i})">Add</button>
-<button onclick="view(${i})">View</button>
-
-</div>`;
+<button onclick="order('${p.name}')">Order</button>
+</div>
+`;
 });
-}
-
-render();
-
-function add(i){
-cart.push(products[i]);
-save();
-showCart();
-}
-
-function remove(i){
-cart.splice(i,1);
-save();
-showCart();
-}
-
-function showCart(){
-let c=document.getElementById("cart");
-let total=0;
-c.innerHTML="";
-
-cart.forEach((item,i)=>{
-total+=item.price;
-c.innerHTML+=`
-<p>${item.name} 
-<button onclick="remove(${i})">❌</button>
-</p>`;
 });
 
-document.getElementById("total").innerText=total;
+/* ➕ ADD PRODUCT */
+window.addProduct = async function(){
+
+const name=document.getElementById("name").value;
+const price=document.getElementById("price").value;
+const img=document.getElementById("img").value;
+
+if(!name || !price || !img){
+alert("Fill all fields!");
+return;
 }
 
-showCart();
+await addDoc(collection(db,"products"),{
+name:name,
+price:Number(price),
+img:img
+});
 
-function search(val){
-render(products.filter(p=>p.name.toLowerCase().includes(val.toLowerCase())));
+alert("Product Added 🔥");
 }
 
-function view(i){
-alert(products[i].name + "\nPrice: $" + products[i].price);
-}
-
-function checkout(){
-if(cart.length==0){alert("Cart empty");return;}
-
-let msg="🛒 ORDER\n";
-cart.forEach(i=> msg+=i.name+"\n");
-
-window.open("https://wa.me/"+PHONE+"?text="+encodeURIComponent(msg));
+/* 📲 ORDER */
+window.order = function(name){
+let msg="🛒 Order: "+name;
+window.open("https://wa.me/93764594322?text="+encodeURIComponent(msg));
 }
 
 </script>
