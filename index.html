@@ -1,1 +1,289 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>👑 ULTRA GOD MODE STORE</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Montserrat}
+body{background:#050505;color:#fff}
+
+/* HEADER */
+header{
+position:fixed;top:0;width:100%;
+display:flex;justify-content:space-between;align-items:center;
+padding:15px 6%;
+background:rgba(0,0,0,0.75);
+backdrop-filter:blur(15px);
+z-index:999;
+}
+.logo{font-size:24px;font-weight:900}
+.logo span{color:#ff9800}
+
+/* HERO */
+.hero{
+height:85vh;
+display:flex;align-items:center;justify-content:center;
+text-align:center;
+background:linear-gradient(rgba(0,0,0,0.7),#000),
+url('https://images.unsplash.com/photo-1528701800489-20be3c5c9c8c') center/cover;
+}
+.hero h1{font-size:60px;font-weight:900}
+.hero span{color:#ff9800}
+
+/* SEARCH */
+.search{
+width:90%;max-width:700px;
+margin:20px auto;
+display:block;
+padding:15px;
+border-radius:40px;
+border:none;
+outline:none;
+}
+
+/* PRODUCTS */
+.products{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+gap:20px;
+padding:50px 6%;
+}
+
+.card{
+background:#111;
+border-radius:18px;
+overflow:hidden;
+transition:0.3s;
+}
+.card:hover{transform:translateY(-10px)}
+.card img{width:100%;height:220px;object-fit:cover}
+
+.info{padding:15px}
+.price{color:#ff9800;font-weight:900;margin:5px 0}
+.btn{
+width:100%;
+padding:10px;
+background:#ff9800;
+border:none;
+font-weight:900;
+cursor:pointer;
+border-radius:10px;
+}
+
+/* CART */
+.cart{
+padding:40px 6%;
+background:#0c0c0c;
+}
+.total{color:#ff9800;font-size:28px;margin-top:10px}
+
+/* ADMIN */
+.admin{
+padding:40px 6%;
+background:#0a0a0a;
+border-top:1px solid #222;
+}
+.admin input{
+width:100%;
+padding:12px;
+margin:8px 0;
+border:none;
+border-radius:8px;
+}
+.admin button{
+width:100%;
+padding:12px;
+background:#ff9800;
+border:none;
+font-weight:900;
+cursor:pointer;
+}
+
+/* LOGIN */
+.modal{
+position:fixed;
+top:50%;left:50%;
+transform:translate(-50%,-50%);
+background:#111;
+padding:20px;
+border-radius:12px;
+display:none;
+width:300px;
+}
+.modal input{
+width:100%;
+padding:10px;
+margin:8px 0;
+border:none;
+border-radius:8px;
+}
+.modal button{
+width:100%;
+padding:10px;
+background:#ff9800;
+border:none;
+font-weight:900;
+}
+
+/* WHATSAPP */
+.whatsapp{
+position:fixed;
+bottom:20px;
+right:20px;
+width:60px;height:60px;
+background:#25D366;
+border-radius:50%;
+display:flex;align-items:center;justify-content:center;
+font-size:28px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="logo">👑 ULTRA <span>STORE</span></div>
+<div>
+<button onclick="openLogin()">Account</button>
+</div>
+</header>
+
+<section class="hero">
+<div>
+<h1>GLOBAL <span>GOD MODE STORE</span></h1>
+<p>Luxury • Sneakers • Slides • Worldwide Marketplace</p>
+</div>
+</section>
+
+<input class="search" placeholder="Search products..." oninput="search(this.value)">
+
+<section class="products" id="shop"></section>
+
+<section class="cart">
+<h2>🛒 Cart</h2>
+<div id="cart"></div>
+<div class="total">Total: $<span id="total">0</span></div>
+
+<button onclick="checkout()" style="width:100%;padding:12px;background:#25D366;border:none;font-weight:900;margin-top:10px">
+Checkout WhatsApp
+</button>
+</section>
+
+<!-- ADMIN -->
+<section class="admin">
+<h2>🧑‍💼 Admin Panel</h2>
+<input id="n" placeholder="Name">
+<input id="p" placeholder="Price">
+<input id="i" placeholder="Image">
+<button onclick="add()">Add Product</button>
+</section>
+
+<!-- LOGIN -->
+<div class="modal" id="login">
+<h3>Login</h3>
+<input id="u" placeholder="Username">
+<input id="pw" placeholder="Password">
+<button onclick="login()">Login</button>
+</div>
+
+<a class="whatsapp" href="https://wa.me/93764594322">💬</a>
+
+<script>
+
+let products = JSON.parse(localStorage.getItem("p")) || [
+{name:"Nike Air Force 1",price:90,img:"https://images.unsplash.com/photo-1542291026-7eec264c27ff"},
+{name:"Jordan Retro 4",price:180,img:"https://images.unsplash.com/photo-1600180758890-6b94519a8ba6"},
+{name:"Adidas UltraBoost",price:120,img:"https://images.unsplash.com/photo-1528701800489-20be3c5c9c8c"}
+];
+
+let cart=[];
+
+/* RENDER */
+function render(list=products){
+let box=document.getElementById("shop");
+box.innerHTML="";
+list.forEach((p,i)=>{
+box.innerHTML+=`
+<div class="card">
+<img src="${p.img}">
+<div class="info">
+<h3>${p.name}</h3>
+<div class="price">$${p.price}</div>
+<button class="btn" onclick="add(${i})">Add</button>
+</div>
+</div>`;
+});
+}
+render();
+
+/* CART */
+function add(i){
+cart.push(products[i]);
+update();
+}
+
+function update(){
+let c=document.getElementById("cart");
+let total=0;
+c.innerHTML="";
+
+cart.forEach(x=>{
+total+=x.price;
+c.innerHTML+=`✔ ${x.name} - $${x.price}<br>`;
+});
+
+document.getElementById("total").innerText=total;
+}
+
+/* SEARCH */
+function search(v){
+render(products.filter(p=>p.name.toLowerCase().includes(v.toLowerCase())));
+}
+
+/* CHECKOUT */
+function checkout(){
+let msg="ORDER:\n";
+let total=0;
+
+cart.forEach(i=>{
+msg+=i.name+" - $"+i.price+"\n";
+total+=i.price;
+});
+
+msg+="Total: $"+total;
+
+window.open("https://wa.me/93764594322?text="+encodeURIComponent(msg));
+}
+
+/* ADMIN */
+function add(){
+let n=document.getElementById("n").value;
+let p=Number(document.getElementById("p").value);
+let i=document.getElementById("i").value;
+
+products.push({name:n,price:p,img:i});
+localStorage.setItem("p",JSON.stringify(products));
+
+render();
+}
+
+/* LOGIN */
+function openLogin(){
+document.getElementById("login").style.display="block";
+}
+
+function login(){
+localStorage.setItem("user",document.getElementById("u").value);
+alert("Logged in");
+document.getElementById("login").style.display="none";
+}
+
+</script>
+
+</body>
+</html>
