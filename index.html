@@ -1,43 +1,57 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>👑 ULTRA GOD MODE STORE</title>
+<title>🌍 AMAZON STYLE GLOBAL MARKET</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800;900&display=swap" rel="stylesheet">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Montserrat}
-body{background:#050505;color:#fff}
+body{background:#0a0a0a;color:#fff}
 
 /* HEADER */
 header{
-position:fixed;top:0;width:100%;
-display:flex;justify-content:space-between;align-items:center;
+position:fixed;
+top:0;
+width:100%;
+display:flex;
+justify-content:space-between;
+align-items:center;
 padding:15px 6%;
-background:rgba(0,0,0,0.75);
+background:rgba(0,0,0,0.85);
 backdrop-filter:blur(15px);
+border-bottom:1px solid #222;
 z-index:999;
 }
 .logo{font-size:24px;font-weight:900}
-.logo span{color:#ff9800}
+.logo span{color:#ff9900}
+nav button{
+background:none;
+border:none;
+color:#fff;
+margin:0 10px;
+cursor:pointer;
+}
 
 /* HERO */
 .hero{
-height:85vh;
-display:flex;align-items:center;justify-content:center;
+height:80vh;
+display:flex;
+align-items:center;
+justify-content:center;
 text-align:center;
 background:linear-gradient(rgba(0,0,0,0.7),#000),
 url('https://images.unsplash.com/photo-1528701800489-20be3c5c9c8c') center/cover;
 }
 .hero h1{font-size:60px;font-weight:900}
-.hero span{color:#ff9800}
+.hero span{color:#ff9900}
 
 /* SEARCH */
 .search{
-width:90%;max-width:700px;
+width:90%;
+max-width:700px;
 margin:20px auto;
 display:block;
 padding:15px;
@@ -59,55 +73,79 @@ background:#111;
 border-radius:18px;
 overflow:hidden;
 transition:0.3s;
+box-shadow:0 10px 30px rgba(0,0,0,0.4);
 }
 .card:hover{transform:translateY(-10px)}
 .card img{width:100%;height:220px;object-fit:cover}
 
 .info{padding:15px}
-.price{color:#ff9800;font-weight:900;margin:5px 0}
+.price{color:#ff9900;font-weight:900}
 .btn{
 width:100%;
 padding:10px;
-background:#ff9800;
+background:#ff9900;
 border:none;
 font-weight:900;
 cursor:pointer;
-border-radius:10px;
 }
 
 /* CART */
 .cart{
 padding:40px 6%;
-background:#0c0c0c;
+background:#0d0d0d;
 }
-.total{color:#ff9800;font-size:28px;margin-top:10px}
+.item{
+display:flex;
+justify-content:space-between;
+padding:8px 0;
+border-bottom:1px solid #222;
+}
 
 /* ADMIN */
 .admin{
 padding:40px 6%;
-background:#0a0a0a;
+background:#0b0b0b;
 border-top:1px solid #222;
 }
 .admin input{
 width:100%;
-padding:12px;
-margin:8px 0;
+padding:10px;
+margin:6px 0;
 border:none;
 border-radius:8px;
 }
 .admin button{
 width:100%;
-padding:12px;
-background:#ff9800;
+padding:10px;
+background:#ff9900;
 border:none;
 font-weight:900;
 cursor:pointer;
 }
 
+/* PAYMENT */
+.pay{
+margin-top:15px;
+padding:15px;
+background:#111;
+border-radius:10px;
+}
+.pay button{
+width:100%;
+padding:10px;
+margin-top:5px;
+border:none;
+font-weight:900;
+cursor:pointer;
+}
+.whatsapp{background:#25D366;color:#fff}
+.cardpay{background:#1e90ff;color:#fff}
+
 /* LOGIN */
 .modal{
 position:fixed;
-top:50%;left:50%;
+top:50%;
+left:50%;
 transform:translate(-50%,-50%);
 background:#111;
 padding:20px;
@@ -125,21 +163,9 @@ border-radius:8px;
 .modal button{
 width:100%;
 padding:10px;
-background:#ff9800;
+background:#ff9900;
 border:none;
 font-weight:900;
-}
-
-/* WHATSAPP */
-.whatsapp{
-position:fixed;
-bottom:20px;
-right:20px;
-width:60px;height:60px;
-background:#25D366;
-border-radius:50%;
-display:flex;align-items:center;justify-content:center;
-font-size:28px;
 }
 </style>
 </head>
@@ -147,16 +173,17 @@ font-size:28px;
 <body>
 
 <header>
-<div class="logo">👑 ULTRA <span>STORE</span></div>
-<div>
+<div class="logo">🛒 AMAZON <span>GLOBAL</span></div>
+<nav>
 <button onclick="openLogin()">Account</button>
-</div>
+<button onclick="showOrders()">Orders</button>
+</nav>
 </header>
 
 <section class="hero">
 <div>
-<h1>GLOBAL <span>GOD MODE STORE</span></h1>
-<p>Luxury • Sneakers • Slides • Worldwide Marketplace</p>
+<h1>GLOBAL <span>MEGA STORE</span></h1>
+<p>Amazon-style Marketplace • Sneakers • Fashion • Worldwide</p>
 </div>
 </section>
 
@@ -167,41 +194,41 @@ font-size:28px;
 <section class="cart">
 <h2>🛒 Cart</h2>
 <div id="cart"></div>
-<div class="total">Total: $<span id="total">0</span></div>
 
-<button onclick="checkout()" style="width:100%;padding:12px;background:#25D366;border:none;font-weight:900;margin-top:10px">
-Checkout WhatsApp
-</button>
+<div class="pay">
+<h3>💳 Payment Methods</h3>
+<button class="whatsapp" onclick="checkoutWA()">WhatsApp Pay</button>
+<button class="cardpay" onclick="fakePay()">Card Payment</button>
+</div>
 </section>
 
 <!-- ADMIN -->
 <section class="admin">
-<h2>🧑‍💼 Admin Panel</h2>
-<input id="n" placeholder="Name">
+<h2>🧑‍💼 Seller Panel</h2>
+<input id="n" placeholder="Product Name">
 <input id="p" placeholder="Price">
-<input id="i" placeholder="Image">
-<button onclick="add()">Add Product</button>
+<input id="i" placeholder="Image URL">
+<button onclick="addProduct()">Add Product</button>
 </section>
 
 <!-- LOGIN -->
 <div class="modal" id="login">
-<h3>Login</h3>
+<h3>Account Login</h3>
 <input id="u" placeholder="Username">
 <input id="pw" placeholder="Password">
 <button onclick="login()">Login</button>
 </div>
 
-<a class="whatsapp" href="https://wa.me/93764594322">💬</a>
-
 <script>
 
-let products = JSON.parse(localStorage.getItem("p")) || [
+let products = JSON.parse(localStorage.getItem("products")) || [
 {name:"Nike Air Force 1",price:90,img:"https://images.unsplash.com/photo-1542291026-7eec264c27ff"},
 {name:"Jordan Retro 4",price:180,img:"https://images.unsplash.com/photo-1600180758890-6b94519a8ba6"},
-{name:"Adidas UltraBoost",price:120,img:"https://images.unsplash.com/photo-1528701800489-20be3c5c9c8c"}
+{name:"Adidas Ultraboost",price:120,img:"https://images.unsplash.com/photo-1528701800489-20be3c5c9c8c"}
 ];
 
 let cart=[];
+let orders=JSON.parse(localStorage.getItem("orders"))||[];
 
 /* RENDER */
 function render(list=products){
@@ -228,16 +255,21 @@ update();
 }
 
 function update(){
-let c=document.getElementById("cart");
+let box=document.getElementById("cart");
 let total=0;
-c.innerHTML="";
 
-cart.forEach(x=>{
-total+=x.price;
-c.innerHTML+=`✔ ${x.name} - $${x.price}<br>`;
+box.innerHTML="";
+
+cart.forEach((c,i)=>{
+total+=c.price;
+box.innerHTML+=`
+<div class="item">
+<span>${c.name}</span>
+<span>$${c.price}</span>
+</div>`;
 });
 
-document.getElementById("total").innerText=total;
+box.innerHTML+=`<h3 style="color:#ff9900;margin-top:10px">Total: $${total}</h3>`;
 }
 
 /* SEARCH */
@@ -245,30 +277,38 @@ function search(v){
 render(products.filter(p=>p.name.toLowerCase().includes(v.toLowerCase())));
 }
 
-/* CHECKOUT */
-function checkout(){
+/* WHATSAPP CHECKOUT */
+function checkoutWA(){
 let msg="ORDER:\n";
 let total=0;
 
-cart.forEach(i=>{
-msg+=i.name+" - $"+i.price+"\n";
-total+=i.price;
+cart.forEach(c=>{
+msg+=c.name+" - $"+c.price+"\n";
+total+=c.price;
 });
 
 msg+="Total: $"+total;
 
+orders.push({items:cart,total});
+localStorage.setItem("orders",JSON.stringify(orders));
+
 window.open("https://wa.me/93764594322?text="+encodeURIComponent(msg));
 }
 
+/* FAKE CARD PAYMENT */
+function fakePay(){
+alert("💳 Payment Successful (Demo Mode)");
+checkoutWA();
+}
+
 /* ADMIN */
-function add(){
+function addProduct(){
 let n=document.getElementById("n").value;
 let p=Number(document.getElementById("p").value);
 let i=document.getElementById("i").value;
 
 products.push({name:n,price:p,img:i});
-localStorage.setItem("p",JSON.stringify(products));
-
+localStorage.setItem("products",JSON.stringify(products));
 render();
 }
 
@@ -279,8 +319,13 @@ document.getElementById("login").style.display="block";
 
 function login(){
 localStorage.setItem("user",document.getElementById("u").value);
-alert("Logged in");
+alert("Welcome!");
 document.getElementById("login").style.display="none";
+}
+
+/* ORDERS */
+function showOrders(){
+alert(JSON.stringify(orders,null,2));
 }
 
 </script>
