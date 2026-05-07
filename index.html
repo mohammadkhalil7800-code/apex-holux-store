@@ -3,184 +3,280 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>🔥 Apex Holux Ultra Instinct Store</title>
+
+<title>🌍 Apex Holux Global Market</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
+
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:Arial;
+font-family:'Poppins',sans-serif;
 }
 
 body{
-background:#0f172a;
+background:#0b0f1a;
 color:white;
+overflow-x:hidden;
 }
 
+/* HEADER */
+
 header{
-background:linear-gradient(90deg,#000,#1e293b);
-padding:20px;
+position:sticky;
+top:0;
+z-index:1000;
+background:#0f172a;
+padding:15px 5%;
 display:flex;
 justify-content:space-between;
 align-items:center;
-flex-wrap:wrap;
-position:sticky;
-top:0;
-z-index:999;
+border-bottom:1px solid rgba(255,255,255,.1);
 }
 
 .logo{
 font-size:28px;
-font-weight:bold;
-color:#fbbf24;
+font-weight:700;
+color:#00e5ff;
 }
 
 nav a{
-text-decoration:none;
 color:white;
-margin:10px;
+text-decoration:none;
+margin:0 15px;
 font-size:15px;
+transition:.3s;
 }
 
+nav a:hover{
+color:#00e5ff;
+}
+
+/* HERO */
+
 .hero{
-height:420px;
-background:url('https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=1200') center/cover;
+height:90vh;
 display:flex;
 align-items:center;
 justify-content:center;
 text-align:center;
 padding:20px;
+background:
+linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.7)),
+url('https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=1600');
+background-size:cover;
+background-position:center;
 }
 
-.hero-box{
-background:rgba(0,0,0,0.6);
-padding:30px;
-border-radius:15px;
-max-width:700px;
-}
-
-.hero h1{
-font-size:42px;
-margin-bottom:10px;
-color:#fbbf24;
-}
-
-.hero p{
-color:#e2e8f0;
+.hero-content h1{
+font-size:65px;
 margin-bottom:15px;
+font-weight:700;
 }
 
-button{
-background:#f59e0b;
+.hero-content p{
+font-size:20px;
+opacity:.9;
+margin-bottom:25px;
+}
+
+.hero button{
+padding:15px 35px;
 border:none;
-padding:10px 15px;
-font-weight:bold;
+background:#00e5ff;
+color:black;
+font-size:18px;
+font-weight:600;
+border-radius:50px;
 cursor:pointer;
-border-radius:8px;
+transition:.3s;
 }
 
-.search{
-padding:20px;
+.hero button:hover{
+transform:scale(1.08);
+}
+
+/* SEARCH */
+
+.search-box{
+padding:30px 5%;
 text-align:center;
 }
 
-.search input{
-width:90%;
-max-width:500px;
-padding:12px;
+.search-box input{
+width:100%;
+max-width:600px;
+padding:15px;
 border:none;
-border-radius:8px;
+border-radius:40px;
+font-size:16px;
+outline:none;
 }
 
-.categories{
-text-align:center;
-padding-bottom:15px;
+/* FILTERS */
+
+.filters{
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
+gap:10px;
+padding:10px;
 }
 
-.categories button{
-margin:5px;
+.filters button{
+padding:10px 20px;
+border:none;
+border-radius:30px;
+background:#111827;
+color:white;
+cursor:pointer;
+transition:.3s;
 }
+
+.filters button:hover{
+background:#00e5ff;
+color:black;
+}
+
+/* PRODUCTS */
 
 .container{
+padding:40px 5%;
 display:grid;
-grid-template-columns:repeat(auto-fill,minmax(230px,1fr));
-gap:20px;
-padding:20px;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:25px;
 }
 
 .card{
-background:#1e293b;
-padding:12px;
-border-radius:15px;
-transition:0.3s;
-position:relative;
+background:#111827;
+border-radius:25px;
 overflow:hidden;
+transition:.4s;
+position:relative;
+box-shadow:0 10px 30px rgba(0,0,0,.4);
 }
 
 .card:hover{
-transform:translateY(-8px);
+transform:translateY(-10px);
 }
 
 .badge{
 position:absolute;
-top:10px;
-left:10px;
-background:#22c55e;
-padding:5px 10px;
-border-radius:20px;
+top:15px;
+left:15px;
+background:#00e5ff;
+color:black;
+padding:6px 12px;
 font-size:12px;
-font-weight:bold;
+font-weight:700;
+border-radius:20px;
 }
 
 .card img{
 width:100%;
-height:190px;
+height:260px;
 object-fit:cover;
-border-radius:12px;
 }
 
-.card h3{
-margin-top:10px;
+.info{
+padding:20px;
+}
+
+.info h3{
+font-size:22px;
+margin-bottom:10px;
 }
 
 .price{
-color:#fbbf24;
 font-size:22px;
+font-weight:700;
+color:#00e5ff;
+margin-bottom:15px;
+}
+
+.card button{
+width:100%;
+padding:13px;
+border:none;
+border-radius:14px;
+background:#00e5ff;
+font-size:16px;
+font-weight:600;
+cursor:pointer;
+}
+
+/* CART */
+
+.cart{
+margin:40px 5%;
+background:#111827;
+padding:25px;
+border-radius:25px;
+}
+
+.cart h2{
+margin-bottom:20px;
+}
+
+.total{
+font-size:25px;
+margin-top:20px;
+color:#00e5ff;
+}
+
+/* FOOTER */
+
+footer{
+margin-top:60px;
+background:#020617;
+padding:50px 5%;
+text-align:center;
+}
+
+footer h2{
+font-size:35px;
+margin-bottom:10px;
+color:#00e5ff;
+}
+
+footer p{
+opacity:.8;
 margin:8px 0;
 }
 
-.cart{
-background:#020617;
-margin:20px;
-padding:20px;
-border-radius:15px;
-}
-
-.cart-item{
-display:flex;
-justify-content:space-between;
-margin:10px 0;
-}
-
-.footer{
-background:#000;
-text-align:center;
-padding:30px;
-margin-top:30px;
-color:#94a3b8;
-}
+/* WHATSAPP */
 
 .whatsapp{
 position:fixed;
-bottom:20px;
-right:20px;
-background:#22c55e;
-color:white;
-padding:15px;
+bottom:25px;
+right:25px;
+width:70px;
+height:70px;
 border-radius:50%;
-font-size:24px;
+background:#25D366;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:35px;
 text-decoration:none;
+color:white;
+box-shadow:0 10px 25px rgba(0,0,0,.5);
+z-index:1000;
+}
+
+@media(max-width:768px){
+
+.hero-content h1{
+font-size:40px;
+}
+
+.hero-content p{
+font-size:16px;
+}
+
 }
 
 </style>
@@ -189,222 +285,277 @@ text-decoration:none;
 <body>
 
 <header>
-<div class="logo">🔥 Apex Holux</div>
+
+<div class="logo">
+🌍 Apex Holux
+</div>
 
 <nav>
 <a href="#">Home</a>
-<a href="#">Shop</a>
+<a href="#">Global Shop</a>
 <a href="#">Trending</a>
+<a href="#">Luxury</a>
 <a href="#">Contact</a>
 </nav>
+
 </header>
 
 <section class="hero">
-<div class="hero-box">
-<h1>🌍 GLOBAL SHOES MARKET</h1>
-<p>Premium Sneakers • Sandals • Slides • Boots</p>
-<button onclick="scrollToProducts()">Shop Now</button>
+
+<div class="hero-content">
+
+<h1>GLOBAL FASHION MARKET</h1>
+
+<p>
+Premium Sneakers • Luxury Slides • Fashion Sandals • Worldwide Trend
+</p>
+
+<button onclick="window.scrollTo(0,700)">
+Shop Now
+</button>
+
 </div>
+
 </section>
 
-<div class="search">
-<input type="text" placeholder="Search products..." oninput="searchProducts(this.value)">
+<div class="search-box">
+
+<input 
+type="text" 
+placeholder="Search Global Products..."
+oninput="searchProducts(this.value)"
+>
+
 </div>
 
-<div class="categories">
+<div class="filters">
+
 <button onclick="filter('all')">All</button>
 <button onclick="filter('sneaker')">Sneakers</button>
-<button onclick="filter('sandal')">Sandals</button>
 <button onclick="filter('slides')">Slides</button>
-<button onclick="filter('boots')">Boots</button>
+<button onclick="filter('sandal')">Sandals</button>
+<button onclick="filter('luxury')">Luxury</button>
+
 </div>
 
 <div class="container" id="products"></div>
 
 <div class="cart">
+
 <h2>🛒 Shopping Cart</h2>
+
 <div id="cart"></div>
-<h3>Total: $<span id="total">0</span></h3>
-<br>
-<button onclick="checkout()">Order WhatsApp</button>
+
+<div class="total">
+Total: $<span id="total">0</span>
 </div>
 
-<div class="footer">
-<h2>🔥 Apex Holux Trading</h2>
+<br>
+
+<button onclick="checkout()">
+Order On WhatsApp
+</button>
+
+</div>
+
+<footer>
+
+<h2>Apex Holux Global</h2>
+
 <p>Import • Wholesale • Retail</p>
-<br>
-<p>📞 WhatsApp: 0764 594 322</p>
-<p>🌍 Afghanistan Global Market</p>
-</div>
 
-<a class="whatsapp" href="https://wa.me/93764594322">💬</a>
+<p>🌍 Worldwide Fashion Market</p>
+
+<p>📞 WhatsApp: 0764 594 322</p>
+
+</footer>
+
+<a 
+class="whatsapp"
+href="https://wa.me/93764594322"
+target="_blank"
+>
+💬
+</a>
 
 <script>
 
-const PHONE="93764594322";
+const PHONE = "93764594322";
 
-const products=[
+const products = [
 
 {
 name:"Nike Air Force 1",
-price:90,
+price:120,
 cat:"sneaker",
-img:"https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500"
+badge:"BEST SELLER",
+img:"https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=1000"
 },
 
 {
-name:"Jordan Retro 4",
-price:180,
+name:"Jordan Retro High",
+price:220,
 cat:"sneaker",
-img:"https://images.unsplash.com/photo-1600180758890-6b94519a8ba6?w=500"
-},
-
-{
-name:"QD566 Premium Sandal",
-price:55,
-cat:"sandal",
-img:"https://images.unsplash.com/photo-1603487742131-4160ec999306?w=500"
+badge:"TRENDING",
+img:"https://images.unsplash.com/photo-1552346154-21d32810aba3?w=1000"
 },
 
 {
 name:"Luxury Beige Sandal",
-price:60,
+price:75,
 cat:"sandal",
-img:"https://images.unsplash.com/photo-1608256246200-53e635b5b65f?w=500"
+badge:"HOT",
+img:"https://images.unsplash.com/photo-1603487742131-4160ec999306?w=1000"
 },
 
 {
-name:"Soft Premium Slides",
-price:45,
+name:"Premium Slides",
+price:55,
 cat:"slides",
-img:"https://images.unsplash.com/photo-1597047084897-51e81819a499?w=500"
-},
-
-{
-name:"Leather Boots",
-price:110,
-cat:"boots",
-img:"https://images.unsplash.com/photo-1600185365483?w=500"
+badge:"NEW",
+img:"https://images.unsplash.com/photo-1597047084897-51e81819a499?w=1000"
 },
 
 {
 name:"Adidas Ultraboost",
-price:120,
+price:180,
 cat:"sneaker",
-img:"https://images.unsplash.com/photo-1528701800489-20be3c5c9c8c?w=500"
+badge:"SPORT",
+img:"https://images.unsplash.com/photo-1528701800489-20be3c5c9c8c?w=1000"
 },
 
 {
-name:"Puma RS-X",
-price:95,
-cat:"sneaker",
-img:"https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=500"
+name:"Luxury Fashion Sneaker",
+price:260,
+cat:"luxury",
+badge:"LUXURY",
+img:"https://images.unsplash.com/photo-1549298916-b41d501d3772?w=1000"
+},
+
+{
+name:"Soft Comfort Slides",
+price:45,
+cat:"slides",
+badge:"TOP",
+img:"https://images.unsplash.com/photo-1600180758890-6b94519a8ba6?w=1000"
+},
+
+{
+name:"Premium Leather Boots",
+price:190,
+cat:"luxury",
+badge:"WINTER",
+img:"https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?w=1000"
 }
 
 ];
 
-let cart=[];
+let cart = [];
+let total = 0;
 
-function render(list=products){
+function render(list){
 
-let box=document.getElementById("products");
-box.innerHTML="";
+let box = document.getElementById("products");
 
-list.forEach((p,i)=>{
+box.innerHTML = "";
 
-box.innerHTML+=`
+list.forEach(p=>{
+
+box.innerHTML += `
+
 <div class="card">
 
-<div class="badge">🔥 Best Seller</div>
+<div class="badge">
+🔥 ${p.badge}
+</div>
 
-<img src="${p.img}" loading="lazy"
-onerror="this.src='https://via.placeholder.com/250?text=Apex+Holux'">
+<img 
+src="${p.img}" 
+loading="lazy"
+onerror="this.src='https://via.placeholder.com/400?text=Apex+Holux'"
+>
+
+<div class="info">
 
 <h3>${p.name}</h3>
 
-<p class="price">$${p.price}</p>
+<div class="price">
+$${p.price}
+</div>
 
-<button onclick="add(${i})">Add To Cart</button>
+<button onclick="add('${p.name}',${p.price})">
+Add To Cart
+</button>
 
 </div>
+
+</div>
+
 `;
 
 });
 
 }
 
-render();
+render(products);
 
-function add(i){
-cart.push(products[i]);
-showCart();
-}
+function add(name,price){
 
-function showCart(){
+cart.push({name,price});
 
-let c=document.getElementById("cart");
-let total=0;
+total += price;
 
-c.innerHTML="";
+document.getElementById("cart").innerHTML += `
+<p>✅ ${name} - $${price}</p>
+`;
 
-cart.forEach((item,index)=>{
+document.getElementById("total").innerText = total;
 
- total+=item.price;
-
- c.innerHTML+=`
- <div class="cart-item">
- <span>${item.name}</span>
- <button onclick="removeItem(${index})">❌</button>
- </div>
- `;
-
-});
-
-document.getElementById("total").innerText=total;
-
-}
-
-function removeItem(i){
-cart.splice(i,1);
-showCart();
 }
 
 function searchProducts(val){
 
-let filtered=products.filter(p=>
+render(
+products.filter(p=>
 p.name.toLowerCase().includes(val.toLowerCase())
+)
 );
-
-render(filtered);
 
 }
 
 function filter(cat){
-if(cat==="all") return render(products);
+
+if(cat==="all"){
+render(products);
+return;
+}
+
 render(products.filter(p=>p.cat===cat));
+
 }
 
 function checkout(){
 
 if(cart.length===0){
-alert("Cart Empty!");
+
+alert("Cart is Empty");
+
 return;
+
 }
 
-let msg="🛒 APEX HOLUX ORDER%0A";
+let msg = "🌍 GLOBAL ORDER %0A%0A";
 
 cart.forEach(i=>{
-msg+=i.name+"%0A";
+msg += "✅ " + i.name + " - $" + i.price + "%0A";
 });
+
+msg += "%0A Total: $" + total;
 
 window.open(
 "https://wa.me/"+PHONE+"?text="+msg
 );
 
-}
-
-function scrollToProducts(){
-window.scrollTo({top:700,behavior:'smooth'});
 }
 
 </script>
