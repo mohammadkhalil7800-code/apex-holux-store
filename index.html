@@ -3,75 +3,138 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>👑 ULTRA GOD MODE STORE</title>
+<title>🔥 Apex Holux | Global Luxury Market</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800;900&display=swap" rel="stylesheet">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Montserrat}
-body{background:#050505;color:#fff}
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Montserrat;
+}
+
+body{
+background:#050505;
+color:white;
+}
 
 /* HEADER */
 header{
-position:fixed;top:0;width:100%;
-display:flex;justify-content:space-between;align-items:center;
-padding:15px 6%;
-background:rgba(0,0,0,0.75);
-backdrop-filter:blur(15px);
-z-index:999;
+position:sticky;
+top:0;
+z-index:1000;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:16px 6%;
+background:rgba(0,0,0,0.85);
+backdrop-filter:blur(12px);
+border-bottom:1px solid rgba(255,255,255,0.08);
 }
-.logo{font-size:24px;font-weight:900}
-.logo span{color:#ff9800}
+
+.logo{
+font-size:30px;
+font-weight:900;
+letter-spacing:1px;
+}
+
+.logo span{
+color:#ff9800;
+}
+
+nav a{
+color:white;
+margin:0 10px;
+text-decoration:none;
+font-size:14px;
+}
+
+nav a:hover{
+color:#ff9800;
+}
 
 /* HERO */
 .hero{
-height:85vh;
-display:flex;align-items:center;justify-content:center;
+height:90vh;
+display:flex;
+align-items:center;
+justify-content:center;
 text-align:center;
 background:linear-gradient(rgba(0,0,0,0.7),#000),
 url('https://images.unsplash.com/photo-1528701800489-20be3c5c9c8c') center/cover;
 }
-.hero h1{font-size:60px;font-weight:900}
-.hero span{color:#ff9800}
 
-/* SEARCH */
-.search{
-width:90%;max-width:700px;
-margin:20px auto;
-display:block;
-padding:15px;
-border-radius:40px;
+.hero h1{
+font-size:65px;
+font-weight:900;
+}
+
+.hero span{
+color:#ff9800;
+}
+
+.hero p{
+opacity:0.8;
+margin-top:10px;
+font-size:18px;
+}
+
+.btn{
+margin-top:20px;
+padding:14px 35px;
+background:#ff9800;
 border:none;
-outline:none;
+font-weight:800;
+border-radius:40px;
+cursor:pointer;
 }
 
 /* PRODUCTS */
 .products{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-gap:20px;
-padding:50px 6%;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:22px;
+padding:60px 6%;
 }
 
 .card{
 background:#111;
-border-radius:18px;
+border-radius:20px;
 overflow:hidden;
 transition:0.3s;
+box-shadow:0 10px 25px rgba(0,0,0,0.4);
 }
-.card:hover{transform:translateY(-10px)}
-.card img{width:100%;height:220px;object-fit:cover}
 
-.info{padding:15px}
-.price{color:#ff9800;font-weight:900;margin:5px 0}
-.btn{
+.card:hover{
+transform:translateY(-10px);
+}
+
+.card img{
 width:100%;
-padding:10px;
+height:230px;
+object-fit:cover;
+}
+
+.info{
+padding:15px;
+}
+
+.price{
+color:#ff9800;
+font-size:22px;
+font-weight:900;
+margin:8px 0;
+}
+
+.add{
+width:100%;
+padding:12px;
 background:#ff9800;
 border:none;
-font-weight:900;
+font-weight:800;
 cursor:pointer;
-border-radius:10px;
 }
 
 /* CART */
@@ -79,54 +142,11 @@ border-radius:10px;
 padding:40px 6%;
 background:#0c0c0c;
 }
-.total{color:#ff9800;font-size:28px;margin-top:10px}
 
-/* ADMIN */
-.admin{
-padding:40px 6%;
-background:#0a0a0a;
-border-top:1px solid #222;
-}
-.admin input{
-width:100%;
-padding:12px;
-margin:8px 0;
-border:none;
-border-radius:8px;
-}
-.admin button{
-width:100%;
-padding:12px;
-background:#ff9800;
-border:none;
-font-weight:900;
-cursor:pointer;
-}
-
-/* LOGIN */
-.modal{
-position:fixed;
-top:50%;left:50%;
-transform:translate(-50%,-50%);
-background:#111;
-padding:20px;
-border-radius:12px;
-display:none;
-width:300px;
-}
-.modal input{
-width:100%;
-padding:10px;
-margin:8px 0;
-border:none;
-border-radius:8px;
-}
-.modal button{
-width:100%;
-padding:10px;
-background:#ff9800;
-border:none;
-font-weight:900;
+.total{
+color:#ff9800;
+font-size:26px;
+margin-top:10px;
 }
 
 /* WHATSAPP */
@@ -134,11 +154,16 @@ font-weight:900;
 position:fixed;
 bottom:20px;
 right:20px;
-width:60px;height:60px;
+width:60px;
+height:60px;
 background:#25D366;
 border-radius:50%;
-display:flex;align-items:center;justify-content:center;
-font-size:28px;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:30px;
+color:white;
+text-decoration:none;
 }
 </style>
 </head>
@@ -146,140 +171,87 @@ font-size:28px;
 <body>
 
 <header>
-<div class="logo">👑 ULTRA <span>STORE</span></div>
-<div>
-<button onclick="openLogin()">Account</button>
-</div>
+<div class="logo">🔥 Apex <span>Holux</span></div>
+<nav>
+<a href="#">Home</a>
+<a href="#shop">Shop</a>
+<a href="#cart">Cart</a>
+</nav>
 </header>
 
 <section class="hero">
 <div>
-<h1>GLOBAL <span>GOD MODE STORE</span></h1>
-<p>Luxury • Sneakers • Slides • Worldwide Marketplace</p>
+<h1>GLOBAL LUXURY <span>MARKET</span></h1>
+<p>Premium Sneakers • Slides • Sketchers • QD Sandals • Worldwide Fashion</p>
+<button class="btn">Explore Now</button>
 </div>
 </section>
-
-<input class="search" placeholder="Search products..." oninput="search(this.value)">
 
 <section class="products" id="shop"></section>
 
-<section class="cart">
-<h2>🛒 Cart</h2>
-<div id="cart"></div>
+<section class="cart" id="cart">
+<h2>🛒 Your Cart</h2>
+<div id="cartBox"></div>
 <div class="total">Total: $<span id="total">0</span></div>
-
-<button onclick="checkout()" style="width:100%;padding:12px;background:#25D366;border:none;font-weight:900;margin-top:10px">
-Checkout WhatsApp
-</button>
+<button class="btn" onclick="checkout()">Order via WhatsApp</button>
 </section>
-
-<!-- ADMIN -->
-<section class="admin">
-<h2>🧑‍💼 Admin Panel</h2>
-<input id="n" placeholder="Name">
-<input id="p" placeholder="Price">
-<input id="i" placeholder="Image">
-<button onclick="add()">Add Product</button>
-</section>
-
-<!-- LOGIN -->
-<div class="modal" id="login">
-<h3>Login</h3>
-<input id="u" placeholder="Username">
-<input id="pw" placeholder="Password">
-<button onclick="login()">Login</button>
-</div>
 
 <a class="whatsapp" href="https://wa.me/93764594322">💬</a>
 
 <script>
 
-let products = JSON.parse(localStorage.getItem("p")) || [
+const PHONE="93764594322";
+
+let products=[
 {name:"Nike Air Force 1",price:90,img:"https://images.unsplash.com/photo-1542291026-7eec264c27ff"},
 {name:"Jordan Retro 4",price:180,img:"https://images.unsplash.com/photo-1600180758890-6b94519a8ba6"},
-{name:"Adidas UltraBoost",price:120,img:"https://images.unsplash.com/photo-1528701800489-20be3c5c9c8c"}
+{name:"Adidas Ultraboost",price:120,img:"https://images.unsplash.com/photo-1528701800489-20be3c5c9c8c"},
+{name:"Sketchers Comfort",price:95,img:"https://images.unsplash.com/photo-1519741497674-611481863552"},
+{name:"Luxury Slides",price:45,img:"https://images.unsplash.com/photo-1600185365483-26d7a4cc7519"}
 ];
 
 let cart=[];
+let total=0;
 
-/* RENDER */
-function render(list=products){
+function show(){
 let box=document.getElementById("shop");
 box.innerHTML="";
-list.forEach((p,i)=>{
+products.forEach((p,i)=>{
 box.innerHTML+=`
 <div class="card">
 <img src="${p.img}">
 <div class="info">
 <h3>${p.name}</h3>
 <div class="price">$${p.price}</div>
-<button class="btn" onclick="add(${i})">Add</button>
+<button class="add" onclick="add(${i})">Add To Cart</button>
 </div>
 </div>`;
 });
 }
-render();
+show();
 
-/* CART */
 function add(i){
 cart.push(products[i]);
-update();
+total+=products[i].price;
+renderCart();
 }
 
-function update(){
-let c=document.getElementById("cart");
-let total=0;
-c.innerHTML="";
-
-cart.forEach(x=>{
-total+=x.price;
-c.innerHTML+=`✔ ${x.name} - $${x.price}<br>`;
+function renderCart(){
+let box=document.getElementById("cartBox");
+box.innerHTML="";
+cart.forEach(p=>{
+box.innerHTML+=`<p>✔ ${p.name} - $${p.price}</p>`;
 });
-
 document.getElementById("total").innerText=total;
 }
 
-/* SEARCH */
-function search(v){
-render(products.filter(p=>p.name.toLowerCase().includes(v.toLowerCase())));
-}
-
-/* CHECKOUT */
 function checkout(){
-let msg="ORDER:\n";
-let total=0;
-
-cart.forEach(i=>{
-msg+=i.name+" - $"+i.price+"\n";
-total+=i.price;
+let msg="🔥 APEX HOLUX ORDER 🔥\n\n";
+cart.forEach(p=>{
+msg+=p.name+" - $"+p.price+"\n";
 });
-
-msg+="Total: $"+total;
-
-window.open("https://wa.me/93764594322?text="+encodeURIComponent(msg));
-}
-
-/* ADMIN */
-function add(){
-let n=document.getElementById("n").value;
-let p=Number(document.getElementById("p").value);
-let i=document.getElementById("i").value;
-
-products.push({name:n,price:p,img:i});
-localStorage.setItem("p",JSON.stringify(products));
-
-render();
-}
-
-/* LOGIN */
-function openLogin(){
-document.getElementById("login").style.display="block";
-}
-
-function login(){
-localStorage.setItem("user",document.getElementById("u").value);
-alert("Logged in");
-document.getElementById("login").style.display="none";
+msg+="\nTOTAL: $"+total;
+window.open("https://wa.me/"+PHONE+"?text="+encodeURIComponent(msg));
 }
 
 </script>
