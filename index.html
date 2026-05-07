@@ -3,261 +3,709 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Afghan Global Market</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+<title>🌍 Apex Holux World Market</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Montserrat,sans-serif}
-body{background:#050505;color:#fff}
 
-/* HEADER */
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Montserrat',sans-serif;
+scroll-behavior:smooth;
+}
+
+body{
+background:#060606;
+color:white;
+overflow-x:hidden;
+}
+
+/* NAVBAR */
+
 header{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+padding:18px 6%;
 display:flex;
 justify-content:space-between;
 align-items:center;
-padding:18px 6%;
-background:rgba(0,0,0,0.85);
-position:sticky;
-top:0;
-z-index:1000;
-backdrop-filter:blur(10px);
+background:rgba(0,0,0,0.75);
+backdrop-filter:blur(14px);
+z-index:999;
+border-bottom:1px solid rgba(255,255,255,0.08);
 }
-.logo{font-size:26px;font-weight:900}
-.logo span{color:#ff9800}
-nav a{color:#fff;margin:0 10px;text-decoration:none}
-nav a:hover{color:#ff9800}
+
+.logo{
+font-size:34px;
+font-weight:900;
+letter-spacing:2px;
+}
+
+.logo span{
+color:#ff9900;
+}
+
+nav{
+display:flex;
+gap:22px;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+font-size:15px;
+transition:0.3s;
+}
+
+nav a:hover{
+color:#ff9900;
+}
 
 /* HERO */
+
 .hero{
-height:90vh;
-display:flex;
-align-items:center;
-justify-content:center;
-text-align:center;
+height:100vh;
 background:
-linear-gradient(rgba(0,0,0,0.7),#000),
-url('https://images.unsplash.com/photo-1600180758890-6b94519a8ba6') center/cover;
+linear-gradient(rgba(0,0,0,0.65),rgba(0,0,0,0.8)),
+url('https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=1600')
+center/cover;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
 padding:20px;
 }
-.hero h1{font-size:60px;font-weight:900}
-.hero span{color:#ff9800}
-.hero p{opacity:0.8;margin-top:15px}
-.btn{
-margin-top:20px;
-padding:14px 40px;
-background:#ff9800;
-border:none;
-border-radius:30px;
+
+.hero-content h1{
+font-size:80px;
 font-weight:900;
+line-height:1.1;
+margin-bottom:20px;
+}
+
+.hero-content span{
+color:#ff9900;
+}
+
+.hero-content p{
+font-size:20px;
+max-width:900px;
+margin:auto;
+opacity:0.9;
+line-height:1.8;
+}
+
+.hero-btn{
+display:inline-block;
+margin-top:35px;
+padding:18px 45px;
+background:#ff9900;
+color:black;
+font-weight:800;
+text-decoration:none;
+border-radius:50px;
+font-size:18px;
+transition:0.3s;
+}
+
+.hero-btn:hover{
+transform:scale(1.08);
+background:white;
+}
+
+/* MARKET STATS */
+
+.stats{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
+padding:70px 6%;
+background:#0b0b0b;
+}
+
+.stat{
+background:#111;
+padding:35px;
+border-radius:22px;
+text-align:center;
+box-shadow:0 10px 25px rgba(0,0,0,0.3);
+}
+
+.stat h2{
+font-size:40px;
+color:#ff9900;
+margin-bottom:10px;
+}
+
+.stat p{
+opacity:0.8;
+}
+
+/* SEARCH */
+
+.search-area{
+padding:40px 6%;
+background:#080808;
+text-align:center;
+}
+
+.search{
+width:100%;
+max-width:750px;
+padding:18px;
+border:none;
+border-radius:50px;
+font-size:18px;
+outline:none;
+}
+
+/* FILTER */
+
+.filters{
+display:flex;
+justify-content:center;
+gap:15px;
+flex-wrap:wrap;
+padding:20px;
+background:#080808;
+}
+
+.filters button{
+padding:12px 24px;
+border:none;
+background:#151515;
+color:white;
+border-radius:40px;
+font-weight:bold;
 cursor:pointer;
+transition:0.3s;
+}
+
+.filters button:hover{
+background:#ff9900;
+color:black;
 }
 
 /* PRODUCTS */
+
 .products{
+padding:70px 6%;
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:20px;
-padding:60px 6%;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:35px;
 }
 
 .card{
 background:#111;
-border-radius:18px;
+border-radius:25px;
 overflow:hidden;
+transition:0.4s;
+box-shadow:0 10px 30px rgba(0,0,0,0.35);
+position:relative;
+}
+
+.card:hover{
+transform:translateY(-12px);
+}
+
+.card img{
+width:100%;
+height:300px;
+object-fit:cover;
+}
+
+.badge{
+position:absolute;
+top:18px;
+left:18px;
+background:red;
+padding:8px 14px;
+border-radius:30px;
+font-size:13px;
+font-weight:bold;
+}
+
+.info{
+padding:25px;
+}
+
+.info h2{
+font-size:26px;
+margin-bottom:10px;
+}
+
+.price{
+font-size:30px;
+font-weight:900;
+color:#ff9900;
+margin-bottom:12px;
+}
+
+.desc{
+font-size:14px;
+opacity:0.8;
+line-height:1.7;
+margin-bottom:20px;
+}
+
+.btn{
+width:100%;
+padding:16px;
+border:none;
+background:#ff9900;
+color:black;
+font-weight:900;
+border-radius:14px;
+font-size:17px;
+cursor:pointer;
 transition:0.3s;
 }
-.card:hover{transform:translateY(-10px)}
-.card img{width:100%;height:220px;object-fit:cover}
-.info{padding:15px}
-.price{color:#ff9800;font-weight:900;font-size:20px}
-.buy{
-width:100%;
-padding:12px;
-background:#ff9800;
-border:none;
-border-radius:10px;
-font-weight:900;
-cursor:pointer;
+
+.btn:hover{
+background:white;
 }
 
 /* CART */
+
 .cart{
-padding:50px 6%;
-background:#0c0c0c;
-}
-.cart-item{
-display:flex;
-justify-content:space-between;
-padding:10px 0;
-border-bottom:1px solid #222;
-}
-.total{font-size:26px;color:#ff9800;margin-top:15px}
-
-/* LOGIN */
-.login{
-padding:60px 6%;
-background:#0a0a0a;
-text-align:center;
-}
-.login input{
-width:90%;
-max-width:400px;
-padding:12px;
-margin:8px 0;
-border:none;
-border-radius:10px;
-}
-
-/* CHECKOUT */
-.checkout{
-padding:50px 6%;
+margin:50px 6%;
 background:#111;
-margin-top:20px;
-border-radius:20px;
-}
-.paybox{
-background:#0a0a0a;
-padding:20px;
-border-radius:15px;
-margin-top:15px;
+padding:35px;
+border-radius:25px;
+box-shadow:0 10px 25px rgba(0,0,0,0.35);
 }
 
-/* WHATSAPP */
+.cart h1{
+margin-bottom:20px;
+font-size:40px;
+}
+
+#cartItems p{
+margin:10px 0;
+font-size:16px;
+}
+
+.total{
+margin-top:20px;
+font-size:34px;
+font-weight:900;
+color:#ff9900;
+}
+
+.checkout{
+margin-top:25px;
+width:100%;
+padding:18px;
+border:none;
+background:#25D366;
+color:white;
+font-size:20px;
+font-weight:bold;
+border-radius:14px;
+cursor:pointer;
+}
+
+/* FOOTER */
+
+footer{
+background:#050505;
+padding:70px 20px;
+text-align:center;
+border-top:1px solid rgba(255,255,255,0.08);
+}
+
+footer h1{
+font-size:48px;
+margin-bottom:15px;
+}
+
+footer span{
+color:#ff9900;
+}
+
+footer p{
+opacity:0.8;
+margin-top:12px;
+line-height:1.8;
+}
+
 .whatsapp{
 position:fixed;
 bottom:20px;
 right:20px;
-width:60px;
-height:60px;
+width:75px;
+height:75px;
 background:#25D366;
 border-radius:50%;
 display:flex;
-align-items:center;
 justify-content:center;
-font-size:28px;
+align-items:center;
+font-size:36px;
 text-decoration:none;
 color:white;
+box-shadow:0 10px 25px rgba(0,0,0,0.5);
 }
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+.hero-content h1{
+font-size:45px;
+}
+
+nav{
+display:none;
+}
+
+}
+
 </style>
 </head>
 
 <body>
 
 <header>
-<div class="logo">🔥 Afghan <span>Global</span></div>
+
+<div class="logo">
+🔥 Apex <span>Holux</span>
+</div>
+
 <nav>
-<a href="#shop">Shop</a>
-<a href="#cart">Cart</a>
-<a href="#login">Account</a>
+<a href="#">Home</a>
+<a href="#">Global</a>
+<a href="#">Luxury</a>
+<a href="#">Trending</a>
+<a href="#">Contact</a>
 </nav>
+
 </header>
 
 <section class="hero">
-<div>
-<h1>AFGHAN <span>GLOBAL MARKET</span></h1>
-<p>Top Products in Afghanistan + Global Trending Items</p>
-<button class="btn">Start Shopping</button>
+
+<div class="hero-content">
+
+<h1>
+WORLD CLASS <br>
+<span>FASHION MARKET</span>
+</h1>
+
+<p>
+Premium Sneakers • QD Sandals • Sketchers • Slides • Luxury Fashion • Global Trending Products
+</p>
+
+<a href="#shop" class="hero-btn">
+Explore Collection
+</a>
+
 </div>
+
 </section>
 
-<!-- PRODUCTS -->
+<section class="stats">
+
+<div class="stat">
+<h2>120K+</h2>
+<p>Global Customers</p>
+</div>
+
+<div class="stat">
+<h2>50+</h2>
+<p>Trending Brands</p>
+</div>
+
+<div class="stat">
+<h2>24/7</h2>
+<p>Worldwide Orders</p>
+</div>
+
+<div class="stat">
+<h2>100%</h2>
+<p>Premium Fashion</p>
+</div>
+
+</section>
+
+<div class="search-area">
+
+<input class="search"
+placeholder="Search Global Fashion Products..."
+oninput="searchProducts(this.value)">
+
+</div>
+
+<div class="filters">
+
+<button onclick="filterProducts('all')">All</button>
+<button onclick="filterProducts('sneaker')">Sneakers</button>
+<button onclick="filterProducts('slides')">Slides</button>
+<button onclick="filterProducts('sport')">Sketchers</button>
+<button onclick="filterProducts('sandal')">QD Sandals</button>
+
+</div>
+
 <section class="products" id="shop"></section>
 
-<!-- CART -->
-<section class="cart" id="cart">
-<h2>🛒 Cart</h2>
+<section class="cart">
+
+<h1>🛒 Shopping Cart</h1>
+
 <div id="cartItems"></div>
-<div class="total">Total: $<span id="total">0</span></div>
-</section>
 
-<!-- LOGIN -->
-<section class="login" id="login">
-<h2>👤 Account Login</h2>
-<input placeholder="Email">
-<input placeholder="Password" type="password">
-<button class="btn">Login</button>
-</section>
-
-<!-- CHECKOUT -->
-<section class="checkout">
-<h2>💳 Checkout System</h2>
-
-<div class="paybox">
-<p>✔ Cash on Delivery (Afghanistan)</p>
-<p>✔ WhatsApp Order</p>
-<p>✔ Card Payment (UI Demo)</p>
+<div class="total">
+Total: $<span id="total">0</span>
 </div>
 
-<button class="btn" onclick="checkout()">Order via WhatsApp</button>
+<button class="checkout" onclick="checkout()">
+Order on WhatsApp
+</button>
+
 </section>
 
-<a class="whatsapp" href="https://wa.me/93764594322">💬</a>
+<footer>
+
+<h1>🔥 Apex <span>Holux</span></h1>
+
+<p>Global Premium Fashion Market</p>
+
+<p>📞 WhatsApp: 0764 594 322</p>
+
+<p>
+Worldwide Luxury Products • Afghanistan Trending Market • Premium Global Fashion
+</p>
+
+</footer>
+
+<a class="whatsapp"
+href="https://wa.me/93764594322">
+💬
+</a>
 
 <script>
-let products=[
-{name:"iPhone 14 Pro (Top Afghanistan)",price:850,img:"https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5"},
-{name:"Samsung Galaxy S23",price:780,img:"https://images.unsplash.com/photo-1511707171634-5f897ff02aa9"},
-{name:"Nike Air Force 1",price:90,img:"https://images.unsplash.com/photo-1542291026-7eec264c27ff"},
-{name:"Afghan Traditional Dress",price:60,img:"https://images.unsplash.com/photo-1520975922284-5c5a2c5b7d3d"},
-{name:"Men Leather Shoes",price:75,img:"https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77"},
-{name:"Smart Watch Ultra",price:120,img:"https://images.unsplash.com/photo-1523275335684-37898b6baf30"}
+
+const PHONE = "93764594322";
+
+const products = [
+
+{
+name:"Nike Air Force 1",
+price:90,
+cat:"sneaker",
+img:"https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=700"
+},
+
+{
+name:"Jordan Retro 4",
+price:180,
+cat:"sneaker",
+img:"https://images.unsplash.com/photo-1600180758890-6b94519a8ba6?w=700"
+},
+
+{
+name:"Adidas Ultraboost",
+price:125,
+cat:"sport",
+img:"https://images.unsplash.com/photo-1528701800489-20be3c5c9c8c?w=700"
+},
+
+{
+name:"Sketchers Premium Foam",
+price:95,
+cat:"sport",
+img:"https://images.unsplash.com/photo-1519741497674-611481863552?w=700"
+},
+
+{
+name:"Sketchers Max Cushion",
+price:105,
+cat:"sport",
+img:"https://images.unsplash.com/photo-1549298916-b41d501d3772?w=700"
+},
+
+{
+name:"QD 555 Luxury Sandal",
+price:55,
+cat:"sandal",
+img:"https://images.unsplash.com/photo-1603487742131-4160ec999306?w=700"
+},
+
+{
+name:"QD Premium Beige",
+price:60,
+cat:"sandal",
+img:"https://images.unsplash.com/photo-1608256246200-53e8b47b2f80?w=700"
+},
+
+{
+name:"Nike Comfort Slides",
+price:45,
+cat:"slides",
+img:"https://images.unsplash.com/photo-1597047084897-51e81819a499?w=700"
+},
+
+{
+name:"Adidas Cloud Slides",
+price:42,
+cat:"slides",
+img:"https://images.unsplash.com/photo-1606813902913-3f3a0a0c9a9b?w=700"
+},
+
+{
+name:"Premium Black Slides",
+price:38,
+cat:"slides",
+img:"https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=700"
+},
+
+{
+name:"Luxury White Sneaker",
+price:110,
+cat:"sneaker",
+img:"https://images.unsplash.com/photo-1552346154-21d32810aba3?w=700"
+},
+
+{
+name:"Puma RS-X",
+price:100,
+cat:"sneaker",
+img:"https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=700"
+},
+
+{
+name:"Street Fashion Sneaker",
+price:105,
+cat:"sneaker",
+img:"https://images.unsplash.com/photo-1579338559194-a162d19bf842?w=700"
+},
+
+{
+name:"New Balance 574",
+price:120,
+cat:"sport",
+img:"https://images.unsplash.com/photo-1519744346364-2b8a8f2a7c2d?w=700"
+}
+
 ];
 
-let cart=[];
+let cart = [];
+let total = 0;
 
-function render(){
-let box=document.getElementById("shop");
-box.innerHTML="";
-products.forEach((p,i)=>{
-box.innerHTML+=`
+function renderProducts(list){
+
+const box = document.getElementById("shop");
+
+box.innerHTML = "";
+
+list.forEach(p=>{
+
+box.innerHTML += `
+
 <div class="card">
-<img src="${p.img}">
-<div class="info">
-<h3>${p.name}</h3>
-<div class="price">$${p.price}</div>
-<button class="buy" onclick="add(${i})">Add to Cart</button>
+
+<div class="badge">
+🔥 BEST SELLER
 </div>
-</div>`;
+
+<img src="${p.img}"
+loading="lazy"
+onerror="this.src='https://via.placeholder.com/400?text=Fashion'">
+
+<div class="info">
+
+<h2>${p.name}</h2>
+
+<div class="price">
+$${p.price}
+</div>
+
+<div class="desc">
+Premium global trending fashion product with luxury design and high quality material.
+</div>
+
+<button class="btn"
+onclick="addToCart('${p.name}',${p.price})">
+Add To Cart
+</button>
+
+</div>
+
+</div>
+
+`;
+
 });
-}
-render();
 
-function add(i){
-cart.push(products[i]);
-updateCart();
 }
 
-function updateCart(){
-let box=document.getElementById("cartItems");
-box.innerHTML="";
-let total=0;
+renderProducts(products);
 
-cart.forEach(p=>{
-total+=p.price;
-box.innerHTML+=`
-<div class="cart-item">
-<span>${p.name}</span>
-<span>$${p.price}</span>
-</div>`;
-});
+function addToCart(name,price){
 
-document.getElementById("total").innerText=total;
+cart.push({name,price});
+
+total += price;
+
+document.getElementById("cartItems").innerHTML += `
+<p>✔ ${name} - $${price}</p>
+`;
+
+document.getElementById("total").innerText = total;
+
+}
+
+function filterProducts(cat){
+
+if(cat==="all"){
+renderProducts(products);
+return;
+}
+
+renderProducts(products.filter(p=>p.cat===cat));
+
+}
+
+function searchProducts(val){
+
+renderProducts(
+products.filter(p=>
+p.name.toLowerCase().includes(val.toLowerCase())
+)
+);
+
 }
 
 function checkout(){
-let msg="🔥 AFGHAN GLOBAL ORDER 🔥\n\n";
-let total=0;
 
-cart.forEach(p=>{
-msg+=p.name+" - $"+p.price+"\n";
-total+=p.price;
+if(cart.length===0){
+
+alert("Cart Empty!");
+return;
+
+}
+
+let msg = "🔥 APEX HOLUX GLOBAL ORDER 🔥\n\n";
+
+cart.forEach(i=>{
+
+msg += "✔ " + i.name + " - $" + i.price + "\n";
+
 });
 
-msg+="\nTOTAL: $"+total;
+msg += "\n💰 Total: $" + total;
 
-window.open("https://wa.me/93764594322?text="+encodeURIComponent(msg));
+window.open(
+"https://wa.me/" + PHONE +
+"?text=" + encodeURIComponent(msg)
+);
+
 }
+
 </script>
 
 </body>
