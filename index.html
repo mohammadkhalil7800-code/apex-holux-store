@@ -1,20 +1,14 @@
-<!-- 🔥 APEX HOLUX ULTRA PRO MAX SYSTEM -->
-<!-- WORLD CLASS GLOBAL MARKETPLACE -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🔥 Apex Holux Global Luxury Store</title>
 
-<title>🔥 Apex Holux Ultra Global Market</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 
 <style>
-
-/* GLOBAL */
 
 *{
 margin:0;
@@ -30,7 +24,7 @@ color:white;
 overflow-x:hidden;
 }
 
-/* SCROLLBAR */
+/* SCROLL */
 
 ::-webkit-scrollbar{
 width:10px;
@@ -52,14 +46,14 @@ padding:18px 6%;
 display:flex;
 justify-content:space-between;
 align-items:center;
-background:rgba(0,0,0,0.7);
+background:rgba(0,0,0,0.82);
 backdrop-filter:blur(16px);
 z-index:999;
-border-bottom:1px solid rgba(255,255,255,0.07);
+border-bottom:1px solid rgba(255,255,255,0.08);
 }
 
 .logo{
-font-size:36px;
+font-size:34px;
 font-weight:900;
 letter-spacing:2px;
 }
@@ -70,7 +64,7 @@ color:#ff9900;
 
 nav{
 display:flex;
-gap:24px;
+gap:22px;
 }
 
 nav a{
@@ -88,183 +82,123 @@ color:#ff9900;
 
 .hero{
 height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-text-align:center;
-padding:20px;
-position:relative;
-overflow:hidden;
-
 background:
-linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.85)),
+linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.82)),
 url('https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=1600')
 center/cover;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+padding:20px;
 }
 
-.hero::before{
-content:'';
-position:absolute;
-width:200%;
-height:200%;
-background:
-linear-gradient(
-120deg,
-transparent,
-rgba(255,153,0,0.12),
-transparent
-);
-animation:shine 8s linear infinite;
-}
-
-@keyframes shine{
-0%{
-transform:translateX(-100%);
-}
-100%{
-transform:translateX(100%);
-}
-}
-
-.hero-content{
-position:relative;
-z-index:2;
-}
-
-.hero-content h1{
-font-size:95px;
+.hero h1{
+font-size:90px;
 font-weight:900;
 line-height:1.1;
-margin-bottom:25px;
-text-shadow:0 0 25px rgba(255,153,0,0.3);
+margin-bottom:20px;
 }
 
-.hero-content span{
+.hero span{
 color:#ff9900;
 }
 
-.hero-content p{
-font-size:22px;
-max-width:950px;
+.hero p{
+max-width:1000px;
 margin:auto;
-line-height:2;
-opacity:0.92;
+font-size:22px;
+line-height:1.9;
+opacity:0.9;
 }
 
 .hero-btn{
 display:inline-block;
-margin-top:40px;
-padding:18px 50px;
-background:linear-gradient(135deg,#ff9900,#ff5e00);
-border-radius:50px;
+margin-top:35px;
+padding:18px 45px;
+background:#ff9900;
 color:black;
 font-weight:900;
 text-decoration:none;
+border-radius:60px;
+transition:0.3s;
 font-size:18px;
-box-shadow:0 15px 35px rgba(255,153,0,0.35);
-transition:0.4s;
 }
 
 .hero-btn:hover{
-transform:scale(1.08);
+transform:scale(1.07);
 background:white;
-}
-
-/* LIVE */
-
-.live{
-position:fixed;
-top:100px;
-right:20px;
-background:red;
-padding:12px 18px;
-border-radius:40px;
-font-weight:900;
-z-index:999;
-animation:pulse 1s infinite;
-}
-
-@keyframes pulse{
-0%{transform:scale(1)}
-50%{transform:scale(1.08)}
-100%{transform:scale(1)}
 }
 
 /* STATS */
 
 .stats{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
 gap:25px;
 padding:80px 6%;
 background:#0b0b0b;
 }
 
 .stat{
-background:#111;
+background:linear-gradient(145deg,#111,#181818);
 padding:40px;
-border-radius:28px;
+border-radius:25px;
 text-align:center;
-box-shadow:0 20px 40px rgba(0,0,0,0.45);
-transition:0.4s;
-}
-
-.stat:hover{
-transform:translateY(-10px);
+box-shadow:0 10px 30px rgba(0,0,0,0.4);
 }
 
 .stat h2{
-font-size:50px;
+font-size:45px;
 color:#ff9900;
-margin-bottom:12px;
+margin-bottom:10px;
 }
 
 /* SEARCH */
 
 .search-area{
-padding:45px 6%;
+padding:40px 6%;
 background:#080808;
 text-align:center;
 }
 
 .search{
 width:100%;
-max-width:850px;
-padding:20px;
-background:#111;
+max-width:800px;
+padding:18px;
 border:none;
 border-radius:50px;
 font-size:18px;
-color:white;
 outline:none;
+background:#111;
+color:white;
 }
 
-/* FILTERS */
+/* FILTER */
 
 .filters{
 display:flex;
 justify-content:center;
-flex-wrap:wrap;
 gap:15px;
+flex-wrap:wrap;
 padding:20px;
 background:#080808;
 }
 
 .filters button{
-padding:13px 24px;
+padding:13px 25px;
 border:none;
 background:#141414;
 color:white;
 border-radius:40px;
+font-weight:bold;
 cursor:pointer;
-font-weight:800;
 transition:0.3s;
 }
 
 .filters button:hover{
 background:#ff9900;
 color:black;
-transform:translateY(-3px);
 }
 
 /* PRODUCTS */
@@ -277,72 +211,75 @@ gap:35px;
 }
 
 .card{
-background:
-linear-gradient(145deg,#111,#0c0c0c);
-border-radius:30px;
+background:linear-gradient(145deg,#111,#181818);
+border-radius:28px;
 overflow:hidden;
 position:relative;
-transition:0.5s;
-border:1px solid rgba(255,255,255,0.05);
-box-shadow:0 20px 45px rgba(0,0,0,0.5);
+transition:0.4s;
+box-shadow:0 12px 35px rgba(0,0,0,0.45);
 }
 
 .card:hover{
-transform:translateY(-15px) scale(1.02);
+transform:translateY(-12px) scale(1.02);
 }
 
 .card img{
 width:100%;
-height:330px;
+height:320px;
 object-fit:cover;
-transition:0.6s;
+transition:0.5s;
 }
 
 .card:hover img{
-transform:scale(1.1);
+transform:scale(1.06);
 }
 
 .badge{
 position:absolute;
 top:18px;
 left:18px;
-background:
-linear-gradient(135deg,red,#ff9900);
-padding:8px 16px;
-border-radius:40px;
+background:linear-gradient(135deg,red,#ff9900);
+padding:9px 16px;
+border-radius:30px;
 font-size:12px;
 font-weight:900;
 }
 
 .info{
-padding:28px;
+padding:25px;
 }
 
 .info h2{
 font-size:28px;
-margin-bottom:12px;
+margin-bottom:10px;
 }
 
 .price{
-font-size:36px;
+font-size:34px;
 font-weight:900;
 color:#ff9900;
 margin-bottom:12px;
 }
 
 .desc{
-opacity:0.82;
+font-size:14px;
 line-height:1.8;
-margin-bottom:22px;
+opacity:0.8;
+margin-bottom:20px;
+}
+
+.rating{
+color:#ffcc00;
+margin-bottom:15px;
+font-size:14px;
 }
 
 .btn{
 width:100%;
 padding:16px;
 border:none;
+background:#ff9900;
 border-radius:14px;
-background:
-linear-gradient(135deg,#ff9900,#ff5e00);
 font-size:17px;
 font-weight:900;
 cursor:pointer;
@@ -351,62 +288,34 @@ transition:0.3s;
 
 .btn:hover{
 background:white;
-transform:scale(1.03);
-}
-
-.remove-btn{
-margin-top:12px;
-background:red;
-color:white;
-}
-
-/* ADMIN */
-
-.admin{
-margin:70px 6%;
-padding:40px;
-background:#111;
-border-radius:30px;
-}
-
-.admin h1{
-font-size:44px;
-margin-bottom:25px;
-}
-
-.admin input{
-width:100%;
-padding:16px;
-margin:12px 0;
-background:#181818;
-border:none;
-border-radius:14px;
-font-size:16px;
-color:white;
+transform:scale(1.02);
 }
 
 /* CART */
 
 .cart{
-margin:70px 6%;
-padding:40px;
+margin:60px 6%;
 background:#111;
-border-radius:30px;
+padding:40px;
+border-radius:28px;
+box-shadow:0 10px 30px rgba(0,0,0,0.4);
 }
 
 .cart h1{
-font-size:44px;
-margin-bottom:20px;
+margin-bottom:25px;
+font-size:42px;
 }
 
 .cart-item{
-padding:12px 0;
-border-bottom:1px solid rgba(255,255,255,0.06);
+display:flex;
+justify-content:space-between;
+padding:14px 0;
+border-bottom:1px solid rgba(255,255,255,0.08);
 }
 
 .total{
-margin-top:20px;
-font-size:40px;
+margin-top:25px;
+font-size:36px;
 font-weight:900;
 color:#ff9900;
 }
@@ -419,30 +328,68 @@ border:none;
 background:#25D366;
 color:white;
 font-size:20px;
-font-weight:900;
+font-weight:bold;
 border-radius:16px;
 cursor:pointer;
+}
+
+/* ADMIN PANEL */
+
+.admin{
+margin:60px 6%;
+background:#111;
+padding:40px;
+border-radius:28px;
+}
+
+.admin h1{
+margin-bottom:25px;
+font-size:40px;
+}
+
+.admin input,
+.admin select{
+width:100%;
+padding:16px;
+margin:10px 0;
+background:#181818;
+border:none;
+border-radius:14px;
+color:white;
+font-size:16px;
+}
+
+.admin button{
+width:100%;
+padding:18px;
+border:none;
+border-radius:14px;
+background:#ff9900;
+font-size:18px;
+font-weight:900;
+cursor:pointer;
+margin-top:10px;
 }
 
 /* DASHBOARD */
 
 .dashboard{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:25px;
 padding:80px 6%;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+gap:25px;
+background:#090909;
 }
 
-.dash-box{
+.dash{
 background:#111;
-padding:40px;
-border-radius:28px;
+padding:35px;
+border-radius:25px;
 text-align:center;
-box-shadow:0 20px 45px rgba(0,0,0,0.45);
 }
 
-.dash-box h2{
-font-size:55px;
+.dash h2{
+font-size:45px;
 color:#ff9900;
 margin-bottom:10px;
 }
@@ -451,14 +398,13 @@ margin-bottom:10px;
 
 footer{
 background:#030303;
-padding:90px 20px;
+padding:80px 20px;
 text-align:center;
-margin-top:50px;
-border-top:1px solid rgba(255,255,255,0.06);
+border-top:1px solid rgba(255,255,255,0.08);
 }
 
 footer h1{
-font-size:60px;
+font-size:55px;
 margin-bottom:15px;
 }
 
@@ -467,8 +413,9 @@ color:#ff9900;
 }
 
 footer p{
-opacity:0.85;
-line-height:2;
+opacity:0.8;
+margin-top:10px;
+line-height:1.8;
 }
 
 /* WHATSAPP */
@@ -482,24 +429,23 @@ height:78px;
 background:#25D366;
 border-radius:50%;
 display:flex;
-justify-content:center;
 align-items:center;
-font-size:36px;
+justify-content:center;
+font-size:38px;
 text-decoration:none;
 color:white;
-box-shadow:0 15px 35px rgba(0,0,0,0.5);
-z-index:999;
+box-shadow:0 10px 25px rgba(0,0,0,0.5);
 }
 
 /* MOBILE */
 
 @media(max-width:768px){
 
-.hero-content h1{
-font-size:52px;
+.hero h1{
+font-size:48px;
 }
 
-.hero-content p{
+.hero p{
 font-size:16px;
 }
 
@@ -507,21 +453,12 @@ nav{
 display:none;
 }
 
-.products{
-grid-template-columns:1fr;
-}
-
 }
 
 </style>
-
 </head>
 
 <body>
-
-<div class="live">
-🔴 LIVE MARKET
-</div>
 
 <header>
 
@@ -532,23 +469,25 @@ grid-template-columns:1fr;
 <nav>
 <a href="#">Home</a>
 <a href="#shop">Shop</a>
-<a href="#admin">Admin</a>
 <a href="#cart">Cart</a>
+<a href="#admin">Admin</a>
 </nav>
 
 </header>
 
+<!-- HERO -->
+
 <section class="hero">
 
-<div class="hero-content">
+<div>
 
 <h1>
-WORLD CLASS <br>
-<span>GLOBAL MARKET</span>
+GLOBAL <span>LUXURY</span><br>
+MARKETPLACE
 </h1>
 
 <p>
-Premium Sneakers • Luxury Fashion • Trending Afghanistan Products • World Class Ecommerce Experience
+Premium Sneakers • Sketchers • Slides • QD Sandals • Afghanistan Trending Products • Worldwide Fashion Collections
 </p>
 
 <a href="#shop" class="hero-btn">
@@ -559,16 +498,18 @@ Explore Collection
 
 </section>
 
+<!-- STATS -->
+
 <section class="stats">
 
 <div class="stat">
-<h2>1M+</h2>
+<h2>500K+</h2>
 <p>Monthly Visitors</p>
 </div>
 
 <div class="stat">
-<h2>250+</h2>
-<p>Premium Brands</p>
+<h2>120+</h2>
+<p>Global Brands</p>
 </div>
 
 <div class="stat">
@@ -578,71 +519,40 @@ Explore Collection
 
 <div class="stat">
 <h2>100%</h2>
-<p>Luxury Quality</p>
+<p>Premium Products</p>
 </div>
 
 </section>
+
+<!-- SEARCH -->
 
 <div class="search-area">
 
 <input
 class="search"
-placeholder="Search Premium Products..."
+placeholder="Search luxury products..."
 oninput="searchProducts(this.value)"
 >
 
 </div>
 
+<!-- FILTERS -->
+
 <div class="filters">
 
 <button onclick="filterProducts('all')">All</button>
 <button onclick="filterProducts('sneaker')">Sneakers</button>
-<button onclick="filterProducts('sport')">Sport</button>
+<button onclick="filterProducts('sport')">Sketchers</button>
 <button onclick="filterProducts('slides')">Slides</button>
 <button onclick="filterProducts('sandal')">Sandals</button>
 
 </div>
 
+<!-- PRODUCTS -->
+
 <section class="products" id="shop"></section>
 
-<section class="dashboard">
-
-<div class="dash-box">
-<h2 id="productCount">0</h2>
-<p>Total Products</p>
-</div>
-
-<div class="dash-box">
-<h2 id="cartCount">0</h2>
-<p>Cart Items</p>
-</div>
-
-<div class="dash-box">
-<h2>50K+</h2>
-<p>Orders</p>
-</div>
-
-<div class="dash-box">
-<h2>4.9★</h2>
-<p>Customer Rating</p>
-</div>
-
-</section>
-
-<section class="admin" id="admin">
-
-<h1>🧑‍💼 Live Admin Panel</h1>
-
-<input id="pname" placeholder="Product Name">
-<input id="pprice" placeholder="Price">
-<input id="pimg" placeholder="Image URL">
-<input id="pcat" placeholder="Category">
-
-<button class="btn" onclick="addProduct()">
-Add Product Live
-</button>
-
-</section>
+<!-- CART -->
 
 <section class="cart" id="cart">
 
@@ -660,6 +570,54 @@ Order On WhatsApp
 
 </section>
 
+<!-- DASHBOARD -->
+
+<section class="dashboard">
+
+<div class="dash">
+<h2 id="productsCount">0</h2>
+<p>Total Products</p>
+</div>
+
+<div class="dash">
+<h2 id="cartCount">0</h2>
+<p>Cart Items</p>
+</div>
+
+<div class="dash">
+<h2 id="cartValue">$0</h2>
+<p>Cart Value</p>
+</div>
+
+</section>
+
+<!-- ADMIN -->
+
+<section class="admin" id="admin">
+
+<h1>🧑‍💼 Admin Panel</h1>
+
+<input type="text" id="pname" placeholder="Product Name">
+
+<input type="number" id="pprice" placeholder="Product Price">
+
+<input type="text" id="pimg" placeholder="Image URL">
+
+<select id="pcat">
+<option value="sneaker">Sneaker</option>
+<option value="sport">Sketchers</option>
+<option value="slides">Slides</option>
+<option value="sandal">Sandals</option>
+</select>
+
+<button onclick="addProduct()">
+Add Product Live
+</button>
+
+</section>
+
+<!-- FOOTER -->
+
 <footer>
 
 <h1>
@@ -667,7 +625,7 @@ Order On WhatsApp
 </h1>
 
 <p>
-World Class Premium Fashion Marketplace
+Global Premium Fashion Marketplace
 </p>
 
 <p>
@@ -675,13 +633,12 @@ World Class Premium Fashion Marketplace
 </p>
 
 <p>
-Luxury Sneakers • Trending Products • Global Ecommerce • Afghanistan Fashion Market
+Worldwide Luxury Products • Afghanistan Trending Market • Next Generation Ecommerce
 </p>
 
 </footer>
 
-<a class="whatsapp"
-href="https://wa.me/93764594322">
+<a class="whatsapp" href="https://wa.me/93764594322">
 💬
 </a>
 
@@ -707,7 +664,7 @@ img:"https://images.unsplash.com/photo-1600180758890-6b94519a8ba6?w=700"
 
 {
 name:"Adidas Ultraboost",
-price:120,
+price:125,
 cat:"sport",
 img:"https://images.unsplash.com/photo-1528701800489-20be3c5c9c8c?w=700"
 },
@@ -728,7 +685,7 @@ img:"https://images.unsplash.com/photo-1597047084897-51e81819a499?w=700"
 
 {
 name:"QD Premium Sandal",
-price:55,
+price:60,
 cat:"sandal",
 img:"https://images.unsplash.com/photo-1608256246200-53e8b47b2f80?w=700"
 }
@@ -736,10 +693,6 @@ img:"https://images.unsplash.com/photo-1608256246200-53e8b47b2f80?w=700"
 ];
 
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-let total = 0;
-
-/* RENDER */
 
 function renderProducts(list){
 
@@ -757,7 +710,7 @@ box.innerHTML += `
 🔥 BEST SELLER
 </div>
 
-<img src="${p.img}">
+<img src="${p.img}" loading="lazy">
 
 <div class="info">
 
@@ -767,18 +720,16 @@ box.innerHTML += `
 $${p.price}
 </div>
 
-<div class="desc">
-Premium global fashion product with luxury world-class design and quality.
+<div class="rating">
+⭐⭐⭐⭐⭐ (4.9 Rating)
 </div>
 
-<button class="btn"
-onclick="addToCart('${p.name}',${p.price})">
-Add To Cart
-</button>
+<div class="desc">
+Premium trending product with world-class quality and luxury fashion design.
+</div>
 
-<button class="btn remove-btn"
-onclick="removeProduct(${index})">
-Remove Product
+<button class="btn" onclick="addToCart(${index})">
+Add To Cart
 </button>
 
 </div>
@@ -793,16 +744,13 @@ updateDashboard();
 
 }
 
-/* CART */
+renderProducts(products);
 
-function addToCart(name,price){
+function addToCart(index){
 
-cart.push({name,price});
+cart.push(products[index]);
 
-localStorage.setItem(
-"cart",
-JSON.stringify(cart)
-);
+localStorage.setItem("cart",JSON.stringify(cart));
 
 renderCart();
 
@@ -814,55 +762,39 @@ const box = document.getElementById("cartItems");
 
 box.innerHTML = "";
 
-total = 0;
+let total = 0;
 
-cart.forEach(item=>{
+cart.forEach((item,i)=>{
 
 total += item.price;
 
 box.innerHTML += `
+
 <div class="cart-item">
-✔ ${item.name} - $${item.price}
+
+<span>${item.name}</span>
+
+<span>$${item.price}</span>
+
 </div>
+
 `;
 
 });
 
 document.getElementById("total").innerText = total;
 
-updateDashboard();
+updateDashboard(total);
 
 }
 
 renderCart();
 
-/* SEARCH */
-
-function searchProducts(value){
-
-renderProducts(
-
-products.filter(p=>
-
-p.name.toLowerCase().includes(
-value.toLowerCase()
-)
-
-)
-
-);
-
-}
-
-/* FILTER */
-
 function filterProducts(cat){
 
-if(cat==="all"){
-
+if(cat === "all"){
 renderProducts(products);
 return;
-
 }
 
 renderProducts(
@@ -871,59 +803,53 @@ products.filter(p=>p.cat===cat)
 
 }
 
-/* CHECKOUT */
+function searchProducts(val){
+
+renderProducts(
+products.filter(p=>
+p.name.toLowerCase().includes(val.toLowerCase())
+)
+);
+
+}
 
 function checkout(){
 
-if(cart.length===0){
+if(cart.length === 0){
 
 alert("Cart Empty!");
 return;
 
 }
 
-let msg =
-"🔥 APEX HOLUX GLOBAL ORDER 🔥\n\n";
+let msg = "🔥 APEX HOLUX GLOBAL ORDER 🔥\n\n";
+
+let total = 0;
 
 cart.forEach(item=>{
 
-msg +=
-"✔ " +
-item.name +
-" - $" +
-item.price +
-"\n";
+msg += "✔ " + item.name + " - $" + item.price + "\n";
+
+total += item.price;
 
 });
 
 msg += "\n💰 Total: $" + total;
 
 window.open(
-"https://wa.me/" +
-PHONE +
-"?text=" +
-encodeURIComponent(msg)
+"https://wa.me/" + PHONE + "?text=" + encodeURIComponent(msg)
 );
 
 }
 
-/* ADMIN */
-
 function addProduct(){
 
-const name =
-document.getElementById("pname").value;
+const name = document.getElementById("pname").value;
+const price = Number(document.getElementById("pprice").value);
+const img = document.getElementById("pimg").value;
+const cat = document.getElementById("pcat").value;
 
-const price =
-Number(document.getElementById("pprice").value);
-
-const img =
-document.getElementById("pimg").value;
-
-const cat =
-document.getElementById("pcat").value;
-
-if(!name || !price || !img || !cat){
+if(!name || !price || !img){
 
 alert("Fill all fields");
 return;
@@ -944,47 +870,32 @@ JSON.stringify(products)
 
 renderProducts(products);
 
-alert("✅ Product Added");
+alert("✅ Product Added Successfully");
 
-pname.value="";
-pprice.value="";
-pimg.value="";
-pcat.value="";
-
-}
-
-/* REMOVE */
-
-function removeProduct(index){
-
-products.splice(index,1);
-
-localStorage.setItem(
-"products",
-JSON.stringify(products)
-);
-
-renderProducts(products);
+document.getElementById("pname").value="";
+document.getElementById("pprice").value="";
+document.getElementById("pimg").value="";
 
 }
 
-/* DASHBOARD */
+function updateDashboard(totalValue = 0){
 
-function updateDashboard(){
+document.getElementById("productsCount").innerText =
+products.length;
 
-document.getElementById(
-"productCount"
-).innerText = products.length;
+document.getElementById("cartCount").innerText =
+cart.length;
 
-document.getElementById(
-"cartCount"
-).innerText = cart.length;
+let total = 0;
+
+cart.forEach(item=>{
+total += item.price;
+});
+
+document.getElementById("cartValue").innerText =
+"$" + total;
 
 }
-
-/* START */
-
-renderProducts(products);
 
 </script>
 
