@@ -1,11 +1,11 @@
-<!-- 🌍 APEX HOLUX WORLD CLASS ULTRA MARKETPLACE -->
+<!-- 🌍 APEX HOLUX ULTRA WORLD MARKET V10 -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>👑 Apex Holux Ultra Global Store</title>
+<title>🔥 Apex Holux Ultra World Market</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
 
@@ -25,17 +25,6 @@ color:white;
 overflow-x:hidden;
 }
 
-/* SCROLLBAR */
-
-::-webkit-scrollbar{
-width:10px;
-}
-
-::-webkit-scrollbar-thumb{
-background:#ff9900;
-border-radius:20px;
-}
-
 /* HEADER */
 
 header{
@@ -47,14 +36,14 @@ padding:18px 6%;
 display:flex;
 justify-content:space-between;
 align-items:center;
-background:rgba(0,0,0,0.85);
-backdrop-filter:blur(12px);
+background:rgba(0,0,0,0.75);
+backdrop-filter:blur(14px);
 z-index:999;
 border-bottom:1px solid rgba(255,255,255,0.08);
 }
 
 .logo{
-font-size:34px;
+font-size:36px;
 font-weight:900;
 }
 
@@ -64,7 +53,7 @@ color:#ff9900;
 
 nav{
 display:flex;
-gap:24px;
+gap:22px;
 }
 
 nav a{
@@ -82,16 +71,18 @@ color:#ff9900;
 
 .hero{
 height:100vh;
-background:
-linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.9)),
-url('https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=1600')
-center/cover;
 display:flex;
 justify-content:center;
 align-items:center;
 text-align:center;
 padding:20px;
 position:relative;
+overflow:hidden;
+
+background:
+linear-gradient(rgba(0,0,0,0.72),rgba(0,0,0,0.9)),
+url('https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=1600')
+center/cover;
 }
 
 .hero::before{
@@ -99,22 +90,19 @@ content:'';
 position:absolute;
 width:200%;
 height:200%;
-background:linear-gradient(
+background:
+linear-gradient(
 120deg,
 transparent,
-rgba(255,153,0,0.15),
+rgba(255,153,0,0.12),
 transparent
 );
-animation:shine 7s linear infinite;
+animation:shine 8s linear infinite;
 }
 
 @keyframes shine{
-0%{
-transform:translateX(-100%);
-}
-100%{
-transform:translateX(100%);
-}
+0%{transform:translateX(-100%);}
+100%{transform:translateX(100%);}
 }
 
 .hero-content{
@@ -122,29 +110,30 @@ position:relative;
 z-index:2;
 }
 
-.hero h1{
-font-size:92px;
+.hero-content h1{
+font-size:95px;
 font-weight:900;
 line-height:1.1;
 margin-bottom:25px;
+text-shadow:0 0 30px rgba(255,153,0,0.35);
 }
 
-.hero span{
+.hero-content span{
 color:#ff9900;
 }
 
-.hero p{
-max-width:1000px;
-margin:auto;
+.hero-content p{
 font-size:22px;
+max-width:950px;
+margin:auto;
 line-height:2;
-opacity:0.9;
+opacity:0.92;
 }
 
 .hero-btn{
 display:inline-block;
-margin-top:35px;
-padding:18px 50px;
+margin-top:40px;
+padding:18px 55px;
 background:linear-gradient(135deg,#ff9900,#ff5e00);
 border-radius:50px;
 color:black;
@@ -152,11 +141,11 @@ font-weight:900;
 text-decoration:none;
 font-size:18px;
 transition:0.4s;
-box-shadow:0 15px 35px rgba(255,153,0,0.3);
+box-shadow:0 15px 35px rgba(255,153,0,0.4);
 }
 
 .hero-btn:hover{
-transform:scale(1.08);
+transform:scale(1.07);
 background:white;
 }
 
@@ -167,24 +156,24 @@ position:fixed;
 top:100px;
 right:20px;
 background:red;
-padding:12px 18px;
-border-radius:40px;
+padding:12px 20px;
+border-radius:50px;
 font-weight:900;
 z-index:999;
 animation:pulse 1s infinite;
 }
 
 @keyframes pulse{
-0%{transform:scale(1)}
-50%{transform:scale(1.08)}
-100%{transform:scale(1)}
+0%{transform:scale(1);}
+50%{transform:scale(1.08);}
+100%{transform:scale(1);}
 }
 
 /* STATS */
 
 .stats{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
 gap:25px;
 padding:80px 6%;
 background:#0a0a0a;
@@ -195,8 +184,8 @@ background:#111;
 padding:40px;
 border-radius:28px;
 text-align:center;
+box-shadow:0 15px 40px rgba(0,0,0,0.45);
 transition:0.4s;
-box-shadow:0 20px 40px rgba(0,0,0,0.45);
 }
 
 .stat:hover{
@@ -212,7 +201,7 @@ margin-bottom:12px;
 /* SEARCH */
 
 .search-area{
-padding:40px 6%;
+padding:45px 6%;
 background:#080808;
 text-align:center;
 }
@@ -221,11 +210,11 @@ text-align:center;
 width:100%;
 max-width:850px;
 padding:20px;
+background:#111;
 border:none;
 border-radius:50px;
-background:#111;
-color:white;
 font-size:18px;
+color:white;
 outline:none;
 }
 
@@ -236,18 +225,18 @@ display:flex;
 justify-content:center;
 flex-wrap:wrap;
 gap:15px;
-padding:20px;
+padding:25px;
 background:#080808;
 }
 
 .filters button{
-padding:14px 24px;
+padding:13px 24px;
 border:none;
-background:#151515;
+background:#141414;
 color:white;
 border-radius:40px;
-font-weight:800;
 cursor:pointer;
+font-weight:800;
 transition:0.3s;
 }
 
@@ -267,11 +256,12 @@ gap:35px;
 }
 
 .card{
-background:linear-gradient(145deg,#111,#0c0c0c);
+background:
+linear-gradient(145deg,#111,#0c0c0c);
 border-radius:30px;
 overflow:hidden;
-transition:0.5s;
 position:relative;
+transition:0.5s;
 border:1px solid rgba(255,255,255,0.05);
 box-shadow:0 20px 45px rgba(0,0,0,0.5);
 }
@@ -284,18 +274,19 @@ transform:translateY(-15px) scale(1.02);
 width:100%;
 height:330px;
 object-fit:cover;
-transition:0.5s;
+transition:0.6s;
 }
 
 .card:hover img{
-transform:scale(1.08);
+transform:scale(1.1);
 }
 
 .badge{
 position:absolute;
 top:18px;
 left:18px;
-background:linear-gradient(135deg,red,#ff9900);
+background:
+linear-gradient(135deg,red,#ff9900);
 padding:8px 16px;
 border-radius:40px;
 font-size:12px;
@@ -315,7 +306,7 @@ margin-bottom:12px;
 font-size:36px;
 font-weight:900;
 color:#ff9900;
-margin-bottom:10px;
+margin-bottom:12px;
 }
 
 .desc{
@@ -329,7 +320,8 @@ width:100%;
 padding:16px;
 border:none;
 border-radius:14px;
-background:linear-gradient(135deg,#ff9900,#ff5e00);
+background:
+linear-gradient(135deg,#ff9900,#ff5e00);
 font-size:17px;
 font-weight:900;
 cursor:pointer;
@@ -421,6 +413,11 @@ footer span{
 color:#ff9900;
 }
 
+footer p{
+opacity:0.85;
+line-height:2;
+}
+
 /* WHATSAPP */
 
 .whatsapp{
@@ -445,11 +442,11 @@ z-index:999;
 
 @media(max-width:768px){
 
-.hero h1{
-font-size:50px;
+.hero-content h1{
+font-size:52px;
 }
 
-.hero p{
+.hero-content p{
 font-size:16px;
 }
 
@@ -475,7 +472,7 @@ grid-template-columns:1fr;
 <header>
 
 <div class="logo">
-👑 Apex <span>Holux</span>
+🔥 Apex <span>Holux</span>
 </div>
 
 <nav>
@@ -492,11 +489,11 @@ grid-template-columns:1fr;
 
 <h1>
 WORLD CLASS <br>
-<span>FASHION MARKET</span>
+<span>GLOBAL MARKET</span>
 </h1>
 
 <p>
-Global Bestselling Shoes • Slides • Sketchers • Luxury Sneakers • Afghanistan Trending Products
+Nike • Adidas • Jordan • Sketchers • Slides • Sandals • Global Best Selling Fashion Products
 </p>
 
 <a href="#shop" class="hero-btn">
@@ -510,17 +507,12 @@ Explore Collection
 <section class="stats">
 
 <div class="stat">
-<h2>10M+</h2>
-<p>Visitors</p>
+<h2>5M+</h2>
+<p>Monthly Visitors</p>
 </div>
 
 <div class="stat">
 <h2>500+</h2>
-<p>Premium Products</p>
-</div>
-
-<div class="stat">
-<h2>120+</h2>
 <p>Global Brands</p>
 </div>
 
@@ -529,13 +521,18 @@ Explore Collection
 <p>Worldwide Orders</p>
 </div>
 
+<div class="stat">
+<h2>100%</h2>
+<p>Luxury Quality</p>
+</div>
+
 </section>
 
 <div class="search-area">
 
 <input
 class="search"
-placeholder="Search Premium Products..."
+placeholder="Search Global Products..."
 oninput="searchProducts(this.value)"
 >
 
@@ -545,8 +542,8 @@ oninput="searchProducts(this.value)"
 
 <button onclick="filterProducts('all')">All</button>
 <button onclick="filterProducts('sneaker')">Sneakers</button>
+<button onclick="filterProducts('sport')">Sport</button>
 <button onclick="filterProducts('slides')">Slides</button>
-<button onclick="filterProducts('sport')">Sketchers</button>
 <button onclick="filterProducts('sandal')">Sandals</button>
 
 </div>
@@ -567,7 +564,7 @@ oninput="searchProducts(this.value)"
 
 <div class="dash-box">
 <h2 id="cartValue">$0</h2>
-<p>Total Cart</p>
+<p>Total Value</p>
 </div>
 
 </section>
@@ -591,15 +588,19 @@ Order On WhatsApp
 <footer>
 
 <h1>
-👑 Apex <span>Holux</span>
+🔥 Apex <span>Holux</span>
 </h1>
 
 <p>
-Premium Global Ecommerce Marketplace
+World Class Premium Fashion Marketplace
 </p>
 
 <p>
 📞 WhatsApp: 0764 594 322
+</p>
+
+<p>
+Luxury Sneakers • Trending Products • Global Ecommerce
 </p>
 
 </footer>
@@ -624,7 +625,7 @@ img:"https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=700"
 
 {
 name:"Jordan Retro 4",
-price:180,
+price:190,
 cat:"sneaker",
 img:"https://images.unsplash.com/photo-1600180758890-6b94519a8ba6?w=700"
 },
@@ -644,7 +645,35 @@ img:"https://images.unsplash.com/photo-1549298916-b41d501d3772?w=700"
 },
 
 {
-name:"Nike Slides",
+name:"Nike Running Pro",
+price:145,
+cat:"sport",
+img:"https://images.unsplash.com/photo-1460353581641-37baddab0fa2?w=700"
+},
+
+{
+name:"Puma RS-X",
+price:135,
+cat:"sneaker",
+img:"https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=700"
+},
+
+{
+name:"New Balance 574",
+price:130,
+cat:"sport",
+img:"https://images.unsplash.com/photo-1519744346364-2b8a8f2a7c2d?w=700"
+},
+
+{
+name:"Luxury White Sneaker",
+price:125,
+cat:"sneaker",
+img:"https://images.unsplash.com/photo-1552346154-21d32810aba3?w=700"
+},
+
+{
+name:"Nike Comfort Slides",
 price:55,
 cat:"slides",
 img:"https://images.unsplash.com/photo-1597047084897-51e81819a499?w=700"
@@ -658,34 +687,6 @@ img:"https://images.unsplash.com/photo-1603487742131-4160ec999306?w=700"
 },
 
 {
-name:"QD Premium Sandal",
-price:65,
-cat:"sandal",
-img:"https://images.unsplash.com/photo-1608256246200-53e8b47b2f80?w=700"
-},
-
-{
-name:"Puma RS-X",
-price:135,
-cat:"sneaker",
-img:"https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=700"
-},
-
-{
-name:"New Balance 574",
-price:145,
-cat:"sport",
-img:"https://images.unsplash.com/photo-1519744346364-2b8a8f2a7c2d?w=700"
-},
-
-{
-name:"Luxury White Sneaker",
-price:160,
-cat:"sneaker",
-img:"https://images.unsplash.com/photo-1552346154-21d32810aba3?w=700"
-},
-
-{
 name:"Crocs Comfort Slides",
 price:60,
 cat:"slides",
@@ -693,10 +694,17 @@ img:"https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=700"
 },
 
 {
-name:"Running Sport Pro",
-price:140,
-cat:"sport",
-img:"https://images.unsplash.com/photo-1460353581641-37baddab0fa2?w=700"
+name:"QD Premium Sandal",
+price:65,
+cat:"sandal",
+img:"https://images.unsplash.com/photo-1608256246200-53e8b47b2f80?w=700"
+},
+
+{
+name:"Fashion Leather Sandal",
+price:72,
+cat:"sandal",
+img:"https://images.unsplash.com/photo-1560769629-975ec94e6a86?w=700"
 }
 
 ];
@@ -704,20 +712,22 @@ img:"https://images.unsplash.com/photo-1460353581641-37baddab0fa2?w=700"
 let cart = [];
 let total = 0;
 
+/* RENDER PRODUCTS */
+
 function renderProducts(list){
 
 const box = document.getElementById("shop");
 
 box.innerHTML = "";
 
-list.forEach(p=>{
+list.forEach((p)=>{
 
 box.innerHTML += `
 
 <div class="card">
 
 <div class="badge">
-🔥 BEST SELLER
+🔥 HOT SELLER
 </div>
 
 <img src="${p.img}">
@@ -731,7 +741,7 @@ $${p.price}
 </div>
 
 <div class="desc">
-Premium global fashion product with luxury quality and modern design.
+Premium world class fashion product with luxury global quality and trending design.
 </div>
 
 <button class="btn"
@@ -750,6 +760,8 @@ Add To Cart
 updateDashboard();
 
 }
+
+/* CART */
 
 function addToCart(name,price){
 
@@ -785,18 +797,9 @@ updateDashboard();
 
 }
 
-function filterProducts(cat){
+renderCart();
 
-if(cat==="all"){
-renderProducts(products);
-return;
-}
-
-renderProducts(
-products.filter(p=>p.cat===cat)
-);
-
-}
+/* SEARCH */
 
 function searchProducts(value){
 
@@ -813,6 +816,25 @@ value.toLowerCase()
 );
 
 }
+
+/* FILTER */
+
+function filterProducts(cat){
+
+if(cat==="all"){
+
+renderProducts(products);
+return;
+
+}
+
+renderProducts(
+products.filter(p=>p.cat===cat)
+);
+
+}
+
+/* CHECKOUT */
 
 function checkout(){
 
@@ -848,6 +870,8 @@ encodeURIComponent(msg)
 
 }
 
+/* DASHBOARD */
+
 function updateDashboard(){
 
 document.getElementById(
@@ -864,8 +888,9 @@ document.getElementById(
 
 }
 
+/* START */
+
 renderProducts(products);
-renderCart();
 
 </script>
 
