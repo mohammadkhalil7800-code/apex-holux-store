@@ -1,20 +1,13 @@
-<!-- 🔥 APEX HOLUX ULTRA PRO MAX SYSTEM -->
-<!-- WORLD CLASS GLOBAL MARKETPLACE -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🔥 Apex Holux Global Marketplace</title>
 
-<title>🔥 Apex Holux Ultra Global Market</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 
 <style>
-
-/* GLOBAL */
 
 *{
 margin:0;
@@ -30,18 +23,7 @@ color:white;
 overflow-x:hidden;
 }
 
-/* SCROLLBAR */
-
-::-webkit-scrollbar{
-width:10px;
-}
-
-::-webkit-scrollbar-thumb{
-background:#ff9900;
-border-radius:20px;
-}
-
-/* HEADER */
+/* NAVBAR */
 
 header{
 position:fixed;
@@ -52,14 +34,14 @@ padding:18px 6%;
 display:flex;
 justify-content:space-between;
 align-items:center;
-background:rgba(0,0,0,0.7);
-backdrop-filter:blur(16px);
+background:rgba(0,0,0,0.75);
+backdrop-filter:blur(15px);
 z-index:999;
-border-bottom:1px solid rgba(255,255,255,0.07);
+border-bottom:1px solid rgba(255,255,255,0.08);
 }
 
 .logo{
-font-size:36px;
+font-size:34px;
 font-weight:900;
 letter-spacing:2px;
 }
@@ -88,55 +70,22 @@ color:#ff9900;
 
 .hero{
 height:100vh;
+background:
+linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.85)),
+url('https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=1600')
+center/cover;
 display:flex;
 justify-content:center;
 align-items:center;
 text-align:center;
 padding:20px;
-position:relative;
-overflow:hidden;
-
-background:
-linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.85)),
-url('https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=1600')
-center/cover;
-}
-
-.hero::before{
-content:'';
-position:absolute;
-width:200%;
-height:200%;
-background:
-linear-gradient(
-120deg,
-transparent,
-rgba(255,153,0,0.12),
-transparent
-);
-animation:shine 8s linear infinite;
-}
-
-@keyframes shine{
-0%{
-transform:translateX(-100%);
-}
-100%{
-transform:translateX(100%);
-}
-}
-
-.hero-content{
-position:relative;
-z-index:2;
 }
 
 .hero-content h1{
-font-size:95px;
+font-size:85px;
 font-weight:900;
 line-height:1.1;
 margin-bottom:25px;
-text-shadow:0 0 25px rgba(255,153,0,0.3);
 }
 
 .hero-content span{
@@ -144,25 +93,24 @@ color:#ff9900;
 }
 
 .hero-content p{
-font-size:22px;
-max-width:950px;
+font-size:20px;
+max-width:900px;
 margin:auto;
-line-height:2;
-opacity:0.92;
+line-height:1.9;
+opacity:0.9;
 }
 
 .hero-btn{
 display:inline-block;
-margin-top:40px;
-padding:18px 50px;
-background:linear-gradient(135deg,#ff9900,#ff5e00);
-border-radius:50px;
+margin-top:35px;
+padding:18px 45px;
+background:#ff9900;
 color:black;
 font-weight:900;
 text-decoration:none;
+border-radius:50px;
 font-size:18px;
-box-shadow:0 15px 35px rgba(255,153,0,0.35);
-transition:0.4s;
+transition:0.3s;
 }
 
 .hero-btn:hover{
@@ -170,31 +118,11 @@ transform:scale(1.08);
 background:white;
 }
 
-/* LIVE */
-
-.live{
-position:fixed;
-top:100px;
-right:20px;
-background:red;
-padding:12px 18px;
-border-radius:40px;
-font-weight:900;
-z-index:999;
-animation:pulse 1s infinite;
-}
-
-@keyframes pulse{
-0%{transform:scale(1)}
-50%{transform:scale(1.08)}
-100%{transform:scale(1)}
-}
-
 /* STATS */
 
 .stats{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
 gap:25px;
 padding:80px 6%;
 background:#0b0b0b;
@@ -202,19 +130,14 @@ background:#0b0b0b;
 
 .stat{
 background:#111;
-padding:40px;
-border-radius:28px;
+padding:35px;
+border-radius:24px;
 text-align:center;
-box-shadow:0 20px 40px rgba(0,0,0,0.45);
-transition:0.4s;
-}
-
-.stat:hover{
-transform:translateY(-10px);
+box-shadow:0 15px 30px rgba(0,0,0,0.4);
 }
 
 .stat h2{
-font-size:50px;
+font-size:45px;
 color:#ff9900;
 margin-bottom:12px;
 }
@@ -222,20 +145,18 @@ margin-bottom:12px;
 /* SEARCH */
 
 .search-area{
-padding:45px 6%;
+padding:40px 6%;
 background:#080808;
 text-align:center;
 }
 
 .search{
 width:100%;
-max-width:850px;
-padding:20px;
-background:#111;
+max-width:800px;
+padding:18px;
 border:none;
 border-radius:50px;
 font-size:18px;
-color:white;
 outline:none;
 }
 
@@ -244,27 +165,26 @@ outline:none;
 .filters{
 display:flex;
 justify-content:center;
-flex-wrap:wrap;
 gap:15px;
+flex-wrap:wrap;
 padding:20px;
 background:#080808;
 }
 
 .filters button{
-padding:13px 24px;
+padding:12px 24px;
 border:none;
-background:#141414;
+background:#161616;
 color:white;
 border-radius:40px;
+font-weight:bold;
 cursor:pointer;
-font-weight:800;
 transition:0.3s;
 }
 
 .filters button:hover{
 background:#ff9900;
 color:black;
-transform:translateY(-3px);
 }
 
 /* PRODUCTS */
@@ -272,59 +192,57 @@ transform:translateY(-3px);
 .products{
 padding:80px 6%;
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
 gap:35px;
 }
 
 .card{
-background:
-linear-gradient(145deg,#111,#0c0c0c);
-border-radius:30px;
+background:linear-gradient(145deg,#111,#0d0d0d);
+border-radius:28px;
 overflow:hidden;
+transition:0.4s;
 position:relative;
-transition:0.5s;
-border:1px solid rgba(255,255,255,0.05);
-box-shadow:0 20px 45px rgba(0,0,0,0.5);
+box-shadow:0 15px 40px rgba(0,0,0,0.5);
+border:1px solid rgba(255,255,255,0.06);
 }
 
 .card:hover{
-transform:translateY(-15px) scale(1.02);
+transform:translateY(-12px) scale(1.02);
 }
 
 .card img{
 width:100%;
-height:330px;
+height:320px;
 object-fit:cover;
-transition:0.6s;
+transition:0.5s;
 }
 
 .card:hover img{
-transform:scale(1.1);
+transform:scale(1.08);
 }
 
 .badge{
 position:absolute;
 top:18px;
 left:18px;
-background:
-linear-gradient(135deg,red,#ff9900);
+background:linear-gradient(135deg,red,#ff9900);
 padding:8px 16px;
-border-radius:40px;
+border-radius:30px;
 font-size:12px;
 font-weight:900;
 }
 
 .info{
-padding:28px;
+padding:25px;
 }
 
 .info h2{
 font-size:28px;
-margin-bottom:12px;
+margin-bottom:10px;
 }
 
 .price{
-font-size:36px;
+font-size:32px;
 font-weight:900;
 color:#ff9900;
 margin-bottom:12px;
@@ -333,7 +251,8 @@ margin-bottom:12px;
 .desc{
 opacity:0.82;
 line-height:1.8;
-margin-bottom:22px;
+margin-bottom:20px;
+font-size:14px;
 }
 
 .btn{
@@ -341,8 +260,8 @@ width:100%;
 padding:16px;
 border:none;
 border-radius:14px;
-background:
-linear-gradient(135deg,#ff9900,#ff5e00);
+background:#ff9900;
+color:black;
 font-size:17px;
 font-weight:900;
 cursor:pointer;
@@ -354,13 +273,7 @@ background:white;
 transform:scale(1.03);
 }
 
-.remove-btn{
-margin-top:12px;
-background:red;
-color:white;
-}
-
-/* ADMIN */
+/* ADMIN PANEL */
 
 .admin{
 margin:70px 6%;
@@ -370,43 +283,52 @@ border-radius:30px;
 }
 
 .admin h1{
-font-size:44px;
 margin-bottom:25px;
+font-size:42px;
 }
 
 .admin input{
 width:100%;
 padding:16px;
 margin:12px 0;
-background:#181818;
 border:none;
-border-radius:14px;
+border-radius:12px;
 font-size:16px;
-color:white;
+}
+
+.admin button{
+width:100%;
+padding:16px;
+border:none;
+background:#ff9900;
+font-weight:900;
+font-size:18px;
+border-radius:14px;
+cursor:pointer;
 }
 
 /* CART */
 
 .cart{
 margin:70px 6%;
-padding:40px;
 background:#111;
-border-radius:30px;
+padding:35px;
+border-radius:28px;
 }
 
 .cart h1{
-font-size:44px;
+font-size:42px;
 margin-bottom:20px;
 }
 
-.cart-item{
-padding:12px 0;
-border-bottom:1px solid rgba(255,255,255,0.06);
+#cartItems p{
+margin:12px 0;
+font-size:16px;
 }
 
 .total{
 margin-top:20px;
-font-size:40px;
+font-size:36px;
 font-weight:900;
 color:#ff9900;
 }
@@ -419,46 +341,23 @@ border:none;
 background:#25D366;
 color:white;
 font-size:20px;
-font-weight:900;
-border-radius:16px;
+font-weight:bold;
+border-radius:14px;
 cursor:pointer;
-}
-
-/* DASHBOARD */
-
-.dashboard{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:25px;
-padding:80px 6%;
-}
-
-.dash-box{
-background:#111;
-padding:40px;
-border-radius:28px;
-text-align:center;
-box-shadow:0 20px 45px rgba(0,0,0,0.45);
-}
-
-.dash-box h2{
-font-size:55px;
-color:#ff9900;
-margin-bottom:10px;
 }
 
 /* FOOTER */
 
 footer{
 background:#030303;
-padding:90px 20px;
+padding:80px 20px;
 text-align:center;
-margin-top:50px;
-border-top:1px solid rgba(255,255,255,0.06);
+margin-top:60px;
+border-top:1px solid rgba(255,255,255,0.08);
 }
 
 footer h1{
-font-size:60px;
+font-size:55px;
 margin-bottom:15px;
 }
 
@@ -467,8 +366,8 @@ color:#ff9900;
 }
 
 footer p{
-opacity:0.85;
-line-height:2;
+opacity:0.8;
+line-height:1.9;
 }
 
 /* WHATSAPP */
@@ -477,8 +376,8 @@ line-height:2;
 position:fixed;
 bottom:20px;
 right:20px;
-width:78px;
-height:78px;
+width:75px;
+height:75px;
 background:#25D366;
 border-radius:50%;
 display:flex;
@@ -487,8 +386,7 @@ align-items:center;
 font-size:36px;
 text-decoration:none;
 color:white;
-box-shadow:0 15px 35px rgba(0,0,0,0.5);
-z-index:999;
+box-shadow:0 10px 25px rgba(0,0,0,0.5);
 }
 
 /* MOBILE */
@@ -496,32 +394,19 @@ z-index:999;
 @media(max-width:768px){
 
 .hero-content h1{
-font-size:52px;
-}
-
-.hero-content p{
-font-size:16px;
+font-size:48px;
 }
 
 nav{
 display:none;
 }
 
-.products{
-grid-template-columns:1fr;
-}
-
 }
 
 </style>
-
 </head>
 
 <body>
-
-<div class="live">
-🔴 LIVE MARKET
-</div>
 
 <header>
 
@@ -543,16 +428,16 @@ grid-template-columns:1fr;
 <div class="hero-content">
 
 <h1>
-WORLD CLASS <br>
+NEXT LEVEL <br>
 <span>GLOBAL MARKET</span>
 </h1>
 
 <p>
-Premium Sneakers • Luxury Fashion • Trending Afghanistan Products • World Class Ecommerce Experience
+World Class Sneakers • Premium Slides • Luxury Fashion • Trending Products • Afghanistan Best Selling Marketplace
 </p>
 
 <a href="#shop" class="hero-btn">
-Explore Collection
+Explore Products
 </a>
 
 </div>
@@ -562,18 +447,18 @@ Explore Collection
 <section class="stats">
 
 <div class="stat">
-<h2>1M+</h2>
+<h2>500K+</h2>
 <p>Monthly Visitors</p>
 </div>
 
 <div class="stat">
-<h2>250+</h2>
+<h2>120+</h2>
 <p>Premium Brands</p>
 </div>
 
 <div class="stat">
 <h2>24/7</h2>
-<p>Worldwide Orders</p>
+<p>Global Orders</p>
 </div>
 
 <div class="stat">
@@ -585,11 +470,9 @@ Explore Collection
 
 <div class="search-area">
 
-<input
-class="search"
+<input class="search"
 placeholder="Search Premium Products..."
-oninput="searchProducts(this.value)"
->
+oninput="searchProducts(this.value)">
 
 </div>
 
@@ -597,48 +480,24 @@ oninput="searchProducts(this.value)"
 
 <button onclick="filterProducts('all')">All</button>
 <button onclick="filterProducts('sneaker')">Sneakers</button>
-<button onclick="filterProducts('sport')">Sport</button>
 <button onclick="filterProducts('slides')">Slides</button>
+<button onclick="filterProducts('sport')">Sport</button>
 <button onclick="filterProducts('sandal')">Sandals</button>
 
 </div>
 
 <section class="products" id="shop"></section>
 
-<section class="dashboard">
-
-<div class="dash-box">
-<h2 id="productCount">0</h2>
-<p>Total Products</p>
-</div>
-
-<div class="dash-box">
-<h2 id="cartCount">0</h2>
-<p>Cart Items</p>
-</div>
-
-<div class="dash-box">
-<h2>50K+</h2>
-<p>Orders</p>
-</div>
-
-<div class="dash-box">
-<h2>4.9★</h2>
-<p>Customer Rating</p>
-</div>
-
-</section>
-
 <section class="admin" id="admin">
 
-<h1>🧑‍💼 Live Admin Panel</h1>
+<h1>🧑‍💼 Admin Panel</h1>
 
 <input id="pname" placeholder="Product Name">
-<input id="pprice" placeholder="Price">
+<input id="pprice" placeholder="Product Price">
 <input id="pimg" placeholder="Image URL">
 <input id="pcat" placeholder="Category">
 
-<button class="btn" onclick="addProduct()">
+<button onclick="addProduct()">
 Add Product Live
 </button>
 
@@ -655,27 +514,21 @@ Total: $<span id="total">0</span>
 </div>
 
 <button class="checkout" onclick="checkout()">
-Order On WhatsApp
+Order on WhatsApp
 </button>
 
 </section>
 
 <footer>
 
-<h1>
-🔥 Apex <span>Holux</span>
-</h1>
+<h1>🔥 Apex <span>Holux</span></h1>
+
+<p>World Class Global Fashion Marketplace</p>
+
+<p>📞 WhatsApp: 0764 594 322</p>
 
 <p>
-World Class Premium Fashion Marketplace
-</p>
-
-<p>
-📞 WhatsApp: 0764 594 322
-</p>
-
-<p>
-Luxury Sneakers • Trending Products • Global Ecommerce • Afghanistan Fashion Market
+Premium Sneakers • Luxury Fashion • Afghanistan Trending Products • Global Ecommerce Experience
 </p>
 
 </footer>
@@ -707,20 +560,20 @@ img:"https://images.unsplash.com/photo-1600180758890-6b94519a8ba6?w=700"
 
 {
 name:"Adidas Ultraboost",
-price:120,
+price:125,
 cat:"sport",
 img:"https://images.unsplash.com/photo-1528701800489-20be3c5c9c8c?w=700"
 },
 
 {
-name:"Sketchers Max Cushion",
-price:105,
+name:"Sketchers Premium Foam",
+price:95,
 cat:"sport",
-img:"https://images.unsplash.com/photo-1549298916-b41d501d3772?w=700"
+img:"https://images.unsplash.com/photo-1519741497674-611481863552?w=700"
 },
 
 {
-name:"Nike Comfort Slides",
+name:"Nike Slides",
 price:45,
 cat:"slides",
 img:"https://images.unsplash.com/photo-1597047084897-51e81819a499?w=700"
@@ -730,7 +583,7 @@ img:"https://images.unsplash.com/photo-1597047084897-51e81819a499?w=700"
 name:"QD Premium Sandal",
 price:55,
 cat:"sandal",
-img:"https://images.unsplash.com/photo-1608256246200-53e8b47b2f80?w=700"
+img:"https://images.unsplash.com/photo-1603487742131-4160ec999306?w=700"
 }
 
 ];
@@ -739,7 +592,7 @@ let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
 let total = 0;
 
-/* RENDER */
+/* RENDER PRODUCTS */
 
 function renderProducts(list){
 
@@ -757,7 +610,8 @@ box.innerHTML += `
 🔥 BEST SELLER
 </div>
 
-<img src="${p.img}">
+<img src="${p.img}"
+onerror="this.src='https://via.placeholder.com/400?text=Fashion'">
 
 <div class="info">
 
@@ -768,7 +622,7 @@ $${p.price}
 </div>
 
 <div class="desc">
-Premium global fashion product with luxury world-class design and quality.
+Premium global trending product with luxury design and modern world-class quality.
 </div>
 
 <button class="btn"
@@ -776,7 +630,10 @@ onclick="addToCart('${p.name}',${p.price})">
 Add To Cart
 </button>
 
-<button class="btn remove-btn"
+<br><br>
+
+<button class="btn"
+style="background:red;color:white"
 onclick="removeProduct(${index})">
 Remove Product
 </button>
@@ -789,8 +646,6 @@ Remove Product
 
 });
 
-updateDashboard();
-
 }
 
 /* CART */
@@ -799,10 +654,7 @@ function addToCart(name,price){
 
 cart.push({name,price});
 
-localStorage.setItem(
-"cart",
-JSON.stringify(cart)
-);
+localStorage.setItem("cart",JSON.stringify(cart));
 
 renderCart();
 
@@ -816,62 +668,48 @@ box.innerHTML = "";
 
 total = 0;
 
-cart.forEach(item=>{
+cart.forEach(i=>{
 
-total += item.price;
+total += i.price;
 
 box.innerHTML += `
-<div class="cart-item">
-✔ ${item.name} - $${item.price}
-</div>
+<p>✔ ${i.name} - $${i.price}</p>
 `;
 
 });
 
 document.getElementById("total").innerText = total;
 
-updateDashboard();
-
 }
 
 renderCart();
-
-/* SEARCH */
-
-function searchProducts(value){
-
-renderProducts(
-
-products.filter(p=>
-
-p.name.toLowerCase().includes(
-value.toLowerCase()
-)
-
-)
-
-);
-
-}
 
 /* FILTER */
 
 function filterProducts(cat){
 
 if(cat==="all"){
-
 renderProducts(products);
 return;
+}
+
+renderProducts(products.filter(p=>p.cat===cat));
 
 }
 
+/* SEARCH */
+
+function searchProducts(val){
+
 renderProducts(
-products.filter(p=>p.cat===cat)
+products.filter(p=>
+p.name.toLowerCase().includes(val.toLowerCase())
+)
 );
 
 }
 
-/* CHECKOUT */
+/* WHATSAPP CHECKOUT */
 
 function checkout(){
 
@@ -882,46 +720,31 @@ return;
 
 }
 
-let msg =
-"🔥 APEX HOLUX GLOBAL ORDER 🔥\n\n";
+let msg = "🔥 APEX HOLUX ORDER 🔥\n\n";
 
-cart.forEach(item=>{
+cart.forEach(i=>{
 
-msg +=
-"✔ " +
-item.name +
-" - $" +
-item.price +
-"\n";
+msg += "✔ " + i.name + " - $" + i.price + "\n";
 
 });
 
 msg += "\n💰 Total: $" + total;
 
 window.open(
-"https://wa.me/" +
-PHONE +
-"?text=" +
-encodeURIComponent(msg)
+"https://wa.me/" + PHONE +
+"?text=" + encodeURIComponent(msg)
 );
 
 }
 
-/* ADMIN */
+/* ADMIN ADD PRODUCT */
 
 function addProduct(){
 
-const name =
-document.getElementById("pname").value;
-
-const price =
-Number(document.getElementById("pprice").value);
-
-const img =
-document.getElementById("pimg").value;
-
-const cat =
-document.getElementById("pcat").value;
+const name = document.getElementById("pname").value;
+const price = Number(document.getElementById("pprice").value);
+const img = document.getElementById("pimg").value;
+const cat = document.getElementById("pcat").value;
 
 if(!name || !price || !img || !cat){
 
@@ -930,12 +753,7 @@ return;
 
 }
 
-products.push({
-name,
-price,
-img,
-cat
-});
+products.push({name,price,img,cat});
 
 localStorage.setItem(
 "products",
@@ -953,7 +771,7 @@ pcat.value="";
 
 }
 
-/* REMOVE */
+/* REMOVE PRODUCT */
 
 function removeProduct(index){
 
@@ -965,20 +783,6 @@ JSON.stringify(products)
 );
 
 renderProducts(products);
-
-}
-
-/* DASHBOARD */
-
-function updateDashboard(){
-
-document.getElementById(
-"productCount"i
-).innerText = products.length;
-
-document.getElementById(
-"cartCount"
-).innerText = cart.length;
 
 }
 
