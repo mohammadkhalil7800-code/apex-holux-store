@@ -1,13 +1,13 @@
-<!-- 🔥 APEX HOLUX INFINITY ULTRA X -->
+<!-- 🔥 APEX HOLUX ELITE GLOBAL SYSTEM -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>🔥 Apex Holux Infinity Market</title>
+<title>🔥 Apex Holux Elite Global Store</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
 
 <style>
 
@@ -15,7 +15,7 @@
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:'Montserrat',sans-serif;
+font-family:'Poppins',sans-serif;
 scroll-behavior:smooth;
 }
 
@@ -25,17 +25,6 @@ color:white;
 overflow-x:hidden;
 }
 
-/* SCROLL */
-
-::-webkit-scrollbar{
-width:10px;
-}
-
-::-webkit-scrollbar-thumb{
-background:#ff9900;
-border-radius:20px;
-}
-
 /* HEADER */
 
 header{
@@ -43,18 +32,18 @@ position:fixed;
 top:0;
 left:0;
 width:100%;
-padding:18px 6%;
+padding:18px 5%;
 display:flex;
 justify-content:space-between;
 align-items:center;
 background:rgba(0,0,0,0.7);
-backdrop-filter:blur(14px);
+backdrop-filter:blur(15px);
 z-index:999;
-border-bottom:1px solid rgba(255,255,255,0.07);
+border-bottom:1px solid rgba(255,255,255,0.08);
 }
 
 .logo{
-font-size:34px;
+font-size:38px;
 font-weight:900;
 }
 
@@ -64,13 +53,13 @@ color:#ff9900;
 
 nav{
 display:flex;
-gap:20px;
+gap:22px;
 }
 
 nav a{
 color:white;
 text-decoration:none;
-font-size:14px;
+font-size:15px;
 transition:0.3s;
 }
 
@@ -83,100 +72,71 @@ color:#ff9900;
 .hero{
 height:100vh;
 display:flex;
-align-items:center;
 justify-content:center;
+align-items:center;
 text-align:center;
 padding:20px;
-
 background:
-linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.85)),
+linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.85)),
 url('https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=1600')
 center/cover;
 }
 
-.hero h1{
-font-size:90px;
+.hero-content h1{
+font-size:95px;
 font-weight:900;
 line-height:1.1;
 margin-bottom:20px;
 }
 
-.hero span{
+.hero-content span{
 color:#ff9900;
 }
 
-.hero p{
+.hero-content p{
 font-size:22px;
-max-width:1000px;
+max-width:900px;
 margin:auto;
-line-height:2;
 opacity:0.9;
+line-height:1.9;
 }
 
 .hero-btn{
 display:inline-block;
-margin-top:40px;
-padding:18px 50px;
-background:linear-gradient(135deg,#ff9900,#ff5500);
+margin-top:35px;
+padding:18px 48px;
+border-radius:50px;
+background:linear-gradient(135deg,#ff9900,#ff5e00);
 color:black;
 font-weight:900;
 text-decoration:none;
-border-radius:50px;
-font-size:18px;
 transition:0.4s;
-box-shadow:0 15px 35px rgba(255,153,0,0.35);
 }
 
 .hero-btn:hover{
-transform:scale(1.08);
+transform:scale(1.07);
 background:white;
 }
 
-/* LIVE BAR */
+/* TOP BAR */
 
-.live-bar{
-position:fixed;
-top:90px;
-right:20px;
-padding:12px 18px;
-background:red;
-border-radius:40px;
-font-weight:900;
-z-index:999;
-animation:pulse 1s infinite;
-}
-
-@keyframes pulse{
-0%{transform:scale(1)}
-50%{transform:scale(1.08)}
-100%{transform:scale(1)}
-}
-
-/* STATS */
-
-.stats{
-padding:80px 6%;
+.top-bar{
+padding:120px 5% 40px;
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
-gap:25px;
-background:#0b0b0b;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
+background:#0a0a0a;
 }
 
-.stat{
+.box{
 background:#111;
-padding:40px;
-border-radius:30px;
+padding:35px;
+border-radius:25px;
 text-align:center;
-box-shadow:0 15px 35px rgba(0,0,0,0.45);
-transition:0.4s;
 }
 
-.stat:hover{
-transform:translateY(-10px);
-}
-
-.stat h2{
-font-size:50px;
+.box h2{
+font-size:45px;
 color:#ff9900;
 margin-bottom:10px;
 }
@@ -184,97 +144,67 @@ margin-bottom:10px;
 /* SEARCH */
 
 .search-area{
-padding:45px 6%;
+padding:30px 5%;
 background:#080808;
-text-align:center;
 }
 
 .search{
 width:100%;
-max-width:900px;
-padding:20px;
-background:#111;
+padding:18px;
 border:none;
-border-radius:50px;
-font-size:18px;
-color:white;
 outline:none;
-}
-
-/* FILTERS */
-
-.filters{
-display:flex;
-justify-content:center;
-gap:15px;
-flex-wrap:wrap;
-padding:20px;
-background:#080808;
-}
-
-.filters button{
-padding:13px 25px;
-border:none;
-background:#151515;
+border-radius:50px;
+background:#111;
 color:white;
-border-radius:40px;
-font-weight:800;
-cursor:pointer;
-transition:0.3s;
-}
-
-.filters button:hover{
-background:#ff9900;
-color:black;
+font-size:17px;
 }
 
 /* PRODUCTS */
 
 .products{
-padding:80px 6%;
+padding:60px 5%;
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
 gap:35px;
 }
 
 .card{
-background:linear-gradient(145deg,#111,#0a0a0a);
+background:#111;
 border-radius:30px;
 overflow:hidden;
+transition:0.4s;
 position:relative;
-transition:0.5s;
-border:1px solid rgba(255,255,255,0.06);
-box-shadow:0 20px 45px rgba(0,0,0,0.45);
+box-shadow:0 20px 40px rgba(0,0,0,0.4);
 }
 
 .card:hover{
-transform:translateY(-15px) scale(1.02);
+transform:translateY(-12px);
 }
 
 .card img{
 width:100%;
-height:330px;
+height:320px;
 object-fit:cover;
-transition:0.6s;
+transition:0.5s;
 }
 
 .card:hover img{
-transform:scale(1.1);
+transform:scale(1.08);
 }
 
 .badge{
 position:absolute;
 top:18px;
 left:18px;
-background:linear-gradient(135deg,red,#ff9900);
+background:red;
 padding:8px 16px;
-border-radius:40px;
+border-radius:30px;
 font-size:12px;
-font-weight:900;
+font-weight:800;
 }
 
 .info{
-padding:28px;
+padding:25px;
 }
 
 .info h2{
@@ -283,22 +213,21 @@ margin-bottom:10px;
 }
 
 .price{
-font-size:36px;
+font-size:34px;
 font-weight:900;
 color:#ff9900;
 margin-bottom:12px;
 }
 
-.desc{
-opacity:0.82;
-line-height:1.8;
-margin-bottom:22px;
+.rating{
+color:gold;
+margin-bottom:15px;
 }
 
-.rating{
+.desc{
+opacity:0.8;
+line-height:1.8;
 margin-bottom:18px;
-color:#ffcc00;
-font-size:14px;
 }
 
 .btn{
@@ -307,93 +236,38 @@ padding:16px;
 border:none;
 border-radius:14px;
 background:linear-gradient(135deg,#ff9900,#ff5e00);
-font-size:17px;
 font-weight:900;
 cursor:pointer;
+font-size:16px;
 transition:0.3s;
 }
 
 .btn:hover{
-transform:scale(1.03);
 background:white;
-}
-
-.remove-btn{
-background:red;
-color:white;
-margin-top:12px;
-}
-
-/* DASHBOARD */
-
-.dashboard{
-padding:80px 6%;
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:25px;
-}
-
-.dash-box{
-background:#111;
-padding:40px;
-border-radius:28px;
-text-align:center;
-box-shadow:0 15px 35px rgba(0,0,0,0.4);
-}
-
-.dash-box h2{
-font-size:55px;
-color:#ff9900;
-margin-bottom:10px;
-}
-
-/* ADMIN */
-
-.admin{
-margin:70px 6%;
-padding:40px;
-background:#111;
-border-radius:30px;
-}
-
-.admin h1{
-font-size:42px;
-margin-bottom:20px;
-}
-
-.admin input{
-width:100%;
-padding:16px;
-margin:12px 0;
-background:#181818;
-border:none;
-border-radius:14px;
-font-size:16px;
-color:white;
 }
 
 /* CART */
 
 .cart{
-margin:70px 6%;
+margin:40px 5%;
 padding:40px;
 background:#111;
 border-radius:30px;
 }
 
 .cart h1{
-font-size:44px;
+font-size:45px;
 margin-bottom:20px;
 }
 
 .cart-item{
-padding:12px 0;
-border-bottom:1px solid rgba(255,255,255,0.06);
+padding:14px 0;
+border-bottom:1px solid rgba(255,255,255,0.08);
 }
 
 .total{
 margin-top:20px;
-font-size:42px;
+font-size:38px;
 font-weight:900;
 color:#ff9900;
 }
@@ -407,17 +281,41 @@ background:#25D366;
 color:white;
 font-size:20px;
 font-weight:900;
-border-radius:16px;
+border-radius:15px;
 cursor:pointer;
+}
+
+/* ADMIN */
+
+.admin{
+margin:40px 5%;
+padding:40px;
+background:#111;
+border-radius:30px;
+}
+
+.admin h1{
+font-size:40px;
+margin-bottom:20px;
+}
+
+.admin input{
+width:100%;
+padding:16px;
+margin:10px 0;
+border:none;
+border-radius:14px;
+background:#181818;
+color:white;
 }
 
 /* FOOTER */
 
 footer{
-background:#030303;
-padding:90px 20px;
+padding:80px 20px;
 text-align:center;
-border-top:1px solid rgba(255,255,255,0.07);
+background:#020202;
+margin-top:60px;
 }
 
 footer h1{
@@ -430,8 +328,8 @@ color:#ff9900;
 }
 
 footer p{
+opacity:0.8;
 line-height:2;
-opacity:0.85;
 }
 
 /* WHATSAPP */
@@ -440,17 +338,16 @@ opacity:0.85;
 position:fixed;
 bottom:20px;
 right:20px;
-width:80px;
-height:80px;
+width:75px;
+height:75px;
 background:#25D366;
 border-radius:50%;
 display:flex;
-align-items:center;
 justify-content:center;
-font-size:38px;
-color:white;
+align-items:center;
+font-size:35px;
 text-decoration:none;
-box-shadow:0 15px 35px rgba(0,0,0,0.5);
+color:white;
 z-index:999;
 }
 
@@ -458,20 +355,16 @@ z-index:999;
 
 @media(max-width:768px){
 
-.hero h1{
+.hero-content h1{
 font-size:50px;
 }
 
-.hero p{
+.hero-content p{
 font-size:16px;
 }
 
 nav{
 display:none;
-}
-
-.products{
-grid-template-columns:1fr;
 }
 
 }
@@ -481,10 +374,6 @@ grid-template-columns:1fr;
 
 <body>
 
-<div class="live-bar">
-🔴 LIVE MARKET
-</div>
-
 <header>
 
 <div class="logo">
@@ -493,7 +382,7 @@ grid-template-columns:1fr;
 
 <nav>
 <a href="#">Home</a>
-<a href="#shop">Shop</a>
+<a href="#shop">Products</a>
 <a href="#admin">Admin</a>
 <a href="#cart">Cart</a>
 </nav>
@@ -502,15 +391,15 @@ grid-template-columns:1fr;
 
 <section class="hero">
 
-<div>
+<div class="hero-content">
 
 <h1>
-WORLD CLASS <br>
-<span>APEX MARKET</span>
+GLOBAL <br>
+<span>FASHION EMPIRE</span>
 </h1>
 
 <p>
-Luxury Sneakers • Premium Slides • Sketchers • QD Sandals • Afghanistan Trending Products • Global Ecommerce Experience
+Luxury Sneakers • Premium Slides • Fashion Shoes • Trending Afghanistan Products • World Class Ecommerce Experience
 </p>
 
 <a href="#shop" class="hero-btn">
@@ -521,24 +410,24 @@ Explore Collection
 
 </section>
 
-<section class="stats">
+<section class="top-bar">
 
-<div class="stat">
-<h2>2M+</h2>
+<div class="box">
+<h2>1M+</h2>
 <p>Monthly Visitors</p>
 </div>
 
-<div class="stat">
+<div class="box">
 <h2>500+</h2>
-<p>Luxury Products</p>
+<p>Fashion Products</p>
 </div>
 
-<div class="stat">
+<div class="box">
 <h2>24/7</h2>
-<p>Global Orders</p>
+<p>Worldwide Orders</p>
 </div>
 
-<div class="stat">
+<div class="box">
 <h2>4.9★</h2>
 <p>Customer Rating</p>
 </div>
@@ -547,53 +436,17 @@ Explore Collection
 
 <div class="search-area">
 
-<input
-class="search"
-placeholder="Search Products..."
-oninput="searchProducts(this.value)"
->
-
-</div>
-
-<div class="filters">
-
-<button onclick="filterProducts('all')">All</button>
-<button onclick="filterProducts('sneaker')">Sneakers</button>
-<button onclick="filterProducts('slides')">Slides</button>
-<button onclick="filterProducts('sport')">Sport</button>
-<button onclick="filterProducts('sandal')">Sandals</button>
+<input class="search"
+placeholder="Search Premium Products..."
+oninput="searchProducts(this.value)">
 
 </div>
 
 <section class="products" id="shop"></section>
 
-<section class="dashboard">
-
-<div class="dash-box">
-<h2 id="productCount">0</h2>
-<p>Total Products</p>
-</div>
-
-<div class="dash-box">
-<h2 id="cartCount">0</h2>
-<p>Cart Items</p>
-</div>
-
-<div class="dash-box">
-<h2 id="cartValue">$0</h2>
-<p>Total Cart Value</p>
-</div>
-
-<div class="dash-box">
-<h2>50K+</h2>
-<p>Orders</p>
-</div>
-
-</section>
-
 <section class="admin" id="admin">
 
-<h1>🧑‍💼 Live Admin Panel</h1>
+<h1>🧑‍💼 Admin Panel</h1>
 
 <input id="pname" placeholder="Product Name">
 <input id="pprice" placeholder="Price">
@@ -628,12 +481,12 @@ Order On WhatsApp
 🔥 Apex <span>Holux</span>
 </h1>
 
-<p>World Class Global Marketplace</p>
+<p>Elite Global Fashion Marketplace</p>
 
 <p>📞 WhatsApp: 0764594322</p>
 
 <p>
-Luxury Shoes • Premium Slides • Trending Afghanistan Fashion • Global Ecommerce
+Luxury Sneakers • Premium Slides • Global Fashion • Afghanistan Trending Market
 </p>
 
 </footer>
@@ -651,104 +504,70 @@ let products = JSON.parse(localStorage.getItem("products")) || [
 
 {
 name:"Nike Air Force 1",
-price:90,
-cat:"sneaker",
-rating:"★★★★★",
+price:120,
+cat:"Sneaker",
 img:"https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=700"
 },
 
 {
 name:"Jordan Retro 4",
 price:180,
-cat:"sneaker",
-rating:"★★★★★",
+cat:"Sneaker",
 img:"https://images.unsplash.com/photo-1600180758890-6b94519a8ba6?w=700"
 },
 
 {
 name:"Adidas Ultraboost",
-price:120,
-cat:"sport",
-rating:"★★★★★",
+price:140,
+cat:"Sport",
 img:"https://images.unsplash.com/photo-1528701800489-20be3c5c9c8c?w=700"
 },
 
 {
-name:"Sketchers Max Cushion",
-price:105,
-cat:"sport",
-rating:"★★★★★",
-img:"https://images.unsplash.com/photo-1549298916-b41d501d3772?w=700"
-},
-
-{
-name:"Nike Slides",
-price:45,
-cat:"slides",
-rating:"★★★★★",
+name:"Nike Premium Slides",
+price:55,
+cat:"Slides",
 img:"https://images.unsplash.com/photo-1597047084897-51e81819a499?w=700"
 },
 
 {
-name:"Adidas Cloud Slides",
-price:50,
-cat:"slides",
-rating:"★★★★★",
-img:"https://images.unsplash.com/photo-1606813902913-3f3a0a0c9a9b?w=700"
+name:"Sketchers Max Cushion",
+price:115,
+cat:"Sport",
+img:"https://images.unsplash.com/photo-1549298916-b41d501d3772?w=700"
 },
 
 {
-name:"QD Premium Sandal",
-price:55,
-cat:"sandal",
-rating:"★★★★★",
-img:"https://images.unsplash.com/photo-1608256246200-53e8b47b2f80?w=700"
+name:"Luxury White Sneaker",
+price:150,
+cat:"Sneaker",
+img:"https://images.unsplash.com/photo-1552346154-21d32810aba3?w=700"
 },
 
 {
 name:"Puma RS-X",
-price:110,
-cat:"sneaker",
-rating:"★★★★★",
+price:135,
+cat:"Sneaker",
 img:"https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=700"
 },
 
 {
 name:"New Balance 574",
-price:130,
-cat:"sport",
-rating:"★★★★★",
+price:145,
+cat:"Sport",
 img:"https://images.unsplash.com/photo-1519744346364-2b8a8f2a7c2d?w=700"
 },
 
 {
-name:"Crocs Comfort Slides",
-price:40,
-cat:"slides",
-rating:"★★★★★",
+name:"Premium Black Slides",
+price:48,
+cat:"Slides",
 img:"https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=700"
-},
-
-{
-name:"Luxury White Sneaker",
-price:140,
-cat:"sneaker",
-rating:"★★★★★",
-img:"https://images.unsplash.com/photo-1552346154-21d32810aba3?w=700"
-},
-
-{
-name:"Street Fashion Shoes",
-price:115,
-cat:"sport",
-rating:"★★★★★",
-img:"https://images.unsplash.com/photo-1460353581641-37baddab0fa2?w=700"
 }
 
 ];
 
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
 let total = 0;
 
 /* RENDER PRODUCTS */
@@ -770,8 +589,7 @@ box.innerHTML += `
 </div>
 
 <img src="${p.img}"
-loading="lazy"
-onerror="this.src='https://via.placeholder.com/500x500?text=Apex+Holux'">
+onerror="this.src='https://via.placeholder.com/500x500?text=Fashion'">
 
 <div class="info">
 
@@ -782,11 +600,11 @@ $${p.price}
 </div>
 
 <div class="rating">
-${p.rating}
+★★★★★ (4.9)
 </div>
 
 <div class="desc">
-World class premium fashion product with luxury quality and trending design.
+Luxury premium fashion product with high quality materials and world-class modern design.
 </div>
 
 <button class="btn"
@@ -794,7 +612,10 @@ onclick="addToCart('${p.name}',${p.price})">
 Add To Cart
 </button>
 
-<button class="btn remove-btn"
+<br><br>
+
+<button class="btn"
+style="background:red;color:white"
 onclick="removeProduct(${index})">
 Remove Product
 </button>
@@ -807,11 +628,11 @@ Remove Product
 
 });
 
-updateDashboard();
-
 }
 
-/* CART */
+renderProducts(products);
+
+/* ADD TO CART */
 
 function addToCart(name,price){
 
@@ -826,9 +647,12 @@ renderCart();
 
 }
 
+/* RENDER CART */
+
 function renderCart(){
 
-const box = document.getElementById("cartItems");
+const box =
+document.getElementById("cartItems");
 
 box.innerHTML = "";
 
@@ -839,18 +663,14 @@ cart.forEach(item=>{
 total += item.price;
 
 box.innerHTML += `
-
 <div class="cart-item">
 ✔ ${item.name} - $${item.price}
 </div>
-
 `;
 
 });
 
 document.getElementById("total").innerText = total;
-
-updateDashboard();
 
 }
 
@@ -874,23 +694,6 @@ value.toLowerCase()
 
 }
 
-/* FILTER */
-
-function filterProducts(cat){
-
-if(cat==="all"){
-
-renderProducts(products);
-return;
-
-}
-
-renderProducts(
-products.filter(p=>p.cat===cat)
-);
-
-}
-
 /* CHECKOUT */
 
 function checkout(){
@@ -903,7 +706,7 @@ return;
 }
 
 let msg =
-"🔥 APEX HOLUX ORDER 🔥\n\n";
+"🔥 APEX HOLUX ELITE ORDER 🔥\n\n";
 
 cart.forEach(item=>{
 
@@ -927,7 +730,7 @@ encodeURIComponent(msg)
 
 }
 
-/* ADMIN */
+/* ADD PRODUCT */
 
 function addProduct(){
 
@@ -954,8 +757,7 @@ products.push({
 name,
 price,
 img,
-cat,
-rating:"★★★★★"
+cat
 });
 
 localStorage.setItem(
@@ -967,14 +769,9 @@ renderProducts(products);
 
 alert("✅ Product Added");
 
-pname.value="";
-pprice.value="";
-pimg.value="";
-pcat.value="";
-
 }
 
-/* REMOVE */
+/* REMOVE PRODUCT */
 
 function removeProduct(index){
 
@@ -988,28 +785,6 @@ JSON.stringify(products)
 renderProducts(products);
 
 }
-
-/* DASHBOARD */
-
-function updateDashboard(){
-
-document.getElementById(
-"productCount"
-).innerText = products.length;
-
-document.getElementById(
-"cartCount"
-).innerText = cart.length;
-
-document.getElementById(
-"cartValue"
-).innerText = "$" + total;
-
-}
-
-/* START */
-
-renderProducts(products);
 
 </script>
 
