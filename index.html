@@ -1,42 +1,129 @@
-<!-- 🔥 APEX HOLUX ULTRA NEXT LEVEL GLOBAL SYSTEM -->
+<!-- 🔥 APEX HOLUX ULTRA PRO MAX SYSTEM -->
+<!-- WORLD CLASS GLOBAL MARKETPLACE -->
 
-<!-- ADD THIS INSIDE <head> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>🔥 Apex Holux Ultra Global Market</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
 
 <style>
 
-/* ULTRA PREMIUM EFFECTS */
+/* GLOBAL */
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Montserrat',sans-serif;
+scroll-behavior:smooth;
+}
 
 body{
-background:
-radial-gradient(circle at top,#1a1a1a,#050505 60%);
+background:#050505;
+color:white;
+overflow-x:hidden;
 }
 
-/* GLASS NAVBAR */
+/* SCROLLBAR */
+
+::-webkit-scrollbar{
+width:10px;
+}
+
+::-webkit-scrollbar-thumb{
+background:#ff9900;
+border-radius:20px;
+}
+
+/* HEADER */
 
 header{
-background:rgba(0,0,0,0.55);
-backdrop-filter:blur(20px);
-box-shadow:0 10px 30px rgba(0,0,0,0.5);
+position:fixed;
+top:0;
+left:0;
+width:100%;
+padding:18px 6%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:rgba(0,0,0,0.7);
+backdrop-filter:blur(16px);
+z-index:999;
+border-bottom:1px solid rgba(255,255,255,0.07);
 }
 
-/* HERO ANIMATION */
+.logo{
+font-size:36px;
+font-weight:900;
+letter-spacing:2px;
+}
+
+.logo span{
+color:#ff9900;
+}
+
+nav{
+display:flex;
+gap:24px;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+font-size:15px;
+transition:0.3s;
+}
+
+nav a:hover{
+color:#ff9900;
+}
+
+/* HERO */
+
+.hero{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:20px;
+position:relative;
+overflow:hidden;
+
+background:
+linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.85)),
+url('https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=1600')
+center/cover;
+}
 
 .hero::before{
 content:'';
 position:absolute;
-width:100%;
-height:100%;
+width:200%;
+height:200%;
 background:
-linear-gradient(120deg,
-rgba(255,153,0,0.15),
+linear-gradient(
+120deg,
 transparent,
-rgba(255,255,255,0.05));
-animation:moveBg 8s linear infinite;
+rgba(255,153,0,0.12),
+transparent
+);
+animation:shine 8s linear infinite;
 }
 
-@keyframes moveBg{
-0%{transform:translateX(-100%)}
-100%{transform:translateX(100%)}
+@keyframes shine{
+0%{
+transform:translateX(-100%);
+}
+100%{
+transform:translateX(100%);
+}
 }
 
 .hero-content{
@@ -46,171 +133,44 @@ z-index:2;
 
 .hero-content h1{
 font-size:95px;
-text-shadow:0 0 35px rgba(255,153,0,0.4);
-animation:fadeUp 1s ease;
+font-weight:900;
+line-height:1.1;
+margin-bottom:25px;
+text-shadow:0 0 25px rgba(255,153,0,0.3);
 }
 
-@keyframes fadeUp{
-from{
-opacity:0;
-transform:translateY(50px);
-}
-to{
-opacity:1;
-transform:translateY(0);
-}
+.hero-content span{
+color:#ff9900;
 }
 
-/* PREMIUM BUTTON */
+.hero-content p{
+font-size:22px;
+max-width:950px;
+margin:auto;
+line-height:2;
+opacity:0.92;
+}
 
 .hero-btn{
+display:inline-block;
+margin-top:40px;
+padding:18px 50px;
 background:linear-gradient(135deg,#ff9900,#ff5e00);
-box-shadow:0 10px 25px rgba(255,153,0,0.4);
-}
-
-.hero-btn:hover{
-transform:scale(1.08) rotate(-1deg);
-}
-
-/* PRODUCT CARD ULTRA */
-
-.card{
-background:
-linear-gradient(145deg,#101010,#0a0a0a);
-border:1px solid rgba(255,255,255,0.05);
-overflow:hidden;
-}
-
-.card::before{
-content:'';
-position:absolute;
-top:0;
-left:-120%;
-width:100%;
-height:100%;
-background:
-linear-gradient(
-90deg,
-transparent,
-rgba(255,255,255,0.08),
-transparent
-);
-transition:0.7s;
-}
-
-.card:hover::before{
-left:120%;
-}
-
-.card:hover{
-transform:
-translateY(-15px)
-scale(1.03);
-box-shadow:
-0 25px 50px rgba(0,0,0,0.7),
-0 0 30px rgba(255,153,0,0.15);
-}
-
-.card img{
-transition:0.6s;
-}
-
-.card:hover img{
-transform:scale(1.12);
-}
-
-/* PREMIUM PRICE */
-
-.price{
-font-size:36px;
-background:linear-gradient(135deg,#ff9900,#ffd000);
--webkit-background-clip:text;
--webkit-text-fill-color:transparent;
-}
-
-/* BUTTON GLOW */
-
-.btn{
-background:
-linear-gradient(135deg,#ff9900,#ff5e00);
-box-shadow:0 10px 25px rgba(255,153,0,0.25);
-}
-
-.btn:hover{
-transform:scale(1.05);
-box-shadow:0 15px 35px rgba(255,153,0,0.5);
-}
-
-/* SEARCH PREMIUM */
-
-.search{
-background:#111;
-color:white;
-border:1px solid rgba(255,255,255,0.06);
-box-shadow:0 10px 25px rgba(0,0,0,0.3);
-}
-
-/* FILTERS */
-
-.filters button{
-background:#111;
-border:1px solid rgba(255,255,255,0.06);
-}
-
-.filters button:hover{
-transform:translateY(-3px);
-}
-
-/* ADMIN PANEL ULTRA */
-
-.admin{
-background:
-linear-gradient(145deg,#111,#0b0b0b);
-border:1px solid rgba(255,255,255,0.06);
-box-shadow:0 20px 45px rgba(0,0,0,0.5);
-}
-
-.admin input{
-background:#181818;
-color:white;
-border:1px solid rgba(255,255,255,0.05);
-}
-
-.admin input:focus{
-outline:none;
-border:1px solid #ff9900;
-}
-
-/* DASHBOARD */
-
-.dashboard{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:25px;
-padding:70px 6%;
-}
-
-.dash-box{
-background:
-linear-gradient(145deg,#111,#0b0b0b);
-padding:40px;
-border-radius:28px;
-text-align:center;
-box-shadow:0 15px 40px rgba(0,0,0,0.45);
+border-radius:50px;
+color:black;
+font-weight:900;
+text-decoration:none;
+font-size:18px;
+box-shadow:0 15px 35px rgba(255,153,0,0.35);
 transition:0.4s;
 }
 
-.dash-box:hover{
-transform:translateY(-10px);
+.hero-btn:hover{
+transform:scale(1.08);
+background:white;
 }
 
-.dash-box h2{
-font-size:55px;
-color:#ff9900;
-margin-bottom:15px;
-}
-
-/* LIVE BADGE */
+/* LIVE */
 
 .live{
 position:fixed;
@@ -220,9 +180,8 @@ background:red;
 padding:12px 18px;
 border-radius:40px;
 font-weight:900;
-box-shadow:0 10px 20px rgba(255,0,0,0.4);
-animation:pulse 1s infinite;
 z-index:999;
+animation:pulse 1s infinite;
 }
 
 @keyframes pulse{
@@ -231,15 +190,305 @@ z-index:999;
 100%{transform:scale(1)}
 }
 
-/* PREMIUM FOOTER */
+/* STATS */
+
+.stats{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+gap:25px;
+padding:80px 6%;
+background:#0b0b0b;
+}
+
+.stat{
+background:#111;
+padding:40px;
+border-radius:28px;
+text-align:center;
+box-shadow:0 20px 40px rgba(0,0,0,0.45);
+transition:0.4s;
+}
+
+.stat:hover{
+transform:translateY(-10px);
+}
+
+.stat h2{
+font-size:50px;
+color:#ff9900;
+margin-bottom:12px;
+}
+
+/* SEARCH */
+
+.search-area{
+padding:45px 6%;
+background:#080808;
+text-align:center;
+}
+
+.search{
+width:100%;
+max-width:850px;
+padding:20px;
+background:#111;
+border:none;
+border-radius:50px;
+font-size:18px;
+color:white;
+outline:none;
+}
+
+/* FILTERS */
+
+.filters{
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
+gap:15px;
+padding:20px;
+background:#080808;
+}
+
+.filters button{
+padding:13px 24px;
+border:none;
+background:#141414;
+color:white;
+border-radius:40px;
+cursor:pointer;
+font-weight:800;
+transition:0.3s;
+}
+
+.filters button:hover{
+background:#ff9900;
+color:black;
+transform:translateY(-3px);
+}
+
+/* PRODUCTS */
+
+.products{
+padding:80px 6%;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+gap:35px;
+}
+
+.card{
+background:
+linear-gradient(145deg,#111,#0c0c0c);
+border-radius:30px;
+overflow:hidden;
+position:relative;
+transition:0.5s;
+border:1px solid rgba(255,255,255,0.05);
+box-shadow:0 20px 45px rgba(0,0,0,0.5);
+}
+
+.card:hover{
+transform:translateY(-15px) scale(1.02);
+}
+
+.card img{
+width:100%;
+height:330px;
+object-fit:cover;
+transition:0.6s;
+}
+
+.card:hover img{
+transform:scale(1.1);
+}
+
+.badge{
+position:absolute;
+top:18px;
+left:18px;
+background:
+linear-gradient(135deg,red,#ff9900);
+padding:8px 16px;
+border-radius:40px;
+font-size:12px;
+font-weight:900;
+}
+
+.info{
+padding:28px;
+}
+
+.info h2{
+font-size:28px;
+margin-bottom:12px;
+}
+
+.price{
+font-size:36px;
+font-weight:900;
+color:#ff9900;
+margin-bottom:12px;
+}
+
+.desc{
+opacity:0.82;
+line-height:1.8;
+margin-bottom:22px;
+}
+
+.btn{
+width:100%;
+padding:16px;
+border:none;
+border-radius:14px;
+background:
+linear-gradient(135deg,#ff9900,#ff5e00);
+font-size:17px;
+font-weight:900;
+cursor:pointer;
+transition:0.3s;
+}
+
+.btn:hover{
+background:white;
+transform:scale(1.03);
+}
+
+.remove-btn{
+margin-top:12px;
+background:red;
+color:white;
+}
+
+/* ADMIN */
+
+.admin{
+margin:70px 6%;
+padding:40px;
+background:#111;
+border-radius:30px;
+}
+
+.admin h1{
+font-size:44px;
+margin-bottom:25px;
+}
+
+.admin input{
+width:100%;
+padding:16px;
+margin:12px 0;
+background:#181818;
+border:none;
+border-radius:14px;
+font-size:16px;
+color:white;
+}
+
+/* CART */
+
+.cart{
+margin:70px 6%;
+padding:40px;
+background:#111;
+border-radius:30px;
+}
+
+.cart h1{
+font-size:44px;
+margin-bottom:20px;
+}
+
+.cart-item{
+padding:12px 0;
+border-bottom:1px solid rgba(255,255,255,0.06);
+}
+
+.total{
+margin-top:20px;
+font-size:40px;
+font-weight:900;
+color:#ff9900;
+}
+
+.checkout{
+margin-top:25px;
+width:100%;
+padding:18px;
+border:none;
+background:#25D366;
+color:white;
+font-size:20px;
+font-weight:900;
+border-radius:16px;
+cursor:pointer;
+}
+
+/* DASHBOARD */
+
+.dashboard{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+padding:80px 6%;
+}
+
+.dash-box{
+background:#111;
+padding:40px;
+border-radius:28px;
+text-align:center;
+box-shadow:0 20px 45px rgba(0,0,0,0.45);
+}
+
+.dash-box h2{
+font-size:55px;
+color:#ff9900;
+margin-bottom:10px;
+}
+
+/* FOOTER */
 
 footer{
-background:
-linear-gradient(180deg,#050505,#000);
+background:#030303;
+padding:90px 20px;
+text-align:center;
+margin-top:50px;
+border-top:1px solid rgba(255,255,255,0.06);
 }
 
 footer h1{
 font-size:60px;
+margin-bottom:15px;
+}
+
+footer span{
+color:#ff9900;
+}
+
+footer p{
+opacity:0.85;
+line-height:2;
+}
+
+/* WHATSAPP */
+
+.whatsapp{
+position:fixed;
+bottom:20px;
+right:20px;
+width:78px;
+height:78px;
+background:#25D366;
+border-radius:50%;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:36px;
+text-decoration:none;
+color:white;
+box-shadow:0 15px 35px rgba(0,0,0,0.5);
+z-index:999;
 }
 
 /* MOBILE */
@@ -254,6 +503,10 @@ font-size:52px;
 font-size:16px;
 }
 
+nav{
+display:none;
+}
+
 .products{
 grid-template-columns:1fr;
 }
@@ -262,13 +515,95 @@ grid-template-columns:1fr;
 
 </style>
 
-<!-- ADD THIS AFTER HERO SECTION -->
+</head>
+
+<body>
 
 <div class="live">
-🔴 LIVE GLOBAL MARKET
+🔴 LIVE MARKET
 </div>
 
-<!-- ADD THIS BEFORE FOOTER -->
+<header>
+
+<div class="logo">
+🔥 Apex <span>Holux</span>
+</div>
+
+<nav>
+<a href="#">Home</a>
+<a href="#shop">Shop</a>
+<a href="#admin">Admin</a>
+<a href="#cart">Cart</a>
+</nav>
+
+</header>
+
+<section class="hero">
+
+<div class="hero-content">
+
+<h1>
+WORLD CLASS <br>
+<span>GLOBAL MARKET</span>
+</h1>
+
+<p>
+Premium Sneakers • Luxury Fashion • Trending Afghanistan Products • World Class Ecommerce Experience
+</p>
+
+<a href="#shop" class="hero-btn">
+Explore Collection
+</a>
+
+</div>
+
+</section>
+
+<section class="stats">
+
+<div class="stat">
+<h2>1M+</h2>
+<p>Monthly Visitors</p>
+</div>
+
+<div class="stat">
+<h2>250+</h2>
+<p>Premium Brands</p>
+</div>
+
+<div class="stat">
+<h2>24/7</h2>
+<p>Worldwide Orders</p>
+</div>
+
+<div class="stat">
+<h2>100%</h2>
+<p>Luxury Quality</p>
+</div>
+
+</section>
+
+<div class="search-area">
+
+<input
+class="search"
+placeholder="Search Premium Products..."
+oninput="searchProducts(this.value)"
+>
+
+</div>
+
+<div class="filters">
+
+<button onclick="filterProducts('all')">All</button>
+<button onclick="filterProducts('sneaker')">Sneakers</button>
+<button onclick="filterProducts('sport')">Sport</button>
+<button onclick="filterProducts('slides')">Slides</button>
+<button onclick="filterProducts('sandal')">Sandals</button>
+
+</div>
+
+<section class="products" id="shop"></section>
 
 <section class="dashboard">
 
@@ -283,18 +618,72 @@ grid-template-columns:1fr;
 </div>
 
 <div class="dash-box">
-<h2 id="orderCount">24K+</h2>
-<p>Global Orders</p>
+<h2>50K+</h2>
+<p>Orders</p>
 </div>
 
 <div class="dash-box">
-<h2 id="visitorCount">1M+</h2>
-<p>Monthly Visitors</p>
+<h2>4.9★</h2>
+<p>Customer Rating</p>
 </div>
 
 </section>
 
-<!-- REPLACE YOUR JAVASCRIPT WITH THIS -->
+<section class="admin" id="admin">
+
+<h1>🧑‍💼 Live Admin Panel</h1>
+
+<input id="pname" placeholder="Product Name">
+<input id="pprice" placeholder="Price">
+<input id="pimg" placeholder="Image URL">
+<input id="pcat" placeholder="Category">
+
+<button class="btn" onclick="addProduct()">
+Add Product Live
+</button>
+
+</section>
+
+<section class="cart" id="cart">
+
+<h1>🛒 Shopping Cart</h1>
+
+<div id="cartItems"></div>
+
+<div class="total">
+Total: $<span id="total">0</span>
+</div>
+
+<button class="checkout" onclick="checkout()">
+Order On WhatsApp
+</button>
+
+</section>
+
+<footer>
+
+<h1>
+🔥 Apex <span>Holux</span>
+</h1>
+
+<p>
+World Class Premium Fashion Marketplace
+</p>
+
+<p>
+📞 WhatsApp: 0764 594 322
+</p>
+
+<p>
+Luxury Sneakers • Trending Products • Global Ecommerce • Afghanistan Fashion Market
+</p>
+
+</footer>
+
+<a class="whatsapp"
+href="https://wa.me/93764594322">
+💬
+</a>
 
 <script>
 
@@ -331,7 +720,7 @@ img:"https://images.unsplash.com/photo-1549298916-b41d501d3772?w=700"
 },
 
 {
-name:"Nike Slides",
+name:"Nike Comfort Slides",
 price:45,
 cat:"slides",
 img:"https://images.unsplash.com/photo-1597047084897-51e81819a499?w=700"
@@ -339,7 +728,7 @@ img:"https://images.unsplash.com/photo-1597047084897-51e81819a499?w=700"
 
 {
 name:"QD Premium Sandal",
-price:60,
+price:55,
 cat:"sandal",
 img:"https://images.unsplash.com/photo-1608256246200-53e8b47b2f80?w=700"
 }
@@ -350,7 +739,7 @@ let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
 let total = 0;
 
-/* RENDER PRODUCTS */
+/* RENDER */
 
 function renderProducts(list){
 
@@ -368,7 +757,7 @@ box.innerHTML += `
 🔥 BEST SELLER
 </div>
 
-<img src="${p.img}" loading="lazy">
+<img src="${p.img}">
 
 <div class="info">
 
@@ -379,7 +768,7 @@ $${p.price}
 </div>
 
 <div class="desc">
-World class premium fashion product with luxury quality and trending global design.
+Premium global fashion product with luxury world-class design and quality.
 </div>
 
 <button class="btn"
@@ -387,10 +776,7 @@ onclick="addToCart('${p.name}',${p.price})">
 Add To Cart
 </button>
 
-<br><br>
-
-<button class="btn"
-style="background:red;color:white"
+<button class="btn remove-btn"
 onclick="removeProduct(${index})">
 Remove Product
 </button>
@@ -407,7 +793,7 @@ updateDashboard();
 
 }
 
-/* ADD TO CART */
+/* CART */
 
 function addToCart(name,price){
 
@@ -422,8 +808,6 @@ renderCart();
 
 }
 
-/* RENDER CART */
-
 function renderCart(){
 
 const box = document.getElementById("cartItems");
@@ -432,12 +816,14 @@ box.innerHTML = "";
 
 total = 0;
 
-cart.forEach(i=>{
+cart.forEach(item=>{
 
-total += i.price;
+total += item.price;
 
 box.innerHTML += `
-<p>✔ ${i.name} - $${i.price}</p>
+<div class="cart-item">
+✔ ${item.name} - $${item.price}
+</div>
 `;
 
 });
@@ -452,12 +838,18 @@ renderCart();
 
 /* SEARCH */
 
-function searchProducts(val){
+function searchProducts(value){
 
 renderProducts(
+
 products.filter(p=>
-p.name.toLowerCase().includes(val.toLowerCase())
+
+p.name.toLowerCase().includes(
+value.toLowerCase()
 )
+
+)
+
 );
 
 }
@@ -493,11 +885,14 @@ return;
 let msg =
 "🔥 APEX HOLUX GLOBAL ORDER 🔥\n\n";
 
-cart.forEach(i=>{
+cart.forEach(item=>{
 
 msg +=
-"✔ " + i.name +
-" - $" + i.price + "\n";
+"✔ " +
+item.name +
+" - $" +
+item.price +
+"\n";
 
 });
 
@@ -592,3 +987,6 @@ document.getElementById(
 renderProducts(products);
 
 </script>
+
+</body>
+</html>
