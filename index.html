@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>🔥 Apex Holux Infinity Global Market</title>
+<title>👑 Apex Holux Quantum Global Marketplace</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
 
@@ -19,7 +19,7 @@ scroll-behavior:smooth;
 }
 
 body{
-background:#050505;
+background:#030303;
 color:white;
 overflow-x:hidden;
 }
@@ -46,14 +46,14 @@ padding:18px 5%;
 display:flex;
 justify-content:space-between;
 align-items:center;
-background:rgba(0,0,0,0.85);
+background:rgba(0,0,0,0.88);
 backdrop-filter:blur(18px);
-z-index:9999;
+z-index:99999;
 border-bottom:1px solid rgba(255,255,255,0.08);
 }
 
 .logo{
-font-size:34px;
+font-size:36px;
 font-weight:900;
 letter-spacing:2px;
 }
@@ -64,13 +64,13 @@ color:#ff9900;
 
 nav{
 display:flex;
-gap:25px;
+gap:28px;
 }
 
 nav a{
 color:white;
 text-decoration:none;
-font-weight:600;
+font-weight:700;
 transition:0.3s;
 }
 
@@ -82,28 +82,29 @@ color:#ff9900;
 
 .hero{
 height:100vh;
-background:
-linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.9)),
-url('https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=1600')
-center/cover;
 display:flex;
 justify-content:center;
 align-items:center;
 text-align:center;
 padding:20px;
 position:relative;
+
+background:
+linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.92)),
+url('https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=1800')
+center/cover;
 }
 
 .hero::before{
 content:'';
 position:absolute;
-width:300px;
-height:300px;
+width:500px;
+height:500px;
 background:#ff9900;
-filter:blur(120px);
-opacity:0.18;
-top:20%;
-left:10%;
+filter:blur(160px);
+opacity:0.15;
+top:10%;
+left:5%;
 }
 
 .hero-content{
@@ -112,36 +113,37 @@ z-index:2;
 }
 
 .hero h1{
-font-size:95px;
+font-size:110px;
 font-weight:900;
-line-height:1.1;
+line-height:1.05;
 margin-bottom:25px;
+text-shadow:0 0 35px rgba(255,153,0,0.25);
 }
 
-.hero h1 span{
+.hero span{
 color:#ff9900;
 }
 
 .hero p{
-font-size:22px;
-max-width:1000px;
-line-height:2;
-opacity:0.9;
+max-width:1200px;
 margin:auto;
+font-size:24px;
+line-height:2;
+opacity:0.92;
 }
 
 .hero-btn{
 display:inline-block;
-margin-top:40px;
-padding:18px 48px;
+margin-top:45px;
+padding:20px 55px;
 background:linear-gradient(135deg,#ff9900,#ff5e00);
-border-radius:50px;
+border-radius:60px;
 color:black;
+font-size:20px;
 font-weight:900;
 text-decoration:none;
-font-size:18px;
 transition:0.4s;
-box-shadow:0 15px 35px rgba(255,153,0,0.35);
+box-shadow:0 20px 45px rgba(255,153,0,0.35);
 }
 
 .hero-btn:hover{
@@ -149,15 +151,24 @@ transform:scale(1.08);
 background:white;
 }
 
-/* LIVE BAR */
+/* LIVE */
 
-.live-bar{
-padding:14px;
-background:#ff9900;
-color:black;
-text-align:center;
+.live{
+position:fixed;
+top:100px;
+right:20px;
+background:red;
+padding:12px 18px;
+border-radius:40px;
 font-weight:900;
-margin-top:90px;
+z-index:99999;
+animation:pulse 1s infinite;
+}
+
+@keyframes pulse{
+0%{transform:scale(1)}
+50%{transform:scale(1.08)}
+100%{transform:scale(1)}
 }
 
 /* STATS */
@@ -166,17 +177,17 @@ margin-top:90px;
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
 gap:25px;
-padding:80px 5%;
-background:#0a0a0a;
+padding:90px 5%;
+background:#090909;
 }
 
 .stat{
-background:#111;
-padding:40px;
-border-radius:28px;
+background:linear-gradient(145deg,#111,#0a0a0a);
+padding:45px;
+border-radius:30px;
 text-align:center;
-box-shadow:0 20px 40px rgba(0,0,0,0.4);
 transition:0.4s;
+box-shadow:0 20px 45px rgba(0,0,0,0.45);
 }
 
 .stat:hover{
@@ -184,7 +195,7 @@ transform:translateY(-10px);
 }
 
 .stat h2{
-font-size:50px;
+font-size:55px;
 color:#ff9900;
 margin-bottom:12px;
 }
@@ -192,21 +203,21 @@ margin-bottom:12px;
 /* SEARCH */
 
 .search-area{
-padding:45px 5%;
-background:#070707;
+padding:50px 5%;
+background:#060606;
 text-align:center;
 }
 
 .search{
 width:100%;
-max-width:850px;
-padding:20px;
+max-width:900px;
+padding:22px;
 border:none;
-border-radius:50px;
-font-size:18px;
-outline:none;
+border-radius:60px;
 background:#111;
 color:white;
+font-size:18px;
+outline:none;
 }
 
 /* FILTER */
@@ -214,17 +225,17 @@ color:white;
 .filters{
 display:flex;
 justify-content:center;
-gap:15px;
+gap:16px;
 flex-wrap:wrap;
 padding:25px;
-background:#070707;
+background:#060606;
 }
 
 .filters button{
-padding:14px 24px;
+padding:14px 28px;
 border:none;
-border-radius:40px;
-background:#151515;
+border-radius:50px;
+background:#141414;
 color:white;
 font-weight:800;
 cursor:pointer;
@@ -240,31 +251,31 @@ transform:translateY(-3px);
 /* PRODUCTS */
 
 .products{
-padding:80px 5%;
+padding:90px 5%;
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
-gap:35px;
+grid-template-columns:repeat(auto-fit,minmax(340px,1fr));
+gap:40px;
 }
 
 .card{
-background:linear-gradient(145deg,#111,#0a0a0a);
-border-radius:30px;
+background:linear-gradient(145deg,#111,#090909);
+border-radius:32px;
 overflow:hidden;
 transition:0.5s;
 position:relative;
 border:1px solid rgba(255,255,255,0.06);
-box-shadow:0 20px 45px rgba(0,0,0,0.5);
+box-shadow:0 25px 50px rgba(0,0,0,0.55);
 }
 
 .card:hover{
-transform:translateY(-12px) scale(1.02);
+transform:translateY(-15px) scale(1.02);
 }
 
 .card img{
 width:100%;
-height:320px;
+height:340px;
 object-fit:cover;
-transition:0.5s;
+transition:0.6s;
 }
 
 .card:hover img{
@@ -275,42 +286,42 @@ transform:scale(1.08);
 position:absolute;
 top:18px;
 left:18px;
-background:linear-gradient(135deg,red,#ff9900);
-padding:9px 16px;
+background:linear-gradient(135deg,#ff0000,#ff9900);
+padding:10px 16px;
 border-radius:40px;
 font-size:12px;
 font-weight:900;
 }
 
 .info{
-padding:28px;
+padding:30px;
 }
 
 .info h2{
-font-size:28px;
+font-size:30px;
 margin-bottom:12px;
 }
 
 .price{
-font-size:36px;
+font-size:38px;
 font-weight:900;
 color:#ff9900;
 margin-bottom:14px;
 }
 
 .desc{
-opacity:0.8;
-line-height:1.8;
-margin-bottom:20px;
+opacity:0.82;
+line-height:1.9;
+margin-bottom:22px;
 }
 
 .btn{
 width:100%;
-padding:17px;
+padding:18px;
 border:none;
-border-radius:16px;
+border-radius:18px;
 background:linear-gradient(135deg,#ff9900,#ff5e00);
-font-size:17px;
+font-size:18px;
 font-weight:900;
 cursor:pointer;
 transition:0.3s;
@@ -325,25 +336,25 @@ transform:scale(1.03);
 
 .cart{
 margin:70px 5%;
+padding:45px;
 background:#111;
-padding:40px;
-border-radius:30px;
-box-shadow:0 20px 40px rgba(0,0,0,0.5);
+border-radius:32px;
+box-shadow:0 25px 50px rgba(0,0,0,0.5);
 }
 
 .cart h1{
-font-size:45px;
+font-size:48px;
 margin-bottom:25px;
 }
 
 .cart-item{
 padding:14px 0;
-border-bottom:1px solid rgba(255,255,255,0.07);
+border-bottom:1px solid rgba(255,255,255,0.06);
 }
 
 .total{
 margin-top:25px;
-font-size:40px;
+font-size:44px;
 font-weight:900;
 color:#ff9900;
 }
@@ -353,52 +364,50 @@ margin-top:30px;
 width:100%;
 padding:20px;
 border:none;
+border-radius:20px;
 background:#25D366;
 color:white;
 font-size:22px;
 font-weight:900;
-border-radius:18px;
 cursor:pointer;
 }
 
-/* GLOBAL SECTION */
+/* DASHBOARD */
 
-.global{
-padding:100px 5%;
-background:linear-gradient(135deg,#050505,#111);
+.dashboard{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:30px;
+padding:90px 5%;
+background:#070707;
+}
+
+.dash{
+background:#111;
+padding:45px;
+border-radius:30px;
 text-align:center;
+box-shadow:0 20px 45px rgba(0,0,0,0.5);
 }
 
-.global h1{
-font-size:70px;
-margin-bottom:30px;
-}
-
-.global span{
+.dash h2{
+font-size:60px;
 color:#ff9900;
-}
-
-.global p{
-max-width:1100px;
-margin:auto;
-font-size:22px;
-line-height:2;
-opacity:0.9;
+margin-bottom:12px;
 }
 
 /* FOOTER */
 
 footer{
 background:#020202;
-padding:90px 20px;
+padding:100px 20px;
 text-align:center;
-margin-top:60px;
 border-top:1px solid rgba(255,255,255,0.06);
 }
 
 footer h1{
-font-size:60px;
-margin-bottom:15px;
+font-size:70px;
+margin-bottom:20px;
 }
 
 footer span{
@@ -406,8 +415,8 @@ color:#ff9900;
 }
 
 footer p{
-opacity:0.85;
 line-height:2;
+opacity:0.85;
 }
 
 /* WHATSAPP */
@@ -416,17 +425,17 @@ line-height:2;
 position:fixed;
 bottom:20px;
 right:20px;
-width:80px;
-height:80px;
+width:85px;
+height:85px;
 background:#25D366;
 border-radius:50%;
 display:flex;
 justify-content:center;
 align-items:center;
-font-size:38px;
-text-decoration:none;
+font-size:40px;
 color:white;
-box-shadow:0 15px 35px rgba(0,0,0,0.5);
+text-decoration:none;
+box-shadow:0 20px 40px rgba(0,0,0,0.5);
 z-index:999;
 }
 
@@ -435,7 +444,7 @@ z-index:999;
 @media(max-width:768px){
 
 .hero h1{
-font-size:52px;
+font-size:55px;
 }
 
 .hero p{
@@ -457,10 +466,14 @@ grid-template-columns:1fr;
 
 <body>
 
+<div class="live">
+🔴 LIVE MARKET
+</div>
+
 <header>
 
 <div class="logo">
-🔥 Apex <span>Holux</span>
+👑 Apex <span>Holux</span>
 </div>
 
 <nav>
@@ -472,25 +485,21 @@ grid-template-columns:1fr;
 
 </header>
 
-<div class="live-bar">
-🔥 LIVE GLOBAL MARKETPLACE • PREMIUM FASHION • WORLD BESTSELLERS
-</div>
-
 <section class="hero">
 
 <div class="hero-content">
 
 <h1>
-WORLD CLASS <br>
-<span>GLOBAL MARKET</span>
+THE FUTURE OF <br>
+<span>GLOBAL COMMERCE</span>
 </h1>
 
 <p>
-Luxury Sneakers • Premium Slides • Sketchers • Adidas • Nike • Puma • Crocs • New Balance • Worldwide Trending Products
+Luxury Sneakers • Premium Slides • Sketchers • Adidas • Nike • Puma • Crocs • Worldwide Trending Fashion Products
 </p>
 
 <a href="#shop" class="hero-btn">
-Explore Collection
+Explore Marketplace
 </a>
 
 </div>
@@ -500,18 +509,18 @@ Explore Collection
 <section class="stats">
 
 <div class="stat">
-<h2>10M+</h2>
+<h2>25M+</h2>
 <p>Global Visitors</p>
 </div>
 
 <div class="stat">
-<h2>500+</h2>
-<p>Luxury Products</p>
+<h2>5K+</h2>
+<p>Premium Products</p>
 </div>
 
 <div class="stat">
-<h2>120+</h2>
-<p>Global Brands</p>
+<h2>300+</h2>
+<p>Luxury Brands</p>
 </div>
 
 <div class="stat">
@@ -525,7 +534,7 @@ Explore Collection
 
 <input
 class="search"
-placeholder="Search Global Products..."
+placeholder="Search Global Fashion Products..."
 oninput="searchProducts(this.value)"
 >
 
@@ -543,6 +552,30 @@ oninput="searchProducts(this.value)"
 
 <section class="products" id="shop"></section>
 
+<section class="dashboard">
+
+<div class="dash">
+<h2 id="productCount">0</h2>
+<p>Total Products</p>
+</div>
+
+<div class="dash">
+<h2 id="cartCount">0</h2>
+<p>Cart Items</p>
+</div>
+
+<div class="dash">
+<h2 id="cartValue">$0</h2>
+<p>Cart Value</p>
+</div>
+
+<div class="dash">
+<h2>4.9★</h2>
+<p>Global Rating</p>
+</div>
+
+</section>
+
 <section class="cart" id="cart">
 
 <h1>🛒 Shopping Cart</h1>
@@ -550,7 +583,7 @@ oninput="searchProducts(this.value)"
 <div id="cartItems"></div>
 
 <div class="total">
-Total: $<span id="total">0</span>
+Total: <span id="total">0</span>
 </div>
 
 <button class="checkout" onclick="checkout()">
@@ -559,30 +592,18 @@ Order on WhatsApp
 
 </section>
 
-<section class="global">
-
-<h1>
-👑 APEX <span>HOLUX</span>
-</h1>
-
-<p>
-A next generation luxury ecommerce marketplace inspired by world-class fashion platforms with premium bestselling products and futuristic global marketplace design.
-</p>
-
-</section>
-
 <footer>
 
 <h1>
-🔥 Apex <span>Holux</span>
+👑 Apex <span>Holux</span>
 </h1>
 
-<p>Global Premium Fashion Marketplace</p>
+<p>Next Generation Global Marketplace</p>
 
 <p>📞 WhatsApp: 0764 594 322</p>
 
 <p>
-Nike • Adidas • Puma • Crocs • Slides • Luxury Sneakers • Global Fashion
+Nike • Adidas • Puma • Sketchers • Slides • Global Fashion
 </p>
 
 </footer>
@@ -600,72 +621,72 @@ const products = [
 
 {
 name:"Nike Air Force 1",
-price:120,
+price:140,
 cat:"sneaker",
-img:"https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800"
+img:"https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=900"
 },
 
 {
 name:"Jordan Retro 4",
-price:190,
+price:220,
 cat:"sneaker",
-img:"https://images.unsplash.com/photo-1600180758890-6b94519a8ba6?w=800"
+img:"https://images.unsplash.com/photo-1600180758890-6b94519a8ba6?w=900"
 },
 
 {
 name:"Adidas Ultraboost",
-price:140,
+price:180,
 cat:"sport",
-img:"https://images.unsplash.com/photo-1528701800489-20be3c5c9c8c?w=800"
+img:"https://images.unsplash.com/photo-1528701800489-20be3c5c9c8c?w=900"
 },
 
 {
 name:"Puma RS-X",
-price:135,
+price:165,
 cat:"sneaker",
-img:"https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=800"
+img:"https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=900"
 },
 
 {
 name:"New Balance 574",
-price:150,
+price:175,
 cat:"sport",
-img:"https://images.unsplash.com/photo-1519744346364-2b8a8f2a7c2d?w=800"
+img:"https://images.unsplash.com/photo-1519744346364-2b8a8f2a7c2d?w=900"
 },
 
 {
 name:"Sketchers Max Cushion",
-price:115,
+price:145,
 cat:"sport",
-img:"https://images.unsplash.com/photo-1549298916-b41d501d3772?w=800"
+img:"https://images.unsplash.com/photo-1549298916-b41d501d3772?w=900"
 },
 
 {
 name:"Nike Comfort Slides",
-price:55,
+price:65,
 cat:"slides",
-img:"https://images.unsplash.com/photo-1597047084897-51e81819a499?w=800"
+img:"https://images.unsplash.com/photo-1597047084897-51e81819a499?w=900"
 },
 
 {
 name:"Adidas Cloud Slides",
-price:60,
+price:70,
 cat:"slides",
-img:"https://images.unsplash.com/photo-1606813902913-3f3a0a0c9a9b?w=800"
+img:"https://images.unsplash.com/photo-1606813902913-3f3a0a0c9a9b?w=900"
 },
 
 {
 name:"Crocs Comfort Slides",
-price:65,
+price:75,
 cat:"slides",
-img:"https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=800"
+img:"https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=900"
 },
 
 {
 name:"Luxury Italian Shoes",
-price:220,
+price:260,
 cat:"classic",
-img:"https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?w=800"
+img:"https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?w=900"
 }
 
 ];
@@ -702,7 +723,7 @@ $${p.price}
 </div>
 
 <div class="desc">
-Premium world-class fashion product with luxury quality and global trending design.
+Premium world-class fashion product with luxury design and trending global quality.
 </div>
 
 <button class="btn"
@@ -717,6 +738,8 @@ Add To Cart
 `;
 
 });
+
+updateDashboard();
 
 }
 
@@ -750,7 +773,9 @@ box.innerHTML += `
 
 });
 
-document.getElementById("total").innerText = total;
+document.getElementById("total").innerText = "$" + total;
+
+updateDashboard();
 
 }
 
@@ -822,6 +847,21 @@ PHONE +
 "?text=" +
 encodeURIComponent(msg)
 );
+
+}
+
+/* DASHBOARD */
+
+function updateDashboard(){
+
+document.getElementById("productCount").innerText =
+products.length;
+
+document.getElementById("cartCount").innerText =
+cart.length;
+
+document.getElementById("cartValue").innerText =
+"$" + total;
 
 }
 
