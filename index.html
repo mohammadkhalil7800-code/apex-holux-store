@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Apex Holux Global Export</title>
+<title>Apex Holux Global Luxury Export</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
 
@@ -24,7 +24,7 @@ color:white;
 overflow-x:hidden;
 }
 
-/* BACKGROUND */
+/* BACKGROUND EFFECT */
 
 body::before{
 content:'';
@@ -33,7 +33,7 @@ width:100%;
 height:100%;
 background:
 radial-gradient(circle at top right,rgba(255,153,0,0.12),transparent 30%),
-radial-gradient(circle at bottom left,rgba(255,255,255,0.04),transparent 30%);
+radial-gradient(circle at bottom left,rgba(255,255,255,0.05),transparent 30%);
 z-index:-1;
 }
 
@@ -92,17 +92,17 @@ text-align:center;
 padding:20px;
 
 background:
-linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.85)),
+linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.88)),
 url('https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=1600')
 center/cover;
 }
 
 .hero h1{
-font-size:90px;
+font-size:95px;
 font-weight:900;
 line-height:1.1;
 margin-bottom:25px;
-text-shadow:0 0 30px rgba(255,153,0,0.3);
+text-shadow:0 0 35px rgba(255,153,0,0.35);
 }
 
 .hero span{
@@ -111,16 +111,16 @@ color:#ff9900;
 
 .hero p{
 font-size:22px;
-max-width:900px;
+max-width:950px;
 margin:auto;
-line-height:1.8;
-opacity:0.9;
+line-height:1.9;
+opacity:0.92;
 }
 
 .hero-btn{
 display:inline-block;
-margin-top:35px;
-padding:18px 50px;
+margin-top:40px;
+padding:18px 55px;
 border-radius:60px;
 background:linear-gradient(135deg,#ff9900,#ff5e00);
 color:black;
@@ -139,16 +139,16 @@ background:white;
 /* STATS */
 
 .stats{
-padding:80px 6%;
+padding:90px 6%;
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
 gap:25px;
 background:#0a0a0a;
 }
 
 .stat{
 background:#111;
-padding:40px;
+padding:45px;
 border-radius:28px;
 text-align:center;
 transition:0.4s;
@@ -159,7 +159,7 @@ transform:translateY(-10px);
 }
 
 .stat h2{
-font-size:52px;
+font-size:55px;
 color:#ff9900;
 margin-bottom:10px;
 }
@@ -168,8 +168,8 @@ margin-bottom:10px;
 
 .products-title{
 text-align:center;
-padding-top:80px;
-font-size:55px;
+padding-top:90px;
+font-size:60px;
 font-weight:900;
 }
 
@@ -177,24 +177,25 @@ font-weight:900;
 padding:60px 6%;
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
-gap:30px;
+gap:35px;
 }
 
 .card{
 background:linear-gradient(145deg,#111,#0a0a0a);
-border-radius:28px;
+border-radius:30px;
 overflow:hidden;
 transition:0.5s;
 border:1px solid rgba(255,255,255,0.05);
+box-shadow:0 20px 40px rgba(0,0,0,0.45);
 }
 
 .card:hover{
-transform:translateY(-12px) scale(1.02);
+transform:translateY(-14px) scale(1.02);
 }
 
 .card img{
 width:100%;
-height:320px;
+height:330px;
 object-fit:cover;
 transition:0.5s;
 }
@@ -204,25 +205,25 @@ transform:scale(1.08);
 }
 
 .info{
-padding:25px;
+padding:28px;
 }
 
 .info h2{
-font-size:28px;
-margin-bottom:10px;
+font-size:30px;
+margin-bottom:12px;
 }
 
 .price{
-font-size:35px;
+font-size:38px;
 font-weight:900;
 color:#ff9900;
-margin-bottom:15px;
+margin-bottom:12px;
 }
 
 .desc{
 line-height:1.8;
 opacity:0.82;
-margin-bottom:20px;
+margin-bottom:22px;
 }
 
 .btn{
@@ -245,13 +246,13 @@ transform:scale(1.03);
 /* ABOUT */
 
 .about{
-padding:100px 6%;
+padding:110px 6%;
 text-align:center;
 background:#080808;
 }
 
 .about h1{
-font-size:60px;
+font-size:65px;
 margin-bottom:20px;
 }
 
@@ -263,46 +264,51 @@ color:#ff9900;
 max-width:1000px;
 margin:auto;
 line-height:2;
-font-size:18px;
+font-size:19px;
 opacity:0.88;
 }
 
 /* SERVICES */
 
 .services{
-padding:80px 6%;
+padding:90px 6%;
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
 gap:25px;
 }
 
 .service{
 background:#111;
-padding:40px;
+padding:45px;
 border-radius:24px;
 text-align:center;
+transition:0.4s;
+}
+
+.service:hover{
+transform:translateY(-10px);
 }
 
 .service h2{
 margin-top:15px;
-font-size:28px;
+font-size:30px;
 }
 
 /* CONTACT */
 
 .contact{
-padding:100px 6%;
+padding:110px 6%;
 background:#050505;
 text-align:center;
 }
 
 .contact h1{
-font-size:60px;
+font-size:65px;
 margin-bottom:20px;
 }
 
 .contact p{
-font-size:20px;
+font-size:22px;
 line-height:2;
 opacity:0.9;
 }
@@ -322,14 +328,14 @@ border-top:1px solid rgba(255,255,255,0.06);
 position:fixed;
 bottom:20px;
 right:20px;
-width:80px;
-height:80px;
+width:85px;
+height:85px;
 background:#25D366;
 border-radius:50%;
 display:flex;
 justify-content:center;
 align-items:center;
-font-size:38px;
+font-size:40px;
 color:white;
 text-decoration:none;
 box-shadow:0 15px 35px rgba(0,0,0,0.5);
@@ -388,7 +394,7 @@ GLOBAL <br>
 </h1>
 
 <p>
-World-Class Shoes Manufacturer • Premium Sneakers • Global Fashion Supplier • Luxury Export Company
+World-Class Shoes Manufacturer • Premium Sneakers • Global Fashion Supplier • International Export Company
 </p>
 
 <a href="#products" class="hero-btn">
@@ -412,19 +418,19 @@ Explore Collection
 </div>
 
 <div class="stat">
-<h2>10K+</h2>
-<p>Products Sold</p>
+<h2>100K+</h2>
+<p>Products Delivered</p>
 </div>
 
 <div class="stat">
 <h2>24/7</h2>
-<p>Customer Support</p>
+<p>Global Support</p>
 </div>
 
 </section>
 
 <h1 class="products-title" id="products">
-🔥 Hot Products
+🔥 Premium Products
 </h1>
 
 <section class="products">
@@ -435,7 +441,7 @@ Explore Collection
 <h2>Nike Air Force</h2>
 <div class="price">$120</div>
 <div class="desc">
-Luxury world trending sneaker with premium quality material.
+Luxury world trending sneaker with premium export quality.
 </div>
 <button class="btn">Inquiry Now</button>
 </div>
@@ -447,7 +453,7 @@ Luxury world trending sneaker with premium quality material.
 <h2>Adidas Ultraboost</h2>
 <div class="price">$150</div>
 <div class="desc">
-Comfortable sport shoes designed for elite performance.
+Elite performance footwear with modern luxury design.
 </div>
 <button class="btn">Inquiry Now</button>
 </div>
@@ -459,7 +465,43 @@ Comfortable sport shoes designed for elite performance.
 <h2>Jordan Retro 4</h2>
 <div class="price">$210</div>
 <div class="desc">
-Modern luxury sneaker with premium global fashion style.
+Premium global fashion sneaker for luxury customers.
+</div>
+<button class="btn">Inquiry Now</button>
+</div>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=700">
+<div class="info">
+<h2>Sketchers Runner</h2>
+<div class="price">$135</div>
+<div class="desc">
+Comfortable sport shoes with modern athletic design.
+</div>
+<button class="btn">Inquiry Now</button>
+</div>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1606813902913-3f3a0a0c9a9b?w=700">
+<div class="info">
+<h2>Nike Slides</h2>
+<div class="price">$60</div>
+<div class="desc">
+Premium slides for casual and luxury comfort wear.
+</div>
+<button class="btn">Inquiry Now</button>
+</div>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1614252369475-531eba835eb1?w=700">
+<div class="info">
+<h2>Luxury Leather Shoes</h2>
+<div class="price">$260</div>
+<div class="desc">
+Elegant international fashion shoes with premium leather.
 </div>
 <button class="btn">Inquiry Now</button>
 </div>
@@ -474,7 +516,7 @@ About <span>Apex Holux</span>
 </h1>
 
 <p>
-Apex Holux is a premium global shoes supplier focused on world-class fashion products, luxury sneakers, slides and modern footwear solutions. We provide high-quality products for global customers with international export standards and modern ecommerce systems.
+Apex Holux is a global luxury footwear supplier focused on premium sneakers, slides and modern fashion products. We provide international export quality, modern ecommerce solutions and worldwide business support for global customers and distributors.
 </p>
 
 </section>
@@ -483,17 +525,22 @@ Apex Holux is a premium global shoes supplier focused on world-class fashion pro
 
 <div class="service">
 <h2>OEM & ODM</h2>
-<p>Professional custom shoes manufacturing services.</p>
+<p>Professional custom footwear manufacturing services.</p>
 </div>
 
 <div class="service">
-<h2>Global Export</h2>
-<p>Worldwide shipping with trusted logistics methods.</p>
+<h2>Global Shipping</h2>
+<p>Fast worldwide export with trusted logistics methods.</p>
 </div>
 
 <div class="service">
 <h2>Premium Quality</h2>
-<p>Luxury material and international quality standards.</p>
+<p>Luxury materials with international standards.</p>
+</div>
+
+<div class="service">
+<h2>24/7 Support</h2>
+<p>Professional customer service for global buyers.</p>
 </div>
 
 </section>
@@ -502,22 +549,16 @@ Apex Holux is a premium global shoes supplier focused on world-class fashion pro
 
 <h1>Contact Us</h1>
 
-<p>
-📞 WhatsApp: 0764 594 322
-</p>
+<p>📞 WhatsApp: 0764 594 322</p>
 
-<p>
-🌍 Kabul, Afghanistan
-</p>
+<p>🌍 Kabul, Afghanistan</p>
 
-<p>
-🔥 Apex Holux Global Export Company
-</p>
+<p>🔥 Apex Holux Global Export Company</p>
 
 </section>
 
 <footer>
-© 2026 Apex Holux — World Luxury Export System
+© 2026 Apex Holux — World Class Luxury Export System
 </footer>
 
 <a class="whatsapp"
