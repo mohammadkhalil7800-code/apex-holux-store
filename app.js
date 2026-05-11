@@ -1,4 +1,4 @@
-let products = [
+let products = JSON.parse(localStorage.getItem("products")) || [
 {
 name:"Nike Air Force 1",
 price:120,
@@ -16,7 +16,7 @@ let total = 0;
 
 /* LOGIN */
 function openLogin(){
-document.getElementById("loginBox").style.display="flex";
+document.getElementById("login").style.display="flex";
 }
 
 function login(){
@@ -24,14 +24,19 @@ let u=document.getElementById("user").value;
 let p=document.getElementById("pass").value;
 
 if(u==="admin" && p==="1234"){
-document.getElementById("loginBox").style.display="none";
+document.getElementById("login").style.display="none";
 }else{
-alert("Wrong login");
+alert("Wrong Login");
 }
 }
 
+/* SAVE DB */
+function save(){
+localStorage.setItem("products",JSON.stringify(products));
+}
+
 /* SHOW PRODUCTS */
-function showProducts(){
+function show(){
 let box=document.getElementById("products");
 box.innerHTML="";
 
@@ -41,7 +46,8 @@ box.innerHTML+=`
 <img src="${p.img}">
 <h3>${p.name}</h3>
 <div class="price">$${p.price}</div>
-<button onclick="addToCart(${i})">Add</button>
+<button onclick="add(${i})">Add</button>
+<button onclick="del(${i})" style="background:red;color:white;">Delete</button>
 </div>`;
 });
 }
@@ -58,17 +64,26 @@ price:Number(p),
 img:img
 });
 
-showProducts();
+save();
+show();
+}
+
+/* DELETE */
+function del(i){
+products.splice(i,1);
+save();
+show();
 }
 
 /* CART */
-function addToCart(i){
+function add(i){
 cart.push(products[i]);
 updateCart();
 }
 
+/* CART UPDATE */
 function updateCart(){
-let c=document.getElementById("cartList");
+let c=document.getElementById("cart");
 c.innerHTML="";
 total=0;
 
@@ -91,4 +106,4 @@ msg+=i.name+" - $"+i.price+"\n";
 window.open("https://wa.me/93764594322?text="+encodeURIComponent(msg));
 }
 
-showProducts();
+show();
