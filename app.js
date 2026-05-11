@@ -1,16 +1,15 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
-import { getFirestore, collection, addDoc, getDocs } 
-from "https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore.js";
-
-/* 🔥 FIREBASE CONFIG (replace with your own later) */
-const firebaseConfig = {
-apiKey: "YOUR_KEY",
-authDomain: "YOUR_DOMAIN",
-projectId: "YOUR_ID"
-};
-
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+let products = JSON.parse(localStorage.getItem("products")) || [
+{
+name:"Nike Air Force 1",
+price:120,
+img:"https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=700"
+},
+{
+name:"Adidas Slides",
+price:60,
+img:"https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=700"
+}
+];
 
 let cart = [];
 let total = 0;
@@ -27,51 +26,62 @@ let p=document.getElementById("pass").value;
 if(u==="admin" && p==="1234"){
 document.getElementById("login").style.display="none";
 }else{
-alert("Wrong login");
+alert("Wrong Login");
 }
 }
 
-/* ADD PRODUCT (CLOUD) */
-async function addProduct(){
-let n=document.getElementById("name").value;
-let p=document.getElementById("price").value;
-let img=document.getElementById("img").value;
-
-await addDoc(collection(db,"products"),{
-name:n,
-price:Number(p),
-img:img
-});
-
-loadProducts();
+/* SAVE DB */
+function save(){
+localStorage.setItem("products",JSON.stringify(products));
 }
 
-/* LOAD PRODUCTS */
-async function loadProducts(){
+/* SHOW PRODUCTS */
+function show(){
 let box=document.getElementById("products");
 box.innerHTML="";
 
-let snap = await getDocs(collection(db,"products"));
-
-snap.forEach(doc=>{
-let p = doc.data();
-
+products.forEach((p,i)=>{
 box.innerHTML+=`
 <div class="card">
 <img src="${p.img}">
 <h3>${p.name}</h3>
 <div class="price">$${p.price}</div>
-<button onclick="add('${p.name}',${p.price})">Add</button>
+<button onclick="add(${i})">Add</button>
+<button onclick="del(${i})" style="background:red;color:white;">Delete</button>
 </div>`;
 });
 }
 
+/* ADD PRODUCT */
+function addProduct(){
+let n=document.getElementById("name").value;
+let p=document.getElementById("price").value;
+let img=document.getElementById("img").value;
+
+products.push({
+name:n,
+price:Number(p),
+img:img
+});
+
+save();
+show();
+}
+
+/* DELETE */
+function del(i){
+products.splice(i,1);
+save();
+show();
+}
+
 /* CART */
-function add(name,price){
-cart.push({name,price});
+function add(i){
+cart.push(products[i]);
 updateCart();
 }
 
+/* CART UPDATE */
 function updateCart(){
 let c=document.getElementById("cart");
 c.innerHTML="";
@@ -96,4 +106,4 @@ msg+=i.name+" - $"+i.price+"\n";
 window.open("https://wa.me/93764594322?text="+encodeURIComponent(msg));
 }
 
-loadProducts();
+show();
