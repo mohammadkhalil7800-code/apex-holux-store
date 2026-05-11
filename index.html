@@ -3,254 +3,37 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Apex Holux Global Marketplace</title>
-
-<style>
-
-body{
-margin:0;
-font-family:Arial;
-background:#0a0a0a;
-color:white;
-}
-
-header{
-display:flex;
-justify-content:space-between;
-padding:15px;
-background:black;
-}
-
-.logo{
-font-size:24px;
-font-weight:bold;
-}
-
-.logo span{color:#ff9900;}
-
-#login{
-position:fixed;
-width:100%;
-height:100%;
-background:black;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-}
-
-input{
-padding:10px;
-margin:5px;
-border:none;
-border-radius:8px;
-width:220px;
-}
-
-button{
-padding:10px;
-background:#ff9900;
-border:none;
-font-weight:bold;
-cursor:pointer;
-border-radius:8px;
-}
-
-.container{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:10px;
-padding:10px;
-}
-
-.panel{
-background:#111;
-padding:10px;
-border-radius:10px;
-}
-
-.products{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-gap:10px;
-padding:10px;
-}
-
-.card{
-background:#111;
-padding:10px;
-border-radius:10px;
-transition:0.3s;
-}
-
-.card:hover{
-transform:scale(1.03);
-}
-
-.card img{
-width:100%;
-height:130px;
-object-fit:cover;
-border-radius:8px;
-}
-
-.price{
-color:#ff9900;
-font-weight:bold;
-}
-
-.cart{
-position:fixed;
-right:10px;
-bottom:10px;
-background:#111;
-padding:10px;
-border-radius:10px;
-width:230px;
-max-height:300px;
-overflow:auto;
-}
-
-.small{
-font-size:12px;
-opacity:0.7;
-}
-
-</style>
+<title>Apex Holux Global Market</title>
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<!-- LOGIN -->
-<div id="login">
-<h2>Admin Login</h2>
-<input id="u" placeholder="Username">
-<input id="p" type="password" placeholder="Password">
-<button onclick="login()">Login</button>
-</div>
-
 <header>
 <div class="logo">Apex <span>Holux</span></div>
-<div>Global Marketplace</div>
+
+<input id="search" placeholder="Search global products..." oninput="search()">
+
+<button onclick="toggleCart()">🛒 Cart</button>
 </header>
 
-<!-- ADMIN -->
-<div class="container">
-
-<div class="panel">
-<h3>Add Product</h3>
-<input id="name" placeholder="Product Name">
-<input id="price" placeholder="Price">
-<input id="img" placeholder="Image URL">
-<button onclick="addProduct()">Add</button>
-</div>
-
-<div class="panel">
-<h3>System Status</h3>
-<p class="small">✔ Cloud Ready Structure</p>
-<p class="small">✔ Upgradeable to Firebase</p>
-<p class="small">✔ Global Marketplace Base</p>
-</div>
-
-</div>
+<!-- HERO -->
+<section class="hero">
+<h1>GLOBAL PREMIUM MARKET</h1>
+<p>Top Sneakers • Slides • Sport Shoes • Luxury Fashion</p>
+</section>
 
 <!-- PRODUCTS -->
-<div class="products" id="box"></div>
+<section id="products" class="products"></section>
 
 <!-- CART -->
-<div class="cart">
-<h4>Cart</h4>
-<div id="cart"></div>
+<div id="cart" class="cart">
+<h2>Cart</h2>
+<div id="cartItems"></div>
 <p>Total: $<span id="total">0</span></p>
-<button onclick="checkout()">WhatsApp Order</button>
+<button onclick="checkout()">Checkout</button>
 </div>
 
-<script>
-
-let products=[
-{name:"Nike Air Force",price:120,img:"https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=700"},
-{name:"Adidas Slides",price:60,img:"https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=700"},
-{name:"Jordan Retro",price:210,img:"https://images.unsplash.com/photo-1600180758890-6b94519a8ba6?w=700"}
-];
-
-let cart=[];
-let total=0;
-
-/* LOGIN */
-function login(){
-let u=document.getElementById("u").value;
-let p=document.getElementById("p").value;
-
-if(u==="admin" && p==="1234"){
-document.getElementById("login").style.display="none";
-}else{
-alert("Wrong Credentials");
-}
-}
-
-/* SHOW PRODUCTS */
-function show(){
-let box=document.getElementById("box");
-box.innerHTML="";
-
-products.forEach((p,i)=>{
-box.innerHTML+=`
-<div class="card">
-<img src="${p.img}">
-<h3>${p.name}</h3>
-<div class="price">$${p.price}</div>
-<button onclick="add(${i})">Add to Cart</button>
-</div>`;
-});
-}
-
-/* ADD PRODUCT */
-function addProduct(){
-let n=document.getElementById("name").value;
-let p=document.getElementById("price").value;
-let img=document.getElementById("img").value;
-
-products.push({
-name:n,
-price:Number(p),
-img:img
-});
-
-show();
-}
-
-/* CART */
-function add(i){
-cart.push(products[i]);
-update();
-}
-
-function update(){
-let c=document.getElementById("cart");
-c.innerHTML="";
-total=0;
-
-cart.forEach(i=>{
-total+=i.price;
-c.innerHTML+=i.name+"<br>";
-});
-
-document.getElementById("total").innerText=total;
-}
-
-/* CHECKOUT */
-function checkout(){
-let msg="ORDER:\n";
-cart.forEach(i=>{
-msg+=i.name+" - $"+i.price+"\n";
-});
-
-window.open("https://wa.me/93764594322?text="+encodeURIComponent(msg));
-}
-
-show();
-
-</script>
-
+<script src="app.js"></script>
 </body>
 </html>
