@@ -1,109 +1,125 @@
-let products = JSON.parse(localStorage.getItem("products")) || [
-{
-name:"Nike Air Force 1",
-price:120,
-img:"https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=700"
-},
-{
-name:"Adidas Slides",
-price:60,
-img:"https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=700"
-}
+const phoneNumber = "93764594322"; // WhatsApp number (change only here)
+
+const products = [
+  {name: "Nike Air Force 1", price: 90},
+  {name: "Adidas Ultraboost", price: 120},
+  {name: "Nike Running Shoes", price: 85},
+  {name: "Puma Sports Shoes", price: 75},
+  {name: "Jordan Retro Sneakers", price: 150},
+  {name: "Air Jordan 1 Low", price: 140},
+  {name: "Nike Air Max 270", price: 110},
+  {name: "Adidas Yeezy Boost 350", price: 220},
+  {name: "New Balance 550", price: 130},
+  {name: "Vans Old Skool", price: 70}
 ];
 
-let cart = [];
-let total = 0;
+// CART (with localStorage)
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-/* LOGIN */
-function openLogin(){
-document.getElementById("login").style.display="flex";
+// SAVE CART
+function saveCart() {
+  localStorage.setItem("cart", JSON.stringify(cart));
 }
 
-function login(){
-let u=document.getElementById("user").value;
-let p=document.getElementById("pass").value;
+// RENDER PRODUCTS
+function renderProducts() {
+  const container = document.getElementById("products");
+  container.innerHTML = "";
 
-if(u==="admin" && p==="1234"){
-document.getElementById("login").style.display="none";
-}else{
-alert("Wrong Login");
-}
-}
-
-/* SAVE DB */
-function save(){
-localStorage.setItem("products",JSON.stringify(products));
-}
-
-/* SHOW PRODUCTS */
-function show(){
-let box=document.getElementById("products");
-box.innerHTML="";
-
-products.forEach((p,i)=>{
-box.innerHTML+=`
-<div class="card">
-<img src="${p.img}">
-<h3>${p.name}</h3>
-<div class="price">$${p.price}</div>
-<button onclick="add(${i})">Add</button>
-<button onclick="del(${i})" style="background:red;color:white;">Delete</button>
-</div>`;
-});
+  products.forEach((p, index) => {
+    container.innerHTML += `
+      <div class="card">
+        <img src="https://via.placeholder.com/200">
+        <h3>${p.name}</h3>
+        <p>$${p.price}</p>
+        <button onclick="addToCart(${index})">🛒 Add</button>
+      </div>
+    `;
+  });
 }
 
-/* ADD PRODUCT */
-function addProduct(){
-let n=document.getElementById("name").value;
-let p=document.getElementById("price").value;
-let img=document.getElementById("img").value;
+// ADD TO CART (with quantity)
+function addToCart(index) {
+  let item = products[index];
 
-products.push({
-name:n,
-price:Number(p),
-img:img
-});
+  let found = cart.find(c => c.name === item.name);
 
-save();
-show();
+  if (found) {
+    found.qty += 1;
+  } else {
+    cart.push({...item, qty: 1});
+  }
+
+  saveCart();
+  renderCart();
 }
 
-/* DELETE */
-function del(i){
-products.splice(i,1);
-save();
-show();
+// REMOVE ITEM
+function removeItem(index) {
+  cart.splice(index, 1);
+  saveCart();
+  renderCart();
 }
 
-/* CART */
-function add(i){
-cart.push(products[i]);
-updateCart();
+// CLEAR CART
+function clearCart() {
+  cart = [];
+  saveCart();
+  renderCart();
 }
 
-/* CART UPDATE */
-function updateCart(){
-let c=document.getElementById("cart");
-c.innerHTML="";
-total=0;
+// RENDER CART
+function renderCart() {
+  const cartDiv = document.getElementById("cart");
+  cartDiv.innerHTML = "";
 
-cart.forEach(i=>{
-total+=i.price;
-c.innerHTML+=i.name+"<br>";
-});
+  let total = 0;
 
-document.getElementById("total").innerText=total;
+  cart.forEach((item, index) => {
+    total += item.price * item.qty;
+
+    cartDiv.innerHTML += `
+      <p>
+        ${item.name} x ${item.qty} = $${item.price * item.qty}
+        <button onclick="removeItem(${index})">❌</button>
+      </p>
+    `;
+  });
+
+  document.getElementById("total").innerText = total;
 }
 
-/* CHECKOUT */
-function checkout(){
-let msg="ORDER:\n";
+// SEARCH
+function searchProducts() {
+  const input = document.getElementById("search").value.toLowerCase();
+  const cards = document.querySelectorAll(".card");
 
-cart.forEach(i=>{
-msg+=i.name+" - $"+i.price+"\n";
-});
-
-window.open("https://wa.me/93764594322?text="+encodeURIComponent(msg));
+  cards.forEach(card => {
+    card.style.display = card.innerText.toLowerCase().includes(input)
+      ? "block"
+      : "none";
+  });
 }
 
-show();
+// WHATSAPP CHECKOUT (FINAL BOSS FEATURE)
+function checkoutCart() {
+  if (cart.length === 0) return alert("Cart is empty!");
+
+  let message = "🛒 NEW ORDER:\n\n";
+  let total = 0;
+
+  cart.forEach(item => {
+    message += `• ${item.name} x ${item.qty} = $${item.price * item.qty}\n`;
+    total += item.price * item.qty;
+  });
+
+  message += `\nTOTAL: $${total}`;
+
+  const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+
+  window.open(url, "_blank");
+}
+
+// INIT
+renderProducts();
+renderCart();
