@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Apex Holux Global Export</title>
+<title>Apex Holux Global Store Pro</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800;900&display=swap" rel="stylesheet">
 
@@ -19,15 +19,15 @@ color:white;
 header{
 display:flex;
 justify-content:space-between;
-align-items:center;
 padding:18px 6%;
-background:rgba(0,0,0,0.85);
+background:#000;
 position:sticky;
 top:0;
+z-index:10;
 }
 
 .logo{
-font-size:28px;
+font-size:26px;
 font-weight:900;
 }
 
@@ -35,32 +35,46 @@ font-weight:900;
 
 .hero{
 text-align:center;
-padding:90px 20px;
+padding:70px 20px;
 background:linear-gradient(rgba(0,0,0,0.7),black),
 url('https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=1600');
 background-size:cover;
 }
 
-.hero h1{
-font-size:55px;
-}
-
+.hero h1{font-size:50px;}
 .hero span{color:#ff9900;}
 
 .search{
-width:80%;
-max-width:500px;
 padding:12px;
+width:70%;
+max-width:500px;
 border-radius:30px;
 border:none;
-margin-top:20px;
+margin-top:15px;
 }
+
+.filters{
+text-align:center;
+padding:20px;
+}
+
+.filters button{
+padding:10px 15px;
+margin:5px;
+border:none;
+border-radius:20px;
+cursor:pointer;
+background:#111;
+color:white;
+}
+
+.filters button:hover{background:#ff9900;color:black;}
 
 .products{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
 gap:20px;
-padding:50px 6%;
+padding:40px 6%;
 }
 
 .card{
@@ -75,56 +89,62 @@ transition:0.3s;
 
 .card img{
 width:100%;
-border-radius:15px;
-height:200px;
+height:180px;
 object-fit:cover;
+border-radius:12px;
 }
 
 .price{
 color:#ff9900;
-font-size:22px;
 font-weight:800;
 }
 
 button{
 width:100%;
 padding:10px;
-margin-top:10px;
+margin-top:8px;
 border:none;
 background:#ff9900;
-font-weight:bold;
 cursor:pointer;
+font-weight:bold;
 border-radius:10px;
 }
 
-button:hover{background:white;}
-
 .cart{
 position:fixed;
-right:20px;
-bottom:20px;
+right:15px;
+bottom:15px;
 background:#111;
 padding:15px;
 border-radius:15px;
-width:220px;
+width:240px;
 }
 
-.cart h3{color:#ff9900;}
+.qty{
+display:flex;
+justify-content:space-between;
+margin-top:5px;
+}
+
+.qty button{
+width:30px;
+padding:5px;
+}
 
 .whatsapp{
 position:fixed;
-bottom:20px;
-left:20px;
-background:#25D366;
+left:15px;
+bottom:15px;
 width:60px;
 height:60px;
-border-radius:50%;
+background:#25D366;
 display:flex;
 justify-content:center;
 align-items:center;
-font-size:30px;
-color:white;
+border-radius:50%;
+font-size:28px;
 text-decoration:none;
+color:white;
 }
 
 </style>
@@ -134,21 +154,26 @@ text-decoration:none;
 
 <header>
 <div class="logo">Apex <span>Holux</span></div>
-<div>Global Export</div>
+<div>Global Export Store</div>
 </header>
 
 <section class="hero">
 <h1>GLOBAL <span>LUXURY STORE</span></h1>
-<p>Premium Shoes • Sneakers • Slides • Export Quality</p>
-
-<input class="search" placeholder="Search products..." onkeyup="search(this.value)">
+<p>Premium Export Shoes • Sneakers • Slides</p>
+<input class="search" placeholder="Search products..." oninput="search(this.value)">
 </section>
+
+<div class="filters">
+<button onclick="filter('all')">All</button>
+<button onclick="filter('sneaker')">Sneakers</button>
+<button onclick="filter('slides')">Slides</button>
+</div>
 
 <section class="products" id="box"></section>
 
 <div class="cart">
 <h3>Cart</h3>
-<div id="cartItems">Empty</div>
+<div id="cart"></div>
 <p>Total: $<span id="total">0</span></p>
 <button onclick="checkout()">Order WhatsApp</button>
 </div>
@@ -161,39 +186,43 @@ let cart=[];
 let total=0;
 
 const products=[
-{name:"Nike Air Force",price:120,img:"https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=700"},
-{name:"Jordan Retro",price:210,img:"https://images.unsplash.com/photo-1600180758890-6b94519a8ba6?w=700"},
-{name:"Adidas Boost",price:150,img:"https://images.unsplash.com/photo-1528701800489-20be3c5c9c8c?w=700"},
-{name:"Luxury Slides",price:60,img:"https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=700"}
+{name:"Nike Air Force",price:120,cat:"sneaker",img:"https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=700"},
+{name:"Jordan Retro",price:210,cat:"sneaker",img:"https://images.unsplash.com/photo-1600180758890-6b94519a8ba6?w=700"},
+{name:"Adidas Slides",price:60,cat:"slides",img:"https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=700"}
 ];
 
 function show(list){
 let box=document.getElementById("box");
 box.innerHTML="";
-list.forEach(p=>{
+list.forEach((p,i)=>{
 box.innerHTML+=`
 <div class="card">
 <img src="${p.img}">
 <h3>${p.name}</h3>
 <div class="price">$${p.price}</div>
-<button onclick="add('${p.name}',${p.price})">Add to Cart</button>
+<button onclick="add(${i})">Add</button>
 </div>`;
 });
 }
 
-function add(name,price){
-cart.push({name,price});
+function add(i){
+cart.push(products[i]);
 update();
 }
 
 function update(){
-let c=document.getElementById("cartItems");
-total=0;
+let c=document.getElementById("cart");
 c.innerHTML="";
-cart.forEach(i=>{
-total+=i.price;
-c.innerHTML+=i.name+"<br>";
+total=0;
+
+cart.forEach((p,i)=>{
+total+=p.price;
+c.innerHTML+=`
+<div>
+${p.name} - $${p.price}
+</div>`;
 });
+
 document.getElementById("total").innerText=total;
 }
 
@@ -201,9 +230,14 @@ function search(v){
 show(products.filter(p=>p.name.toLowerCase().includes(v.toLowerCase())));
 }
 
+function filter(type){
+if(type==="all") return show(products);
+show(products.filter(p=>p.cat===type));
+}
+
 function checkout(){
 let msg="Order:\n";
-cart.forEach(i=>msg+=i.name+" - $"+i.price+"\n");
+cart.forEach(p=>msg+=p.name+" - $"+p.price+"\n");
 window.open("https://wa.me/93764594322?text="+encodeURIComponent(msg));
 }
 
