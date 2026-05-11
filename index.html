@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Apex Holux Global SaaS Store</title>
+<title>Apex Holux Pro Store</title>
 <link rel="stylesheet" href="style.css">
 </head>
 
@@ -11,35 +11,35 @@
 
 <header>
 <div class="logo">Apex <span>Holux</span></div>
-<button onclick="openLogin()">Admin</button>
+<button onclick="showLogin()">Admin</button>
 </header>
 
 <!-- LOGIN -->
 <div id="login">
 <h2>Admin Login</h2>
-<input id="user" placeholder="Username">
-<input id="pass" type="password" placeholder="Password">
+<input id="u" placeholder="Username">
+<input id="p" type="password" placeholder="Password">
 <button onclick="login()">Login</button>
 </div>
 
 <!-- ADMIN -->
-<section class="admin">
+<div class="admin">
 <h3>Add Product</h3>
-<input id="name" placeholder="Product Name">
+<input id="name" placeholder="Name">
 <input id="price" placeholder="Price">
 <input id="img" placeholder="Image URL">
-<button onclick="addProduct()">Add Product</button>
-</section>
+<button onclick="addProduct()">Add</button>
+</div>
 
 <!-- PRODUCTS -->
-<section id="products" class="products"></section>
+<div id="products" class="products"></div>
 
 <!-- CART -->
 <div class="cart">
 <h4>Cart</h4>
 <div id="cart"></div>
 <p>Total: $<span id="total">0</span></p>
-<button onclick="checkout()">Checkout</button>
+<button onclick="checkout()">Order</button>
 </div>
 
 <script src="app.js"></script>
