@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Apex Holux Global Store</title>
+<title>Apex Holux Admin Store</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800&display=swap" rel="stylesheet">
 
 <style>
 
@@ -17,151 +17,81 @@ color:white;
 }
 
 header{
+padding:20px;
+background:#000;
 display:flex;
 justify-content:space-between;
-align-items:center;
-padding:18px 6%;
-background:#000;
-position:sticky;
-top:0;
-z-index:10;
 }
 
 .logo{
-font-size:28px;
+font-size:26px;
 font-weight:900;
 }
 
 .logo span{color:#ff9900;}
 
-.hero{
-text-align:center;
-padding:80px 20px;
-background:linear-gradient(rgba(0,0,0,0.7),black),
-url('https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=1600');
-background-size:cover;
-}
-
-.hero h1{
-font-size:55px;
-}
-
-.hero span{color:#ff9900;}
-
-.search{
-width:80%;
-max-width:500px;
-padding:12px;
-border:none;
-border-radius:30px;
-margin-top:20px;
-}
-
-.filters{
-text-align:center;
+.container{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:20px;
 padding:20px;
 }
 
-.filters button{
-padding:10px 15px;
-margin:5px;
-border:none;
-border-radius:20px;
+.panel{
 background:#111;
-color:white;
-cursor:pointer;
+padding:20px;
+border-radius:15px;
 }
 
-.filters button:hover{
-background:#ff9900;
-color:black;
-}
-
-.products{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-gap:20px;
-padding:40px 6%;
-}
-
-.card{
-background:#111;
-border-radius:20px;
-overflow:hidden;
-padding:15px;
-transition:0.3s;
-}
-
-.card:hover{transform:scale(1.03);}
-
-.card img{
+input{
 width:100%;
-height:180px;
-object-fit:cover;
-border-radius:12px;
-}
-
-.price{
-color:#ff9900;
-font-weight:800;
-font-size:20px;
+padding:10px;
+margin:5px 0;
+border:none;
+border-radius:10px;
 }
 
 button{
 width:100%;
 padding:10px;
-margin-top:8px;
-border:none;
 background:#ff9900;
+border:none;
 font-weight:bold;
-cursor:pointer;
 border-radius:10px;
+cursor:pointer;
+margin-top:10px;
 }
 
 button:hover{background:white;}
 
-.cart{
-position:fixed;
-right:15px;
-bottom:15px;
+.products{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:15px;
+padding:20px;
+}
+
+.card{
 background:#111;
 padding:15px;
 border-radius:15px;
-width:260px;
-max-height:400px;
-overflow:auto;
 }
 
-.qty{
-display:flex;
-justify-content:space-between;
-align-items:center;
-margin-top:5px;
+.card img{
+width:100%;
+height:150px;
+object-fit:cover;
+border-radius:10px;
 }
 
-.qty button{
-width:30px;
-}
-
-.whatsapp{
-position:fixed;
-left:15px;
-bottom:15px;
-width:60px;
-height:60px;
-background:#25D366;
-display:flex;
-justify-content:center;
-align-items:center;
-border-radius:50%;
-font-size:28px;
-text-decoration:none;
-color:white;
+.price{
+color:#ff9900;
+font-weight:800;
 }
 
 .small{
 font-size:12px;
-opacity:0.8;
+opacity:0.7;
 }
 
 </style>
@@ -170,127 +100,123 @@ opacity:0.8;
 <body>
 
 <header>
-<div class="logo">Apex <span>Holux</span></div>
-<div>Global Export</div>
+<div class="logo">Apex <span>Holux Admin</span></div>
+<div>Global System</div>
 </header>
 
-<section class="hero">
-<h1>GLOBAL <span>LUXURY STORE</span></h1>
-<p>Premium Sneakers • Slides • Export Quality</p>
+<div class="container">
 
-<input class="search" placeholder="Search products..." oninput="search(this.value)">
-</section>
+<!-- ADMIN PANEL -->
+<div class="panel">
+<h2>➕ Add Product</h2>
 
-<div class="filters">
-<button onclick="filter('all')">All</button>
-<button onclick="filter('sneaker')">Sneakers</button>
-<button onclick="filter('slides')">Slides</button>
+<input id="name" placeholder="Product Name">
+<input id="price" placeholder="Price">
+<input id="img" placeholder="Image URL">
+<input id="cat" placeholder="Category (sneaker/slides)">
+
+<button onclick="addProduct()">Add Product</button>
+<p class="small">This works like Amazon admin panel</p>
 </div>
 
-<section class="products" id="box"></section>
-
-<div class="cart">
-<h3>🛒 Cart</h3>
+<!-- CART -->
+<div class="panel">
+<h2>🛒 Cart</h2>
 <div id="cart"></div>
 <p>Total: $<span id="total">0</span></p>
-<button onclick="checkout()">Order on WhatsApp</button>
-<p class="small">Global Export System</p>
+<button onclick="checkout()">WhatsApp Order</button>
 </div>
 
-<a class="whatsapp" href="https://wa.me/93764594322">💬</a>
+</div>
+
+<!-- PRODUCTS -->
+<div class="products" id="box"></div>
 
 <script>
 
-let cart={};
-let total=0;
-
-const products=[
+let products=[
 {name:"Nike Air Force",price:120,cat:"sneaker",img:"https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=700"},
-{name:"Jordan Retro",price:210,cat:"sneaker",img:"https://images.unsplash.com/photo-1600180758890-6b94519a8ba6?w=700"},
-{name:"Adidas Slides",price:60,cat:"slides",img:"https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=700"},
-{name:"Puma Runner",price:140,cat:"sneaker",img:"https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=700"}
+{name:"Adidas Slides",price:60,cat:"slides",img:"https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=700"}
 ];
 
-function show(list){
+let cart=[];
+let total=0;
+
+function show(){
 let box=document.getElementById("box");
 box.innerHTML="";
-list.forEach((p,i)=>{
+
+products.forEach((p,i)=>{
 box.innerHTML+=`
 <div class="card">
 <img src="${p.img}">
 <h3>${p.name}</h3>
 <div class="price">$${p.price}</div>
+<p class="small">${p.cat}</p>
+
 <button onclick="add(${i})">Add to Cart</button>
+<button onclick="removeProduct(${i})" style="background:red;color:white;">Delete</button>
 </div>`;
 });
 }
 
 function add(i){
-let name=products[i].name;
-
-if(!cart[name]){
-cart[name]={...products[i],qty:1};
-}else{
-cart[name].qty++;
-}
-update();
+cart.push(products[i]);
+updateCart();
 }
 
-function update(){
+function updateCart(){
 let c=document.getElementById("cart");
 c.innerHTML="";
 total=0;
 
-for(let k in cart){
-let item=cart[k];
-total+=item.price*item.qty;
-
-c.innerHTML+=`
-<div>
-${item.name}<br>
-<div class="qty">
-Qty: ${item.qty}
-<button onclick="plus('${k}')">+</button>
-<button onclick="minus('${k}')">-</button>
-</div>
-</div><hr>`;
-}
+cart.forEach(i=>{
+total+=i.price;
+c.innerHTML+=i.name+"<br>";
+});
 
 document.getElementById("total").innerText=total;
 }
 
-function plus(k){
-cart[k].qty++;
-update();
+function addProduct(){
+
+let n=document.getElementById("name").value;
+let p=document.getElementById("price").value;
+let img=document.getElementById("img").value;
+let cat=document.getElementById("cat").value;
+
+if(!n||!p||!img||!cat){
+alert("Fill all fields!");
+return;
 }
 
-function minus(k){
-cart[k].qty--;
-if(cart[k].qty<=0) delete cart[k];
-update();
+products.push({
+name:n,
+price:Number(p),
+img:img,
+cat:cat
+});
+
+show();
+alert("Product Added!");
 }
 
-function search(v){
-show(products.filter(p=>p.name.toLowerCase().includes(v.toLowerCase())));
-}
-
-function filter(type){
-if(type==="all") return show(products);
-show(products.filter(p=>p.cat===type));
+function removeProduct(i){
+products.splice(i,1);
+show();
 }
 
 function checkout(){
-let msg="🔥 APEX HOLUX ORDER 🔥\n\n";
-for(let k in cart){
-let i=cart[k];
-msg+=`${i.name} x${i.qty} - $${i.price*i.qty}\n`;
-}
-msg+="\nTOTAL: $"+total;
+
+let msg="ORDER:\n";
+cart.forEach(i=>{
+msg+=i.name+" - $"+i.price+"\n";
+});
 
 window.open("https://wa.me/93764594322?text="+encodeURIComponent(msg));
 }
 
-show(products);
+show();
 
 </script>
 
