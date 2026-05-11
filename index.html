@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Apex Holux Global SaaS Store</title>
+<title>Apex Holux SaaS Store</title>
 <link rel="stylesheet" href="style.css">
 </head>
 
@@ -11,21 +11,21 @@
 
 <header>
 <div class="logo">Apex <span>Holux</span></div>
-<button onclick="openLogin()">Admin</button>
+<button onclick="openLogin()">Login</button>
 </header>
 
 <!-- LOGIN -->
 <div id="login">
-<h2>Admin Login</h2>
+<h2>User Login</h2>
 <input id="user" placeholder="Username">
 <input id="pass" type="password" placeholder="Password">
-<button onclick="login()">Login</button>
+<button onclick="login()">Enter</button>
 </div>
 
-<!-- ADMIN -->
+<!-- ADMIN PANEL -->
 <section class="admin">
-<h3>Add Product</h3>
-<input id="name" placeholder="Product Name">
+<h3>Add Product (Admin)</h3>
+<input id="name" placeholder="Name">
 <input id="price" placeholder="Price">
 <input id="img" placeholder="Image URL">
 <button onclick="addProduct()">Add Product</button>
