@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Apex Holux Global Store Pro</title>
+<title>Apex Holux Global Store</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800;900&display=swap" rel="stylesheet">
 
@@ -12,13 +12,14 @@
 body{
 margin:0;
 font-family:Montserrat;
-background:#050505;
+background:#0a0a0a;
 color:white;
 }
 
 header{
 display:flex;
 justify-content:space-between;
+align-items:center;
 padding:18px 6%;
 background:#000;
 position:sticky;
@@ -27,7 +28,7 @@ z-index:10;
 }
 
 .logo{
-font-size:26px;
+font-size:28px;
 font-weight:900;
 }
 
@@ -35,22 +36,25 @@ font-weight:900;
 
 .hero{
 text-align:center;
-padding:70px 20px;
+padding:80px 20px;
 background:linear-gradient(rgba(0,0,0,0.7),black),
 url('https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=1600');
 background-size:cover;
 }
 
-.hero h1{font-size:50px;}
+.hero h1{
+font-size:55px;
+}
+
 .hero span{color:#ff9900;}
 
 .search{
-padding:12px;
-width:70%;
+width:80%;
 max-width:500px;
-border-radius:30px;
+padding:12px;
 border:none;
-margin-top:15px;
+border-radius:30px;
+margin-top:20px;
 }
 
 .filters{
@@ -63,12 +67,15 @@ padding:10px 15px;
 margin:5px;
 border:none;
 border-radius:20px;
-cursor:pointer;
 background:#111;
 color:white;
+cursor:pointer;
 }
 
-.filters button:hover{background:#ff9900;color:black;}
+.filters button:hover{
+background:#ff9900;
+color:black;
+}
 
 .products{
 display:grid;
@@ -97,6 +104,7 @@ border-radius:12px;
 .price{
 color:#ff9900;
 font-weight:800;
+font-size:20px;
 }
 
 button{
@@ -105,10 +113,12 @@ padding:10px;
 margin-top:8px;
 border:none;
 background:#ff9900;
-cursor:pointer;
 font-weight:bold;
+cursor:pointer;
 border-radius:10px;
 }
+
+button:hover{background:white;}
 
 .cart{
 position:fixed;
@@ -117,18 +127,20 @@ bottom:15px;
 background:#111;
 padding:15px;
 border-radius:15px;
-width:240px;
+width:260px;
+max-height:400px;
+overflow:auto;
 }
 
 .qty{
 display:flex;
 justify-content:space-between;
+align-items:center;
 margin-top:5px;
 }
 
 .qty button{
 width:30px;
-padding:5px;
 }
 
 .whatsapp{
@@ -147,6 +159,11 @@ text-decoration:none;
 color:white;
 }
 
+.small{
+font-size:12px;
+opacity:0.8;
+}
+
 </style>
 </head>
 
@@ -154,12 +171,13 @@ color:white;
 
 <header>
 <div class="logo">Apex <span>Holux</span></div>
-<div>Global Export Store</div>
+<div>Global Export</div>
 </header>
 
 <section class="hero">
 <h1>GLOBAL <span>LUXURY STORE</span></h1>
-<p>Premium Export Shoes • Sneakers • Slides</p>
+<p>Premium Sneakers • Slides • Export Quality</p>
+
 <input class="search" placeholder="Search products..." oninput="search(this.value)">
 </section>
 
@@ -172,23 +190,25 @@ color:white;
 <section class="products" id="box"></section>
 
 <div class="cart">
-<h3>Cart</h3>
+<h3>🛒 Cart</h3>
 <div id="cart"></div>
 <p>Total: $<span id="total">0</span></p>
-<button onclick="checkout()">Order WhatsApp</button>
+<button onclick="checkout()">Order on WhatsApp</button>
+<p class="small">Global Export System</p>
 </div>
 
 <a class="whatsapp" href="https://wa.me/93764594322">💬</a>
 
 <script>
 
-let cart=[];
+let cart={};
 let total=0;
 
 const products=[
 {name:"Nike Air Force",price:120,cat:"sneaker",img:"https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=700"},
 {name:"Jordan Retro",price:210,cat:"sneaker",img:"https://images.unsplash.com/photo-1600180758890-6b94519a8ba6?w=700"},
-{name:"Adidas Slides",price:60,cat:"slides",img:"https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=700"}
+{name:"Adidas Slides",price:60,cat:"slides",img:"https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=700"},
+{name:"Puma Runner",price:140,cat:"sneaker",img:"https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=700"}
 ];
 
 function show(list){
@@ -200,13 +220,19 @@ box.innerHTML+=`
 <img src="${p.img}">
 <h3>${p.name}</h3>
 <div class="price">$${p.price}</div>
-<button onclick="add(${i})">Add</button>
+<button onclick="add(${i})">Add to Cart</button>
 </div>`;
 });
 }
 
 function add(i){
-cart.push(products[i]);
+let name=products[i].name;
+
+if(!cart[name]){
+cart[name]={...products[i],qty:1};
+}else{
+cart[name].qty++;
+}
 update();
 }
 
@@ -215,15 +241,33 @@ let c=document.getElementById("cart");
 c.innerHTML="";
 total=0;
 
-cart.forEach((p,i)=>{
-total+=p.price;
+for(let k in cart){
+let item=cart[k];
+total+=item.price*item.qty;
+
 c.innerHTML+=`
 <div>
-${p.name} - $${p.price}
-</div>`;
-});
+${item.name}<br>
+<div class="qty">
+Qty: ${item.qty}
+<button onclick="plus('${k}')">+</button>
+<button onclick="minus('${k}')">-</button>
+</div>
+</div><hr>`;
+}
 
 document.getElementById("total").innerText=total;
+}
+
+function plus(k){
+cart[k].qty++;
+update();
+}
+
+function minus(k){
+cart[k].qty--;
+if(cart[k].qty<=0) delete cart[k];
+update();
 }
 
 function search(v){
@@ -236,8 +280,13 @@ show(products.filter(p=>p.cat===type));
 }
 
 function checkout(){
-let msg="Order:\n";
-cart.forEach(p=>msg+=p.name+" - $"+p.price+"\n");
+let msg="🔥 APEX HOLUX ORDER 🔥\n\n";
+for(let k in cart){
+let i=cart[k];
+msg+=`${i.name} x${i.qty} - $${i.price*i.qty}\n`;
+}
+msg+="\nTOTAL: $"+total;
+
 window.open("https://wa.me/93764594322?text="+encodeURIComponent(msg));
 }
 
