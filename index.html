@@ -3,113 +3,171 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Apex Holux Global Store</title>
+<title>Apex Holux Global Export</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800&display=swap" rel="stylesheet">
 
 <style>
 
 body{
 margin:0;
-font-family:Arial;
+font-family:Montserrat;
 background:#0a0a0a;
 color:white;
 }
 
 header{
+padding:20px;
+background:#000;
 display:flex;
 justify-content:space-between;
-padding:15px;
-background:#000;
+align-items:center;
+position:sticky;
+top:0;
+z-index:999;
 }
 
 .logo{
-font-size:22px;
-font-weight:bold;
+font-size:26px;
+font-weight:900;
 }
 
-.logo span{color:#ff9900;}
-
-.login{
-padding:5px 10px;
-background:#ff9900;
-border:none;
-cursor:pointer;
-font-weight:bold;
+.logo span{
+color:#ff9900;
 }
 
-/* LOGIN */
-
-#loginBox{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:black;
+.hero{
+height:70vh;
+background:url('https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=1400') center/cover;
 display:flex;
+flex-direction:column;
 justify-content:center;
 align-items:center;
-flex-direction:column;
+text-align:center;
+}
+
+.hero h1{
+font-size:55px;
+margin:0;
+}
+
+.hero p{
+font-size:22px;
+color:#ff9900;
+}
+
+.container{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:20px;
+padding:20px;
+}
+
+.panel{
+background:#111;
+padding:20px;
+border-radius:15px;
 }
 
 input{
-padding:10px;
-margin:5px;
-width:200px;
+width:100%;
+padding:12px;
+margin:5px 0;
 border:none;
-border-radius:8px;
+border-radius:10px;
 }
 
 button{
-padding:10px;
+width:100%;
+padding:12px;
 background:#ff9900;
 border:none;
 font-weight:bold;
+border-radius:10px;
 cursor:pointer;
-border-radius:8px;
+margin-top:10px;
+transition:0.3s;
 }
 
-/* ADMIN */
-
-.admin{
-padding:15px;
-background:#111;
+button:hover{
+background:white;
 }
 
 .products{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-gap:10px;
-padding:15px;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:15px;
+padding:20px;
 }
 
 .card{
 background:#111;
-padding:10px;
-border-radius:10px;
+padding:15px;
+border-radius:15px;
+transition:0.3s;
+}
+
+.card:hover{
+transform:translateY(-5px);
 }
 
 .card img{
 width:100%;
-height:140px;
+height:180px;
 object-fit:cover;
 border-radius:10px;
 }
 
 .price{
 color:#ff9900;
+font-weight:800;
+}
+
+.small{
+font-size:12px;
+opacity:0.7;
+}
+
+.about,
+.services,
+.factory,
+.contact{
+padding:50px 20px;
+text-align:center;
+}
+
+.services{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+gap:15px;
+}
+
+.services div{
+background:#111;
+padding:20px;
+border-radius:15px;
 font-weight:bold;
 }
 
-/* CART */
+.factory-gallery{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:15px;
+margin-top:20px;
+}
 
-.cart{
-position:fixed;
-right:10px;
-bottom:10px;
-background:#111;
-padding:10px;
-border-radius:10px;
-width:220px;
+.factory-gallery img{
+width:100%;
+height:220px;
+object-fit:cover;
+border-radius:15px;
+}
+
+footer{
+background:#000;
+padding:20px;
+text-align:center;
+margin-top:30px;
 }
 
 </style>
@@ -117,121 +175,248 @@ width:220px;
 
 <body>
 
-<!-- LOGIN -->
-<div id="loginBox">
-<h2>Admin Login</h2>
-<input id="u" placeholder="Username">
-<input id="p" type="password" placeholder="Password">
-<button onclick="login()">Login</button>
-</div>
-
 <header>
 <div class="logo">Apex <span>Holux</span></div>
-<div>Global Store</div>
+<div>GLOBAL EXPORT SYSTEM</div>
 </header>
 
+<section class="hero">
+<h1>APEX HOLUX GLOBAL EXPORT</h1>
+<p>World-Class Shoes Manufacturer & Supplier</p>
+</section>
+
+<div class="container">
+
 <!-- ADMIN PANEL -->
-<div class="admin">
-<h3>Add Product</h3>
-<input id="name" placeholder="Name">
+<div class="panel">
+<h2>➕ Add Product</h2>
+
+<input id="name" placeholder="Product Name">
 <input id="price" placeholder="Price">
 <input id="img" placeholder="Image URL">
-<button onclick="addProduct()">Add</button>
+<input id="cat" placeholder="Category">
+
+<button onclick="addProduct()">Add Product</button>
+
+<p class="small">Premium Global Admin Panel</p>
+</div>
+
+<!-- CART -->
+<div class="panel">
+<h2>🛒 Cart</h2>
+
+<div id="cart"></div>
+
+<p>Total: $<span id="total">0</span></p>
+
+<button onclick="checkout()">WhatsApp Order</button>
+</div>
+
 </div>
 
 <!-- PRODUCTS -->
-<div class="products" id="box"></div>
+<section class="products" id="box"></section>
 
-<!-- CART -->
-<div class="cart">
-<h4>Cart</h4>
-<div id="cart"></div>
-<p>Total: $<span id="total">0</span></p>
-<button onclick="checkout()">WhatsApp</button>
+<!-- ABOUT -->
+<section class="about">
+<h2>About Apex Holux</h2>
+
+<p>
+Professional shoes supplier with premium quality products,
+exporting worldwide with modern manufacturing systems.
+</p>
+</section>
+
+<!-- SERVICES -->
+<section class="services">
+
+<div>OEM & ODM</div>
+
+<div>Low MOQ</div>
+
+<div>Fast Delivery</div>
+
+<div>Premium Quality</div>
+
+</section>
+
+<!-- FACTORY -->
+<section class="factory">
+
+<h2>Factory Production</h2>
+
+<div class="factory-gallery">
+
+<img src="https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?w=700">
+
+<img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=700">
+
+<img src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=700">
+
 </div>
+
+</section>
+
+<!-- CONTACT -->
+<section class="contact">
+
+<h2>Contact Us</h2>
+
+<p>WhatsApp: 0764594322</p>
+
+<p>Email: apexholux@gmail.com</p>
+
+</section>
+
+<footer>
+© 2026 Apex Holux Global Export
+</footer>
 
 <script>
 
 let products=[
-{name:"Nike Air Force",price:120,img:"https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=700"},
-{name:"Adidas Slides",price:60,img:"https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=700"}
+
+{
+name:"Nike Air Force",
+price:120,
+cat:"Sneaker",
+img:"https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=700"
+},
+
+{
+name:"Adidas Slides",
+price:60,
+cat:"Slides",
+img:"https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=700"
+},
+
+{
+name:"Luxury Sneakers",
+price:180,
+cat:"Sport",
+img:"https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?w=700"
+}
+
 ];
 
 let cart=[];
 let total=0;
 
-/* LOGIN */
-function login(){
-let u=document.getElementById("u").value;
-let p=document.getElementById("p").value;
-
-if(u==="admin" && p==="1234"){
-document.getElementById("loginBox").style.display="none";
-}else{
-alert("Wrong Login");
-}
-}
-
-/* SHOW */
 function show(){
+
 let box=document.getElementById("box");
+
 box.innerHTML="";
 
 products.forEach((p,i)=>{
+
 box.innerHTML+=`
+
 <div class="card">
+
 <img src="${p.img}">
+
 <h3>${p.name}</h3>
+
 <div class="price">$${p.price}</div>
-<button onclick="add(${i})">Add</button>
-<button onclick="del(${i})" style="background:red;color:white;">Delete</button>
-</div>`;
+
+<p class="small">${p.cat}</p>
+
+<button onclick="add(${i})">Add to Cart</button>
+
+<button onclick="removeProduct(${i})" style="background:red;color:white;">
+Delete
+</button>
+
+</div>
+
+`;
+
 });
+
 }
 
-/* ADD PRODUCT */
-function addProduct(){
-let n=document.getElementById("name").value;
-let p=document.getElementById("price").value;
-let img=document.getElementById("img").value;
-
-products.push({name:n,price:Number(p),img:img});
-show();
-}
-
-/* DELETE */
-function del(i){
-products.splice(i,1);
-show();
-}
-
-/* CART */
 function add(i){
+
 cart.push(products[i]);
-update();
+
+updateCart();
+
 }
 
-function update(){
+function updateCart(){
+
 let c=document.getElementById("cart");
+
 c.innerHTML="";
+
 total=0;
 
 cart.forEach(i=>{
+
 total+=i.price;
+
 c.innerHTML+=i.name+"<br>";
+
 });
 
 document.getElementById("total").innerText=total;
+
 }
 
-/* CHECKOUT */
-function checkout(){
-let msg="ORDER:\n";
-cart.forEach(i=>{
-msg+=i.name+" - $"+i.price+"\n";
+function addProduct(){
+
+let n=document.getElementById("name").value;
+
+let p=document.getElementById("price").value;
+
+let img=document.getElementById("img").value;
+
+let cat=document.getElementById("cat").value;
+
+if(!n||!p||!img||!cat){
+
+alert("Fill all fields!");
+
+return;
+
+}
+
+products.push({
+
+name:n,
+price:Number(p),
+img:img,
+cat:cat
+
 });
 
-window.open("https://wa.me/93764594322?text="+encodeURIComponent(msg));
+show();
+
+alert("Product Added!");
+
+}
+
+function removeProduct(i){
+
+products.splice(i,1);
+
+show();
+
+}
+
+function checkout(){
+
+let msg="ORDER:%0A";
+
+cart.forEach(i=>{
+
+msg+=i.name+" - $"+i.price+"%0A";
+
+});
+
+window.open("https://wa.me/93764594322?text="+msg);
+
 }
 
 show();
