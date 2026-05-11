@@ -1,125 +1,78 @@
-const phoneNumber = "93764594322"; // WhatsApp number (change only here)
-
-const products = [
-  {name: "Nike Air Force 1", price: 90},
-  {name: "Adidas Ultraboost", price: 120},
-  {name: "Nike Running Shoes", price: 85},
-  {name: "Puma Sports Shoes", price: 75},
-  {name: "Jordan Retro Sneakers", price: 150},
-  {name: "Air Jordan 1 Low", price: 140},
-  {name: "Nike Air Max 270", price: 110},
-  {name: "Adidas Yeezy Boost 350", price: 220},
-  {name: "New Balance 550", price: 130},
-  {name: "Vans Old Skool", price: 70}
+let products = [
+{name:"Nike Air Force 1",price:120,img:"https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=700"},
+{name:"Adidas Ultraboost",price:180,img:"https://images.unsplash.com/photo-1528701800489-20be3c5c9c8c?w=700"},
+{name:"Puma RS-X",price:150,img:"https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=700"},
+{name:"Nike Slides",price:60,img:"https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=700"},
+{name:"Luxury Shoes",price:250,img:"https://images.unsplash.com/photo-1614252235316-8c857d38b5f4?w=700"},
+{name:"Sketchers Max",price:140,img:"https://images.unsplash.com/photo-1549298916-b41d501d3772?w=700"},
+{name:"New Balance 574",price:160,img:"https://images.unsplash.com/photo-1519744346364-2b8a8f2a7c2d?w=700"},
+{name:"Crocs Slides",price:55,img:"https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=700"},
+{name:"Sport Runner",price:110,img:"https://images.unsplash.com/photo-1528701800489-20be3c5c9c8c?w=700"},
+{name:"Classic Leather",price:200,img:"https://images.unsplash.com/photo-1614252235316-8c857d38b5f4?w=700"}
 ];
 
-// CART (with localStorage)
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
+let cart = [];
+let total = 0;
 
-// SAVE CART
-function saveCart() {
-  localStorage.setItem("cart", JSON.stringify(cart));
+/* SHOW PRODUCTS */
+function show(list=products){
+let box=document.getElementById("products");
+box.innerHTML="";
+
+list.forEach((p,i)=>{
+box.innerHTML+=`
+<div class="card">
+<img src="${p.img}">
+<h3>${p.name}</h3>
+<div class="price">$${p.price}</div>
+<button onclick="add(${i})">Add to Cart</button>
+</div>`;
+});
 }
 
-// RENDER PRODUCTS
-function renderProducts() {
-  const container = document.getElementById("products");
-  container.innerHTML = "";
+show();
 
-  products.forEach((p, index) => {
-    container.innerHTML += `
-      <div class="card">
-        <img src="https://via.placeholder.com/200">
-        <h3>${p.name}</h3>
-        <p>$${p.price}</p>
-        <button onclick="addToCart(${index})">🛒 Add</button>
-      </div>
-    `;
-  });
+/* CART */
+function add(i){
+cart.push(products[i]);
+updateCart();
 }
 
-// ADD TO CART (with quantity)
-function addToCart(index) {
-  let item = products[index];
+function updateCart(){
+let c=document.getElementById("cartItems");
+c.innerHTML="";
+total=0;
 
-  let found = cart.find(c => c.name === item.name);
+cart.forEach(i=>{
+total+=i.price;
+c.innerHTML+=i.name+"<br>";
+});
 
-  if (found) {
-    found.qty += 1;
-  } else {
-    cart.push({...item, qty: 1});
-  }
-
-  saveCart();
-  renderCart();
+document.getElementById("total").innerText=total;
 }
 
-// REMOVE ITEM
-function removeItem(index) {
-  cart.splice(index, 1);
-  saveCart();
-  renderCart();
+/* SEARCH */
+function search(){
+let val=document.getElementById("search").value.toLowerCase();
+
+show(products.filter(p=>
+p.name.toLowerCase().includes(val)
+));
 }
 
-// CLEAR CART
-function clearCart() {
-  cart = [];
-  saveCart();
-  renderCart();
+/* CART TOGGLE */
+function toggleCart(){
+let c=document.getElementById("cart");
+c.style.display = c.style.display==="block" ? "none":"block";
 }
 
-// RENDER CART
-function renderCart() {
-  const cartDiv = document.getElementById("cart");
-  cartDiv.innerHTML = "";
+/* CHECKOUT */
+function checkout(){
+let msg="ORDER:\n";
 
-  let total = 0;
+cart.forEach(i=>{
+msg+=i.name+" - $"+i.price+"\n";
+});
 
-  cart.forEach((item, index) => {
-    total += item.price * item.qty;
-
-    cartDiv.innerHTML += `
-      <p>
-        ${item.name} x ${item.qty} = $${item.price * item.qty}
-        <button onclick="removeItem(${index})">❌</button>
-      </p>
-    `;
-  });
-
-  document.getElementById("total").innerText = total;
+window.open("https://wa.me/93764594322?text="+encodeURIComponent(msg));
 }
-
-// SEARCH
-function searchProducts() {
-  const input = document.getElementById("search").value.toLowerCase();
-  const cards = document.querySelectorAll(".card");
-
-  cards.forEach(card => {
-    card.style.display = card.innerText.toLowerCase().includes(input)
-      ? "block"
-      : "none";
-  });
-}
-
-// WHATSAPP CHECKOUT (FINAL BOSS FEATURE)
-function checkoutCart() {
-  if (cart.length === 0) return alert("Cart is empty!");
-
-  let message = "🛒 NEW ORDER:\n\n";
-  let total = 0;
-
-  cart.forEach(item => {
-    message += `• ${item.name} x ${item.qty} = $${item.price * item.qty}\n`;
-    total += item.price * item.qty;
-  });
-
-  message += `\nTOTAL: $${total}`;
-
-  const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-
-  window.open(url, "_blank");
-}
-
-// INIT
-renderProducts();
-renderCart();
