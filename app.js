@@ -1,41 +1,37 @@
 let products = JSON.parse(localStorage.getItem("products")) || [
 {
-name:"Nike Air Force 1",
+name:"Nike Air Force",
 price:120,
 img:"https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=700"
-},
-{
-name:"Adidas Slides",
-price:60,
-img:"https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=700"
 }
 ];
 
 let cart = [];
+
 let total = 0;
 
 /* LOGIN */
-function openLogin(){
+function showLogin(){
 document.getElementById("login").style.display="flex";
 }
 
 function login(){
-let u=document.getElementById("user").value;
-let p=document.getElementById("pass").value;
+let u=document.getElementById("u").value;
+let p=document.getElementById("p").value;
 
 if(u==="admin" && p==="1234"){
 document.getElementById("login").style.display="none";
 }else{
-alert("Wrong Login");
+alert("Wrong login");
 }
 }
 
-/* SAVE DB */
+/* SAVE PRODUCTS */
 function save(){
 localStorage.setItem("products",JSON.stringify(products));
 }
 
-/* SHOW PRODUCTS */
+/* SHOW */
 function show(){
 let box=document.getElementById("products");
 box.innerHTML="";
@@ -78,11 +74,11 @@ show();
 /* CART */
 function add(i){
 cart.push(products[i]);
-updateCart();
+update();
 }
 
-/* CART UPDATE */
-function updateCart(){
+/* UPDATE CART */
+function update(){
 let c=document.getElementById("cart");
 c.innerHTML="";
 total=0;
