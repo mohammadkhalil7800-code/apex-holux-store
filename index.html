@@ -1,47 +1,66 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Apex Holux Global Export</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+
 <style>
 
 body{
 margin:0;
-font-family:Arial;
+font-family:Montserrat;
 background:#050505;
 color:white;
 }
 
-/* HERO */
-.hero{
-height:100vh;
+header{
 display:flex;
-flex-direction:column;
-justify-content:center;
+justify-content:space-between;
 align-items:center;
+padding:18px 6%;
+background:rgba(0,0,0,0.85);
+position:sticky;
+top:0;
+}
+
+.logo{
+font-size:28px;
+font-weight:900;
+}
+
+.logo span{color:#ff9900;}
+
+.hero{
 text-align:center;
+padding:90px 20px;
 background:linear-gradient(rgba(0,0,0,0.7),black),
 url('https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=1600');
 background-size:cover;
 }
 
 .hero h1{
-font-size:60px;
-color:white;
+font-size:55px;
 }
 
-.hero span{
-color:#ff9900;
+.hero span{color:#ff9900;}
+
+.search{
+width:80%;
+max-width:500px;
+padding:12px;
+border-radius:30px;
+border:none;
+margin-top:20px;
 }
 
-/* PRODUCTS */
 .products{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
 gap:20px;
-padding:50px;
+padding:50px 6%;
 }
 
 .card{
@@ -49,31 +68,63 @@ background:#111;
 border-radius:20px;
 overflow:hidden;
 padding:15px;
+transition:0.3s;
 }
+
+.card:hover{transform:scale(1.03);}
 
 .card img{
 width:100%;
 border-radius:15px;
+height:200px;
+object-fit:cover;
 }
 
 .price{
 color:#ff9900;
-font-size:25px;
-font-weight:bold;
+font-size:22px;
+font-weight:800;
 }
 
 button{
 width:100%;
-padding:12px;
-background:#ff9900;
+padding:10px;
+margin-top:10px;
 border:none;
+background:#ff9900;
 font-weight:bold;
 cursor:pointer;
 border-radius:10px;
 }
 
-button:hover{
-background:white;
+button:hover{background:white;}
+
+.cart{
+position:fixed;
+right:20px;
+bottom:20px;
+background:#111;
+padding:15px;
+border-radius:15px;
+width:220px;
+}
+
+.cart h3{color:#ff9900;}
+
+.whatsapp{
+position:fixed;
+bottom:20px;
+left:20px;
+background:#25D366;
+width:60px;
+height:60px;
+border-radius:50%;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:30px;
+color:white;
+text-decoration:none;
 }
 
 </style>
@@ -81,35 +132,84 @@ background:white;
 
 <body>
 
-<div class="hero">
-<h1>Apex <span>Holux</span></h1>
-<p>Global Luxury Shoes Export Company</p>
+<header>
+<div class="logo">Apex <span>Holux</span></div>
+<div>Global Export</div>
+</header>
+
+<section class="hero">
+<h1>GLOBAL <span>LUXURY STORE</span></h1>
+<p>Premium Shoes • Sneakers • Slides • Export Quality</p>
+
+<input class="search" placeholder="Search products..." onkeyup="search(this.value)">
+</section>
+
+<section class="products" id="box"></section>
+
+<div class="cart">
+<h3>Cart</h3>
+<div id="cartItems">Empty</div>
+<p>Total: $<span id="total">0</span></p>
+<button onclick="checkout()">Order WhatsApp</button>
 </div>
 
-<div class="products">
+<a class="whatsapp" href="https://wa.me/93764594322">💬</a>
 
+<script>
+
+let cart=[];
+let total=0;
+
+const products=[
+{name:"Nike Air Force",price:120,img:"https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=700"},
+{name:"Jordan Retro",price:210,img:"https://images.unsplash.com/photo-1600180758890-6b94519a8ba6?w=700"},
+{name:"Adidas Boost",price:150,img:"https://images.unsplash.com/photo-1528701800489-20be3c5c9c8c?w=700"},
+{name:"Luxury Slides",price:60,img:"https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=700"}
+];
+
+function show(list){
+let box=document.getElementById("box");
+box.innerHTML="";
+list.forEach(p=>{
+box.innerHTML+=`
 <div class="card">
-<img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=700">
-<h3>Nike Air Force</h3>
-<div class="price">$120</div>
-<button>Inquiry</button>
-</div>
+<img src="${p.img}">
+<h3>${p.name}</h3>
+<div class="price">$${p.price}</div>
+<button onclick="add('${p.name}',${p.price})">Add to Cart</button>
+</div>`;
+});
+}
 
-<div class="card">
-<img src="https://images.unsplash.com/photo-1600180758890-6b94519a8ba6?w=700">
-<h3>Jordan Retro</h3>
-<div class="price">$210</div>
-<button>Inquiry</button>
-</div>
+function add(name,price){
+cart.push({name,price});
+update();
+}
 
-<div class="card">
-<img src="https://images.unsplash.com/photo-1528701800489-20be3c5c9c8c?w=700">
-<h3>Adidas Boost</h3>
-<div class="price">$150</div>
-<button>Inquiry</button>
-</div>
+function update(){
+let c=document.getElementById("cartItems");
+total=0;
+c.innerHTML="";
+cart.forEach(i=>{
+total+=i.price;
+c.innerHTML+=i.name+"<br>";
+});
+document.getElementById("total").innerText=total;
+}
 
-</div>
+function search(v){
+show(products.filter(p=>p.name.toLowerCase().includes(v.toLowerCase())));
+}
+
+function checkout(){
+let msg="Order:\n";
+cart.forEach(i=>msg+=i.name+" - $"+i.price+"\n");
+window.open("https://wa.me/93764594322?text="+encodeURIComponent(msg));
+}
+
+show(products);
+
+</script>
 
 </body>
 </html>
