@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Apex Holux Global Export</title>
+<title>Apex Holux Global Store</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800;900&display=swap" rel="stylesheet">
 
@@ -12,7 +12,7 @@
 body{
 margin:0;
 font-family:Montserrat;
-background:#050505;
+background:#0a0a0a;
 color:white;
 }
 
@@ -21,9 +21,10 @@ display:flex;
 justify-content:space-between;
 align-items:center;
 padding:18px 6%;
-background:rgba(0,0,0,0.85);
+background:#000;
 position:sticky;
 top:0;
+z-index:10;
 }
 
 .logo{
@@ -35,7 +36,7 @@ font-weight:900;
 
 .hero{
 text-align:center;
-padding:90px 20px;
+padding:80px 20px;
 background:linear-gradient(rgba(0,0,0,0.7),black),
 url('https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=1600');
 background-size:cover;
@@ -51,16 +52,36 @@ font-size:55px;
 width:80%;
 max-width:500px;
 padding:12px;
-border-radius:30px;
 border:none;
+border-radius:30px;
 margin-top:20px;
+}
+
+.filters{
+text-align:center;
+padding:20px;
+}
+
+.filters button{
+padding:10px 15px;
+margin:5px;
+border:none;
+border-radius:20px;
+background:#111;
+color:white;
+cursor:pointer;
+}
+
+.filters button:hover{
+background:#ff9900;
+color:black;
 }
 
 .products{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
 gap:20px;
-padding:50px 6%;
+padding:40px 6%;
 }
 
 .card{
@@ -75,21 +96,21 @@ transition:0.3s;
 
 .card img{
 width:100%;
-border-radius:15px;
-height:200px;
+height:180px;
 object-fit:cover;
+border-radius:12px;
 }
 
 .price{
 color:#ff9900;
-font-size:22px;
 font-weight:800;
+font-size:20px;
 }
 
 button{
 width:100%;
 padding:10px;
-margin-top:10px;
+margin-top:8px;
 border:none;
 background:#ff9900;
 font-weight:bold;
@@ -101,30 +122,46 @@ button:hover{background:white;}
 
 .cart{
 position:fixed;
-right:20px;
-bottom:20px;
+right:15px;
+bottom:15px;
 background:#111;
 padding:15px;
 border-radius:15px;
-width:220px;
+width:260px;
+max-height:400px;
+overflow:auto;
 }
 
-.cart h3{color:#ff9900;}
+.qty{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-top:5px;
+}
+
+.qty button{
+width:30px;
+}
 
 .whatsapp{
 position:fixed;
-bottom:20px;
-left:20px;
-background:#25D366;
+left:15px;
+bottom:15px;
 width:60px;
 height:60px;
-border-radius:50%;
+background:#25D366;
 display:flex;
 justify-content:center;
 align-items:center;
-font-size:30px;
-color:white;
+border-radius:50%;
+font-size:28px;
 text-decoration:none;
+color:white;
+}
+
+.small{
+font-size:12px;
+opacity:0.8;
 }
 
 </style>
@@ -139,71 +176,117 @@ text-decoration:none;
 
 <section class="hero">
 <h1>GLOBAL <span>LUXURY STORE</span></h1>
-<p>Premium Shoes • Sneakers • Slides • Export Quality</p>
+<p>Premium Sneakers • Slides • Export Quality</p>
 
-<input class="search" placeholder="Search products..." onkeyup="search(this.value)">
+<input class="search" placeholder="Search products..." oninput="search(this.value)">
 </section>
+
+<div class="filters">
+<button onclick="filter('all')">All</button>
+<button onclick="filter('sneaker')">Sneakers</button>
+<button onclick="filter('slides')">Slides</button>
+</div>
 
 <section class="products" id="box"></section>
 
 <div class="cart">
-<h3>Cart</h3>
-<div id="cartItems">Empty</div>
+<h3>🛒 Cart</h3>
+<div id="cart"></div>
 <p>Total: $<span id="total">0</span></p>
-<button onclick="checkout()">Order WhatsApp</button>
+<button onclick="checkout()">Order on WhatsApp</button>
+<p class="small">Global Export System</p>
 </div>
 
 <a class="whatsapp" href="https://wa.me/93764594322">💬</a>
 
 <script>
 
-let cart=[];
+let cart={};
 let total=0;
 
 const products=[
-{name:"Nike Air Force",price:120,img:"https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=700"},
-{name:"Jordan Retro",price:210,img:"https://images.unsplash.com/photo-1600180758890-6b94519a8ba6?w=700"},
-{name:"Adidas Boost",price:150,img:"https://images.unsplash.com/photo-1528701800489-20be3c5c9c8c?w=700"},
-{name:"Luxury Slides",price:60,img:"https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=700"}
+{name:"Nike Air Force",price:120,cat:"sneaker",img:"https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=700"},
+{name:"Jordan Retro",price:210,cat:"sneaker",img:"https://images.unsplash.com/photo-1600180758890-6b94519a8ba6?w=700"},
+{name:"Adidas Slides",price:60,cat:"slides",img:"https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=700"},
+{name:"Puma Runner",price:140,cat:"sneaker",img:"https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=700"}
 ];
 
 function show(list){
 let box=document.getElementById("box");
 box.innerHTML="";
-list.forEach(p=>{
+list.forEach((p,i)=>{
 box.innerHTML+=`
 <div class="card">
 <img src="${p.img}">
 <h3>${p.name}</h3>
 <div class="price">$${p.price}</div>
-<button onclick="add('${p.name}',${p.price})">Add to Cart</button>
+<button onclick="add(${i})">Add to Cart</button>
 </div>`;
 });
 }
 
-function add(name,price){
-cart.push({name,price});
+function add(i){
+let name=products[i].name;
+
+if(!cart[name]){
+cart[name]={...products[i],qty:1};
+}else{
+cart[name].qty++;
+}
 update();
 }
 
 function update(){
-let c=document.getElementById("cartItems");
-total=0;
+let c=document.getElementById("cart");
 c.innerHTML="";
-cart.forEach(i=>{
-total+=i.price;
-c.innerHTML+=i.name+"<br>";
-});
+total=0;
+
+for(let k in cart){
+let item=cart[k];
+total+=item.price*item.qty;
+
+c.innerHTML+=`
+<div>
+${item.name}<br>
+<div class="qty">
+Qty: ${item.qty}
+<button onclick="plus('${k}')">+</button>
+<button onclick="minus('${k}')">-</button>
+</div>
+</div><hr>`;
+}
+
 document.getElementById("total").innerText=total;
+}
+
+function plus(k){
+cart[k].qty++;
+update();
+}
+
+function minus(k){
+cart[k].qty--;
+if(cart[k].qty<=0) delete cart[k];
+update();
 }
 
 function search(v){
 show(products.filter(p=>p.name.toLowerCase().includes(v.toLowerCase())));
 }
 
+function filter(type){
+if(type==="all") return show(products);
+show(products.filter(p=>p.cat===type));
+}
+
 function checkout(){
-let msg="Order:\n";
-cart.forEach(i=>msg+=i.name+" - $"+i.price+"\n");
+let msg="🔥 APEX HOLUX ORDER 🔥\n\n";
+for(let k in cart){
+let i=cart[k];
+msg+=`${i.name} x${i.qty} - $${i.price*i.qty}\n`;
+}
+msg+="\nTOTAL: $"+total;
+
 window.open("https://wa.me/93764594322?text="+encodeURIComponent(msg));
 }
 
