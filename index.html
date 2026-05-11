@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Apex Holux Global Market</title>
+<title>Apex Holux Global SaaS</title>
 <link rel="stylesheet" href="style.css">
 </head>
 
@@ -11,25 +11,33 @@
 
 <header>
 <div class="logo">Apex <span>Holux</span></div>
-
-<input id="search" placeholder="Search global products..." oninput="search()">
-
-<button onclick="toggleCart()">🛒 Cart</button>
+<button onclick="openLogin()">Admin</button>
 </header>
 
-<!-- HERO -->
-<section class="hero">
-<h1>GLOBAL PREMIUM MARKET</h1>
-<p>Top Sneakers • Slides • Sport Shoes • Luxury Fashion</p>
+<!-- LOGIN -->
+<div id="login">
+<h2>Admin Login</h2>
+<input id="user" placeholder="Username">
+<input id="pass" type="password" placeholder="Password">
+<button onclick="login()">Login</button>
+</div>
+
+<!-- ADMIN -->
+<section class="admin">
+<h3>Add Product (Cloud Ready)</h3>
+<input id="name" placeholder="Product Name">
+<input id="price" placeholder="Price">
+<input id="img" placeholder="Image URL">
+<button onclick="addProduct()">Add Product</button>
 </section>
 
 <!-- PRODUCTS -->
 <section id="products" class="products"></section>
 
 <!-- CART -->
-<div id="cart" class="cart">
-<h2>Cart</h2>
-<div id="cartItems"></div>
+<div class="cart">
+<h4>Cart</h4>
+<div id="cart"></div>
 <p>Total: $<span id="total">0</span></p>
 <button onclick="checkout()">Checkout</button>
 </div>
