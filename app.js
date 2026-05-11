@@ -1,38 +1,37 @@
-let products = JSON.parse(localStorage.getItem("products")) || [
+let products = [
 {
-name:"Nike Air Force",
+name:"Nike Air Force 1",
 price:120,
 img:"https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=700"
+},
+{
+name:"Adidas Slides",
+price:60,
+img:"https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=700"
 }
 ];
 
 let cart = [];
-
 let total = 0;
 
 /* LOGIN */
-function showLogin(){
-document.getElementById("login").style.display="flex";
+function openLogin(){
+document.getElementById("loginBox").style.display="flex";
 }
 
 function login(){
-let u=document.getElementById("u").value;
-let p=document.getElementById("p").value;
+let u=document.getElementById("user").value;
+let p=document.getElementById("pass").value;
 
 if(u==="admin" && p==="1234"){
-document.getElementById("login").style.display="none";
+document.getElementById("loginBox").style.display="none";
 }else{
 alert("Wrong login");
 }
 }
 
-/* SAVE PRODUCTS */
-function save(){
-localStorage.setItem("products",JSON.stringify(products));
-}
-
-/* SHOW */
-function show(){
+/* SHOW PRODUCTS */
+function showProducts(){
 let box=document.getElementById("products");
 box.innerHTML="";
 
@@ -42,8 +41,7 @@ box.innerHTML+=`
 <img src="${p.img}">
 <h3>${p.name}</h3>
 <div class="price">$${p.price}</div>
-<button onclick="add(${i})">Add</button>
-<button onclick="del(${i})" style="background:red;color:white;">Delete</button>
+<button onclick="addToCart(${i})">Add</button>
 </div>`;
 });
 }
@@ -60,26 +58,17 @@ price:Number(p),
 img:img
 });
 
-save();
-show();
-}
-
-/* DELETE */
-function del(i){
-products.splice(i,1);
-save();
-show();
+showProducts();
 }
 
 /* CART */
-function add(i){
+function addToCart(i){
 cart.push(products[i]);
-update();
+updateCart();
 }
 
-/* UPDATE CART */
-function update(){
-let c=document.getElementById("cart");
+function updateCart(){
+let c=document.getElementById("cartList");
 c.innerHTML="";
 total=0;
 
@@ -102,4 +91,4 @@ msg+=i.name+" - $"+i.price+"\n";
 window.open("https://wa.me/93764594322?text="+encodeURIComponent(msg));
 }
 
-show();
+showProducts();
