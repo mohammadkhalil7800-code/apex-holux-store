@@ -3,90 +3,42 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Apex Holux Global Export</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800&display=swap" rel="stylesheet">
 
 <style>
 
-body{
+*{
 margin:0;
+padding:0;
+box-sizing:border-box;
+scroll-behavior:smooth;
+}
+
+body{
 font-family:Montserrat;
 background:#0a0a0a;
 color:white;
 }
-<section class="hero">
-<h1>THE FUTURE OF GLOBAL SHOPPING</h1>
-<p>Luxury Shoes • Global Export • Premium Quality</p>
-<a href="#products" class="btn">Explore Collection</a>
-</section>
 
-<section class="stats">
-<div>5000+ Products</div>
-<div>120+ Countries</div>
-<div>24/7 Support</div>
-<div>Premium Quality</div>
-</section>
+/* HEADER */
 
-<section id="products" class="products">
-<!-- products here -->
-</section>
-
-<section class="factory">
-<h2>Factory Production</h2>
-
-<div class="gallery">
-
-<img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=900">
-
-<img src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=900">
-
-<img src="https://images.unsplash.com/photo-1605348532760-6753d2c43329?w=900">
-
-</div>
-</section>
-
-<section class="reviews">
-
-<h2>Client Reviews</h2>
-
-<div class="review">
-"Best quality shoes supplier in the market."
-</div>
-
-<div class="review">
-"Fast delivery and premium materials."
-</div>
-
-<div class="review">
-"Professional export company."
-</div>
-
-</section>
-
-<section class="contact">
-
-<h2>Contact Apex Holux</h2>
-
-<p>WhatsApp: 0764594322</p>
-
-<p>Email: apexholux@gmail.com</p>
-
-</section>
-  
 header{
-padding:20px;
-background:#000;
 display:flex;
 justify-content:space-between;
 align-items:center;
+padding:20px 40px;
+background:#000;
 position:sticky;
 top:0;
 z-index:999;
+border-bottom:1px solid #222;
 }
 
 .logo{
-font-size:26px;
+font-size:30px;
 font-weight:900;
 }
 
@@ -94,75 +46,146 @@ font-weight:900;
 color:#ff9900;
 }
 
+nav a{
+color:white;
+text-decoration:none;
+margin-left:20px;
+font-weight:600;
+}
+
+nav a:hover{
+color:#ff9900;
+}
+
+/* HERO */
+
 .hero{
-height:70vh;
-background:url('https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=1400') center/cover;
+height:100vh;
+background:
+linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.7)),
+url('https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=1600') center/cover;
 display:flex;
-flex-direction:column;
 justify-content:center;
 align-items:center;
 text-align:center;
+padding:20px;
+}
+
+.hero-content{
+max-width:900px;
 }
 
 .hero h1{
-font-size:55px;
-margin:0;
+font-size:70px;
+font-weight:900;
+margin-bottom:20px;
 }
 
 .hero p{
-font-size:22px;
-color:#ff9900;
+font-size:24px;
+margin-bottom:30px;
+color:#ddd;
 }
+
+.hero-btn{
+display:inline-block;
+padding:16px 40px;
+background:#ff9900;
+color:black;
+text-decoration:none;
+border-radius:50px;
+font-weight:800;
+transition:.3s;
+}
+
+.hero-btn:hover{
+background:white;
+transform:scale(1.05);
+}
+
+/* STATS */
+
+.stats{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
+padding:50px 30px;
+background:#111;
+}
+
+.stat-box{
+background:#1a1a1a;
+padding:35px;
+border-radius:20px;
+text-align:center;
+font-size:22px;
+font-weight:bold;
+}
+
+/* CONTAINER */
 
 .container{
 display:grid;
 grid-template-columns:1fr 1fr;
 gap:20px;
-padding:20px;
+padding:30px;
 }
 
 .panel{
 background:#111;
-padding:20px;
-border-radius:15px;
+padding:25px;
+border-radius:20px;
+}
+
+.panel h2{
+margin-bottom:20px;
 }
 
 input{
 width:100%;
-padding:12px;
-margin:5px 0;
+padding:14px;
+margin-bottom:10px;
 border:none;
-border-radius:10px;
+border-radius:12px;
+background:#222;
+color:white;
 }
 
 button{
 width:100%;
-padding:12px;
-background:#ff9900;
+padding:14px;
 border:none;
+border-radius:12px;
+background:#ff9900;
 font-weight:bold;
-border-radius:10px;
 cursor:pointer;
-margin-top:10px;
-transition:0.3s;
+transition:.3s;
 }
 
 button:hover{
 background:white;
 }
 
+.small{
+font-size:13px;
+opacity:.7;
+margin-top:10px;
+}
+
+/* PRODUCTS */
+
 .products{
+padding:30px;
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:15px;
-padding:20px;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
 }
 
 .card{
 background:#111;
-padding:15px;
-border-radius:15px;
-transition:0.3s;
+border-radius:20px;
+overflow:hidden;
+transition:.3s;
 }
 
 .card:hover{
@@ -171,160 +194,187 @@ transform:translateY(-5px);
 
 .card img{
 width:100%;
-height:180px;
+height:250px;
 object-fit:cover;
-border-radius:10px;
+}
+
+.card-content{
+padding:20px;
+}
+
+.card h3{
+margin-bottom:10px;
 }
 
 .price{
+font-size:24px;
 color:#ff9900;
 font-weight:800;
+margin-bottom:10px;
 }
 
-.small{
-font-size:12px;
-opacity:0.7;
-}
+/* ABOUT */
 
-.about,
-.services,
-.factory,
-.contact{
-padding:50px 20px;
+.about{
+padding:70px 30px;
 text-align:center;
 }
 
-.services{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-gap:15px;
+.about h2{
+font-size:40px;
+margin-bottom:20px;
 }
 
-.services div{
+.about p{
+max-width:900px;
+margin:auto;
+line-height:1.8;
+color:#ccc;
+}
+
+/* SERVICES */
+
+.services{
+padding:50px 30px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
+}
+
+.service-box{
 background:#111;
-padding:20px;
-border-radius:15px;
+padding:35px;
+border-radius:20px;
+text-align:center;
+font-size:22px;
 font-weight:bold;
 }
 
-.factory-gallery{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:15px;
-margin-top:20px;
+/* FACTORY */
+
+.factory{
+padding:70px 30px;
 }
 
-.factory-gallery img{
-width:100%;
-height:220px;
-object-fit:cover;
-border-radius:15px;
+.factory h2{
+text-align:center;
+font-size:40px;
+margin-bottom:40px;
 }
+
+.gallery{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:20px;
+}
+
+.gallery img{
+width:100%;
+height:260px;
+object-fit:cover;
+border-radius:20px;
+}
+
+/* REVIEWS */
+
+.reviews{
+padding:70px 30px;
+background:#111;
+}
+
+.reviews h2{
+text-align:center;
+font-size:40px;
+margin-bottom:40px;
+}
+
+.review{
+background:#1a1a1a;
+padding:30px;
+border-radius:20px;
+margin-bottom:20px;
+line-height:1.8;
+}
+
+/* CONTACT */
+
+.contact{
+padding:70px 30px;
+text-align:center;
+}
+
+.contact h2{
+font-size:40px;
+margin-bottom:20px;
+}
+
+.contact p{
+margin:10px 0;
+font-size:18px;
+}
+
+/* FOOTER */
 
 footer{
 background:#000;
-padding:20px;
+padding:25px;
 text-align:center;
-margin-top:30px;
+border-top:1px solid #222;
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+.hero h1{
+font-size:42px;
+}
+
+.hero p{
+font-size:18px;
+}
+
+.container{
+grid-template-columns:1fr;
+}
+
+header{
+flex-direction:column;
+gap:15px;
+}
+
 }
 
 </style>
 </head>
 
 <body>
-  
-.hero{
-height:90vh;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-text-align:center;
-background:url('https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=1600') center/cover;
-}
 
-.hero h1{
-font-size:55px;
-font-weight:900;
-max-width:800px;
-}
-
-.hero p{
-font-size:20px;
-opacity:.9;
-}
-
-.btn{
-padding:15px 35px;
-background:#ff9900;
-color:black;
-font-weight:bold;
-border-radius:50px;
-text-decoration:none;
-margin-top:20px;
-}
-
-.stats{
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:20px;
-padding:40px;
-text-align:center;
-background:#111;
-}
-
-.stats div{
-background:#1a1a1a;
-padding:30px;
-border-radius:20px;
-font-size:22px;
-font-weight:bold;
-}
-
-.factory{
-padding:50px 20px;
-}
-
-.gallery{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:20px;
-}
-
-.gallery img{
-width:100%;
-border-radius:20px;
-}
-
-.reviews{
-padding:50px 20px;
-background:#111;
-}
-
-.review{
-background:#1a1a1a;
-padding:25px;
-margin:15px 0;
-border-radius:20px;
-}
-
-.contact{
-padding:50px 20px;
-text-align:center;
-}
-  
 <header>
-<div class="logo">Apex <span>Holux</span></div>
-<div>GLOBAL EXPORT SYSTEM</div>
+
+<div class="logo">
+Apex <span>Holux</span>
+</div>
+
+<nav>
+<a href="#">Home</a>
+<a href="#products">Products</a>
+<a href="#about">About</a>
+<a href="#contact">Contact</a>
+</nav>
+
 </header>
+
+<!-- HERO -->
+
 <section class="hero">
 
-<div class="overlay">
+<div class="hero-content">
 
-<h1>APEX HOLUX</h1>
+<h1>THE FUTURE OF GLOBAL SHOES EXPORT</h1>
 
 <p>
-THE FUTURE OF GLOBAL SHOES EXPORT
+Luxury Shoes • Premium Quality • Worldwide Shipping
 </p>
 
 <a href="#products" class="hero-btn">
@@ -335,80 +385,155 @@ Explore Collection
 
 </section>
 
+<!-- STATS -->
+
+<section class="stats">
+
+<div class="stat-box">
+5000+ Products
+</div>
+
+<div class="stat-box">
+120+ Countries
+</div>
+
+<div class="stat-box">
+24/7 Support
+</div>
+
+<div class="stat-box">
+Premium Quality
+</div>
+
+</section>
+
+<!-- ADMIN + CART -->
+
 <div class="container">
 
-<!-- ADMIN PANEL -->
 <div class="panel">
+
 <h2>➕ Add Product</h2>
 
 <input id="name" placeholder="Product Name">
+
 <input id="price" placeholder="Price">
+
 <input id="img" placeholder="Image URL">
+
 <input id="cat" placeholder="Category">
 
-<button onclick="addProduct()">Add Product</button>
+<button onclick="addProduct()">
+Add Product
+</button>
 
-<p class="small">Premium Global Admin Panel</p>
+<p class="small">
+Premium Global Admin Panel
+</p>
+
 </div>
 
-<!-- CART -->
 <div class="panel">
+
 <h2>🛒 Cart</h2>
 
 <div id="cart"></div>
 
-<p>Total: $<span id="total">0</span></p>
+<br>
 
-<button onclick="checkout()">WhatsApp Order</button>
+<p>
+Total: $<span id="total">0</span>
+</p>
+
+<br>
+
+<button onclick="checkout()">
+WhatsApp Order
+</button>
+
 </div>
 
 </div>
 
 <!-- PRODUCTS -->
-<section class="products" id="box"></section>
+
+<section class="products" id="products"></section>
 
 <!-- ABOUT -->
-<section class="about">
+
+<section class="about" id="about">
+
 <h2>About Apex Holux</h2>
 
 <p>
-Professional shoes supplier with premium quality products,
-exporting worldwide with modern manufacturing systems.
+Apex Holux is a premium global footwear export company delivering luxury sneakers, slides, and sports shoes worldwide. Our mission is to provide world-class products with premium quality, fast delivery, and modern manufacturing systems.
 </p>
+
 </section>
 
 <!-- SERVICES -->
+
 <section class="services">
 
-<div>OEM & ODM</div>
+<div class="service-box">
+OEM & ODM
+</div>
 
-<div>Low MOQ</div>
+<div class="service-box">
+Low MOQ
+</div>
 
-<div>Fast Delivery</div>
+<div class="service-box">
+Fast Delivery
+</div>
 
-<div>Premium Quality</div>
+<div class="service-box">
+Premium Quality
+</div>
 
 </section>
 
 <!-- FACTORY -->
+
 <section class="factory">
 
 <h2>Factory Production</h2>
 
-<div class="factory-gallery">
+<div class="gallery">
 
-<img src="https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?w=700">
+<img src="https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?w=900">
 
-<img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=700">
+<img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=900">
 
-<img src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=700">
+<img src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=900">
 
 </div>
 
 </section>
 
+<!-- REVIEWS -->
+
+<section class="reviews">
+
+<h2>Client Reviews</h2>
+
+<div class="review">
+"Best quality supplier in the market. Professional communication and premium shoes."
+</div>
+
+<div class="review">
+"Fast delivery and amazing materials. Highly recommended."
+</div>
+
+<div class="review">
+"One of the best export companies we worked with."
+</div>
+
+</section>
+
 <!-- CONTACT -->
-<section class="contact">
+
+<section class="contact" id="contact">
 
 <h2>Contact Us</h2>
 
@@ -418,8 +543,12 @@ exporting worldwide with modern manufacturing systems.
 
 </section>
 
+<!-- FOOTER -->
+
 <footer>
+
 © 2026 Apex Holux Global Export
+
 </footer>
 
 <script>
@@ -430,21 +559,21 @@ let products=[
 name:"Nike Air Force",
 price:120,
 cat:"Sneaker",
-img:"https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=700"
+img:"https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=900"
 },
 
 {
 name:"Adidas Slides",
 price:60,
 cat:"Slides",
-img:"https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=700"
+img:"https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=900"
 },
 
 {
 name:"Luxury Sneakers",
 price:180,
 cat:"Sport",
-img:"https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?w=700"
+img:"https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?w=900"
 }
 
 ];
@@ -454,7 +583,7 @@ let total=0;
 
 function show(){
 
-let box=document.getElementById("box");
+let box=document.getElementById("products");
 
 box.innerHTML="";
 
@@ -466,17 +595,27 @@ box.innerHTML+=`
 
 <img src="${p.img}">
 
+<div class="card-content">
+
 <h3>${p.name}</h3>
 
 <div class="price">$${p.price}</div>
 
-<p class="small">${p.cat}</p>
+<p>${p.cat}</p>
 
-<button onclick="add(${i})">Add to Cart</button>
+<br>
+
+<button onclick="add(${i})">
+Add to Cart
+</button>
+
+<br><br>
 
 <button onclick="removeProduct(${i})" style="background:red;color:white;">
 Delete
 </button>
+
+</div>
 
 </div>
 
@@ -524,9 +663,9 @@ let img=document.getElementById("img").value;
 
 let cat=document.getElementById("cat").value;
 
-if(!n||!p||!img||!cat){
+if(!n || !p || !img || !cat){
 
-alert("Fill all fields!");
+alert("Fill all fields");
 
 return;
 
@@ -543,7 +682,7 @@ cat:cat
 
 show();
 
-alert("Product Added!");
+alert("Product Added");
 
 }
 
