@@ -15,7 +15,65 @@ font-family:Montserrat;
 background:#0a0a0a;
 color:white;
 }
+<section class="hero">
+<h1>THE FUTURE OF GLOBAL SHOPPING</h1>
+<p>Luxury Shoes • Global Export • Premium Quality</p>
+<a href="#products" class="btn">Explore Collection</a>
+</section>
 
+<section class="stats">
+<div>5000+ Products</div>
+<div>120+ Countries</div>
+<div>24/7 Support</div>
+<div>Premium Quality</div>
+</section>
+
+<section id="products" class="products">
+<!-- products here -->
+</section>
+
+<section class="factory">
+<h2>Factory Production</h2>
+
+<div class="gallery">
+
+<img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=900">
+
+<img src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=900">
+
+<img src="https://images.unsplash.com/photo-1605348532760-6753d2c43329?w=900">
+
+</div>
+</section>
+
+<section class="reviews">
+
+<h2>Client Reviews</h2>
+
+<div class="review">
+"Best quality shoes supplier in the market."
+</div>
+
+<div class="review">
+"Fast delivery and premium materials."
+</div>
+
+<div class="review">
+"Professional export company."
+</div>
+
+</section>
+
+<section class="contact">
+
+<h2>Contact Apex Holux</h2>
+
+<p>WhatsApp: 0764594322</p>
+
+<p>Email: apexholux@gmail.com</p>
+
+</section>
+  
 header{
 padding:20px;
 background:#000;
@@ -174,7 +232,87 @@ margin-top:30px;
 </head>
 
 <body>
+  
+.hero{
+height:90vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+background:url('https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=1600') center/cover;
+}
 
+.hero h1{
+font-size:55px;
+font-weight:900;
+max-width:800px;
+}
+
+.hero p{
+font-size:20px;
+opacity:.9;
+}
+
+.btn{
+padding:15px 35px;
+background:#ff9900;
+color:black;
+font-weight:bold;
+border-radius:50px;
+text-decoration:none;
+margin-top:20px;
+}
+
+.stats{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:20px;
+padding:40px;
+text-align:center;
+background:#111;
+}
+
+.stats div{
+background:#1a1a1a;
+padding:30px;
+border-radius:20px;
+font-size:22px;
+font-weight:bold;
+}
+
+.factory{
+padding:50px 20px;
+}
+
+.gallery{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+}
+
+.gallery img{
+width:100%;
+border-radius:20px;
+}
+
+.reviews{
+padding:50px 20px;
+background:#111;
+}
+
+.review{
+background:#1a1a1a;
+padding:25px;
+margin:15px 0;
+border-radius:20px;
+}
+
+.contact{
+padding:50px 20px;
+text-align:center;
+}
+  
 <header>
 <div class="logo">Apex <span>Holux</span></div>
 <div>GLOBAL EXPORT SYSTEM</div>
