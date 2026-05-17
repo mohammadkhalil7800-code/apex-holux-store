@@ -1,716 +1,263 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Apex Holux Global Export</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800&display=swap" rel="stylesheet">
-
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>APEX HOLUX — Global Luxury Footwear</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
-scroll-behavior:smooth;
+font-family:'Poppins',sans-serif;
 }
-
 body{
-font-family:Montserrat;
-background:#0a0a0a;
+background:#080808;
 color:white;
+overflow-x:hidden;
 }
-
-/* HEADER */
-
 header{
+position:fixed;
+width:100%;
+top:0;
+left:0;
+padding:20px 8%;
 display:flex;
 justify-content:space-between;
 align-items:center;
-padding:20px 40px;
-background:#000;
-position:sticky;
-top:0;
-z-index:999;
-border-bottom:1px solid #222;
+background:rgba(0,0,0,0.85);
+backdrop-filter:blur(10px);
+z-index:1000;
 }
-
 .logo{
-font-size:30px;
-font-weight:900;
+font-size:32px;
+font-weight:700;
+color:#D4AF37;
+letter-spacing:3px;
 }
-
-.logo span{
-color:#ff9900;
-}
-
 nav a{
 color:white;
 text-decoration:none;
-margin-left:20px;
-font-weight:600;
+margin-left:25px;
+font-size:15px;
+transition:0.3s;
 }
-
 nav a:hover{
-color:#ff9900;
+color:#D4AF37;
 }
-
-/* HERO */
-
 .hero{
 height:100vh;
-background:
-linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.7)),
-url('https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=1600') center/cover;
 display:flex;
-justify-content:center;
 align-items:center;
+justify-content:center;
 text-align:center;
-padding:20px;
+padding:0 10%;
+background:linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=1400&auto=format&fit=crop') center/cover;
 }
-
-.hero-content{
-max-width:900px;
-}
-
-.hero h1{
-font-size:70px;
-font-weight:900;
+.hero-content h1{
+font-size:72px;
+color:#D4AF37;
 margin-bottom:20px;
 }
-
-.hero p{
-font-size:24px;
-margin-bottom:30px;
-color:#ddd;
+.hero-content p{
+font-size:22px;
+margin-bottom:35px;
+line-height:1.7;
 }
-
-.hero-btn{
+.btn{
 display:inline-block;
-padding:16px 40px;
-background:#ff9900;
+padding:15px 35px;
+background:#D4AF37;
 color:black;
+font-weight:700;
 text-decoration:none;
 border-radius:50px;
-font-weight:800;
-transition:.3s;
+transition:0.3s;
 }
-
-.hero-btn:hover{
-background:white;
-transform:scale(1.05);
+.btn:hover{
+transform:translateY(-5px);
+box-shadow:0 0 25px #D4AF37;
 }
-
-/* STATS */
-
-.stats{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:20px;
-padding:50px 30px;
-background:#111;
+section{
+padding:100px 8%;
 }
-
-.stat-box{
-background:#1a1a1a;
-padding:35px;
-border-radius:20px;
+.title{
 text-align:center;
-font-size:22px;
-font-weight:bold;
+font-size:42px;
+margin-bottom:60px;
+color:#D4AF37;
 }
-
-/* CONTAINER */
-
-.container{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:20px;
-padding:30px;
-}
-
-.panel{
-background:#111;
-padding:25px;
-border-radius:20px;
-}
-
-.panel h2{
-margin-bottom:20px;
-}
-
-input{
-width:100%;
-padding:14px;
-margin-bottom:10px;
-border:none;
-border-radius:12px;
-background:#222;
-color:white;
-}
-
-button{
-width:100%;
-padding:14px;
-border:none;
-border-radius:12px;
-background:#ff9900;
-font-weight:bold;
-cursor:pointer;
-transition:.3s;
-}
-
-button:hover{
-background:white;
-}
-
-.small{
-font-size:13px;
-opacity:.7;
-margin-top:10px;
-}
-
-/* PRODUCTS */
-
 .products{
-padding:30px;
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:20px;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:30px;
 }
-
 .card{
 background:#111;
-border-radius:20px;
+border:1px solid rgba(212,175,55,0.2);
+border-radius:25px;
 overflow:hidden;
-transition:.3s;
+transition:0.4s;
 }
-
 .card:hover{
-transform:translateY(-5px);
+transform:translateY(-10px);
+box-shadow:0 0 30px rgba(212,175,55,0.25);
 }
-
 .card img{
 width:100%;
-height:250px;
+height:280px;
 object-fit:cover;
 }
-
 .card-content{
-padding:20px;
+padding:25px;
 }
-
-.card h3{
-margin-bottom:10px;
-}
-
-.price{
+.card-content h3{
+margin-bottom:12px;
 font-size:24px;
-color:#ff9900;
-font-weight:800;
-margin-bottom:10px;
 }
-
-/* ABOUT */
-
-.about{
-padding:70px 30px;
-text-align:center;
+.price{
+color:#D4AF37;
+font-size:20px;
+margin-bottom:18px;
 }
-
-.about h2{
-font-size:40px;
-margin-bottom:20px;
-}
-
-.about p{
-max-width:900px;
-margin:auto;
-line-height:1.8;
-color:#ccc;
-}
-
-/* SERVICES */
-
-.services{
-padding:50px 30px;
+.features{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:20px;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
 }
-
-.service-box{
+.feature-box{
 background:#111;
 padding:35px;
-border-radius:20px;
+border-radius:25px;
 text-align:center;
-font-size:22px;
-font-weight:bold;
+border:1px solid rgba(212,175,55,0.2);
 }
-
-/* FACTORY */
-
-.factory{
-padding:70px 30px;
+.feature-box h3{
+margin-top:15px;
+margin-bottom:15px;
+color:#D4AF37;
 }
-
-.factory h2{
-text-align:center;
-font-size:40px;
-margin-bottom:40px;
-}
-
-.gallery{
+.about{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-gap:20px;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:50px;
+align-items:center;
 }
-
-.gallery img{
+.about img{
 width:100%;
-height:260px;
-object-fit:cover;
-border-radius:20px;
+border-radius:25px;
 }
-
-/* REVIEWS */
-
-.reviews{
-padding:70px 30px;
-background:#111;
+.about-text h2{
+font-size:48px;
+color:#D4AF37;
+margin-bottom:25px;
 }
-
-.reviews h2{
-text-align:center;
-font-size:40px;
-margin-bottom:40px;
+.about-text p{
+line-height:1.9;
+font-size:18px;
 }
-
-.review{
-background:#1a1a1a;
-padding:30px;
-border-radius:20px;
-margin-bottom:20px;
-line-height:1.8;
-}
-
-/* CONTACT */
-
 .contact{
-padding:70px 30px;
 text-align:center;
+background:#111;
+border-top:1px solid rgba(212,175,55,0.2);
 }
-
 .contact h2{
-font-size:40px;
+font-size:42px;
+color:#D4AF37;
 margin-bottom:20px;
 }
-
 .contact p{
-margin:10px 0;
 font-size:18px;
+margin-bottom:15px;
 }
-
-/* FOOTER */
-
 footer{
-background:#000;
-padding:25px;
 text-align:center;
-border-top:1px solid #222;
+padding:30px;
+background:black;
+color:#999;
 }
-
-/* MOBILE */
-
 @media(max-width:768px){
-
-.hero h1{
-font-size:42px;
+.hero-content h1{
+font-size:48px;
 }
-
-.hero p{
+.hero-content p{
 font-size:18px;
 }
-
-.container{
-grid-template-columns:1fr;
+nav{
+display:none;
 }
-
-header{
-flex-direction:column;
-gap:15px;
 }
-
-}
-
 </style>
 </head>
-
-<body>
-
-<header>
-
-<div class="logo">
-Apex <span>Holux</span>
-</div>
-
+<body><header>
+<div class="logo">APEX HOLUX</div>
 <nav>
-<a href="#">Home</a>
+<a href="#home">Home</a>
 <a href="#products">Products</a>
+<a href="#features">Features</a>
 <a href="#about">About</a>
 <a href="#contact">Contact</a>
 </nav>
-
-</header>
-
-<!-- HERO -->
-
-<section class="hero">
-
+</header><section class="hero" id="home">
 <div class="hero-content">
-
-<h1>THE FUTURE OF GLOBAL SHOES EXPORT</h1>
-
-<p>
-Luxury Shoes • Premium Quality • Worldwide Shipping
-</p>
-
-<a href="#products" class="hero-btn">
-Explore Collection
-</a>
-
+<h1>STEP ABOVE.<br>LIVE BEYOND.</h1>
+<p>Premium global footwear brand built for champions, confidence, luxury, and elite performance.</p>
+<a href="#products" class="btn">SHOP NOW</a>
 </div>
-
-</section>
-
-<!-- STATS -->
-
-<section class="stats">
-
-<div class="stat-box">
-5000+ Products
-</div>
-
-<div class="stat-box">
-120+ Countries
-</div>
-
-<div class="stat-box">
-24/7 Support
-</div>
-
-<div class="stat-box">
-Premium Quality
-</div>
-
-</section>
-
-<!-- ADMIN + CART -->
-
-<div class="container">
-
-<div class="panel">
-
-<h2>➕ Add Product</h2>
-
-<input id="name" placeholder="Product Name">
-
-<input id="price" placeholder="Price">
-
-<input id="img" placeholder="Image URL">
-
-<input id="cat" placeholder="Category">
-
-<button onclick="addProduct()">
-Add Product
-</button>
-
-<p class="small">
-Premium Global Admin Panel
-</p>
-
-</div>
-
-<div class="panel">
-
-<h2>🛒 Cart</h2>
-
-<div id="cart"></div>
-
-<br>
-
-<p>
-Total: $<span id="total">0</span>
-</p>
-
-<br>
-
-<button onclick="checkout()">
-WhatsApp Order
-</button>
-
-</div>
-
-</div>
-
-<!-- PRODUCTS -->
-
-<section class="products" id="products"></section>
-
-<!-- ABOUT -->
-
-<section class="about" id="about">
-
-<h2>About Apex Holux</h2>
-
-<p>
-Apex Holux is a premium global footwear export company delivering luxury sneakers, slides, and sports shoes worldwide. Our mission is to provide world-class products with premium quality, fast delivery, and modern manufacturing systems.
-</p>
-
-</section>
-
-<!-- SERVICES -->
-
-<section class="services">
-
-<div class="service-box">
-OEM & ODM
-</div>
-
-<div class="service-box">
-Low MOQ
-</div>
-
-<div class="service-box">
-Fast Delivery
-</div>
-
-<div class="service-box">
-Premium Quality
-</div>
-
-</section>
-
-<!-- FACTORY -->
-
-<section class="factory">
-
-<h2>Factory Production</h2>
-
-<div class="gallery">
-
-<img src="https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?w=900">
-
-<img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=900">
-
-<img src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=900">
-
-</div>
-
-</section>
-
-<!-- REVIEWS -->
-
-<section class="reviews">
-
-<h2>Client Reviews</h2>
-
-<div class="review">
-"Best quality supplier in the market. Professional communication and premium shoes."
-</div>
-
-<div class="review">
-"Fast delivery and amazing materials. Highly recommended."
-</div>
-
-<div class="review">
-"One of the best export companies we worked with."
-</div>
-
-</section>
-
-<!-- CONTACT -->
-
-<section class="contact" id="contact">
-
-<h2>Contact Us</h2>
-
-<p>WhatsApp: 0764594322</p>
-
-<p>Email: apexholux@gmail.com</p>
-
-</section>
-
-<!-- FOOTER -->
-
-<footer>
-
-© 2026 Apex Holux Global Export
-
-</footer>
-
-<script>
-
-let products=[
-
-{
-name:"Nike Air Force",
-price:120,
-cat:"Sneaker",
-img:"https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=900"
-},
-
-{
-name:"Adidas Slides",
-price:60,
-cat:"Slides",
-img:"https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=900"
-},
-
-{
-name:"Luxury Sneakers",
-price:180,
-cat:"Sport",
-img:"https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?w=900"
-}
-
-];
-
-let cart=[];
-let total=0;
-
-function show(){
-
-let box=document.getElementById("products");
-
-box.innerHTML="";
-
-products.forEach((p,i)=>{
-
-box.innerHTML+=`
-
-<div class="card">
-
-<img src="${p.img}">
-
+</section><section id="products">
+<h2 class="title">Featured Collection</h2>
+<div class="products"><div class="card">
+<img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=1200&auto=format&fit=crop">
 <div class="card-content">
-
-<h3>${p.name}</h3>
-
-<div class="price">$${p.price}</div>
-
-<p>${p.cat}</p>
-
+<h3>Runner X</h3>
+<p class="price">$89</p>
+<a href="https://wa.me/93764594322" class="btn">Order Now</a>
+</div>
+</div><div class="card">
+<img src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?q=80&w=1200&auto=format&fit=crop">
+<div class="card-content">
+<h3>Elite Motion</h3>
+<p class="price">$110</p>
+<a href="https://wa.me/93764594322" class="btn">Order Now</a>
+</div>
+</div><div class="card">
+<img src="https://images.unsplash.com/photo-1549298916-b41d501d3772?q=80&w=1200&auto=format&fit=crop">
+<div class="card-content">
+<h3>Slide Pro</h3>
+<p class="price">$55</p>
+<a href="https://wa.me/93764594322" class="btn">Order Now</a>
+</div>
+</div></div>
+</section><section id="features">
+<h2 class="title">Why APEX HOLUX</h2>
+<div class="features"><div class="feature-box">
+<h3>Premium Quality</h3>
+<p>International luxury materials with strong durability and comfort.</p>
+</div><div class="feature-box">
+<h3>Global Shipping</h3>
+<p>Worldwide delivery system for modern international customers.</p>
+</div><div class="feature-box">
+<h3>Luxury Design</h3>
+<p>Minimal black and gold style inspired by elite global fashion.</p>
+</div></div>
+</section><section id="about">
+<div class="about">
+<img src="https://images.unsplash.com/photo-1543508282-6319a3e2621f?q=80&w=1200&auto=format&fit=crop">
+<div class="about-text">
+<h2>About Us</h2>
+<p>
+APEX HOLUX is a modern premium footwear company focused on global fashion, elite comfort, and luxury streetwear. Our mission is to create powerful products that inspire confidence and performance worldwide.
+</p>
+</div>
+</div>
+</section><section class="contact" id="contact">
+<h2>Contact Us</h2>
+<p>WhatsApp: +93 764 594 322</p>
+<p>Email: info@apexholux.com</p>
+<p>Instagram: @apexholux</p>
 <br>
-
-<button onclick="add(${i})">
-Add to Cart
-</button>
-
-<br><br>
-
-<button onclick="removeProduct(${i})" style="background:red;color:white;">
-Delete
-</button>
-
-</div>
-
-</div>
-
-`;
-
-});
-
-}
-
-function add(i){
-
-cart.push(products[i]);
-
-updateCart();
-
-}
-
-function updateCart(){
-
-let c=document.getElementById("cart");
-
-c.innerHTML="";
-
-total=0;
-
-cart.forEach(i=>{
-
-total+=i.price;
-
-c.innerHTML+=i.name+"<br>";
-
-});
-
-document.getElementById("total").innerText=total;
-
-}
-
-function addProduct(){
-
-let n=document.getElementById("name").value;
-
-let p=document.getElementById("price").value;
-
-let img=document.getElementById("img").value;
-
-let cat=document.getElementById("cat").value;
-
-if(!n || !p || !img || !cat){
-
-alert("Fill all fields");
-
-return;
-
-}
-
-products.push({
-
-name:n,
-price:Number(p),
-img:img,
-cat:cat
-
-});
-
-show();
-
-alert("Product Added");
-
-}
-
-function removeProduct(i){
-
-products.splice(i,1);
-
-show();
-
-}
-
-function checkout(){
-
-let msg="ORDER:%0A";
-
-cart.forEach(i=>{
-
-msg+=i.name+" - $"+i.price+"%0A";
-
-});
-
-window.open("https://wa.me/93764594322?text="+msg);
-
-}
-
-show();
-
-</script>
-
-</body>
+<a href="https://wa.me/93764594322" class="btn">WhatsApp Order</a>
+</section><footer>
+© 2026 APEX HOLUX — STEP ABOVE. LIVE BEYOND.
+</footer></body>
 </html>
