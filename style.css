@@ -567,3 +567,45 @@ line-height:1.8;
 color:#ddd;
 margin-bottom:20px;
 }
+
+.certificates{
+padding:80px 20px;
+background:#111;
+text-align:center;
+}
+
+.certificates h2{
+font-size:42px;
+color:#d4af37;
+margin-bottom:20px;
+}
+
+.cert-intro{
+max-width:800px;
+margin:auto;
+color:#ddd;
+margin-bottom:40px;
+}
+
+.cert-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+}
+
+.cert-card{
+background:#1a1a1a;
+padding:30px;
+border-radius:20px;
+border:1px solid #d4af37;
+}
+
+.cert-card h3{
+color:#d4af37;
+margin-bottom:10px;
+font-size:24px;
+}
+
+.cert-card p{
+color:#ddd;
+}
