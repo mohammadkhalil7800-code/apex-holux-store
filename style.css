@@ -250,3 +250,39 @@ margin-bottom:10px;
 .stat-box p{
 color:white;
 }
+.export-business{
+display:flex;
+flex-wrap:wrap;
+align-items:center;
+padding:80px 20px;
+background:#0d0d0d;
+gap:40px;
+}
+
+.export-image{
+flex:1;
+min-width:300px;
+}
+
+.export-image img{
+width:100%;
+border-radius:20px;
+}
+
+.export-content{
+flex:1;
+min-width:300px;
+}
+
+.export-content h2{
+font-size:42px;
+color:#d4af37;
+margin-bottom:20px;
+}
+
+.export-content p{
+font-size:18px;
+line-height:1.8;
+color:#ddd;
+margin-bottom:20px;
+}
