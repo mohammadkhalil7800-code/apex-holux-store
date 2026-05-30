@@ -689,3 +689,26 @@ color:#d4af37;
 body{
 padding-top:90px;
 }
+.stat-box{
+text-align:center;
+padding:30px;
+background:#111;
+border-radius:20px;
+transition:.3s;
+}
+
+.stat-box:hover{
+transform:translateY(-10px);
+}
+
+.counter{
+font-size:45px;
+color:#d4af37;
+font-weight:900;
+}
+
+.stat-box p{
+color:#fff;
+font-size:18px;
+}
+
