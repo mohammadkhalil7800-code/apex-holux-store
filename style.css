@@ -647,3 +647,45 @@ padding:20px;
 color:#999;
 font-size:14px;
 }
+.navbar{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 60px;
+background:rgba(0,0,0,0.9);
+backdrop-filter:blur(10px);
+z-index:1000;
+box-sizing:border-box;
+}
+
+.logo{
+font-size:28px;
+font-weight:900;
+color:#d4af37;
+letter-spacing:2px;
+}
+
+.nav-links{
+display:flex;
+gap:30px;
+list-style:none;
+}
+
+.nav-links a{
+color:white;
+text-decoration:none;
+font-weight:600;
+transition:0.3s;
+}
+
+.nav-links a:hover{
+color:#d4af37;
+}
+
+body{
+padding-top:90px;
+}
