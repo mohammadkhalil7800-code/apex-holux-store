@@ -403,3 +403,46 @@ margin-bottom:10px;
 .lab-card p{
 color:white;
 }
+
+.timeline{
+padding:80px 20px;
+background:#0d0d0d;
+text-align:center;
+}
+
+.timeline h2{
+font-size:42px;
+color:#d4af37;
+margin-bottom:20px;
+}
+
+.timeline-text{
+max-width:700px;
+margin:auto;
+color:#ddd;
+margin-bottom:50px;
+}
+
+.timeline-container{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:25px;
+}
+
+.timeline-item{
+background:#1a1a1a;
+padding:30px;
+border-radius:20px;
+border-left:5px solid #d4af37;
+}
+
+.timeline-item h3{
+font-size:36px;
+color:#d4af37;
+margin-bottom:10px;
+}
+
+.timeline-item p{
+color:white;
+font-size:16px;
+}
