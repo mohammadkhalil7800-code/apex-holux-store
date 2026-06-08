@@ -810,3 +810,47 @@ background:#d4af37;
 color:black;
 transform:translateY(-5px);
 }
+.global-map{
+padding:100px 30px;
+text-align:center;
+background:#0d0d0d;
+}
+
+.map-text{
+max-width:900px;
+margin:auto;
+font-size:18px;
+color:#ccc;
+margin-bottom:40px;
+}
+
+.world-map{
+width:100%;
+max-width:1000px;
+filter:brightness(0.8);
+margin-bottom:40px;
+}
+
+.countries{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:15px;
+}
+
+.country{
+background:#111;
+padding:15px 25px;
+border-radius:50px;
+border:1px solid #d4af37;
+color:white;
+font-weight:600;
+transition:.3s;
+}
+
+.country:hover{
+background:#d4af37;
+color:black;
+transform:translateY(-5px);
+}
+
