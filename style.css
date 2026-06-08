@@ -854,3 +854,35 @@ color:black;
 transform:translateY(-5px);
 }
 
+.certificates{
+padding:100px 30px;
+text-align:center;
+background:#111;
+}
+
+.subtitle{
+color:#aaa;
+margin-bottom:40px;
+}
+
+.cert-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
+}
+
+.cert{
+background:#000;
+border:1px solid #d4af37;
+padding:25px;
+border-radius:15px;
+color:white;
+font-weight:600;
+transition:0.3s;
+}
+
+.cert:hover{
+transform:translateY(-10px);
+background:#d4af37;
+color:black;
+}
