@@ -1021,5 +1021,43 @@ From the Middle East to Europe and Asia, APEX HOLUX is building a strong global 
 </section>
   
 <a href="https://wa.me/93764594322" class="btn">Contact Worldwide Sales</a>
+<script>
+
+function placeOrder(){
+
+let name = document.getElementById("customerName").value;
+let phone = document.getElementById("customerPhone").value;
+let address = document.getElementById("customerAddress").value;
+
+if(cart.length === 0){
+alert("Cart is empty!");
+return;
+}
+
+let orderText = "🛒 APEX HOLUX ORDER:%0A%0A";
+
+orderText += "👤 Name: " + name + "%0A";
+orderText += "📞 Phone: " + phone + "%0A";
+orderText += "🏠 Address: " + address + "%0A%0A";
+
+orderText += "📦 Items:%0A";
+
+let total = 0;
+
+cart.forEach(item => {
+orderText += "- " + item.name + " ($" + item.price + ")%0A";
+total += item.price;
+});
+
+orderText += "%0A💰 Total: $" + total;
+
+let whatsappURL = "https://wa.me/93764594322?text=" + orderText;
+
+window.open(whatsappURL, "_blank");
+
+}
+
+</script>
 </section></body>
+
 </html>
