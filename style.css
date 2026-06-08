@@ -944,3 +944,33 @@ transition:0.3s;
 .product-card a:hover{
 background:white;
 }
+
+#cart{
+padding:80px 30px;
+background:#0a0a0a;
+text-align:center;
+color:white;
+}
+
+#cart-items{
+max-width:600px;
+margin:auto;
+}
+
+.cart-item{
+display:flex;
+justify-content:space-between;
+padding:15px;
+background:#111;
+margin:10px 0;
+border-radius:10px;
+}
+
+.cart-item button{
+background:red;
+color:white;
+border:none;
+padding:5px 10px;
+border-radius:5px;
+cursor:pointer;
+}
