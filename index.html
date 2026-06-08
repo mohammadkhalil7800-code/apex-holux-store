@@ -129,7 +129,46 @@ counter.innerText = target.toLocaleString();
 updateCounter();
 
 });
+<script>
+let cart = [];
 
+function addToCart(name, price){
+  cart.push({name, price});
+  updateCart();
+}
+
+function updateCart(){
+  let cartItems = document.getElementById("cart-items");
+  let total = document.getElementById("total");
+
+  cartItems.innerHTML = "";
+
+  let sum = 0;
+
+  cart.forEach((item, index) => {
+    sum += item.price;
+
+    cartItems.innerHTML += `
+      <div class="cart-item">
+        <p>${item.name} - $${item.price}</p>
+        <button onclick="removeItem(${index})">Remove</button>
+      </div>
+    `;
+  });
+
+  total.innerText = "Total: $" + sum;
+}
+
+function removeItem(index){
+  cart.splice(index, 1);
+  updateCart();
+}
+
+function clearCart(){
+  cart = [];
+  updateCart();
+}
+</script>
 </script>  
 body{
 background:#080808;
@@ -219,6 +258,7 @@ luxury and elite performance.
 
 <a href="#products" class="btn">
 SHOP NOW
+  <button onclick="addToCart('Runner X', 89)">Add to Cart</button>
 </a>
 
 </div>
