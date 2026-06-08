@@ -974,3 +974,24 @@ padding:5px 10px;
 border-radius:5px;
 cursor:pointer;
 }
+#checkout{
+padding:80px 30px;
+background:#111;
+text-align:center;
+color:white;
+}
+
+#checkout input{
+display:block;
+width:80%;
+max-width:400px;
+margin:10px auto;
+padding:12px;
+border:none;
+border-radius:8px;
+outline:none;
+}
+
+#checkout button{
+margin-top:20px;
+}
